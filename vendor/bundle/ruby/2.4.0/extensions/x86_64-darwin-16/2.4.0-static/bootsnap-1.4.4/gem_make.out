@@ -1,0 +1,15 @@
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bootsnap-1.4.4/ext/bootsnap
+/Users/01018603/.rbenv/versions/2.4.2/bin/ruby -r ./siteconf20190520-23247-1tlx1u9.rb extconf.rb
+creating Makefile
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bootsnap-1.4.4/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bootsnap-1.4.4/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bootsnap-1.4.4/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20190520-23247-135pzo4/bootsnap

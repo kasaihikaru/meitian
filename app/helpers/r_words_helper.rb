@@ -1,0 +1,2 @@
+module RWordsHelper
+end

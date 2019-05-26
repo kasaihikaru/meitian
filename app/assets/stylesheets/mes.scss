@@ -1,0 +1,38 @@
+// Place all the styles related to the me controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@import "params";
+
+
+.me-profile{
+	padding: 10px 0;
+}
+
+.psr{
+	margin: 20px 20px 50px;
+}
+.psr-title{
+	font-size: 12px;
+	margin-bottom: 15px;
+}
+.psr-content{
+	font-size: 16px;
+	.indivisual-psr-link{
+		margin-bottom: 20px;
+	}
+	ul{
+		a, a:hover{
+			color: $LightPrim;
+		}
+	}
+}
+.psr-link{
+	font-size: 10px;
+	text-align: right;
+}
+.me-registration-btn{
+	font-size: 15px;
+	margin: 8px 0;
+}

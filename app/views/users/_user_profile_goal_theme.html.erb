@@ -1,0 +1,12 @@
+<% if @user.goal? %>
+	<div class='user-profile-field'>
+		<span class='under-marker-lightprim'>学習のゴール</span><br>
+		<%= simple_format(@user.goal) %>
+	</div>
+<% end %>
+<% if @theme.present? %>
+	<div class='user-profile-field'>
+		<span class='under-marker-lightprim'><%= @this_month %>月のテーマ</span><br>
+		<%= simple_format(@theme) %>
+	</div>
+<% end %>

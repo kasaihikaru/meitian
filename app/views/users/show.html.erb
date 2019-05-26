@@ -1,0 +1,12 @@
+<section class='user-profile'>
+	<!-- ユーザー名前、自己紹介、リンク -->
+	<%= render :partial => 'users/user_profile_introduction', :locals=>{user: @user} %>
+
+	<!-- ユーザー、目標、テーマ -->
+	<%= render :partial => 'users/user_profile_goal_theme', :locals=>{user: @user, theme: @theme, this_month: @this_month} %>
+</section>
+<hr>
+
+
+<!-- PSRリスト -->
+<%= render :partial => 'users/psr_list', :locals=>{user: @user, passages: @passages, passages_cnt: @passages_cnt, papers: @papers, papers_cnt: @papers_cnt, rings: @rings, rings_cnt: @rings_cnt} %>

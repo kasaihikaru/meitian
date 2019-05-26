@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+
+    <div class="form-title">短文を作成する</div>
+    <div class="new-content">
+      <%= form_for @sentence, method: :post do |f| %>
+        <div class='form-section'>
+          <%= f.label :paper, "どの短文集に追加しますか？" %><br>
+          <% if params[:paper_id].present? %>
+            <%= f.collection_select 'paper_id', @mypapers, :id, :name, selected: params[:paper_id] %>
+          <% else %>
+            <%= f.collection_select 'paper_id', @mypapers, :id, :name %>
+          <% end %>
+        </div>
+
+        <div class='form-section new-sentece-content'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :ch, "中国語" %>&emsp;
+            </div>
+            <div class='float-left' id="passage_new_ch_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_area :ch, placeholder: "中国で短文を書いてください。（例）每天晚上自修汉语。", :required => true %>
+        </div>
+
+        <div class='form-section new-sentece-content'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :ja, "日本語" %>&emsp;
+            </div>
+            <div class='float-left' id="passage_new_ja_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_area :ja, placeholder: "日本語訳を書いてください。（例）毎晩、中国を勉強します。" %>
+        </div>
+
+
+        <div class='form-section'>
+          <%= f.label :title, "覚えたい単語を抜き出してください" %><br />
+          <% 20.times do |i| %>
+            <%= f.fields_for :s_words do |w| %>
+              <div class="clearfix">
+                <div id="word_ch_<%= i %>" class="float-left">
+                  <%= render :partial => 'svg/google' %>
+                </div>
+                <%= w.text_field :ch ,placeholder: "中国語", class: "float-left" %>
+                <div id="word_ja_<%= i %>" class="float-left margin-l-10">
+                  <%= render :partial => 'svg/google' %>
+                </div>
+                <%= w.text_field :ja ,placeholder: "日本語", class: "float-left" %>
+              </div>
+              <!-- google検索機能 -->
+              <script type="text/javascript">
+                document.getElementById("word_ch_<%= i%>").onclick = function(){
+                  var target= document.getElementById('passage_s_words_attributes_<%= i%>_ch');
+                      word = target.value;
+                  window.open('http://www.google.com/search?q=中国語%20'+word);
+                };
+                document.getElementById("word_ja_<%= i%>").onclick = function(){
+                  var target= document.getElementById('passage_s_words_attributes_<%= i%>_ja');
+                      word = target.value;
+                  window.open('http://www.google.com/search?q=中国語%20'+word);
+                };
+              </script>
+            <% end %>
+          <% end %>
+        </div>
+        <%= f.submit "作成", class: "form-send-btn prim-btn" %>
+      <% end %>
+    </div><!-- End of passage-new-content -->
+  </div><!-- End of col-12 -->
+</div><!-- End of row -->

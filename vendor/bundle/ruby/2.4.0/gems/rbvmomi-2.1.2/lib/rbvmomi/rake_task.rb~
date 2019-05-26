@@ -1,0 +1,7 @@
+require 'rake'
+require 'rake/tasklib'
+
+module RbVmomi
+  class RakeTask < Rake::TaskLib
+  end
+end

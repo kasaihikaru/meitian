@@ -1,0 +1,15 @@
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bindex-0.7.0/ext/skiptrace
+/Users/01018603/.rbenv/versions/2.4.2/bin/ruby -r ./siteconf20190520-23247-g2ab5z.rb extconf.rb
+creating Makefile
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bindex-0.7.0/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bindex-0.7.0/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/cruby.bundle
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/bindex-0.7.0/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20190520-23247-zpdxh2/skiptrace

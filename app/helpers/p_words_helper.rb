@@ -1,0 +1,2 @@
+module PWordsHelper
+end

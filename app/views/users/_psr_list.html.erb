@@ -1,0 +1,122 @@
+<section class='psr'>
+	<div class='psr-title'>文章</div>
+	<div class='psr-content'>
+		<% if @passages.present? %>
+			<% @passages.each do |passage| %>
+				<div class='margin-b-20'>
+					<%= link_to passage_word_ch_path(passage) do %>
+						<%= render :partial => 'svg/passage' %><%= passage.title %>
+					<% end %>
+				</div>
+			<% end %>
+			<% if @passages_cnt > 5 %>
+				<div class='psr-link'>
+					<%= link_to user_passages_path(@user) do %>
+						>全ての文章(<%= @passages_cnt %>)
+					<% end %>
+				</div>
+			<% end %>
+		<% else %>
+			<% if @user == current_user %>
+				まだ文章がありません！
+				<ul>
+					<li>
+						<%= link_to new_passage_path do %>
+							自分で作ってみる
+						<% end %>
+					</li>
+					<li>
+						<%= link_to explore_path do %>
+							他のユーザーの文章をコピーする
+						<% end %>
+					</li>
+				</ul>
+			<% else %>
+				また文章の投稿はありません。
+			<% end %>
+		<% end %>
+	</div>
+</section>
+
+
+<section class='psr'>
+	<div class='psr-title'>短文集</div>
+	<div class='psr-content'>
+		<% if @papers.present? %>
+			<% @papers.each do |paper| %>
+				<div class='margin-b-20'>
+					<%= link_to paper_sentence_ch_path(paper) do %>
+						<%= render :partial => 'svg/paper' %><%= paper.name %>
+					<% end %>
+				</div>
+			<% end %>
+			<% if @papers_cnt > 5 %>
+				<div class='psr-link'>
+					<%= link_to user_papers_path(@user) do %>
+						>全ての短文集(<%= @papers_cnt %>)
+					<% end %>
+				</div>
+			<% end %>
+		<% else %>
+			<% if @user == current_user %>
+				まだ短文集がありません！
+				<ul>
+					<li>
+						<%= form_for @paper, method: :post do |f| %>
+							<%= f.text_field :name, placeholder: "自分で作ってみる", :required => true, style: "width: 200px;" %>
+							<%= f.submit "作成", class: "grey-solid-btn" %>
+						<% end %>
+					</li>
+					<li>
+						<%= link_to explore_path do %>
+							他のユーザーの短文集をコピーする
+						<% end %>
+					</li>
+				</ul>
+			<% else %>
+				また短文集の投稿はありません。
+			<% end %>
+		<% end %>
+	</div>
+</section>
+
+<section class='psr'>
+	<div class='psr-title'>単語帳</div>
+	<div class='psr-content'>
+		<% if @rings.present? %>
+			<% @rings.each do |ring| %>
+				<div class='margin-b-20'>
+					<%= link_to ring_word_ch_path(ring) do %>
+						<%= render :partial => 'svg/ring' %><%= ring.name %>
+					<% end %>
+				</div>
+			<% end %>
+			<% if @rings_cnt > 5 %>
+				<div class='psr-link'>
+					<%= link_to user_rings_path(@user) do %>
+						>全ての単語帳(<%= @rings_cnt %>)
+					<% end %>
+				</div>
+			<% end %>
+		<% else %>
+			<% if @user == current_user %>
+				まだ単語帳がありません！
+				<ul>
+					<li>
+						<%= form_for @ring, method: :post do |f| %>
+							<%= f.text_field :name, placeholder: "自分で作ってみる", :required => true, style: "width: 200px;" %>
+							<%= f.submit "作成", class: "grey-solid-btn" %>
+						<% end %>
+					</li>
+					<li>
+						<%= link_to explore_path do %>
+							他のユーザーの単語帳をコピーする
+						<% end %>
+					</li>
+				</ul>
+			<% else %>
+				また単語帳の投稿はありません。
+			<% end %>
+		<% end %>
+	</div>
+</section>

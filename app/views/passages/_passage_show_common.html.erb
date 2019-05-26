@@ -1,0 +1,48 @@
+<div class='clearfix'>
+	<div class='psr-show-user float-left'>
+		<% if user.image? %>
+		  <%= image_tag user.image.url, :alt => "icon", :class=>"smallicon center" %>
+		<% else %>
+			 <img alt="no-icon" src="/images/no-icon.png" class="smallicon">
+		<% end %>
+		<%= user.name %>
+	</div>
+	<div class='edit-btn float-right'>
+		<%= link_to edit_passage_path(passage) do %>
+			<%= render :partial => 'svg/edit' %>
+		<% end %>
+	</div>
+</div>
+<section class='passage'>
+	<div class='passage-title'>
+		<%= passage.title %>
+	</div>
+	<% if words.present? %>
+		<div class='word-bar'>
+			<div class='clearfix'>
+				<div class='float-left'>
+					暗記済み単語&nbsp;<%= memorized_words_ch_count %>/<%= all_words_count %>
+				</div>
+				<div class='float-right'>
+					<a href="#passage-words-ch">単語帳を開く</a>
+				</div>
+			</div>
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" style="width: <%= progress%>%;" aria-valuenow="<%= progress%>" aria-valuemin="0" aria-valuemax="100"><%= progress%>%</div>
+			</div>
+		</div>
+	<% end %>
+	<div class='passage-content'>
+		<%= simple_format(passage.ch) %>
+	</div>
+</section>
+<% if passage.ja.present? %>
+	<section class='passage-ja'>
+		<div class='passage-ja-title'>
+			日本語訳
+		</div>
+		<div class='passage-content'>
+			<%= simple_format(passage.ja) %>
+		</div>
+	</section>
+<% end %>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+    你喜欢学习外语吗？联系我！
+    Twitter: @kasaihikaru_
+    -->
+
+
+    <!-- title -->
+    <meta name="keywords" content="中国語学習, 中国語, 音読, 瞬間作文">
+    <meta name="description" content="">
+    <title>MeiTian | 毎日こつこつ中国語学習</title>
+
+    <!-- デスクリプションを不用意に変更されないようにする -->
+    <meta content='NOYDIR' name='ROBOTS'>
+    <meta content='NOODP' name='ROBOTS'>
+
+    <!-- アイコン -->
+    <%= favicon_link_tag '/favicon.ico' %>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- For GA -->
+    <%= analytics_init if Rails.env.production? %>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+  </head>
+  <body>
+    <!-- TOPブランドロゴ -->
+    <div class="brand-top">
+      <p class="center-align margin-0">MeiTian 毎日こつこつ中国語</p>
+    </div>
+
+    <!-- コンテンツ -->
+    <div class="contents">
+      <% if notice.present? %>
+        <div class="notice"><%= notice %></div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="alert"><%= alert %></div>
+      <% end %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
+
+
+    <!-- フッターグロナビ -->
+    <footer class="container-fluid">
+      <div class="row topline">
+        <div class="col-md-3 d-none d-md-block"></div>
+        <% if user_signed_in? %>
+          <div class="col-xs-4 col-md-2 center-align footer-link">
+            <%= link_to me_path do %>
+              <% if params[:controller] == 'mes' %>
+                <%= render :partial => 'svg/me_colored' %><br>
+                <span class='selected'>こつこつ</span>
+              <% else %>
+                <%= render :partial => 'svg/me' %><br>
+                こつこつ
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-xs-4 col-md-2 center-align footer-link">
+<!--             <%= link_to new_passage_path do %>
+              <% if params[:controller] == 'passages' && params[:action] == "new" %>
+                <%= render :partial => 'svg/plus_colored' %><br>
+                <span class='selected'>新規投稿</span>
+              <% else %>
+                <%= render :partial => 'svg/plus' %><br>
+                新規投稿
+              <% end %>
+            <% end %> -->
+
+            <!-- 新規投稿ボタン -->
+            <div id="toggle-nav" class="toggle">
+              <%= render :partial => 'svg/plus' %><br>
+              新規投稿
+            </div>
+          </div>
+        <% else %>
+          <div class="col-xs-8 col-md-4 center-align">
+            <%= link_to new_user_registration_path do %>
+              <div class="prim-btn me-registration-btn">登録をして勉強開始！</div>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="col-xs-4 col-md-2 center-align footer-link">
+          <%= link_to explore_path do %>
+            <% if params[:controller] == 'explores' %>
+              <%= render :partial => 'svg/explore_colored' %><br>
+              <span class='selected'>探す</span>
+            <% else %>
+              <%= render :partial => 'svg/explore' %><br>
+              探す
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-3 d-none d-md-block"></div>
+      </div>
+      <!-- 新規投稿用naviを下に隠して設置 -->
+      <nav>
+        <%= link_to new_r_word_path do %>
+          <div class="nav-item nav-item-circle">
+            <%= render :partial => 'svg/ring_white' %><br>単語
+          </div>
+        <% end %>
+        <%= link_to new_sentence_path do %>
+          <div class="nav-item nav-item-circle">
+            <%= render :partial => 'svg/paper_white' %><br>短文
+          </div>
+        <% end %>
+        <%= link_to new_passage_path do %>
+          <div class="nav-item nav-item-circle">
+            <%= render :partial => 'svg/passage_white' %><br>文章
+          </div>
+        <% end %>
+        <div class="nav-item nav-item-text">何を投稿しますか？</div>
+      </nav>
+    </footer>
+  </body>
+</html>

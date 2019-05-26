@@ -1,0 +1,421 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "params";
+@import "explores";
+@import "mes";
+@import "p_words";
+@import "papers";
+@import "passages";
+@import "r_words";
+@import "rings";
+@import "s_words";
+@import "sentences";
+@import "users";
+
+
+//--------------- 配置 ----------------
+.float-right{  float: right;}
+.float-left{  float: left;}
+.left-align{  text-align: left;}
+.right-align{  text-align: right;}
+.center-align{  text-align: center;}
+.letter-bottom{  vertical-align: baseline; }
+.indent{  padding-left: 30px;}
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inline-center{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+  align-items: center; /* 縦方向中央揃え */
+}
+.mg-auto{ margin: 0 auto;}
+.mg-0{ margin: 0;}
+.margin-l-10{  margin-left: 10px;}
+.margin-b-20{  margin-bottom: 20px;}
+
+
+//--------------- 文字色 ----------------
+.fontcol-prim{  color: $Prim;}
+.fontcol-lightprim{  color: $LightPrim;}
+.fontcol-black{  color: black}
+
+//--------------- 文字サイズ ----------------
+.font-12{ font-size: 12px;}
+
+//--------------- 背景色 ----------------
+.bg-prim{  background-color: $Prim;}
+.bg-lightprim{  background-color: $LightPrim;}
+.bg-grey{  background-color: #979797;}
+
+
+//--------------- ボタン ----------------
+.prim-btn{
+  background-color: $Prim;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.grey-btn{
+  background-color: #979797;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.grey-solid-btn{
+  background-color: white;
+  color: #979797;
+  padding: 1px 10px;
+  border-radius: 10px;
+  border: solid 1px #979797;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.langchange-btn-selected{
+	background-color: $Prim;
+	color: white;
+	font-size: 15px;
+	font-weight: 800;
+	padding: 5px 15px;
+	margin: 0 2px;
+  border-radius: 5px;
+  border: none;
+}
+.langchange-btn-unselected{
+	background-color: white;
+	color: $Prim;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 5px 15px;
+  margin: 0 2px;
+  border-radius: 5px;
+  border: 1px solid $Prim;
+  cursor: pointer;
+}
+
+
+//--------------- ライン ----------------
+.underline{
+  border-bottom: 1px solid black;
+}
+.topline{
+  border-top: 1px solid black;
+}
+.under-marker-lightprim{
+  background: linear-gradient(transparent 70%, $LightPrim 70%);
+}
+.undermarker-prime{
+  background: linear-gradient(transparent 70%, $Prim 70%);
+}
+.border-b-double{
+  border-bottom: double 4px black;
+}
+
+//--------------- インプット ----------------
+textarea, input{
+  border-radius: 5px;
+  border: 1px solid #979797;
+}
+
+
+//--------------- badge ----------------
+// databadge top right
+span[data-badge-top-right]{
+  display: block;
+  position: relative;
+}
+span[data-badge-top-right]:before {
+  position: absolute;
+  display: inline-block;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  min-width: 20px;
+  line-height: 1;
+  border: $Prim 1px solid;
+  padding: 4px;
+  color: $Prim;
+}
+span[data-badge-top-right]:before {
+  top: 0;
+  right: 0;
+  transform: translate(75%, -50%);
+  content: attr(data-badge-top-right)"";
+}
+
+
+//-----------------アイコン-----------
+.smallicon{
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+}
+
+
+
+/*******************************
+* 固定系
+********************************/
+.brand-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 20px;
+  background: $Prim;
+  color: white;
+  z-index: 100;
+  }
+
+.contents{
+  margin: 20px 0 51px;
+}
+
+a, a:hover{
+	color: black;
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  height: 51px;
+  background: white;
+  z-index: 10;
+  color: black;
+  font-size: 10px;
+  .footer-link{
+  	padding-top: 5px;
+  }
+	a:link, a:visited, a:hover, a:active { 	color: black; text-decoration: none; }
+	.selected { color: $Prim; text-decoration: none; }
+}
+
+
+/*******************************
+* 不変系
+********************************/
+//--------------- 対策 ----------------//
+pre {
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.clearfix:after {
+  content:" ";
+  display:block;
+  clear:both;
+}
+.notice, .alert{
+  text-align: center;
+  background-color: $Point;
+  color: white;
+  margin:0;
+  padding: 15px 0;
+}
+
+
+//----------------- pagenatiom ------------------//
+.contents{
+  margin: 20px 0 51px;
+}
+
+.pagination{
+  .active .page-link{
+    background: $Prim;
+    border-color: $Prim;
+  }
+  .page-link{
+    color: #000000;
+  }
+}
+
+
+//----------------- card ------------------//
+.card{
+	background: #FFFFFF;
+	box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
+	border-radius: 7px;
+	padding: 20px;
+	margin: 15px 0;
+}
+.card-title{
+	font-size: 12px;
+	margin-bottom: 10px
+}
+.card-content{
+	font-size: 18px;
+}
+.card-alert{
+  background: $Prim;
+  box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
+  border-radius: 7px;
+  padding: 20px;
+  margin: 15px 0;
+  color: white;
+}
+
+
+//----------------- progress bar ------------------//
+.progress{
+  border-radius: 15px;
+  height: 15px ;
+  .progress-bar{
+    line-height: 16px;
+    background-color: #979797;
+  }
+}
+
+//----------------- form ------------------//
+.form-title{
+  font-size: 30px;
+  font-weight: 800;
+  margin: 40px 0 20px;
+}
+.form-section{
+  margin: 20px 0;
+}
+textarea{
+  width: 100%;
+}
+.form-send-btn{
+  margin: 20px 0 40px;
+}
+
+/*******************************
+* バルーン
+********************************/
+.icon{
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	margin-left: 15px;
+}
+.balloon-wrapper{
+  position: relative;
+	max-width: 100%
+}
+.left_balloon {
+		color: black;
+    position: relative;
+    background: #F5F5F5;
+    // margin: 10px 0;
+    padding: 10px;
+    border-radius: 15px;
+    // clear: both; //アイコン横に並べるため。
+    float: left;
+    margin: 0 0 0 45px;
+    max-width: 80%;
+    font-size: 12px;
+}
+.left_balloon:after,
+.left_balloon:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.left_balloon:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #F5F5F5;
+    border-width: 7px;
+    margin-top: -7px;
+}
+.left_balloon:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+
+
+
+
+
+/*******************************
+* フッター　新規作成ナビ
+********************************/
+// --------------------------
+#toggle-nav{
+  cursor: pointer;
+}
+.nav-item-circle:hover {
+  background-color: $LightPrim;
+}
+.nav-item {
+  margin-top: 50px; //待機時画面からはみ出させて見えなくする処理
+  position: absolute;
+  left: 50%;
+  text-align: center;
+  -webkit-transition: all .2s cubic-bezier(0,.42,.42,1);
+  -moz-transition: all .2s cubic-bezier(0,.42,.42,1);
+  -o-transition: all .2s cubic-bezier(0,.42,.42,1);
+  transition: all .2s cubic-bezier(0,.42,.42,1);
+}
+.nav-item-circle {
+  color: white;
+  padding-top: 5px;
+  font-weight: 800;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  text-align: center;
+  background-color: $Prim;
+  border-radius: 50%;
+}
+.nav-item-text{
+  margin-left: -45px;
+}
+nav a:nth-child(1) .slide-out {
+  -webkit-transform: translate(0px, -200px);
+  transform: translate(0px, -200px);
+}
+nav a:nth-child(2) .slide-out {
+  -webkit-transform: translate(0px, -260px);
+  transform: translate(0px, -260px);
+}
+
+nav a:nth-child(3) .slide-out {
+  -webkit-transform: translate(0px, -320px);
+  transform: translate(0px, -320px);
+}
+
+nav .slide-out-for-text {
+  transform: translate(0px, -350px);
+}// scale(1.2)

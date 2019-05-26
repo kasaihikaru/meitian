@@ -1,0 +1,24 @@
+<div class="container-fluid user-register">
+  <div class="row">
+    <div class="col-12 col-md-4 offset-md-1">
+      <div class="form-title">パスワード再発行</div>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="field">
+          <%= f.label :email, 'メールアドレス' %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", class: "input-text" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit '再発行メール送信', class: "prim-btn" %>
+        </div>
+      <% end %>
+      <br><br>
+      <%= render "users/shared/links" %>
+    </div>
+
+    <div class="col-md-5 offset-md-1 d-none d-md-block">
+    </div>
+  </div>
+</div>

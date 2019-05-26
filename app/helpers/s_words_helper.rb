@@ -1,0 +1,2 @@
+module SWordsHelper
+end

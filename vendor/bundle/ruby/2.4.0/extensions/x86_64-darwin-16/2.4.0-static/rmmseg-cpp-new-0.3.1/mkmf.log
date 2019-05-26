@@ -1,0 +1,72 @@
+"clang -o conftest -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/x86_64-darwin16 -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/ruby/backward -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0 -I. -I/Users/01018603/.rbenv/versions/2.4.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
+ld: warning: text-based stub file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation.tbd and library file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation are out of sync. Falling back to library file for linking.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"clang -o conftest -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/x86_64-darwin16 -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/ruby/backward -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0 -I. -I/Users/01018603/.rbenv/versions/2.4.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
+conftest.c:3:1: error: unknown type name 'algor'
+algor.cpp
+^
+conftest.c:3:6: error: expected identifier or '('
+algor.cpp
+     ^
+2 errors generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: algor.cpp
+/* end */
+
+"clang -o conftest -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/x86_64-darwin16 -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/ruby/backward -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0 -I. -I/Users/01018603/.rbenv/versions/2.4.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
+conftest.c:3:1: error: unknown type name 'memory'
+memory.cpp
+^
+conftest.c:3:7: error: expected identifier or '('
+memory.cpp
+      ^
+2 errors generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: memory.cpp
+/* end */
+
+"clang -o conftest -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/x86_64-darwin16 -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/ruby/backward -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0 -I. -I/Users/01018603/.rbenv/versions/2.4.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
+conftest.c:3:1: error: unknown type name 'dict'
+dict.cpp
+^
+conftest.c:3:5: error: expected identifier or '('
+dict.cpp
+    ^
+2 errors generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: dict.cpp
+/* end */
+
+"clang -o conftest -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/x86_64-darwin16 -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0/ruby/backward -I/Users/01018603/.rbenv/versions/2.4.2/include/ruby-2.4.0 -I. -I/Users/01018603/.rbenv/versions/2.4.2/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib -L. -L/Users/01018603/.rbenv/versions/2.4.2/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
+conftest.c:3:1: error: unknown type name 'rmmseg'
+rmmseg.cpp
+^
+conftest.c:3:7: error: expected identifier or '('
+rmmseg.cpp
+      ^
+2 errors generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: rmmseg.cpp
+/* end */
+

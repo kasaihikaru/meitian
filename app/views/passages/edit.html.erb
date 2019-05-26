@@ -1,0 +1,108 @@
+<div class="clearfix">
+  <%= link_to "文章を削除", passage_path(@passage), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+
+    <div class="form-title">文章を編集する</div>
+    <div class="new-content">
+
+      <%= form_for @passage, method: :put do |f| %>
+        <div class='form-section'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :title, "タイトル" %>&emsp;
+            </div>
+            <div class='float-left' id="passage_new_title_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_field :title, placeholder: "文章のタイトル", class: "new-passage-title", :required => true %>
+        </div>
+
+        <div class='form-section new-passage-content'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :title, "文章内容" %>&emsp;
+            </div>
+            <div class='float-left' id="passage_new_ch_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_area :ch, placeholder: "中国語の文章を書いてください。改行やスペースなどで読みやすく書くことをオススメします。", :required => true %>
+        </div>
+
+        <div class='form-section new-passage-content'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :title, "日本語訳" %>&emsp;
+            </div>
+            <div class='float-left' id="passage_new_ja_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_area :ja, placeholder: "勉強するときに、文章の日本語訳が必要な場合は、埋めてください。必須項目ではありません。" %>
+        </div>
+
+        <div class='form-section'>
+          <%= f.label :title, "単語" %><br />
+          <% i=0 %>
+          <%= f.fields_for :p_words do |w| %>
+            <div class="clearfix">
+              <div id="word_ch_<%= i %>" class="float-left">
+                <%= render :partial => 'svg/google' %>
+              </div>
+              <%= w.text_field :ch ,placeholder: "中国語", class: "float-left" %>
+              <div id="word_ja_<%= i %>" class="float-left margin-l-10">
+                <%= render :partial => 'svg/google' %>
+              </div>
+              <%= w.text_field :ja ,placeholder: "日本語", class: "float-left" %>
+            </div>
+            <!-- google検索機能 -->
+            <script type="text/javascript">
+              document.getElementById("word_ch_<%= i%>").onclick = function(){
+                var target= document.getElementById('passage_p_words_attributes_<%= i%>_ch');
+                    word = target.value;
+                window.open('http://www.google.com/search?q=中国語%20'+word);
+              };
+              document.getElementById("word_ja_<%= i%>").onclick = function(){
+                var target= document.getElementById('passage_p_words_attributes_<%= i%>_ja');
+                    word = target.value;
+                window.open('http://www.google.com/search?q=中国語%20'+word);
+              };
+            </script>
+            <% i = i+1 %>
+          <% end %>
+          <!-- 単語追加 -->
+          <% 10.times do |i| %>
+            <div class="clearfix">
+              <div id="word_add_ch_<%= i %>" class="float-left">
+                <%= render :partial => 'svg/google' %>
+              </div>
+              <input type="text" name="new_words[][ch]" class="float-left" placeholder="中国語" id="word_add_input_ch_<%= i %>">
+              <div id="word_add_ja_<%= i %>" class="float-left margin-l-10">
+                <%= render :partial => 'svg/google' %>
+              </div>
+              <input type="text" name="new_words[][ja]" class="float-left" placeholder="日本語" id="word_add_input_ja_<%= i %>">
+            </div>
+            <!-- google検索機能 -->
+            <script type="text/javascript">
+              document.getElementById("word_add_ch_<%= i%>").onclick = function(){
+                var target= document.getElementById('word_add_input_ch_<%= i%>');
+                    word = target.value;
+                window.open('http://www.google.com/search?q=中国語%20'+word);
+              };
+              document.getElementById("word_add_ja_<%= i%>").onclick = function(){
+                var target= document.getElementById('word_add_input_ja_<%= i%>');
+                    word = target.value;
+                window.open('http://www.google.com/search?q=中国語%20'+word);
+              };
+            </script>
+          <% end %>
+        </div>
+        <%= f.submit "更新", class: "form-send-btn prim-btn" %>
+      <% end %>
+    </div><!-- End of passage-new-content -->
+  </div><!-- End of col-12 -->
+</div><!-- End of row -->

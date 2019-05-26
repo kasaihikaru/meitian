@@ -1,0 +1,49 @@
+<!-- 文章部分は共通 -->
+<%= render :partial => 'passages/passage_show_common', :locals=>{user: @user, passage: @passage, memorized_words_ch_count: @memorized_words_ch_count, all_words_count: @all_words_count, progress: @progress, words: @words} %>
+
+
+<!-- 単語部分は日中で出しわけ -->
+<section class='words' id='passage-words-ch'>
+	<% if @words.present? %>
+		<div class='word-title'>
+			単語暗記
+		</div>
+
+		<!-- 日本語からor中国語から　切り替え選択部分 -->
+		<div class='ja-ch-exchange'>
+			<div class="container">
+				<div class="row center-align">
+					<div class="col-xs-1 center-align">
+					</div>
+					<%= link_to passage_word_ch_path(@passage, anchor: 'passage-words-ch') do %>
+						<div class="col-xs-5 langchange-btn-selected">
+							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ch_count > 0 %>
+								<span data-badge-top-right="<%= @unmemorized_words_ch_count %>">中→日</span>
+							<% else %>
+								中→日
+							<% end %>
+						</div>
+					<% end %>
+					<%= link_to passage_word_ja_path(@passage) do %>
+						<div class="col-xs-5 langchange-btn-unselected">
+							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ja_count > 0 %>
+								<span data-badge-top-right="<%= @unmemorized_words_ja_count %>">日→中</span>
+							<% else %>
+								日→中
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+			<!-- チェック外しボタン -->
+			<div class="all-uncheck-btn">
+				<% if user_signed_in? && @passage.user_id == current_user.id %>
+					<%= link_to passage_uncheck_all_words_ch_path(@passage),method: :put do %>
+						全てのチェックをはずす
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<%= render :partial => 'render_for_word/p_word_ch_table', :locals=>{passage: @passage, words: @words} %>
+	<% end %>
+</section>

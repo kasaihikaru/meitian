@@ -1,0 +1,16 @@
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+/Users/01018603/.rbenv/versions/2.4.2/bin/ruby -r ./siteconf20190520-23247-10cp0bg.rb extconf.rb
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make "DESTDIR=" clean
+make: *** No rule to make target `clean'.  Stop.
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make "DESTDIR="
+echo "Nada."
+Nada.
+
+current directory: /Users/01018603/work/meitian/vendor/bundle/ruby/2.4.0/gems/binding_of_caller-0.8.0/ext/binding_of_caller
+make "DESTDIR=" install
+echo "Nada."
+Nada.
