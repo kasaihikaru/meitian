@@ -26,16 +26,16 @@ $(document).on('turbolinks:load',function() {
 
 
 
-/*******************************
-* google 検索ボタン
-********************************/
+	/*******************************
+	* google 検索ボタン
+	********************************/
 
-var google = function( btn, target ) {
-		$(btn).click(function(){
-			var word = $(target).val();
-			window.open('http://www.google.com/search?q=中国語%20'+word);
-		});
-}
+	var google = function( btn, target ) {
+			$(btn).click(function(){
+				var word = $(target).val();
+				window.open('http://www.google.com/search?q=中国語%20'+word);
+			});
+	}
 
 //--------------- passage_new -------------------
 	$("#passage_new_title_google").click(function(){
@@ -61,11 +61,17 @@ var google = function( btn, target ) {
 /*******************************
 * psr新規作成フッターナビ
 ********************************/
-$(function() {
-  $('.toggle').click(function() {
-    $('.nav-item').toggleClass('slide-out');
-    $('.nav-item-text').toggleClass('slide-out-for-text');
-  });
-});
+	$(function() {
+	  $('.toggle').click(function() {
+	    $('.nav-item').toggleClass('slide-out');
+	    $('.nav-item-text').toggleClass('slide-out-for-text');
+	  });
+	});
+
+  // feedbackをふわっと消す
+    $(function(){
+      setTimeout("$('.feedback').fadeOut('slow')", 2800)
+    })
+
 
 });

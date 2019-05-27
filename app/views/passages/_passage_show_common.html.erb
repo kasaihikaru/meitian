@@ -5,15 +5,19 @@
 		<% else %>
 			 <img alt="no-icon" src="/images/no-icon.png" class="smallicon">
 		<% end %>
+	</div>
+	<div class='psr-show-user float-left margin-l-10'>
 		<%= user.name %>
 	</div>
-	<% if user == current_user %>
-		<div class='edit-btn float-right'>
+	<div class='edit-btn float-right'>
+		<% if user == current_user %>
 			<%= link_to edit_passage_path(passage) do %>
 				<%= render :partial => 'svg/edit' %>
 			<% end %>
-		</div>
-	<% end %>
+		<% elsif user_signed_in? %>
+			<%= link_to "コピーして追加", passage_copy_path(passage), method: :post, class: "prim-btn", remote: true %>
+		<% end %>
+	</div>
 </div>
 <section class='passage'>
 	<div class='passage-title'>
