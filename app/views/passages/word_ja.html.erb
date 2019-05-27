@@ -17,7 +17,7 @@
 					</div>
 					<%= link_to passage_word_ch_path(@passage, anchor: 'passage-words-ch') do %>
 						<div class="col-xs-5 langchange-btn-unselected">
-							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ja_count > 0 %>
+							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ch_count > 0 %>
 								<span data-badge-top-right="<%= @unmemorized_words_ch_count %>">中→日</span>
 							<% else %>
 								中→日
@@ -26,7 +26,7 @@
 					<% end %>
 					<%= link_to passage_word_ja_path(@passage, anchor: 'passage-words-ja') do %>
 						<div class="col-xs-5 langchange-btn-selected">
-							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ch_count > 0 %>
+							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ja_count > 0 %>
 								<span data-badge-top-right="<%= @unmemorized_words_ja_count %>">日→中</span>
 							<% else %>
 								日→中
