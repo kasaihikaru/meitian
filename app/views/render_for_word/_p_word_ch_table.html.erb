@@ -18,7 +18,7 @@
 					<tbody class="">
 						<% words.each do |word| %>
 							<tr id="word_row_<%= word.id %>">
-								<%= render :partial => 'render_for_word/word_row_ch', :locals=>{passage: passage, word: word, ring_page: 'a'} %>
+								<%= render :partial => 'render_for_word/word_row_ch', :locals=>{passage: passage, word: word} %>
 							</tr>
 						<% end %>
 					</tbody>

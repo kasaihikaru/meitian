@@ -1,0 +1,76 @@
+<!-- ログインしてるが、自分じゃない -->
+<% if user_signed_in? && passage.user_id != current_user.id %>
+	<th scope="col">
+		<a href="https://www.google.co.jp/search?q=<%= word.ja %>%20中国語" target="_blank">
+			<%= word.ja %>
+		</a>
+	</th>
+	<th scope="col">
+		<a href="https://www.google.co.jp/search?q=<%= word.ch %>%20中国語" target="_blank">
+			<%= word.ch %>
+		</a>
+	</th>
+	<th scope="col"><%= word.pin %></th>
+
+<!-- ログインして、自分 -->
+<% elsif user_signed_in? && passage.user_id == current_user.id %>
+	<% if word.memorized_ja == false %>
+		<th scope="col">
+			<%= link_to edit_p_word_path(word, redirect_flg: "word_ja") do %>
+				<%= render :partial => 'svg/edit_sm' %>
+			<% end %>
+		</th>
+		<th scope="col">
+			<a href="https://www.google.co.jp/search?q=<%= word.ja %>%20中国語" target="_blank">
+				<%= word.ja %>
+			</a>
+		</th>
+		<th scope="col">
+			<%= link_to p_word_check_ja_path(word), class: "", method: :put, remote: true do %>
+				<%= render :partial => 'svg/check_sm' %>
+			<% end %>
+		</th>
+		<th scope="col">
+			<a href="https://www.google.co.jp/search?q=<%= word.ch %>%20中国語" target="_blank">
+				<%= word.ch %>
+			</a>
+		</th>
+		<th scope="col"><%= word.pin %></th>
+	<% else %>
+		<th scope="col" class="bg-grey">
+			<%= link_to edit_p_word_path(word) do %>
+				<%= render :partial => 'svg/edit_sm' %>
+			<% end %>
+		</th>
+		<th scope="col" class="bg-grey">
+			<a href="https://www.google.co.jp/search?q=<%= word.ja %>%20中国語" target="_blank">
+				<%= word.ja %>
+			</a>
+		</th>
+		<th scope="col" class="bg-grey">
+			<%= link_to p_word_uncheck_ja_path(word), class: "", method: :put, remote: true do %>
+				<%= render :partial => 'svg/check_sm' %>
+			<% end %>
+		</th>
+		<th scope="col" class="bg-grey">
+			<a href="https://www.google.co.jp/search?q=<%= word.ch %>%20中国語" target="_blank">
+				<%= word.ch %>
+			</a>
+		</th>
+		<th scope="col" class="bg-grey"><%= word.pin %></th>
+	<% end %>
+
+<!-- ログインしていない -->
+<% else %>
+	<th scope="col">
+		<a href="https://www.google.co.jp/search?q=<%= word.ja %>%20中国語" target="_blank">
+			<%= word.ja %>
+		</a>
+	</th>
+	<th scope="col">
+		<a href="https://www.google.co.jp/search?q=<%= word.ch %>%20中国語" target="_blank">
+			<%= word.ch %>
+		</a>
+	</th>
+	<th scope="col"><%= word.pin %></th>
+<% end %>
