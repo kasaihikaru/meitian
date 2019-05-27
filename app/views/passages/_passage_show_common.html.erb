@@ -7,24 +7,31 @@
 		<% end %>
 		<%= user.name %>
 	</div>
-	<div class='edit-btn float-right'>
-		<%= link_to edit_passage_path(passage) do %>
-			<%= render :partial => 'svg/edit' %>
-		<% end %>
-	</div>
+	<% if user == current_user %>
+		<div class='edit-btn float-right'>
+			<%= link_to edit_passage_path(passage) do %>
+				<%= render :partial => 'svg/edit' %>
+			<% end %>
+		</div>
+	<% end %>
 </div>
 <section class='passage'>
 	<div class='passage-title'>
 		<%= passage.title %>
 	</div>
-	<% if words.present? %>
+	<% if words.present? && user == current_user %>
 		<div class='word-bar'>
 			<div class='clearfix'>
 				<div class='float-left'>
 					暗記済み単語&nbsp;<%= memorized_words_ch_count %>/<%= all_words_count %>
 				</div>
 				<div class='float-right'>
-					<a href="#passage-words-ch">単語帳を開く</a>
+					<% if params[:action] == 'word_ch' %>
+						<a href="#passage-words-ch">単語帳を開く</a>
+					<% end %>
+					<% if params[:action] == 'word_ja' %>
+						<a href="#passage-words-ja">単語帳を開く</a>
+					<% end %>
 				</div>
 			</div>
 			<div class="progress">

@@ -24,7 +24,7 @@
 							<% end %>
 						</div>
 					<% end %>
-					<%= link_to passage_word_ja_path(@passage) do %>
+					<%= link_to passage_word_ja_path(@passage, anchor: 'passage-words-ja') do %>
 						<div class="col-xs-5 langchange-btn-unselected">
 							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ja_count > 0 %>
 								<span data-badge-top-right="<%= @unmemorized_words_ja_count %>">日→中</span>

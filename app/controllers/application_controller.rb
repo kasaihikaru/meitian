@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-# ----------共通基盤-------------
+# ----------バリデーション-------------
 	def login_check
 		unless user_signed_in?
 			flash[:alert] = 'ログインすると便利に利用できます！'
@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def user_check_by_passage_id
+		unless user_signed_in? && Passage.find(passage_id_params).user_id == current_user.id
+			flash[:alert] = "自分の投稿のみ編集できます"
+			redirect_to root_path
+		end
+	end
 
 #---------共通処理--------------
 	def get_pinyin(ch)
