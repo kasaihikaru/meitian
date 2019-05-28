@@ -11,6 +11,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :themes
 
   scope :active, -> { where(deleted_at: nil) }
+  scope :recent, -> { order(updated_at: :desc).limit(5) }
+  scope :order_updated_at, -> { order(updated_at: :desc) }
 
   # ファイルアップロード処理
   mount_uploader :image, ImageUploader

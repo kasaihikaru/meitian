@@ -93,4 +93,8 @@ private
 		params[:r_word]
 	end
 
+	def page_params
+		params[:page]
+	end
+
 end

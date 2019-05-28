@@ -9,7 +9,15 @@ Rails.application.routes.draw do
   root to: "mes#show"
 
   resource :me, only: [:show]
-  resource :explore, only: [:show]
+  resource :explore, only: [:show] do
+    get 'users' #ユーザー一覧
+    get 'passages' #文章一覧
+    get 'papers' #短文集一覧
+    get 'rings' #単語帳一覧
+  end
+
+
+
   resources :users, only: [:show, :edit, :update, :destroy] do
     get 'passages' #ユーザーの文章一覧
     get 'papers' #ユーザーの短文集一覧

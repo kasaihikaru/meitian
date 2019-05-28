@@ -76,3 +76,4 @@ gem 'jquery-rails' #for bootstrap
 gem 'bootstrap-sass' #for bootstrap
 gem 'rails-i18n' #多言語
 gem 'google-analytics-rails' #forGA
+gem 'kaminari' #ページネーション

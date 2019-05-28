@@ -1,0 +1,15 @@
+<h1 class='explore-title'>みんなの短文集一覧</h1>
+
+<section class='psr'>
+	<div class='psr-content'>
+		<% @papers.each do |paper| %>
+			<div class='margin-b-20'>
+				<%= link_to paper_sentence_ch_path(paper) do %>
+					<%= render :partial => 'svg/paper' %><%= paper.name.truncate(17) %><span class='font-12'>（<%= paper.sentences.count %>）</span>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</section>
+
+<div class='center'><%= paginate @papers %></div>

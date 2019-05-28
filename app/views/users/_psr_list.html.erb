@@ -5,7 +5,7 @@
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
 					<%= link_to passage_word_ch_path(passage) do %>
-						<%= render :partial => 'svg/passage' %><%= passage.title %>
+						<%= render :partial => 'svg/passage' %><%= passage.title.truncate(17) %>
 					<% end %>
 				</div>
 			<% end %>
@@ -46,7 +46,7 @@
 			<% @papers.each do |paper| %>
 				<div class='margin-b-20'>
 					<%= link_to paper_sentence_ch_path(paper) do %>
-						<%= render :partial => 'svg/paper' %><%= paper.name %>
+						<%= render :partial => 'svg/paper' %><%= paper.name.truncate(15) %><span class='font-12'>（<%= paper.sentences.count %>）</span>
 					<% end %>
 				</div>
 			<% end %>
@@ -87,7 +87,7 @@
 			<% @rings.each do |ring| %>
 				<div class='margin-b-20'>
 					<%= link_to ring_word_ch_path(ring) do %>
-						<%= render :partial => 'svg/ring' %><%= ring.name %>
+						<%= render :partial => 'svg/ring' %><%= ring.name.truncate(15) %><span class='font-12'>（<%= ring.r_words.count %>）</span>
 					<% end %>
 				</div>
 			<% end %>

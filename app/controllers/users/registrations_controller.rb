@@ -10,9 +10,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+
+    # サンプル作成
+    copy_specific_passage(1, User.last.id)
+    copy_specific_passage(2, User.last.id)
+
+  end
 
   # GET /resource/edit
   def edit
@@ -29,6 +34,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
       Theme.create(user_id: current_user.id, theme: theme_params, yearmonth: Date.today.beginning_of_month)
     else
       theme.first.update(theme: theme_params)
+    end
+  end
+
+
+  # サンプル文章作成用
+  def copy_specific_passage(passage_id, user_id)
+    # 文章作成
+    passage = Passage.find(passage_id)
+    new_passage = Passage.create(title: passage.title, ja:passage.ja, ch: passage.ch, user_id: user_id, modified_at: Time.now)
+
+    # 付属単語作成
+    words = passage.p_words
+    words.each do |w|
+      PWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], passage_id: new_passage.id)
     end
   end
 

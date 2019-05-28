@@ -1,0 +1,18 @@
+<h1 class='explore-title'>みんなの文章一覧</h1>
+
+<section class='psr'>
+	<div class='psr-content'>
+		<% @passages.each do |passage| %>
+			<div class='margin-b-20'>
+				<%= link_to passage_word_ch_path(passage) do %>
+					<%= render :partial => 'svg/passage' %><%= passage.title.truncate(17) %>
+				<% end %>
+				<div class='psr-content-sub'>
+					<%= passage.ch.truncate(70) %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</section>
+
+<div class='center'><%= paginate @passages %></div>
