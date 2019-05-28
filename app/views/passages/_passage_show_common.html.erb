@@ -44,7 +44,7 @@
 		</div>
 	<% end %>
 	<div class='passage-content'>
-		<%= simple_format(passage.ch) %>
+		<%= safe_join(passage.ch.split("\n"), tag(:br)) %>
 	</div>
 </section>
 <% if passage.ja.present? %>
@@ -53,7 +53,7 @@
 			日本語訳
 		</div>
 		<div class='passage-content'>
-			<%= simple_format(passage.ja) %>
+			<%= safe_join(passage.ja.split("\n"), tag(:br)) %>
 		</div>
 	</section>
 <% end %>
