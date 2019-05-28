@@ -23,6 +23,13 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def user_check_by_id
+		unless user_signed_in? && Passage.find(id_params).user_id == current_user.id
+			flash[:alert] = "自分の投稿のみ編集できます"
+			redirect_to root_path
+		end
+	end
+
 #---------共通処理--------------
 	def get_pinyin(ch)
 		pin = PinYin.of_string(ch, :unicode)
