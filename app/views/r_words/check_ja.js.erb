@@ -1,0 +1,1 @@
+$("#r_word_row_<%= @word.id %>").html("<%= j(render :partial => 'render_for_word/r_word_row_ja', :locals=>{word: @word, ring:@ring}) %>");

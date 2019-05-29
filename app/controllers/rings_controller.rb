@@ -4,10 +4,22 @@ class RingsController < ApplicationController
   def edit
   end
 
+  def get_for_ring_show
+    @ring = Ring.find(ring_id_params)
+    @user = @ring.user
+    @words = @ring.r_words.active
+    if @words.present?
+      @unmemorized_words_ch_count = @words.unmemorized_ch.count
+      @unmemorized_words_ja_count = @words.unmemorized_ja.count
+    end
+  end
+
   def word_ja
+    get_for_ring_show
   end
 
   def word_ch
+    get_for_ring_show
   end
 
   #-----------------------post, put-----------------------

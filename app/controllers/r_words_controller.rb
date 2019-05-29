@@ -40,16 +40,29 @@ class RWordsController < ApplicationController
     new_r_word = PWord.create(ring_id: ring_id_params, ja: r_word.ja, ch: r_word.ch, pin: r_word.pin)
   end
 
+  def get_word_ring_for_check
+    @word = RWord.find(r_word_id_params)
+    @ring = @word.ring
+  end
+
   def check_ja
+    get_word_ring_for_check
+    @word.update(memorized_ja: 1)
   end
 
   def check_ch
+    get_word_ring_for_check
+    @word.update(memorized_ch: 1)
   end
 
   def uncheck_ja
+    get_word_ring_for_check
+    @word.update(memorized_ja: 0)
   end
 
   def uncheck_ch
+    get_word_ring_for_check
+    @word.update(memorized_ch: 0)
   end
 
   def update_pin

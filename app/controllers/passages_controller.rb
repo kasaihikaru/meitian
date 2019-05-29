@@ -19,9 +19,9 @@ class PassagesController < ApplicationController
     @user = @passage.user
     @words = @passage.p_words.active
     if @words.present?
-    @unmemorized_words_ch_count = @words.unmemorized_ch.count
-    @unmemorized_words_ja_count = @words.unmemorized_ja.count
-    @all_words_count = @words.count
+      @unmemorized_words_ch_count = @words.unmemorized_ch.count
+      @unmemorized_words_ja_count = @words.unmemorized_ja.count
+      @all_words_count = @words.count
       @memorized_words_ch_count = @all_words_count - @words.unmemorized_ch.count
       @progress = 100 * @memorized_words_ch_count / @all_words_count
     end
@@ -118,11 +118,6 @@ class PassagesController < ApplicationController
 
 #-----------------------ストロングパラメーター-----------------------
 private
-
-  def passage_id_params
-    params[:passage_id].to_i
-  end
-
   def create_params
     params.require(:passage).permit(:title, :ja, :ch).merge(user_id: current_user.id, modified_at: Time.now)
   end

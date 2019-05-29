@@ -3,21 +3,21 @@
 			<table class="table table-sm">
 				<thead class="border-b-double">
 					<tr>
-						<% if user_signed_in? && passage.user_id == current_user.id %>
-							<th scope="col" class=""></th>
-						<% end %>
-						<th scope="col" class="">日</th>
-						<% if user_signed_in? && passage.user_id == current_user.id %>
+						<% if user_signed_in? && ring.user_id == current_user.id %>
 							<th scope="col" class=""></th>
 						<% end %>
 						<th scope="col" class="">中</th>
+						<% if user_signed_in? && ring.user_id == current_user.id %>
+							<th scope="col" class=""></th>
+						<% end %>
+						<th scope="col" class="">日</th>
 						<th scope="col" class="">Pin</th>
 					</tr>
 				</thead>
 				<tbody class="">
 					<% words.each do |word| %>
-						<tr id="p_word_row_<%= word.id %>">
-							<%= render :partial => 'render_for_word/p_word_row_ja', :locals=>{passage: passage, word: word} %>
+						<tr id="r_word_row_<%= word.id %>">
+							<%= render :partial => 'render_for_word/r_word_row_ch', :locals=>{ring: ring, word: word} %>
 						</tr>
 					<% end %>
 				</tbody>

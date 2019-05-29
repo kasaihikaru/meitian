@@ -79,7 +79,13 @@ private
 		params[:id].to_i
 	end
   def user_id_params
-    params[:user_id]
+    params[:user_id].to_i
+  end
+  def passage_id_params
+    params[:passage_id].to_i
+  end
+  def p_word_id_params
+    params[:p_word_id].to_i
   end
 	def word_id_params
 		params[:word_id].to_i
@@ -87,14 +93,14 @@ private
 	def ring_id_params
 		params[:ring_id].to_i
 	end
-
-
+  def r_word_id_params
+    params[:r_word_id].to_i
+  end
 	def r_word_params
-		params[:r_word]
+		params[:r_word].to_i
 	end
-
 	def page_params
-		params[:page]
+		params[:page].to_i
 	end
 
 end

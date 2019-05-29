@@ -62,10 +62,6 @@ class PWordsController < ApplicationController
   end
 
 private
-  def p_word_id_params
-    params[:p_word_id].to_i
-  end
-
   def update_params
     pinyin = get_pinyin(params[:p_word][:ch])
     params.require(:p_word).permit(:ja, :ch).merge(pin: pinyin)

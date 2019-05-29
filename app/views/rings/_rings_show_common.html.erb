@@ -1,0 +1,21 @@
+<div class='clearfix'>
+	<div class='psr-show-user float-left'>
+		<% if user.image? %>
+		  <%= image_tag user.image.url, :alt => "icon", :class=>"smallicon center" %>
+		<% else %>
+			 <img alt="no-icon" src="/images/no-icon.png" class="smallicon">
+		<% end %>
+	</div>
+	<div class='psr-show-user float-left margin-l-10'>
+		<%= user.name %>
+	</div>
+	<div class='edit-btn float-right'>
+		<% if user == current_user %>
+			<%= link_to edit_ring_path(ring) do %>
+				<%= render :partial => 'svg/edit' %>
+			<% end %>
+		<% elsif user_signed_in? %>
+			<%= link_to "コピーして追加", ring_copy_path(ring), method: :post, class: "prim-btn", remote: true %>
+		<% end %>
+	</div>
+</div>
