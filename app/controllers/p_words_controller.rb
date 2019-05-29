@@ -20,9 +20,9 @@ class PWordsController < ApplicationController
 
     #リダイレクト
     if params[:p_word][:redirect_flg] == "word_ja"
-      redirect_to passage_word_ja_path(p_word.passage.id)
+      redirect_to passage_word_ja_path(p_word.passage.id, anchor: 'passage-words-ja')
     else
-      redirect_to passage_word_ch_path(p_word.passage.id)
+      redirect_to passage_word_ch_path(p_word.passage.id, anchor: 'passage-words-ch')
     end
   end
 
