@@ -61,9 +61,7 @@ private
   end
 
   def update_params
-    params.require(:ring).permit(:name, r_words_attributes: [:ja, :ch, :_destroy, :id]).merge(, modified_at: Time.now)
+    params.require(:ring).permit(:name, r_words_attributes: [:ja, :ch, :_destroy, :id]).merge(modified_at: Time.now)
   end
-
-
 
 end
