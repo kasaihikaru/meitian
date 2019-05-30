@@ -139,10 +139,6 @@ private
     return array
   end
 
-  def add_new_words_params
-    params.require(:new_words)
-  end
-
 
 #-----------------------validation系-----------------------
 

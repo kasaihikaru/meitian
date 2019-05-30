@@ -7,6 +7,8 @@ class PWordsController < ApplicationController
   end
 
   def edit_pin
+    @word = PWord.find(p_word_id_params)
+    @redirect_flg = params[:redirect_flg]
   end
 
   #-----------------------post, put-----------------------
@@ -23,6 +25,20 @@ class PWordsController < ApplicationController
       redirect_to passage_word_ja_path(p_word.passage.id, anchor: 'passage-words-ja')
     else
       redirect_to passage_word_ch_path(p_word.passage.id, anchor: 'passage-words-ch')
+    end
+  end
+
+  def update_pin
+    word = PWord.find(p_word_id_params)
+    if word.pin != pin_params
+      word.update(pin: pin_params, pin_fixed: 1)
+    end
+
+    #リダイレクト
+    if params[:redirect_flg] == "word_ja"
+      redirect_to passage_word_ja_path(word.passage.id, anchor: 'passage-words-ja')
+    else
+      redirect_to passage_word_ch_path(word.passage.id, anchor: 'passage-words-ch')
     end
   end
 
@@ -58,8 +74,6 @@ class PWordsController < ApplicationController
     @word.update(memorized_ch: 0)
   end
 
-  def update_pin
-  end
 
 private
   def update_params

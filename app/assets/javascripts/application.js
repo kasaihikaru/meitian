@@ -55,6 +55,11 @@ $(document).on('turbolinks:load',function() {
 //--------------- passage_new -------------------
 
 
+//--------------- p_word_pinedit -------------------
+	$("#p_word_pin_edit_ch").click(function(){
+		var word = $('#p_word_pinedit').text();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
 
 
 

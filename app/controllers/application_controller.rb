@@ -87,9 +87,6 @@ private
   def p_word_id_params
     params[:p_word_id].to_i
   end
-	def word_id_params
-		params[:word_id].to_i
-	end
 	def ring_id_params
 		params[:ring_id].to_i
 	end
@@ -99,8 +96,18 @@ private
 	def r_word_params
 		params[:r_word].to_i
 	end
+	def word_id_params
+		params[:word_id].to_i
+	end
+	def pin_params
+		params[:pin]
+	end
+  def add_new_words_params
+    params.require(:new_words)
+  end
 	def page_params
 		params[:page].to_i
 	end
+
 
 end

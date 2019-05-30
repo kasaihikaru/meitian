@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+
+    <div class="form-title">ピンインを編集する</div>
+    <div class="new-content">
+
+    	<%= form_tag p_word_update_pin_path(@word), method: "PUT" do %>
+    		<div class='form-section'>
+          <div class="clearfix">
+            <div id="p_word_pin_edit_ch" class="float-left">
+              <%= render :partial => 'svg/google' %>
+            </div>
+						<div class="float-left margin-l-10" id="p_word_pinedit"><%= @word.ch %></div>
+						<%= text_field_tag :pin , @word.pin ,placeholder: "Pinyin", class: "float-left margin-l-10" %>
+          </div>
+        </div>
+        <%= hidden_field_tag :redirect_flg, @redirect_flg %>
+
+				<%= submit_tag "更新", class: "form-send-btn prim-btn" %>
+
+      <% end %>
+    </div><!-- End of passage-new-content -->
+  </div><!-- End of col-12 -->
+</div><!-- End of row -->
