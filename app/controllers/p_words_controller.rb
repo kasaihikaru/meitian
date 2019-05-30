@@ -43,6 +43,10 @@ class PWordsController < ApplicationController
   end
 
   def destroy
+    p_word = PWord.find(id_params)
+    p_word.update(deleted_at: Time.now)
+
+    redirect_to passage_word_ch_path(p_word.passage)
   end
 
 

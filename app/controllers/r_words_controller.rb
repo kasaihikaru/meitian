@@ -6,9 +6,13 @@ class RWordsController < ApplicationController
   end
 
   def edit
+    @r_word = RWord.find(id_params)
+    @redirect_flg = params[:redirect_flg]
   end
 
   def edit_pin
+    @word = RWord.find(r_word_id_params)
+    @redirect_flg = params[:redirect_flg]
   end
 
   #-----------------------post, put-----------------------
@@ -30,9 +34,40 @@ class RWordsController < ApplicationController
   end
 
   def update
+    r_word = RWord.find(id_params)
+    if r_word.pin_fixed == true
+      r_word.update("ja"=>update_params[:ja], "ch"=>update_params[:ch])
+    else
+      r_word.update("ja"=>update_params[:ja], "ch"=>update_params[:ch], "pin"=>update_params[:pin])
+    end
+
+    #リダイレクト
+    if params[:r_word][:redirect_flg] == "word_ja"
+      redirect_to ring_word_ja_path(r_word.ring.id, anchor: 'ring-words-ja')
+    else
+      redirect_to ring_word_ch_path(r_word.ring.id, anchor: 'ring-words-ch')
+    end
+  end
+
+  def update_pin
+    word = RWord.find(r_word_id_params)
+    if word.pin != pin_params
+      word.update(pin: pin_params, pin_fixed: 1)
+    end
+
+    #リダイレクト
+    if params[:redirect_flg] == "word_ja"
+      redirect_to ring_word_ja_path(word.ring.id, anchor: 'ring-words-ja')
+    else
+      redirect_to ring_word_ch_path(word.ring.id, anchor: 'ring-words-ch')
+    end
   end
 
   def destroy
+    r_word = RWord.find(id_params)
+    r_word.update(deleted_at: Time.now)
+
+    redirect_to ring_word_ch_path(r_word.ring)
   end
 
   def copy
@@ -65,6 +100,11 @@ class RWordsController < ApplicationController
     @word.update(memorized_ch: 0)
   end
 
-  def update_pin
+
+
+private
+  def update_params
+    pinyin = get_pinyin(params[:r_word][:ch])
+    params.require(:r_word).permit(:ja, :ch).merge(pin: pinyin)
   end
 end

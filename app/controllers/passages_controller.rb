@@ -56,15 +56,11 @@ class PassagesController < ApplicationController
     # 単語更新
     words = words_attribute_params(passage.id)
     words.each do |w|
-      if w[:id].present?
-        original_word = PWord.find(w[:id])
-        if original_word.pin_fixed == true
-          original_word.update(ja: w[:ja], ch: w[:ch])
-        else
-          original_word.update(ja: w[:ja], ch: w[:ch], pin: w[:pin])
-        end
+      original_word = PWord.find(w[:id])
+      if original_word.pin_fixed == true
+        original_word.update(ja: w[:ja], ch: w[:ch])
       else
-        PWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], passage_id: passage.id)
+        original_word.update(ja: w[:ja], ch: w[:ch], pin: w[:pin])
       end
     end
 
@@ -130,6 +126,7 @@ private
         if value["ja"].present? && value["ch"].present?
           value[:passage_id] = passage_id
           value[:pin] = get_pinyin(value[:ch])
+          value[:id] = key.to_i
           array << value
         else
           next

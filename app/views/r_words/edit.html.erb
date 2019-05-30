@@ -1,0 +1,34 @@
+<div class="clearfix">
+  <%= link_to "単語を削除", r_word_path(@r_word), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
+</div>
+<div class="clearfix">
+  <%= link_to "Pinyinを編集", r_word_edit_pin_path(@r_word, redirect_flg: @redirect_flg), method: "GET", class: "grey-btn psr-delete-btn"%>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+
+    <div class="form-title">単語を編集する</div>
+    <div class="new-content">
+
+    	<%= form_for @r_word, method: :put do |f| %>
+    		<div class='form-section'>
+          <div class="clearfix">
+            <div id="r_word_edit_ch" class="float-left">
+              <%= render :partial => 'svg/google' %>
+            </div>
+            <%= f.text_field :ch ,placeholder: "中国語", class: "float-left" %>
+            <div id="r_word_edit_ja" class="float-left margin-l-10">
+              <%= render :partial => 'svg/google' %>
+            </div>
+            <%= f.text_field :ja ,placeholder: "日本語", class: "float-left" %>
+          </div>
+        </div>
+        <%= f.hidden_field :redirect_flg, value: @redirect_flg %>
+
+				<%= f.submit "更新", class: "form-send-btn prim-btn" %>
+
+      <% end %>
+    </div><!-- End of passage-new-content -->
+  </div><!-- End of col-12 -->
+</div><!-- End of row -->
