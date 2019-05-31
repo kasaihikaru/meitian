@@ -3,6 +3,7 @@ class PapersController < ApplicationController
 
   #-----------------------get-----------------------
   def edit
+    @paper = Paper.find(id_params)
   end
 
   def get_for_paper_show
@@ -30,9 +31,11 @@ class PapersController < ApplicationController
   end
 
   def word_ja
+    get_for_paper_show
   end
 
   def word_ch
+    get_for_paper_show
   end
 
   #-----------------------post, put-----------------------
@@ -42,6 +45,10 @@ class PapersController < ApplicationController
   end
 
   def update
+    @paper = Paper.find(id_params)
+    @paper.update(update_params)
+
+    redirect_to paper_word_ch_path(@paper)
   end
 
   def destroy
@@ -65,6 +72,9 @@ class PapersController < ApplicationController
 private
   def create_params
     params.require(:paper).permit(:name).merge(user_id: current_user.id, modified_at: Time.now)
+  end
+  def update_params
+    params.require(:paper).permit(:name).merge(modified_at: Time.now)
   end
 
 end

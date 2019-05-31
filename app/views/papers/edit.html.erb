@@ -1,0 +1,28 @@
+<div class="clearfix">
+  <%= link_to "短文集を削除", paper_path(@paper), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+
+    <div class="form-title">短文集を編集する</div>
+    <div class="new-content">
+
+      <%= form_for @paper, method: :put do |f| %>
+        <div class='form-section'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :name, "短文集の名前" %>&emsp;
+            </div>
+            <div class='float-left' id="paper_new_title_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_field :name, placeholder: "短文集の名前", class: "new-passage-title", :required => true %>
+        </div>
+
+        <%= f.submit "更新", class: "form-send-btn prim-btn" %>
+      <% end %>
+    </div><!-- End of paper-new-content -->
+  </div><!-- End of col-12 -->
+</div><!-- End of row -->

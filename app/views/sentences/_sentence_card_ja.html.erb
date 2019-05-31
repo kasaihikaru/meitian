@@ -1,0 +1,111 @@
+<!-- 未チェック -->
+<% if s.memorized_ja == false %>
+	<div class='sentence-card'>
+		<a data-toggle="collapse" href="#sentence-more-<%= s.id%>" role="button" aria-expanded="false">
+			<div class="padding-tb-20"><%= s.ja %></div>
+		</a>
+		<div class='collapse' id="sentence-more-<%= s.id%>">
+			<hr>
+			<% if user_signed_in? && paper.user_id == current_user.id %>
+				<div class='clearfix'>
+					<%= link_to sentence_check_ja_path(sentence_id: s.id), method: :put, remote: true do %>
+						<div class='prim-btn sentence-check-btn'>
+							覚えた！
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+			<div class=''>
+				<%= s.pin %>
+			</div>
+			<div class='padding-tb-20'>
+				<%= s.ch %>
+			</div>
+			<% if s.s_words.present? %>
+				<div class='padding-tb-20'>
+					<table class="table table-sm">
+						<thead>
+							<tr>
+								<th scope="col">中</th>
+								<th scope="col">日</th>
+								<th scope="col">Pin</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% s.s_words.each do |w| %>
+								<tr>
+									<th scope="col">
+										<a href="https://www.google.co.jp/search?q=<%= w.ch %>%20中国語" target="_blank">
+											<%= w.ch %>
+										</a>
+									</th>
+									<th scope="col">
+										<a href="https://www.google.co.jp/search?q=<%= w.ja %>%20中国語" target="_blank">
+											<%= w.ja %>
+										</a>
+									</th>
+									<th scope="col"><%= w.pin %></th>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% else %>
+	<!-- チェック済み -->
+	<div class='sentence-card bg-grey'>
+		<a data-toggle="collapse" href="#sentence-more-<%= s.id%>" role="button" aria-expanded="false">
+			<div class="padding-tb-20"><%= s.ja %></div>
+		</a>
+		<div class='collapse' id="sentence-more-<%= s.id%>">
+			<hr>
+			<% if user_signed_in? && paper.user_id == current_user.id %>
+				<div class='clearfix'>
+					<%= link_to sentence_uncheck_ja_path(sentence_id: s.id), method: :put, remote: true do %>
+						<div class='prim-btn sentence-uncheck-btn'>
+							チェックを外す
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+			<div class=''>
+				<%= s.pin %>
+			</div>
+			<div class='padding-tb-20'>
+				<%= s.ch %>
+			</div>
+			<% if s.s_words.present? %>
+				<div class='padding-tb-20'>
+					<table class="table table-sm">
+						<thead>
+							<tr>
+								<th scope="col">中</th>
+								<th scope="col">日</th>
+								<th scope="col">Pin</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% s.s_words.each do |w| %>
+								<tr>
+									<th scope="col">
+										<a href="https://www.google.co.jp/search?q=<%= w.ch %>%20中国語" target="_blank">
+											<%= w.ch %>
+										</a>
+									</th>
+									<th scope="col">
+										<a href="https://www.google.co.jp/search?q=<%= w.ja %>%20中国語" target="_blank">
+											<%= w.ja %>
+										</a>
+									</th>
+									<th scope="col"><%= w.pin %></th>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% end %>
