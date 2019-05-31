@@ -1,28 +1,33 @@
 <!-- 未チェック -->
 <% if s.memorized_ja == false %>
-	<div class='sentence-card'>
+	<div class='sentence-card container'>
 		<a data-toggle="collapse" href="#sentence-more-<%= s.id%>" role="button" aria-expanded="false">
 			<div class="padding-tb-20"><%= s.ja %></div>
 		</a>
 		<div class='collapse' id="sentence-more-<%= s.id%>">
 			<hr>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
-				<div class='clearfix'>
-					<%= link_to sentence_check_ja_path(sentence_id: s.id), method: :put, remote: true do %>
-						<div class='prim-btn sentence-check-btn'>
-							覚えた！
-						</div>
-					<% end %>
-				</div>
+				<%= link_to edit_sentence_path(s.id) do %>
+					<div class=' float-right'>
+						<%= render :partial => 'svg/edit_sm' %>
+					</div>
+				<% end %>
 			<% end %>
-			<div class=''>
+			<div class='padding-t-20'>
 				<%= s.pin %>
 			</div>
 			<div class='padding-tb-20'>
 				<%= s.ch %>
 			</div>
+			<% if user_signed_in? && paper.user_id == current_user.id %>
+				<%= link_to sentence_check_ja_path(sentence_id: s.id), method: :put, remote: true do %>
+					<div class='prim-btn sentence-check-btn'>
+						覚えた！
+					</div>
+				<% end %>
+			<% end %>
 			<% if s.s_words.present? %>
-				<div class='padding-tb-20'>
+				<div class='padding-t-20'>
 					<table class="table table-sm">
 						<thead>
 							<tr>
@@ -62,20 +67,25 @@
 		<div class='collapse' id="sentence-more-<%= s.id%>">
 			<hr>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
-				<div class='clearfix'>
-					<%= link_to sentence_uncheck_ja_path(sentence_id: s.id), method: :put, remote: true do %>
-						<div class='prim-btn sentence-uncheck-btn'>
-							チェックを外す
-						</div>
-					<% end %>
-				</div>
+				<%= link_to edit_sentence_path(s.id) do %>
+					<div class=' float-right'>
+						<%= render :partial => 'svg/edit_sm' %>
+					</div>
+				<% end %>
 			<% end %>
-			<div class=''>
+			<div class='padding-t-20'>
 				<%= s.pin %>
 			</div>
 			<div class='padding-tb-20'>
 				<%= s.ch %>
 			</div>
+			<% if user_signed_in? && paper.user_id == current_user.id %>
+				<%= link_to sentence_uncheck_ja_path(sentence_id: s.id), method: :put, remote: true do %>
+					<div class='prim-btn sentence-check-btn'>
+						チェックを外す
+					</div>
+				<% end %>
+			<% end %>
 			<% if s.s_words.present? %>
 				<div class='padding-tb-20'>
 					<table class="table table-sm">
@@ -105,6 +115,8 @@
 						</tbody>
 					</table>
 				</div>
+			<% else %>
+				<br>
 			<% end %>
 		</div>
 	</div>
