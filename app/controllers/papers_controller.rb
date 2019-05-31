@@ -5,10 +5,28 @@ class PapersController < ApplicationController
   def edit
   end
 
+  def get_for_paper_show
+    @paper = Paper.find(paper_id_params)
+    @user = @paper.user
+    @sentences = @paper.sentences.active
+    if @sentences.present?
+      @unmemorized_sentences_ch_count = @sentences.unmemorized_ch.count
+      @unmemorized_sentences_ja_count = @sentences.unmemorized_ja.count
+      @unmemorized_words_ja_count = 0
+      @unmemorized_words_ch_count = 0
+      @sentences.each do |s|
+        @unmemorized_words_ja_count += s.s_words.active.unmemorized_ja.count
+        @unmemorized_words_ch_count += s.s_words.active.unmemorized_ch.count
+      end
+    end
+  end
+
   def sentence_ja
+    get_for_paper_show
   end
 
   def sentence_ch
+    get_for_paper_show
   end
 
   def word_ja

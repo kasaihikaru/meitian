@@ -1,0 +1,1 @@
+$("#sentence-card-<%= @sentence.id %>").html("<%= j(render :partial => 'sentences/sentence_card_ja', :locals=>{paper: @sentence.paper, s: @sentence}) %>");

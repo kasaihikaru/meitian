@@ -41,15 +41,23 @@ class SentencesController < ApplicationController
   end
 
   def check_ja
+    @sentence = Sentence.find(sentence_id_params)
+    @sentence.update( memorized_ja: 1 )
   end
 
   def check_ch
+    @sentence = Sentence.find(sentence_id_params)
+    @sentence.update( memorized_ch: 1 )
   end
 
   def uncheck_ja
+    @sentence = Sentence.find(sentence_id_params)
+    @sentence.update( memorized_ja: 0 )
   end
 
   def uncheck_ch
+    @sentence = Sentence.find(sentence_id_params)
+    @sentence.update( memorized_ch: 0 )
   end
 
   def update_pin

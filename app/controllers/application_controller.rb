@@ -87,6 +87,15 @@ private
   def p_word_id_params
     params[:p_word_id].to_i
   end
+	def paper_id_params
+		params[:paper_id].to_i
+	end
+	def sentence_id_params
+		params[:sentence_id].to_i
+	end
+	def s_word_id_params
+		params[:s_word_id].to_i
+	end
 	def ring_id_params
 		params[:ring_id].to_i
 	end

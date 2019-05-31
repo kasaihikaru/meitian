@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     post 'copy' #短文コピー
     put 'check_ja' #覚えたチェック
     put 'check_ch' #覚えたチェック
+    put 'uncheck_ja' #覚えたチェック取り消し
+    put 'uncheck_ch' #覚えたチェック取り消し
     put 'update_pin' #ピンインを更新
   end
 
