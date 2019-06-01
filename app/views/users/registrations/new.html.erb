@@ -6,8 +6,8 @@
         <%= devise_error_messages! %>
 
         <div class="field">
-          <%= f.label :name, 'ユーザーネーム' %><br />
-          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: '最大12文字', class: "input-text" %>
+          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
+          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
         </div>
 
         <div class="field">
@@ -16,10 +16,7 @@
         </div>
 
         <div class="field">
-          <%= f.label :password, 'パスワード' %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %>文字以上)</em>
-          <% end %><br />
+          <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
           <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
         </div>
