@@ -1,5 +1,12 @@
 class RingsController < ApplicationController
   before_action :login_check, except: [:word_ja, :word_ch]
+  before_action -> {
+    user_check_by_id(get_user_by_ring_id_for_ring)
+  },only: [:uncheck_all_words_ja, :uncheck_all_words_ch]
+  before_action -> {
+    user_check_by_id(get_user_by_id_for_ring)
+  },only: [:edit, :update, :destroy]
+
   #-----------------------get-----------------------
   def edit
     @ring = Ring.find(id_params)

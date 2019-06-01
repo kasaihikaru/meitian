@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :users, only: [:show, :edit, :update, :destroy] do
+  resources :users, only: [:show] do
     get 'passages' #ユーザーの文章一覧
     get 'papers' #ユーザーの短文集一覧
     get 'rings' #ユーザーの単語帳一覧

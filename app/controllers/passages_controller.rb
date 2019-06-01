@@ -1,7 +1,12 @@
 class PassagesController < ApplicationController
   before_action :login_check, except: [:word_ja, :word_ch]
-  before_action :user_check_by_passage_id, only: [:uncheck_all_words_ja, :uncheck_all_words_ch]
-  before_action :user_check_by_id, only: [:edit, :update, :destroy]
+  before_action -> {
+    user_check_by_id(get_user_by_id_for_passage)
+  },only: [:edit, :update, :destroy]
+  before_action -> {
+    user_check_by_id(get_user_by_passage_id_for_passage)
+  },only: [:uncheck_all_words_ja, :uncheck_all_words_ch]
+
 
   def new
     @passage = Passage.new

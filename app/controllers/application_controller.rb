@@ -16,19 +16,57 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	def user_check_by_passage_id
-		unless user_signed_in? && Passage.find(passage_id_params).user_id == current_user.id
+	def user_check_by_id(user_id)
+		unless user_signed_in? && user_id == current_user.id
 			flash[:alert] = "自分の投稿のみ編集できます"
 			redirect_to root_path
 		end
 	end
 
-	def user_check_by_id
-		unless user_signed_in? && Passage.find(id_params).user_id == current_user.id
-			flash[:alert] = "自分の投稿のみ編集できます"
-			redirect_to root_path
-		end
+	def get_user_by_passage_id_for_passage
+		Passage.find(passage_id_params).user_id
 	end
+	def get_user_by_id_for_passage
+		Passage.find(id_params).user_id
+	end
+	def get_user_by_paper_id_for_paper
+		Paper.find(paper_id_params).user_id
+	end
+	def get_user_by_id_for_paper
+		Paper.find(id_params).user_id
+	end
+	def get_user_by_p_word_id_for_p_word
+		PWord.find(p_word_id_params).passage.user_id
+	end
+	def get_user_by_id_for_p_word
+		PWord.find(id_params).passage.user_id
+	end
+	def get_user_by_sentence_id_for_sentence
+		Sentence.find(sentence_id_params).paper.user_id
+	end
+	def get_user_by_id_for_sentence
+		Sentence.find(id_params).paper.user_id
+	end
+	def get_user_by_s_word_id_for_s_word
+		SWord.find(s_word_id_params).sentence.paper.user_id
+	end
+	def get_user_by_id_for_s_word
+		SWord.find(id_params).sentence.paper.user_id
+	end
+
+	def get_user_by_paper_id_for_ring
+		Ring.find(ring_id_params).user_id
+	end
+	def get_user_by_id_for_ring
+		Ring.find(id_params).user_id
+	end
+	def get_user_by_r_word_id_for_r_word
+		RWord.find(r_word_id_params).ring.user_id
+	end
+	def get_user_by_id_for_r_word
+		RWord.find(id_params).ring.user_id
+	end
+
 
 #---------共通処理--------------
 	def get_pinyin(ch)

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :login_check, except: [:show]
+
   #-----------------------get-----------------------
   def show
     @user = User.find(id_params)
@@ -7,9 +8,6 @@ class UsersController < ApplicationController
     get_recent_prs_list
     get_psr_counts
     get_new_paper_ring
-  end
-
-  def edit
   end
 
   def passages
@@ -33,9 +31,6 @@ class UsersController < ApplicationController
   end
 
   #-----------------------post, put-----------------------
-  def update
-  end
-
   def destroy
   end
 end

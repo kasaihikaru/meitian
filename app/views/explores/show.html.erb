@@ -12,40 +12,6 @@
 <% end %>
 
 <section class='psr'>
-	<div class='psr-title'>ユーザー</div>
-	<div class='psr-content explore-users'>
-		<% @users.each do |user| %>
-			<div class='margin-b-20'>
-				<%= link_to user_path(user) do %>
-					<div class='clearfix'>
-						<div class='float-left'>
-						  <% if user.image? %>
-						    <%= image_tag user.image.url, :alt => "icon" %>
-						  <% else %>
-								 <img alt="no-icon" src="/images/no-icon.png">
-						  <% end %>
-						</div>
-						<div class='float-left user-name'>
-							<%= user.name.truncate(15) %>
-						</div>
-					</div>
-				<% end %>
-				<% if user.introduction? %>
-					<div class='psr-content-sub'>
-						<%= user.introduction.truncate(70) %>
-					</div>
-				<% end %>
-			</div>
-		<% end %>
-		<div class='psr-link'>
-			<%= link_to users_explore_path do %>
-				>全てのユーザー(<%= @users_cnt %>)
-			<% end %>
-		</div>
-	</div>
-</section>
-
-<section class='psr'>
 	<div class='psr-title'>文章</div>
 	<div class='psr-content'>
 		<% @passages.each do |passage| %>
@@ -97,6 +63,41 @@
 		<div class='psr-link'>
 			<%= link_to rings_explore_path do %>
 				>全ての単語帳(<%= @rings_cnt %>)
+			<% end %>
+		</div>
+	</div>
+</section>
+
+
+<section class='psr'>
+	<div class='psr-title'>ユーザー</div>
+	<div class='psr-content explore-users'>
+		<% @users.each do |user| %>
+			<div class='margin-b-20'>
+				<%= link_to user_path(user) do %>
+					<div class='clearfix'>
+						<div class='float-left'>
+						  <% if user.image? %>
+						    <%= image_tag user.image.url, :alt => "icon" %>
+						  <% else %>
+								 <img alt="no-icon" src="/images/no-icon.png">
+						  <% end %>
+						</div>
+						<div class='float-left user-name'>
+							<%= user.name.truncate(15) %>
+						</div>
+					</div>
+				<% end %>
+				<% if user.introduction? %>
+					<div class='psr-content-sub'>
+						<%= user.introduction.truncate(70) %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+		<div class='psr-link'>
+			<%= link_to users_explore_path do %>
+				>全てのユーザー(<%= @users_cnt %>)
 			<% end %>
 		</div>
 	</div>

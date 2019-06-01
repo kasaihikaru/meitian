@@ -1,5 +1,12 @@
 class SentencesController < ApplicationController
   before_action :login_check
+  before_action -> {
+    user_check_by_id(get_user_by_sentence_id_for_sentence)
+  },only: [:edit_pin, :update_pin, :check_ja, :check_ch, :uncheck_ja, :uncheck_ch]
+  before_action -> {
+    user_check_by_id(get_user_by_id_for_sentence)
+  },only: [:edit, :update, :destroy]
+
   #-----------------------get-----------------------
   def new
     @sentence = Sentence.new

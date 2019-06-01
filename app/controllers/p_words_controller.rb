@@ -1,5 +1,12 @@
 class PWordsController < ApplicationController
   before_action :login_check
+  before_action -> {
+    user_check_by_id(get_user_by_p_word_id_for_p_word)
+  },only: [:edit_pin, :update_pin, :check_ja, :check_ch, :uncheck_ja, :uncheck_ch]
+  before_action -> {
+    user_check_by_id(get_user_by_id_for_p_word)
+  },only: [:edit, :update, :destroy]
+
   #-----------------------get-----------------------
   def edit
     @p_word = PWord.find(id_params)
