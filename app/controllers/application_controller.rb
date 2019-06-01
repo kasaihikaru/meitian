@@ -105,8 +105,8 @@ class ApplicationController < ActionController::Base
 	end
 
 	def get_new_paper_ring
-		@paper = Paper.new
-		@ring = Ring.new
+		@new_paper = Paper.new
+		@new_ring = Ring.new
 	end
 
 

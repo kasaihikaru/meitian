@@ -72,12 +72,23 @@
             <% end %>
           </div>
           <div class="col-xs-4 col-md-2 center-align footer-link">
-
             <!-- 新規投稿ボタン -->
-            <div id="toggle-nav" class="toggle">
-              <%= render :partial => 'svg/plus' %><br>
-              新規投稿
-            </div>
+            <% if @paper.present? %>
+              <%= link_to new_sentence_path(paper_id: @paper.id) do %>
+                <%= render :partial => 'svg/plus' %><br>
+                投稿
+              <% end %>
+            <% elsif @ring.present? %>
+              <%= link_to new_r_word_path(ring_id: @ring.id) do %>
+                <%= render :partial => 'svg/plus' %><br>
+                投稿
+              <% end %>
+            <% else %>
+              <div id="toggle-nav" class="toggle">
+                <%= render :partial => 'svg/plus' %><br>
+                投稿
+              </div>
+            <% end %>
           </div>
         <% else %>
           <div class="col-xs-8 col-md-4 center-align">

@@ -62,7 +62,7 @@
 				まだ短文集がありません！
 				<ul>
 					<li>
-						<%= form_for @paper, method: :post do |f| %>
+						<%= form_for @new_paper, method: :post do |f| %>
 							<%= f.text_field :name, placeholder: "自分で作ってみる", :required => true, style: "width: 200px;" %>
 							<%= f.submit "作成", class: "grey-solid-btn" %>
 						<% end %>
@@ -103,7 +103,7 @@
 				まだ単語帳がありません！
 				<ul>
 					<li>
-						<%= form_for @ring, method: :post do |f| %>
+						<%= form_for @new_ring, method: :post do |f| %>
 							<%= f.text_field :name, placeholder: "自分で作ってみる", :required => true, style: "width: 200px;" %>
 							<%= f.submit "作成", class: "grey-solid-btn" %>
 						<% end %>
