@@ -152,7 +152,10 @@ h1{ font-size: 30px; font-weight: 800; }
   border: 1px solid $Prim;
   cursor: pointer;
 }
-
+select{
+  height: 50px;
+  width: 100%;
+}
 
 //--------------- ライン ----------------
 .underline{

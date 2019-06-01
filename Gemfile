@@ -42,6 +42,7 @@ group :development, :test do
   gem 'pry-rails'# デバック用
   gem "better_errors"# デバック用
   gem "binding_of_caller"# デバック用
+  gem 'bullet' #N+1問題
 end
 
 group :development do
