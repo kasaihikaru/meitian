@@ -59,21 +59,63 @@ class PapersController < ApplicationController
   end
 
   def destroy
+    paper = Paper.find(id_params)
+    paper.update(deleted_at: Time.now)
+    paper.sentences.each do |sentence|
+      sentence.update(deleted_at: Time.now)
+      sentence.s_words.each do |word|
+        word.update(deleted_at: Time.now)
+      end
+    end
+
+    redirect_to user_papers_path(current_user)
   end
 
   def copy
+    paper_id = Paper.find(paper_id_params).id
+    user_id = current_user.id
+    copy_specific_paper(paper_id, user_id)
+    @msg = "自分の短文集として保存しました。"
   end
 
   def uncheck_all_sentences_ja
+    paper = Paper.find(paper_id_params)
+    paper.sentences.each do |sentence|
+      sentence.update(memorized_ja: 0)
+    end
+
+    redirect_to paper_sentence_ja_path(paper)
   end
 
   def uncheck_all_sentences_ch
+    paper = Paper.find(paper_id_params)
+    paper.sentences.each do |sentence|
+      sentence.update(memorized_ch: 0)
+    end
+
+    redirect_to paper_sentence_ch_path(paper)
   end
 
   def uncheck_all_words_ja
+    paper = Paper.find(paper_id_params)
+    paper.sentences.each do |sentence|
+      sentence.s_words.each do |word|
+        word.update(memorized_ja: 0)
+      end
+    end
+
+    redirect_to paper_word_ja_path(paper)
   end
 
   def uncheck_all_words_ch
+    paper = Paper.find(paper_id_params)
+    paper.sentences.each do |sentence|
+      sentence.s_words.each do |word|
+        word.update(memorized_ch: 0)
+      end
+    end
+
+    redirect_to paper_word_ch_path(paper)
   end
 
 private

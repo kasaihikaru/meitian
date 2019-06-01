@@ -56,7 +56,7 @@
 			<!-- チェック外しボタン -->
 			<div class="all-uncheck-btn">
 				<% if user_signed_in? && @paper.user_id == current_user.id %>
-					<%= link_to paper_uncheck_all_sentences_ch_path(@paper),method: :put do %>
+					<%= link_to paper_uncheck_all_words_ch_path(@paper),method: :put do %>
 						全てのチェックをはずす
 					<% end %>
 				<% end %>

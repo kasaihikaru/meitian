@@ -14,6 +14,8 @@ class User < ApplicationRecord
   scope :recent, -> { order(updated_at: :desc).limit(5) }
   scope :order_updated_at, -> { order(updated_at: :desc) }
 
+  validates :name,    length: { maximum: 12 }
+
   # ファイルアップロード処理
   mount_uploader :image, ImageUploader
 

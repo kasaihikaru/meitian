@@ -17,7 +17,7 @@
 						<% if user_signed_in? && @paper.user_id == current_user.id && @unmemorized_sentences_ch_count > 0 %>
 							<span data-badge-top-right="<%= @unmemorized_sentences_ch_count %>">短文（中）</span>
 						<% else %>
-							中→日
+							短文（中）
 						<% end %>
 					</div>
 				<% end %>
@@ -26,7 +26,7 @@
 						<% if user_signed_in? && @paper.user_id == current_user.id && @unmemorized_sentences_ja_count > 0 %>
 							<span data-badge-top-right="<%= @unmemorized_sentences_ja_count %>">短文（日）</span>
 						<% else %>
-							日→中
+							短文（日）
 						<% end %>
 					</div>
 				<% end %>
@@ -39,7 +39,7 @@
 						<% if user_signed_in? && @paper.user_id == current_user.id && @unmemorized_words_ch_count > 0 %>
 							<span data-badge-top-right="<%= @unmemorized_words_ch_count %>">単語（中）</span>
 						<% else %>
-							中→日
+							単語（中）
 						<% end %>
 					</div>
 				<% end %>
@@ -48,7 +48,7 @@
 						<% if user_signed_in? && @paper.user_id == current_user.id && @unmemorized_words_ja_count > 0 %>
 							<span data-badge-top-right="<%= @unmemorized_words_ja_count %>">単語（日）</span>
 						<% else %>
-							日→中
+							単語（日）
 						<% end %>
 					</div>
 				<% end %>

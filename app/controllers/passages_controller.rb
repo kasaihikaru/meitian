@@ -91,11 +91,9 @@ class PassagesController < ApplicationController
   end
 
   def copy
-    passage = Passage.find(passage_id_params)
-    new_passage = Passage.create(user_id: current_user.id, title: passage.title, ja: passage.ja, ch: passage.ch, modified_at: Time.now)
-    passage.p_words.active.each do |word|
-      PWord.create(passage_id: new_passage.id, ja: word.ja, ch: word.ch, pin: word.pin)
-    end
+    passage_id = Passage.find(passage_id_params).id
+    user_id = current_user.id
+    copy_specific_passage(passage_id, user_id)
     @msg = "自分の文章として保存しました。"
   end
 

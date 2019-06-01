@@ -51,15 +51,38 @@ class RingsController < ApplicationController
   end
 
   def destroy
+    ring = Ring.find(id_params)
+    ring.update(deleted_at: Time.now)
+    ring.r_words.each do |word|
+      word.update(deleted_at: Time.now)
+    end
+
+    redirect_to user_rings_path(current_user)
   end
 
   def copy
+    ring_id = Ring.find(ring_id_params).id
+    user_id = current_user.id
+    copy_specific_ring(ring_id, user_id)
+    @msg = "自分の単語帳として保存しました。"
   end
 
   def uncheck_all_words_ja
+    ring = Ring.find(ring_id_params)
+    ring.r_words.each do |word|
+      word.update(memorized_ja: 0)
+    end
+
+    redirect_to ring_word_ja_path(ring)
   end
 
   def uncheck_all_words_ch
+    ring = Ring.find(ring_id_params)
+    ring.r_words.each do |word|
+      word.update(memorized_ch: 0)
+    end
+
+    redirect_to ring_word_ch_path(ring)
   end
 
 private

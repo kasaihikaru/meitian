@@ -9,13 +9,15 @@
 	<div class='psr-show-user float-left margin-l-10'>
 		<%= user.name %>
 	</div>
-	<div class='edit-btn float-right'>
-		<% if user == current_user %>
+	<% if user == current_user %>
+		<div class='edit-btn float-right'>
 			<%= link_to edit_paper_path(paper) do %>
 				<%= render :partial => 'svg/edit_sm' %>
 			<% end %>
-		<% elsif user_signed_in? %>
-			<%= link_to "コピーして追加", paper_copy_path(paper), method: :post, class: "prim-btn", remote: true %>
-		<% end %>
-	</div>
+		</div>
+	<% end %>
 </div>
+<% if user_signed_in? && @user != current_user %>
+	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn float-right margin-b-20 visible-lg visible-md", remote: true %>
+	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn action-float-btn visible-xs visible-sm", remote: true %>
+<% end %>

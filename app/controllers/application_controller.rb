@@ -53,8 +53,7 @@ class ApplicationController < ActionController::Base
 	def get_user_by_id_for_s_word
 		SWord.find(id_params).sentence.paper.user_id
 	end
-
-	def get_user_by_paper_id_for_ring
+	def get_user_by_ring_id_for_ring
 		Ring.find(ring_id_params).user_id
 	end
 	def get_user_by_id_for_ring
@@ -109,6 +108,53 @@ class ApplicationController < ActionController::Base
 		@paper = Paper.new
 		@ring = Ring.new
 	end
+
+
+#-----------------------コピー-----------------------
+  # サンプル文章作成用
+  def copy_specific_passage(passage_id, user_id)
+    # 文章作成
+    passage = Passage.find(passage_id)
+    new_passage = Passage.create(title: passage.title, ja:passage.ja, ch: passage.ch, user_id: user_id, modified_at: Time.now)
+
+    # 付属単語作成
+    words = passage.p_words
+    words.each do |w|
+      PWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], passage_id: new_passage.id)
+    end
+  end
+
+  # サンプル短文集作成用
+  def copy_specific_paper(paper_id, user_id)
+    # 短文集作成
+    paper = Paper.find(paper_id)
+    new_paper = Paper.create(name: paper.name, user_id: user_id, modified_at: Time.now)
+
+    # 付属短文作成
+    sentences = paper.sentences
+    sentences.each do |sentence|
+      new_sentence = Sentence.create(ja: sentence[:ja], ch: sentence[:ch], pin: sentence[:pin], paper_id: new_paper.id)
+
+      # 付属単語作成
+      words = sentence.s_words
+      words.each do |w|
+        SWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], sentence_id: new_sentence.id)
+      end
+    end
+  end
+
+  # サンプル単語帳作成用
+  def copy_specific_ring(ring_id, user_id)
+    # 単語帳作成
+    ring = Ring.find(ring_id)
+    new_ring = Ring.create(name: ring.name, user_id: user_id, modified_at: Time.now)
+
+    # 付属単語作成
+    words = ring.r_words
+    words.each do |w|
+      RWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], ring_id: new_ring.id)
+    end
+  end
 
 
 private

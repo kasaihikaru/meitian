@@ -42,7 +42,7 @@
 
 
         <div class='form-section'>
-          <%= f.label :title, "覚えたい単語を抜き出してください" %><br />
+          <%= f.label :title, "覚えたい単語を書き出してください" %><br />
           <% 20.times do |i| %>
             <%= f.fields_for :p_words do |w| %>
               <div class="clearfix">
@@ -71,8 +71,8 @@
             <% end %>
           <% end %>
         </div>
-        <%= f.submit "作成", class: "form-send-btn float-right margin-b-20 visible-lg visible-md" %>
-        <%= f.submit "作成", class: "form-send-btn action-float-btn visible-xs visible-sm" %>
+        <%= f.submit "投稿", class: "form-send-btn float-right margin-b-20 visible-lg visible-md" %>
+        <%= f.submit "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm" %>
         <br><br><br>
       <% end %>
     </div><!-- End of passage-new-content -->

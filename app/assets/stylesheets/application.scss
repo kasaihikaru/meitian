@@ -127,6 +127,10 @@ h1{ font-size: 30px; font-weight: 800; }
   text-align: center;
   line-height: 50px;
   }
+.form-send-btn:hover{
+  color: white;
+  text-decoration: none;
+}
 .langchange-btn-selected{
 	background-color: $Prim;
 	color: white;
