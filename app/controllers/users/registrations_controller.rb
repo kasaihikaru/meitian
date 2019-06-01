@@ -13,9 +13,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
 
+    user_id = User.last.id
+
     # サンプル作成
-    copy_specific_passage(1, User.last.id)
-    copy_specific_passage(2, User.last.id)
+    copy_specific_passage(1, user_id)
+    copy_specific_passage(2, user_id)
+    copy_specific_paper(1, user_id)
+    copy_specific_ring(1, user_id)
 
   end
 
@@ -50,6 +54,39 @@ class Users::RegistrationsController < Devise::RegistrationsController
       PWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], passage_id: new_passage.id)
     end
   end
+
+  # サンプル短文集作成用
+  def copy_specific_paper(paper_id, user_id)
+    # 短文集作成
+    paper = Paper.find(paper_id)
+    new_paper = Paper.create(name: paper.name, user_id: user_id, modified_at: Time.now)
+
+    # 付属短文作成
+    sentences = paper.sentences
+    sentences.each do |s|
+      new_sentence = Sentence.create(ja: sentence[:ja], ch: sentence[:ch], pin: sentence[:pin], paper_id: new_paper.id)
+
+      # 付属単語作成
+      words = sentence.s_words
+      words.each do |w|
+        SWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], sentence_id: new_sentence.id)
+      end
+    end
+  end
+
+  # サンプル単語帳作成用
+  def copy_specific_ring(ring_id, user_id)
+    # 単語帳作成
+    ring = Ring.find(ring_id)
+    new_ring = Ring.create(name: ring.name, user_id: user_id, modified_at: Time.now)
+
+    # 付属単語作成
+    words = ring.r_words
+    words.each do |w|
+      RWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], ring_id: new_ring.id)
+    end
+  end
+
 
   # DELETE /resource
   # def destroy

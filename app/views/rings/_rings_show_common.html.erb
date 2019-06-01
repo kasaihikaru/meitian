@@ -12,7 +12,7 @@
 	<div class='edit-btn float-right'>
 		<% if user == current_user %>
 			<%= link_to edit_ring_path(ring) do %>
-				<%= render :partial => 'svg/edit' %>
+				<%= render :partial => 'svg/edit_sm' %>
 			<% end %>
 		<% elsif user_signed_in? %>
 			<%= link_to "コピーして追加", ring_copy_path(ring), method: :post, class: "prim-btn", remote: true %>

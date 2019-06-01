@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     put 'uncheck_all_words_ch' #単語覚えたチェック全部取り消し（中国語）
   end
 
-  resources :sentences, only: [:new, :edit, :update, :destroy] do
+  resources :sentences, only: [:new, :edit, :create, :update, :destroy] do
     #get
     get 'edit_pin' #ピンイン編集ページ
 

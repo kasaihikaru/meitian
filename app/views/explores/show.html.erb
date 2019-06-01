@@ -1,6 +1,15 @@
-<div class='card'>
-	他のユーザーの投稿から勉強したいものを見つけて、自分の勉強リストにコピーしましょう！
-</div>
+<% if user_signed_in? %>
+	<div class='card'>
+		他のユーザーの投稿から勉強したいものを見つけて、自分の勉強リストにコピーしましょう！
+	</div>
+<% else %>
+	<%= link_to new_user_registration_path do %>
+		<div class='card'>
+			ユーザー登録すると、他のユーザーの投稿から勉強したいものを集めて、勉強を始めることができます！
+			<div class='right-align fontcol-prim'>ユーザー登録へ</div>
+		</div>
+		<% end %>
+<% end %>
 
 <section class='psr'>
 	<div class='psr-title'>ユーザー</div>

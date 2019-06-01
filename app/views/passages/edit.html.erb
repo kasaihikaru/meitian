@@ -24,7 +24,7 @@
         <div class='form-section new-passage-content'>
           <div class='clearfix'>
             <div class='float-left'>
-              <%= f.label :title, "文章内容" %>&emsp;
+              <%= f.label :ch, "文章内容" %>&emsp;
             </div>
             <div class='float-left' id="passage_new_ch_google">
               <%= render :partial => 'svg/google_100' %>
@@ -102,7 +102,9 @@
             </script>
           <% end %>
         </div>
-        <%= f.submit "更新", class: "form-send-btn prim-btn" %>
+        <%= f.submit "更新", class: "form-send-btn float-right margin-b-20 visible-lg visible-md" %>
+        <%= f.submit "更新", class: "form-send-btn action-float-btn visible-xs visible-sm" %>
+        <br><br><br>
       <% end %>
     </div><!-- End of passage-new-content -->
   </div><!-- End of col-12 -->

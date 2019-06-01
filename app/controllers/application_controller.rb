@@ -103,7 +103,7 @@ private
     params[:r_word_id].to_i
   end
 	def r_word_params
-		params[:r_word].to_i
+		params[:r_word]
 	end
 	def word_id_params
 		params[:word_id].to_i

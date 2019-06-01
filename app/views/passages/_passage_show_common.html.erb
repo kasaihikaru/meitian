@@ -12,7 +12,7 @@
 	<div class='edit-btn float-right'>
 		<% if user == current_user %>
 			<%= link_to edit_passage_path(passage) do %>
-				<%= render :partial => 'svg/edit' %>
+				<%= render :partial => 'svg/edit_sm' %>
 			<% end %>
 		<% elsif user_signed_in? %>
 			<%= link_to "コピーして追加", passage_copy_path(passage), method: :post, class: "prim-btn", remote: true %>
