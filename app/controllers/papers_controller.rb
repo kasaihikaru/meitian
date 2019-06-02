@@ -74,7 +74,7 @@ class PapersController < ApplicationController
   def copy
     paper_id = Paper.find(paper_id_params).id
     user_id = current_user.id
-    copy_specific_paper(paper_id, user_id)
+    copy_specific_paper(paper_id, user_id, false)
     @msg = "自分の短文集として保存しました。"
   end
 

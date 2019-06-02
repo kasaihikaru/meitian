@@ -93,7 +93,7 @@ class PassagesController < ApplicationController
   def copy
     passage_id = Passage.find(passage_id_params).id
     user_id = current_user.id
-    copy_specific_passage(passage_id, user_id)
+    copy_specific_passage(passage_id, user_id, false)
     @msg = "自分の文章として保存しました。"
   end
 

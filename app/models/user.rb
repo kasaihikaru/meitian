@@ -13,6 +13,7 @@ class User < ApplicationRecord
   scope :active, -> { where(deleted_at: nil) }
   scope :recent, -> { order(updated_at: :desc).limit(5) }
   scope :order_updated_at, -> { order(updated_at: :desc) }
+  scope :not_me, -> user_id { where.not(id: user_id) }
 
   validates :name,    length: { maximum: 12 }
 

@@ -63,7 +63,7 @@ class RingsController < ApplicationController
   def copy
     ring_id = Ring.find(ring_id_params).id
     user_id = current_user.id
-    copy_specific_ring(ring_id, user_id)
+    copy_specific_ring(ring_id, user_id, false)
     @msg = "自分の単語帳として保存しました。"
   end
 

@@ -16,10 +16,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user_id = User.last.id
 
     # サンプル作成
-    copy_specific_passage(1, user_id)
-    copy_specific_passage(2, user_id)
-    copy_specific_paper(1, user_id)
-    copy_specific_ring(1, user_id)
+    copy_specific_passage(1, user_id, true)
+    copy_specific_passage(2, user_id, true)
+    copy_specific_paper(1, user_id, true)
+    copy_specific_ring(1, user_id, true)
 
   end
 

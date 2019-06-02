@@ -111,11 +111,11 @@ class ApplicationController < ActionController::Base
 
 
 #-----------------------コピー-----------------------
-  # サンプル文章作成用
-  def copy_specific_passage(passage_id, user_id)
+  # 文章作成用
+  def copy_specific_passage(passage_id, user_id, sample_flg)
     # 文章作成
     passage = Passage.find(passage_id)
-    new_passage = Passage.create(title: passage.title, ja:passage.ja, ch: passage.ch, user_id: user_id, modified_at: Time.now)
+    new_passage = Passage.create(title: passage.title, ja:passage.ja, ch: passage.ch, user_id: user_id, modified_at: Time.now, original_id: passage_id, sample: sample_flg)
 
     # 付属単語作成
     words = passage.p_words
@@ -124,16 +124,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # サンプル短文集作成用
-  def copy_specific_paper(paper_id, user_id)
+  # 短文集作成用
+  def copy_specific_paper(paper_id, user_id, sample_flg)
     # 短文集作成
     paper = Paper.find(paper_id)
-    new_paper = Paper.create(name: paper.name, user_id: user_id, modified_at: Time.now)
+    new_paper = Paper.create(name: paper.name, user_id: user_id, modified_at: Time.now, original_id: paper_id, sample: sample_flg)
 
     # 付属短文作成
     sentences = paper.sentences
     sentences.each do |sentence|
-      new_sentence = Sentence.create(ja: sentence[:ja], ch: sentence[:ch], pin: sentence[:pin], paper_id: new_paper.id)
+      new_sentence = Sentence.create(ja: sentence[:ja], ch: sentence[:ch], pin: sentence[:pin], paper_id: new_paper.id, original_id: sentence.id, sample: sample_flg)
 
       # 付属単語作成
       words = sentence.s_words
@@ -143,11 +143,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # サンプル単語帳作成用
-  def copy_specific_ring(ring_id, user_id)
+  # 単語帳作成用
+  def copy_specific_ring(ring_id, user_id, sample_flg)
     # 単語帳作成
     ring = Ring.find(ring_id)
-    new_ring = Ring.create(name: ring.name, user_id: user_id, modified_at: Time.now)
+    new_ring = Ring.create(name: ring.name, user_id: user_id, modified_at: Time.now, original_id: ring_id, sample: sample_flg)
 
     # 付属単語作成
     words = ring.r_words
@@ -155,6 +155,12 @@ class ApplicationController < ActionController::Base
       RWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], ring_id: new_ring.id)
     end
   end
+
+
+
+
+#------------------コピー　サンプルオン-----------------------
+
 
 
 private
