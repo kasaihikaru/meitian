@@ -25,7 +25,11 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- For GA -->
-    <%= analytics_init( setup: { user_id: current_user.id } ) if Rails.env.production? %>
+    <% if user_signed_in? %>
+      <%= analytics_init( setup: { user_id: current_user.id } ) if Rails.env.production? %>
+    <% else %>
+      <%= analytics_init( setup: { user_id: current_user.id } ) if Rails.env.production? %>
+    <% end %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
