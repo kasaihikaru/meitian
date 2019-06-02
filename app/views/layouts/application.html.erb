@@ -28,7 +28,7 @@
     <% if user_signed_in? %>
       <%= analytics_init( setup: { user_id: current_user.id } ) if Rails.env.production? %>
     <% else %>
-      <%= analytics_init( setup: { user_id: current_user.id } ) if Rails.env.production? %>
+      <%= analytics_init if Rails.env.production? %>
     <% end %>
 
     <%= csrf_meta_tags %>
