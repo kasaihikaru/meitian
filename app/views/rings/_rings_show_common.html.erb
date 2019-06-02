@@ -1,13 +1,17 @@
 <div class='clearfix'>
 	<div class='psr-show-user float-left'>
-		<% if user.image? %>
-		  <%= image_tag user.image.url, :alt => "icon", :class=>"smallicon center" %>
-		<% else %>
-			 <img alt="no-icon" src="/images/no-icon.png" class="smallicon">
+		<%= link_to user_path(user) do %>
+			<% if user.image? %>
+			  <%= image_tag user.image.url, :alt => "icon", :class=>"smallicon center" %>
+			<% else %>
+				 <img alt="no-icon" src="/images/no-icon.png" class="smallicon">
+			<% end %>
 		<% end %>
 	</div>
 	<div class='psr-show-user float-left margin-l-10'>
-		<%= user.name %>
+		<%= link_to user_path(user) do %>
+			<%= user.name %>
+		<% end %>
 	</div>
 	<% if user == current_user %>
 		<div class='edit-btn float-right'>
