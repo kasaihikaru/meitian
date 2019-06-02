@@ -11,6 +11,8 @@ class RWordsController < ApplicationController
   #-----------------------get-----------------------
   def new
     @myrings = current_user.rings.active
+    @new_ring = Ring.new
+    @ring_id = params[:ring_id]
   end
 
   def edit

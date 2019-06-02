@@ -62,12 +62,6 @@
 				まだ短文集がありません！
 				<ul>
 					<li>
-						<%= form_for @new_paper, method: :post do |f| %>
-							<%= f.text_field :name, placeholder: "自分で作ってみる", :required => true, style: "width: 200px;" %>
-							<%= f.submit "作成", class: "grey-solid-btn" %>
-						<% end %>
-					</li>
-					<li>
 						<%= link_to explore_path do %>
 							他のユーザーの短文集をコピーする
 						<% end %>

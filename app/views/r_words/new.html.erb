@@ -3,12 +3,31 @@
 
     <div class="form-title">単語を追加する</div>
     <div class="new-content">
+      <!-- 新しい単語帳を作るModal -->
+      <div class="modal fade" id="new_ring_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <%= form_for @new_ring, method: :post do |ring| %>
+              <div class="modal-body">
+                <%= ring.text_field :name, placeholder: "新しい単語帳を作る", :required => true, style: "width: 100%; height: 50px;" %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
+                <%= ring.submit "作成", class: "prim-btn" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <%= form_tag("/r_words", method: :post) do %>
          <!-- 単語帳選択 -->
         <div class='form-section'>
-          <%= label_tag(:ring, "どの単語帳に追加しますか？") %><br>
-          <% if params[:ring_id].present? %>
-            <%= select_tag :ring_id, options_from_collection_for_select(@myrings, :id, :name, selected: params[:ring_id]) %>
+          <%= label_tag(:ring, "どの単語帳に追加しますか？") %>
+          <span type="button" class="link-to-new-sr-modal" data-toggle="modal" data-target="#new_ring_modal">
+            新しい単語帳を作る
+          </span><br>
+          <% if @ring_id.present? %>
+            <%= select_tag :ring_id, options_from_collection_for_select(@myrings, :id, :name, selected: @ring_id) %>
           <% else %>
             <%= select_tag :ring_id, options_from_collection_for_select(@myrings, :id, :name) %>
           <% end %>

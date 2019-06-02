@@ -12,6 +12,8 @@ class SentencesController < ApplicationController
     @sentence = Sentence.new
     @sentence.s_words.build
     @mypapers = current_user.papers.active
+    @new_paper = Paper.new
+    @paper_id = params[:paper_id]
   end
 
   def edit

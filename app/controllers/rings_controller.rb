@@ -32,8 +32,9 @@ class RingsController < ApplicationController
 
   #-----------------------post, put-----------------------
   def create
-    Ring.create(create_params)
-    redirect_to user_rings_path(current_user)
+    ring = Ring.create(create_params)
+    @myrings = current_user.rings.active
+    redirect_to new_r_word_path(ring_id: ring.id)
   end
 
   def update

@@ -47,8 +47,10 @@ class PapersController < ApplicationController
 
   #-----------------------post, put-----------------------
   def create
-    Paper.create(create_params)
-    redirect_to user_papers_path(current_user)
+    paper = Paper.create(create_params)
+    @mypapers = current_user.papers.active
+
+    redirect_to new_sentence_path(paper_id: paper.id)
   end
 
   def update
