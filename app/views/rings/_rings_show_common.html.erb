@@ -18,6 +18,6 @@
 	<% end %>
 </div>
 <% if user_signed_in? && @user != current_user %>
-	<%= link_to "コピー", ring_copy_path(@ring), method: :post, class: "form-send-btn float-right margin-b-20 visible-lg visible-md", remote: true %>
-	<%= link_to "コピー", ring_copy_path(@ring), method: :post, class: "form-send-btn action-float-btn visible-xs visible-sm", remote: true %>
+	<%= link_to "コピー", ring_copy_path(@ring), method: :post, class: "form-send-btn prevent_double_click float-right margin-b-20 visible-lg visible-md", remote: true %>
+	<%= link_to "コピー", ring_copy_path(@ring), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm", remote: true %>
 <% end %>

@@ -126,6 +126,7 @@ h1{ font-size: 30px; font-weight: 800; }
   cursor: pointer;
   text-align: center;
   line-height: 50px;
+  z-index: 200;
   }
 .form-send-btn:hover{
   color: white;
@@ -155,6 +156,9 @@ h1{ font-size: 30px; font-weight: 800; }
 select{
   height: 50px;
   width: 100%;
+}
+.click_disable{
+  pointer-events: none;
 }
 
 //--------------- ライン ----------------
@@ -284,11 +288,10 @@ pre {
   padding: 15px 0;
 }
 .feedback{
-  position: absolute;
-  top: 40px;
-  right: 0px;
-  left: 0px;
-  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 80%;
   padding: 5px 10px;
   border-radius: 10px;
@@ -366,6 +369,8 @@ pre {
 textarea{
   width: 100%;
 }
+
+
 
 
 /*******************************

@@ -71,11 +71,12 @@ $(document).on('turbolinks:load',function() {
 	});
 
 //--------------- feedbackをふわっと消す -------------------
-    $(function(){
-      setTimeout("$('.feedback').fadeOut('slow')", 2800)
-    })
-
-
+  $(function(){
+    setTimeout("$('.feedback').fadeOut('slow')", 2800);
+  })
+	$(".prevent_double_click").click(function(){
+		$('.prevent_double_click').addClass('click_disable');
+	});
 
 
 
