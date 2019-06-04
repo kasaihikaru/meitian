@@ -1,27 +1,27 @@
 <!-- 未着手 -->
 <% if passage.waiting? %>
-	<%= link_to "未着手", passage_waiting_path(passage), method: :put, class: "status-btn float-left status-grey", remote: true %>
+	<%= link_to "未着手", passage_waiting_path(passage), method: :put, class: "status-btn float-left status-on-grey", remote: true %>
 <% else %>
-	<%= link_to "未着手", passage_waiting_path(passage), method: :put, class: "status-btn float-left status-hover-grey", remote: true %>
+	<%= link_to "未着手", passage_waiting_path(passage), method: :put, class: "status-btn float-left status-off-grey", remote: true %>
 <% end %>
 
 <!-- 勉強中 -->
 <% if passage.working? %>
-	<%= link_to "勉強中", passage_working_path(passage), method: :put, class: "status-btn float-left status-red", remote: true %>
+	<%= link_to "勉強中", passage_working_path(passage), method: :put, class: "status-btn float-left status-on-red", remote: true %>
 <% else %>
-	<%= link_to "勉強中", passage_working_path(passage), method: :put, class: "status-btn float-left status-hover-red", remote: true %>
+	<%= link_to "勉強中", passage_working_path(passage), method: :put, class: "status-btn float-left status-off-red", remote: true %>
 <% end %>
 
 <!-- 要復習 -->
 <% if passage.review_needed? %>
-	<%= link_to "要復習", passage_review_needed_path(passage), method: :put, class: "status-btn float-left status-point", remote: true %>
+	<%= link_to "要復習", passage_review_needed_path(passage), method: :put, class: "status-btn float-left status-on-blue", remote: true %>
 <% else %>
-	<%= link_to "要復習", passage_review_needed_path(passage), method: :put, class: "status-btn float-left status-hover-point", remote: true %>
+	<%= link_to "要復習", passage_review_needed_path(passage), method: :put, class: "status-btn float-left status-off-blue", remote: true %>
 <% end %>
 
 <!-- 完了！ -->
 <% if passage.completed? %>
-	<%= link_to "完了！", passage_completed_path(passage), method: :put, class: "status-btn float-left status-green", remote: true %>
+	<%= link_to "完了！", passage_completed_path(passage), method: :put, class: "status-btn float-left status-on-green", remote: true %>
 <% else %>
-	<%= link_to "完了！", passage_completed_path(passage), method: :put, class: "status-btn float-left status-hover-green", remote: true %>
+	<%= link_to "完了！", passage_completed_path(passage), method: :put, class: "status-btn float-left status-off-green", remote: true %>
 <% end %>

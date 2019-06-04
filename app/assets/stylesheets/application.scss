@@ -225,15 +225,13 @@ span[data-badge-top-right]:before {
   font-size: 10px;
   border-radius: 10px;
 }
+.status-badge:hover{
+  text-decoration: none;
+}
 
 .badge-black{
   color: white;
-  background-color: $Grey;
-  // color: black;
-  // background-color: white;
-  // border: #CCCCCC 1px solid;
-  // border-bottom: black 1px solid;
-  
+  background-color: $Black;
 }
 .badge-red{
   color: white;
@@ -417,41 +415,53 @@ textarea{
   }
   .status-btn, .status-btn:hover{
     cursor: pointer;
-    padding: 8px 16px;
-    margin-right: 18px;
+    padding: 7px 13px;
+    margin-right: 5px;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 800;
     text-decoration: none;
   }
-  .status-grey{
-    background-color: $Grey;
+  .status-on-grey{
+    background-color: $Black;
     color: white;
     pointer-events: none;
     border: none;
   }
-  .status-red{
+  .status-on-red{
     background-color: $Red;
     color: white;
     pointer-events: none;
     border: none;
   }
-  .status-point{
+  .status-on-blue{
     background-color: $Blue;
     color: white;
     pointer-events: none;
     border: none;
   }
-  .status-green{
+  .status-on-green{
     background-color: $Green;
     color: white;
     pointer-events: none;
     border: none;
   }
-  .status-hover-red:hover{color: $Red;}
-  .status-hover-point:hover{color: $Blue;}
-  .status-hover-green:hover{color: $Green;}
-  .status-hover-grey:hover{color: $Grey;}
+  .status-off-red, .status-off-red:hover{
+    color: $Red;
+    border: 1px solid $Red;
+  }
+  .status-off-blue, .status-off-blue:hover{
+    color: $Blue;
+    border: 1px solid $Blue;
+  }
+  .status-off-green, .status-off-green:hover{
+    color: $Green;
+    border: 1px solid $Green;
+  }
+  .status-off-grey, .status-off-grey:hover{
+    color: $Black;
+    border: 1px solid $Black;
+  }
 }
 
 
