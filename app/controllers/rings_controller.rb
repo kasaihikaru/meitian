@@ -2,7 +2,7 @@ class RingsController < ApplicationController
   before_action :login_check, except: [:word_ja, :word_ch]
   before_action -> {
     user_check_by_id(get_user_by_ring_id_for_ring)
-  },only: [:uncheck_all_words_ja, :uncheck_all_words_ch]
+  },only: [:uncheck_all_words_ja, :uncheck_all_words_ch, :waiting, :working, :review_needed, :completed]
   before_action -> {
     user_check_by_id(get_user_by_id_for_ring)
   },only: [:edit, :update, :destroy]
@@ -84,6 +84,26 @@ class RingsController < ApplicationController
     end
 
     redirect_to ring_word_ch_path(ring)
+  end
+
+  def waiting
+    @ring = Ring.find(ring_id_params)
+    @ring.waiting!
+  end
+
+  def working
+    @ring = Ring.find(ring_id_params)
+    @ring.working!
+  end
+
+  def review_needed
+    @ring = Ring.find(ring_id_params)
+    @ring.review_needed!
+  end
+
+  def completed
+    @ring = Ring.find(ring_id_params)
+    @ring.completed!
   end
 
 private

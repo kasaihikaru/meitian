@@ -5,7 +5,16 @@
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
 					<%= link_to passage_word_ch_path(passage) do %>
-						<%= render :partial => 'svg/passage' %><%= passage.title.truncate(17) %>
+						<%= render :partial => 'svg/passage' %><%= passage.title.truncate(30) %>
+						<% if passage.waiting? %>
+							<span class='status-badge badge-black'><%= passage.status_i18n %></span>
+						<% elsif passage.working? %>
+							<span class='status-badge badge-red'><%= passage.status_i18n %></span>
+						<% elsif passage.review_needed? %>
+							<span class='status-badge badge-blue'><%= passage.status_i18n %></span>
+						<% elsif passage.completed? %>
+							<span class='status-badge badge-green'><%= passage.status_i18n %></span>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>

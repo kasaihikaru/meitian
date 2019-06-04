@@ -2,9 +2,6 @@
 <%= render :partial => 'papers/papers_show_common', :locals=>{user: @user, paper: @paper} %>
 
 
-<!-- 単語部分は日中で出しわけ -->
-<h1 class="margin-b-40"><%= @paper.name%></h1>
-
 <section class='sentences' id='sentence-ch'>
 	<% if @sentences.present? %>
 		<!-- 日本語からor中国語から　切り替え選択部分 -->

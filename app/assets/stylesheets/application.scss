@@ -64,9 +64,10 @@
 }
 
 //--------------- 文字色 ----------------
-.fontcol-prim{  color: $Prim;}
-.fontcol-lightprim{  color: $LightPrim;}
-.fontcol-black{  color: black}
+.fontcol-prim{color: $Prim;}
+.fontcol-lightprim{color: $LightPrim;}
+.fontcol-black{color: black}
+
 
 //--------------- 文字サイズ ----------------
 h1{ font-size: 30px; font-weight: 800; }
@@ -161,6 +162,7 @@ select{
   pointer-events: none;
 }
 
+
 //--------------- ライン ----------------
 .underline{
   border-bottom: 1px solid black;
@@ -178,6 +180,7 @@ select{
   border-bottom: double 4px black;
 }
 
+
 //--------------- インプット ----------------
 textarea, input{
   border-radius: 5px;
@@ -185,7 +188,7 @@ textarea, input{
 }
 
 
-//--------------- badge ----------------
+//--------------- データバッチ ----------------
 // databadge top right
 span[data-badge-top-right]{
   display: block;
@@ -214,6 +217,38 @@ span[data-badge-top-right]:before {
   font-size: 12px;
   margin-left: 10px;
 }
+
+//--------------- 文字バッチ ----------------
+.status-badge{
+  margin-left: 5px;
+  padding: 3px 7px;
+  font-size: 10px;
+  border-radius: 10px;
+}
+
+.badge-black{
+  color: white;
+  background-color: $Grey;
+  // color: black;
+  // background-color: white;
+  // border: #CCCCCC 1px solid;
+  // border-bottom: black 1px solid;
+}
+.badge-red{
+  color: white;
+  background-color: $Red;
+}
+.badge-blue{
+  color: white;
+  background-color: $Blue;
+}
+.badge-green{
+  color: white;
+  background-color: $Green;
+}
+
+
+
 
 
 //-----------------アイコン-----------
@@ -369,6 +404,64 @@ pre {
 textarea{
   width: 100%;
 }
+
+
+
+//----------------- status btns ------------------//
+.status-btns{
+  margin-bottom: 30px;
+  .status-btn{
+    color: black;
+    border: 1px solid $Grey;
+  }
+  .status-btn, .status-btn:hover{
+    cursor: pointer;
+    padding: 8px 16px;
+    margin-right: 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .status-grey{
+    background-color: $Grey;
+    color: white;
+    pointer-events: none;
+    border: none;
+  }
+  .status-red{
+    background-color: $Red;
+    color: white;
+    pointer-events: none;
+    border: none;
+  }
+  .status-point{
+    background-color: $Blue;
+    color: white;
+    pointer-events: none;
+    border: none;
+  }
+  .status-green{
+    background-color: $Green;
+    color: white;
+    pointer-events: none;
+    border: none;
+  }
+  .status-hover-red:hover{color: $Red;}
+  .status-hover-point:hover{color: $Blue;}
+  .status-hover-green:hover{color: $Green;}
+  .status-hover-grey:hover{color: $Grey;}
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

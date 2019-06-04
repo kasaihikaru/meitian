@@ -8,4 +8,6 @@ class Paper < ApplicationRecord
   scope :not_sapmle, -> { where(sample: false) }
   scope :not_copied, -> { where(original_id: nil) }
   scope :not_mine, -> user_id { where.not(user_id: user_id) }
+
+  enum status: { waiting: 0, working: 10, review_needed: 20, completed:30 }
 end

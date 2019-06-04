@@ -5,7 +5,7 @@ class PassagesController < ApplicationController
   },only: [:edit, :update, :destroy]
   before_action -> {
     user_check_by_id(get_user_by_passage_id_for_passage)
-  },only: [:uncheck_all_words_ja, :uncheck_all_words_ch]
+  },only: [:uncheck_all_words_ja, :uncheck_all_words_ch, :waiting, :working, :review_needed, :completed]
 
 
   def new
@@ -113,6 +113,26 @@ class PassagesController < ApplicationController
     end
 
     redirect_to passage_word_ch_path(passage)
+  end
+
+  def waiting
+    @passage = Passage.find(passage_id_params)
+    @passage.waiting!
+  end
+
+  def working
+    @passage = Passage.find(passage_id_params)
+    @passage.working!
+  end
+
+  def review_needed
+    @passage = Passage.find(passage_id_params)
+    @passage.review_needed!
+  end
+
+  def completed
+    @passage = Passage.find(passage_id_params)
+    @passage.completed!
   end
 
 #-----------------------ストロングパラメーター-----------------------

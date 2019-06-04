@@ -1,0 +1,20 @@
+ja:
+  enums:
+    passage:
+      status:
+        waiting: 未着手
+        working: 勉強中
+        review_needed: 要復習
+        completed: 完了！
+    paper:
+      status:
+        waiting: 未着手
+        working: 勉強中
+        review_needed: 要復習
+        completed: 完了！
+    ring:
+      status:
+        waiting: 未着手
+        working: 勉強中
+        review_needed: 要復習
+        completed: 完了！

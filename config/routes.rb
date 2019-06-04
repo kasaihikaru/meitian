@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     post 'copy' #文章コピー
     put 'uncheck_all_words_ja' #単語覚えたチェック全部取り消し（日本語）
     put 'uncheck_all_words_ch' #単語覚えたチェック全部取り消し（中国語）
+    put 'waiting' #ステータスを未着手に
+    put 'working' #ステータスを勉強中に
+    put 'review_needed' #ステータスを要復習に
+    put 'completed' #ステータスを完了！に
   end
 
   resources :p_words, only: [:edit, :update, :destroy] do
@@ -60,6 +64,10 @@ Rails.application.routes.draw do
     put 'uncheck_all_sentences_ch' #短文覚えたチェック全部取り消し（中国語）
     put 'uncheck_all_words_ja' #単語覚えたチェック全部取り消し（日本語）
     put 'uncheck_all_words_ch' #単語覚えたチェック全部取り消し（中国語）
+    put 'waiting' #ステータスを未着手に
+    put 'working' #ステータスを勉強中に
+    put 'review_needed' #ステータスを要復習に
+    put 'completed' #ステータスを完了！に
   end
 
   resources :sentences, only: [:new, :edit, :create, :update, :destroy] do
@@ -97,6 +105,10 @@ Rails.application.routes.draw do
     post 'copy' #単語帳コピー
     put 'uncheck_all_words_ja' #単語覚えたチェック全部取り消し（日本語）
     put 'uncheck_all_words_ch' #単語覚えたチェック全部取り消し（中国語）
+    put 'waiting' #ステータスを未着手に
+    put 'working' #ステータスを勉強中に
+    put 'review_needed' #ステータスを要復習に
+    put 'completed' #ステータスを完了！に
   end
 
   resources :r_words, only: [:new, :edit, :create, :update, :destroy] do

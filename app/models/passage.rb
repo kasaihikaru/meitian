@@ -10,6 +10,8 @@ class Passage < ApplicationRecord
   scope :not_copied, -> { where(original_id: nil) }
   scope :not_mine, -> user_id { where.not(user_id: user_id) }
 
+  enum status: { waiting: 0, working: 10, review_needed: 20, completed:30 }
+
 	validates :user_id, presence: true
 	validates :title, presence: true
 	validates :ch, presence: true

@@ -2,7 +2,7 @@ class PapersController < ApplicationController
   before_action :login_check, except: [:sentence_ja, :sentence_ch, :word_ja, :word_ch]
   before_action -> {
     user_check_by_id(get_user_by_paper_id_for_paper)
-  },only: [:uncheck_all_sentences_ja, :uncheck_all_sentences_ch, :uncheck_all_words_ja, :uncheck_all_words_ch]
+  },only: [:uncheck_all_sentences_ja, :uncheck_all_sentences_ch, :uncheck_all_words_ja, :uncheck_all_words_ch, :waiting, :working, :review_needed, :completed]
   before_action -> {
     user_check_by_id(get_user_by_id_for_paper)
   },only: [:edit, :update, :destroy]
@@ -119,6 +119,27 @@ class PapersController < ApplicationController
 
     redirect_to paper_word_ch_path(paper)
   end
+
+  def waiting
+    @paper = Paper.find(paper_id_params)
+    @paper.waiting!
+  end
+
+  def working
+    @paper = Paper.find(paper_id_params)
+    @paper.working!
+  end
+
+  def review_needed
+    @paper = Paper.find(paper_id_params)
+    @paper.review_needed!
+  end
+
+  def completed
+    @paper = Paper.find(paper_id_params)
+    @paper.completed!
+  end
+
 
 private
   def create_params

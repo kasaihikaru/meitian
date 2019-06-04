@@ -111,6 +111,8 @@ GEM
       dotenv (= 2.7.2)
       railties (>= 3.2, < 6.1)
     dry-inflector (0.1.2)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.8.0)
     excon (0.64.0)
     execjs (2.7.0)
@@ -501,6 +503,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  enum_help
   fog
   google-analytics-rails
   jbuilder (~> 2.5)

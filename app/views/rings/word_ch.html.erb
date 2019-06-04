@@ -1,10 +1,6 @@
 <!-- TOPは共通 -->
 <%= render :partial => 'rings/rings_show_common', :locals=>{user: @user, ring: @ring} %>
 
-
-<!-- 単語部分は日中で出しわけ -->
-<h1><%= @ring.name%></h1>
-
 <section class='words' id='ring-words-ch'>
 	<% if @words.present? %>
 		<!-- 日本語からor中国語から　切り替え選択部分 -->

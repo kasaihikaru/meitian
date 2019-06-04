@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_02_110659) do
+ActiveRecord::Schema.define(version: 2019_06_03_055946) do
 
   create_table "p_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "passage_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_06_02_110659) do
     t.datetime "modified_at"
     t.integer "original_id"
     t.boolean "sample", default: false, null: false
+    t.integer "status", limit: 1, default: 0
     t.index ["user_id"], name: "index_papers_on_user_id"
   end
 
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_06_02_110659) do
     t.datetime "modified_at"
     t.integer "original_id"
     t.boolean "sample", default: false, null: false
+    t.integer "status", limit: 1, default: 0
     t.index ["user_id"], name: "index_passages_on_user_id"
   end
 
@@ -75,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_06_02_110659) do
     t.datetime "modified_at"
     t.integer "original_id"
     t.boolean "sample", default: false, null: false
+    t.integer "status", limit: 1, default: 0
     t.index ["user_id"], name: "index_rings_on_user_id"
   end
 

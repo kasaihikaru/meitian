@@ -25,3 +25,11 @@
 	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn prevent_double_click float-right margin-b-20 visible-lg visible-md", remote: true %>
 	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm", remote: true %>
 <% end %>
+
+<!-- 短文集の名前 -->
+<h1 class="margin-b-40"><%= @paper.name%></h1>
+
+<!-- ステータス部分 -->
+<div class="status-btns clearfix" id="paper-status-btns">
+	<%= render :partial => 'papers/paper_status', :locals=>{paper: paper} %>
+</div>
