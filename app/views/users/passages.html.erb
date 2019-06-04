@@ -33,7 +33,21 @@
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
 					<%= link_to passage_word_ch_path(passage) do %>
-						<%= render :partial => 'svg/passage' %><%= passage.title %>
+						<%= render :partial => 'svg/passage' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= passage.title.truncate(15) %></span>
+						<!-- ステータスラベル -->
+						<% if passage.waiting? %>
+							<span class='status-badge badge-black'><%= passage.status_i18n %></span>
+						<% elsif passage.working? %>
+							<span class='status-badge badge-red'><%= passage.status_i18n %></span>
+						<% elsif passage.review_needed? %>
+							<span class='status-badge badge-blue'><%= passage.status_i18n %></span>
+						<% elsif passage.completed? %>
+							<span class='status-badge badge-green'><%= passage.status_i18n %></span>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>

@@ -92,22 +92,47 @@ class ApplicationController < ActionController::Base
 	end
 
 
-	def get_recent_prs_list
-		@passages = @user.passages.active.recent
-		@papers = @user.papers.active.recent
-		@rings = @user.rings.active.recent
+	def get_user_all_prs
+		@passages_all = @user.passages.active
+		@papers_all = @user.papers.active
+		@rings_all = @user.rings.active
 	end
 
-	def get_psr_counts
-		@passages_cnt = @user.passages.active.count
-		@papers_cnt = @user.papers.active.count
-		@rings_cnt = @user.rings.active.count
+	def get_user_recent_prs
+		@passages = @passages_all.recent
+		@papers = @papers_all.recent
+		@rings = @rings_all.recent
 	end
 
-	def get_new_paper_ring
-		@new_paper = Paper.new
-		@new_ring = Ring.new
+	def get_user_psr_counts
+		@passages_cnt = @passages_all.count
+		@papers_cnt = @papers_all.count
+		@rings_cnt = @rings_all.count
 	end
+
+	def get_user_working_prs
+		@working_passages = @passages_all.working
+		@working_papers = @papers_all.working
+		@working_rings = @rings_all.working
+		if @working_passages.present? or @working_papers.present? or @working_rings.present?
+			@working_flg = true
+		else
+			@working_flg = false
+		end
+	end
+
+	def get_user_review_needed_prs
+		@review_needed_passages = @passages_all.review_needed
+		@review_needed_papers = @papers_all.review_needed
+		@review_needed_rings = @rings_all.review_needed
+		if @review_needed_passages.present? or @review_needed_papers.present? or @review_needed_rings.present?
+			@review_needed_flg = true
+		else
+			@review_needed_flg = false
+		end
+	end
+
+
 
 
 #-----------------------コピー-----------------------

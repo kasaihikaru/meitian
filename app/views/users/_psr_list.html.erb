@@ -1,3 +1,85 @@
+<% if @working_flg = true %>
+	<section class='psr'>
+		<div class='psr-title'><span class='status-badge badge-red'>勉強中の教材</span></div>
+		<div class='psr-content'>
+			<% @working_passages.each do |passage| %>
+				<div class='margin-b-20'>
+					<%= link_to passage_word_ch_path(passage) do %>
+						<%= render :partial => 'svg/passage' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= passage.title.truncate(17) %></span>
+					<% end %>
+				</div>
+			<% end %>
+			<% @working_papers.each do |paper| %>
+				<div class='margin-b-20'>
+					<%= link_to paper_sentence_ch_path(paper) do %>
+						<%= render :partial => 'svg/paper' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= paper.name.truncate(17) %></span>
+					<% end %>
+				</div>
+			<% end %>
+			<% @working_rings.each do |ring| %>
+				<div class='margin-b-20'>
+					<%= link_to ring_word_ch_path(ring) do %>
+						<%= render :partial => 'svg/ring' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= ring.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= ring.name.truncate(17) %></span>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	</section>
+<% end %>
+
+<% if @review_needed_flg = true %>
+	<section class='psr'>
+		<div class='psr-title'><span class='status-badge badge-blue'>復習予定の教材</span></div>
+		<div class='psr-content'>
+			<% @review_needed_passages.each do |passage| %>
+				<div class='margin-b-20'>
+					<%= link_to passage_word_ch_path(passage) do %>
+						<%= render :partial => 'svg/passage' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= passage.title.truncate(17) %></span>
+					<% end %>
+				</div>
+			<% end %>
+			<% @review_needed_papers.each do |paper| %>
+				<div class='margin-b-20'>
+					<%= link_to paper_sentence_ch_path(paper) do %>
+						<%= render :partial => 'svg/paper' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= paper.name.truncate(17) %></span>
+					<% end %>
+				</div>
+			<% end %>
+			<% @review_needed_rings.each do |ring| %>
+				<div class='margin-b-20'>
+					<%= link_to ring_word_ch_path(ring) do %>
+						<%= render :partial => 'svg/ring' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= ring.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= ring.name.truncate(17) %></span>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	</section>
+<% end %>
+
 <section class='psr'>
 	<div class='psr-title'>文章</div>
 	<div class='psr-content'>
@@ -5,7 +87,12 @@
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
 					<%= link_to passage_word_ch_path(passage) do %>
-						<%= render :partial => 'svg/passage' %><%= passage.title.truncate(30) %>
+						<%= render :partial => 'svg/passage' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= passage.title.truncate(15) %></span>
+						<!-- ステータスラベル -->
 						<% if passage.waiting? %>
 							<span class='status-badge badge-black'><%= passage.status_i18n %></span>
 						<% elsif passage.working? %>
@@ -26,27 +113,10 @@
 				</div>
 			<% end %>
 		<% else %>
-			<% if @user == current_user %>
-				まだ文章がありません！
-				<ul>
-					<li>
-						<%= link_to new_passage_path do %>
-							自分で作ってみる
-						<% end %>
-					</li>
-					<li>
-						<%= link_to explore_path do %>
-							他のユーザーの文章をコピーする
-						<% end %>
-					</li>
-				</ul>
-			<% else %>
-				まだ文章の投稿はありません。
-			<% end %>
+			まだ文章の投稿はありません。
 		<% end %>
 	</div>
 </section>
-
 
 <section class='psr'>
 	<div class='psr-title'>短文集</div>
@@ -55,7 +125,21 @@
 			<% @papers.each do |paper| %>
 				<div class='margin-b-20'>
 					<%= link_to paper_sentence_ch_path(paper) do %>
-						<%= render :partial => 'svg/paper' %><%= paper.name.truncate(15) %><span class='font-12'>（<%= paper.sentences.count %>）</span>
+						<%= render :partial => 'svg/paper' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= paper.name.truncate(15) %></span>
+						<!-- ステータスラベル -->
+						<% if paper.waiting? %>
+							<span class='status-badge badge-black'><%= paper.status_i18n %></span>
+						<% elsif paper.working? %>
+							<span class='status-badge badge-red'><%= paper.status_i18n %></span>
+						<% elsif paper.review_needed? %>
+							<span class='status-badge badge-blue'><%= paper.status_i18n %></span>
+						<% elsif paper.completed? %>
+							<span class='status-badge badge-green'><%= paper.status_i18n %></span>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>
@@ -67,18 +151,7 @@
 				</div>
 			<% end %>
 		<% else %>
-			<% if @user == current_user %>
-				まだ短文集がありません！
-				<ul>
-					<li>
-						<%= link_to explore_path do %>
-							他のユーザーの短文集をコピーする
-						<% end %>
-					</li>
-				</ul>
-			<% else %>
-				まだ短文集の投稿はありません。
-			<% end %>
+			まだ短文集の投稿はありません。
 		<% end %>
 	</div>
 </section>
@@ -90,7 +163,21 @@
 			<% @rings.each do |ring| %>
 				<div class='margin-b-20'>
 					<%= link_to ring_word_ch_path(ring) do %>
-						<%= render :partial => 'svg/ring' %><%= ring.name.truncate(15) %><span class='font-12'>（<%= ring.r_words.count %>）</span>
+						<%= render :partial => 'svg/ring' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= ring.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= ring.name.truncate(15) %></span>
+						<!-- ステータスラベル -->
+						<% if ring.waiting? %>
+							<span class='status-badge badge-black'><%= ring.status_i18n %></span>
+						<% elsif ring.working? %>
+							<span class='status-badge badge-red'><%= ring.status_i18n %></span>
+						<% elsif ring.review_needed? %>
+							<span class='status-badge badge-blue'><%= ring.status_i18n %></span>
+						<% elsif ring.completed? %>
+							<span class='status-badge badge-green'><%= ring.status_i18n %></span>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>
@@ -102,24 +189,7 @@
 				</div>
 			<% end %>
 		<% else %>
-			<% if @user == current_user %>
-				まだ単語帳がありません！
-				<ul>
-					<li>
-						<%= form_for @new_ring, method: :post do |f| %>
-							<%= f.text_field :name, placeholder: "自分で作ってみる", :required => true, style: "width: 200px;" %>
-							<%= f.submit "作成", class: "grey-solid-btn" %>
-						<% end %>
-					</li>
-					<li>
-						<%= link_to explore_path do %>
-							他のユーザーの単語帳をコピーする
-						<% end %>
-					</li>
-				</ul>
-			<% else %>
-				まだ単語帳の投稿はありません。
-			<% end %>
+			まだ単語帳の投稿はありません。
 		<% end %>
 	</div>
 </section>

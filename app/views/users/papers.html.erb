@@ -33,7 +33,21 @@
 			<% @papers.each do |paper| %>
 				<div class='margin-b-20'>
 					<%= link_to paper_sentence_ch_path(paper) do %>
-						<%= render :partial => 'svg/paper' %><%= paper.name %>
+						<%= render :partial => 'svg/paper' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= paper.name.truncate(15) %></span>
+						<!-- ステータスラベル -->
+						<% if paper.waiting? %>
+							<span class='status-badge badge-black'><%= paper.status_i18n %></span>
+						<% elsif paper.working? %>
+							<span class='status-badge badge-red'><%= paper.status_i18n %></span>
+						<% elsif paper.review_needed? %>
+							<span class='status-badge badge-blue'><%= paper.status_i18n %></span>
+						<% elsif paper.completed? %>
+							<span class='status-badge badge-green'><%= paper.status_i18n %></span>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>

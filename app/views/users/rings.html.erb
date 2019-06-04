@@ -33,7 +33,21 @@
 			<% @rings.each do |ring| %>
 				<div class='margin-b-20'>
 					<%= link_to ring_word_ch_path(ring) do %>
-						<%= render :partial => 'svg/ring' %><%= ring.name %>
+						<%= render :partial => 'svg/ring' %>
+						<!-- タブレット以上 -->
+						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= ring.name %></span>
+						<!-- スマホサイズ -->
+						<span class='visible-xs-inline'><%= ring.name.truncate(15) %></span>
+						<!-- ステータスラベル -->
+						<% if ring.waiting? %>
+							<span class='status-badge badge-black'><%= ring.status_i18n %></span>
+						<% elsif ring.working? %>
+							<span class='status-badge badge-red'><%= ring.status_i18n %></span>
+						<% elsif ring.review_needed? %>
+							<span class='status-badge badge-blue'><%= ring.status_i18n %></span>
+						<% elsif ring.completed? %>
+							<span class='status-badge badge-green'><%= ring.status_i18n %></span>
+						<% end %>
 					<% end %>
 				</div>
 			<% end %>

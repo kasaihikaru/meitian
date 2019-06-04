@@ -4,8 +4,10 @@ class MesController < ApplicationController
 	def show
 		@user = current_user
 		get_user_theme
-    get_recent_prs_list
-    get_psr_counts
-    get_new_paper_ring
+		get_user_all_prs
+		get_user_recent_prs
+		get_user_psr_counts
+		get_user_working_prs
+		get_user_review_needed_prs
 	end
 end

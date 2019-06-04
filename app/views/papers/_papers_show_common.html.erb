@@ -22,8 +22,8 @@
 	<% end %>
 </div>
 <% if user_signed_in? && @user != current_user %>
-	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn prevent_double_click float-right margin-b-20 visible-lg visible-md", remote: true %>
-	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm", remote: true %>
+	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn prevent_double_click float-right margin-b-20 visible-lg", remote: true %>
+	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm visible-md", remote: true %>
 <% end %>
 
 <!-- 短文集の名前 -->

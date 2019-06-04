@@ -447,19 +447,23 @@ textarea{
     border: none;
   }
   .status-off-red, .status-off-red:hover{
-    color: $Red;
+    color: $Black;
+    font-weight: 500;
     border: 1px solid $Red;
   }
   .status-off-blue, .status-off-blue:hover{
-    color: $Blue;
+    color: $Black;
+    font-weight: 500;
     border: 1px solid $Blue;
   }
   .status-off-green, .status-off-green:hover{
-    color: $Green;
+    color: $Black;
+    font-weight: 500;
     border: 1px solid $Green;
   }
   .status-off-grey, .status-off-grey:hover{
     color: $Black;
+    font-weight: 500;
     border: 1px solid $Black;
   }
 }
