@@ -1,4 +1,4 @@
-<% if @working_flg = true %>
+<% if @working_flg == true %>
 	<section class='psr'>
 		<div class='psr-title'><span class='status-badge badge-red'>勉強中の教材</span></div>
 		<div class='psr-content'>
@@ -39,7 +39,8 @@
 	</section>
 <% end %>
 
-<% if @review_needed_flg = true %>
+
+<% if @review_needed_flg == true %>
 	<section class='psr'>
 		<div class='psr-title'><span class='status-badge badge-blue'>復習予定の教材</span></div>
 		<div class='psr-content'>
