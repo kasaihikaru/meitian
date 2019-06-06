@@ -25,10 +25,10 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- For GA -->
-    <% if user_signed_in? %>
+    <% if current_user.present? %>
       <%= analytics_init( setup: { user_id: current_user.id } ) if Rails.env.production? %>
     <% else %>
-      <%= analytics_init if Rails.env.production? %>
+      <%= analytics_init( setup: { user_id: 0 } ) if Rails.env.production? %>
     <% end %>
 
     <%= csrf_meta_tags %>
@@ -47,6 +47,7 @@
 
     <!-- コンテンツ -->
     <div class="contents">
+      <% user_signed_in? %>
       <% if notice.present? %>
         <div class="notice"><%= notice %></div>
       <% end %>
