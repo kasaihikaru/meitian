@@ -38,7 +38,7 @@
             <div class='float-left'>
               <%= f.label :ch, "中国語" %>&emsp;
             </div>
-            <div class='float-left' id="passage_new_ch_google">
+            <div class='float-left' id="sentence_new_ch_google">
               <%= render :partial => 'svg/google_100' %>
             </div>
           </div>
@@ -50,7 +50,7 @@
             <div class='float-left'>
               <%= f.label :ja, "日本語" %>&emsp;
             </div>
-            <div class='float-left' id="passage_new_ja_google">
+            <div class='float-left' id="sentence_new_ja_google">
               <%= render :partial => 'svg/google_100' %>
             </div>
           </div>
@@ -75,12 +75,12 @@
               <!-- google検索機能 -->
               <script type="text/javascript">
                 document.getElementById("word_ch_<%= i%>").onclick = function(){
-                  var target= document.getElementById('passage_s_words_attributes_<%= i%>_ch');
+                  var target= document.getElementById('sentence_s_words_attributes_<%= i%>_ch');
                       word = target.value;
                   window.open('http://www.google.com/search?q=中国語%20'+word);
                 };
                 document.getElementById("word_ja_<%= i%>").onclick = function(){
-                  var target= document.getElementById('passage_s_words_attributes_<%= i%>_ja');
+                  var target= document.getElementById('sentence_s_words_attributes_<%= i%>_ja');
                       word = target.value;
                   window.open('http://www.google.com/search?q=中国語%20'+word);
                 };

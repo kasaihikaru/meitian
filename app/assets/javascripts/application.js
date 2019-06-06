@@ -55,12 +55,75 @@ $(document).on('turbolinks:load',function() {
 //--------------- passage_new -------------------
 
 
+//--------------- p_word_edit -------------------
+	$("#p_word_edit_ch").click(function(){
+		var word = $('#p_word_ch').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+	$("#p_word_edit_ja").click(function(){
+		var word = $('#p_word_ja').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+
 //--------------- p_word_pinedit -------------------
 	$("#p_word_pin_edit_ch").click(function(){
 		var word = $('#p_word_pinedit').text();
 		window.open('http://www.google.com/search?q=中国語%20'+word);
 	});
 
+
+//--------------- paper_edit -------------------
+	$("#paper_new_title_google").click(function(){
+		var word = $('#paper_name').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+
+//--------------- sentence_new -------------------
+	$("#sentence_new_ch_google").click(function(){
+		var word = $('#sentence_ch').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+	$("#sentence_new_ja_google").click(function(){
+		var word = $('#sentence_ja').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+
+//--------------- sentence_edit -------------------
+	$("#sentence_edit_ch_google").click(function(){
+		var word = $('#sentence_ch').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+	$("#sentence_edit_ja_google").click(function(){
+		var word = $('#sentence_ja').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+
+
+//--------------- ring_edit -------------------
+	$("#ring_new_title_google").click(function(){
+		var word = $('#ring_name').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+	$("#r_word_edit_ja").click(function(){
+		var word = $('#r_word_ja').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+
+//--------------- r_word_edit -------------------
+	$("#r_word_edit_ch").click(function(){
+		var word = $('#r_word_ch').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+	$("#r_word_edit_ja").click(function(){
+		var word = $('#r_word_ja').val();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
+
+//--------------- r_word_pinedit -------------------
+	$("#r_word_pin_edit_ch").click(function(){
+		var word = $('#r_word_pinedit').text();
+		window.open('http://www.google.com/search?q=中国語%20'+word);
+	});
 
 //--------------- psr新規作成フッターナビ -------------------
 	$(function() {
