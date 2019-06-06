@@ -53,12 +53,29 @@
 			</div>
 		</div>
 	<% end %>
-	<div class='passage-content'>
+	<div class='passage-content' id='passage-content-ch'>
 		<%= safe_join(passage.ch.split("\n"), tag(:br)) %>
 	</div>
+
+
+<!-- 日本語表示ボタン -->
+<button class="form-send-btn action-float-btn visible-xs" id="open">日</button>
+<div id="passage-ja-modal">
+	<p class='modal-title'>日本語訳</p>
+	<div class="passage-ja-modal-content">
+	  <%= safe_join(passage.ja.split("\n"), tag(:br)) %>
+	  <br><br><br>
+  <div>
+    <button class="prim-btn" id="passage-ja-modal-close">閉じる</button>
+  </div>
+</div>
+
+
+
+
 </section>
 <% if passage.ja.present? %>
-	<section class='passage-ja'>
+	<section class='passage-ja visible-sm visible-md visible-lg'>
 		<div class='passage-ja-title'>
 			日本語訳
 		</div>

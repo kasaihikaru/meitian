@@ -535,8 +535,38 @@ textarea{
 
 
 
-
-
+/*******************************
+* モーダル
+********************************/
+#passage-ja-modal {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  z-index: 300;
+  max-width: 1140px;
+  max-height: 50vh;
+  box-sizing: border-box;
+  margin-right: 15px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid $Black;
+  background-color: white;
+  overflow: auto;
+}
+.active {
+  display: block !important;
+}
+#passage-ja-modal-close{
+  position: fixed;
+  z-index: 300;
+  left: 20px;
+  bottom: 3px;
+}
+.modal-title{
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
 
 /*******************************
 * フッター　新規作成ナビ

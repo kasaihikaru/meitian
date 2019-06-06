@@ -143,4 +143,19 @@ $(document).on('turbolinks:load',function() {
 
 
 
+	/*******************************
+	* モーダル
+	********************************/
+  $("#open").on("click", function(e) {
+      e.preventDefault();
+      $("#passage-ja-modal").addClass("active");
+
+      $("#passage-ja-modal-close").on("click", function() {
+          $("#passage-ja-modal").removeClass("active");
+          return false;
+      });
+  });
+
+
+
 });
