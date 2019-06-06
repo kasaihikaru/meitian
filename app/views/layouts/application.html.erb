@@ -24,12 +24,12 @@
     <%= favicon_link_tag '/favicon.ico' %>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-
-
-    <script>
-      ga('create', 'UA-141261712-1', 'auto', { 'userId': <%= current_user.present? ? current_user.id : 0 %> });
-      ga('send', 'pageview');
-    </script>
+    <!-- For GA -->
+    <% if current_user.present? %>
+      <%= analytics_init( setup: { userId: current_user.id } ) if Rails.env.production? %>
+    <% else %>
+      <%= analytics_init( setup: { userId: 0 } ) if Rails.env.production? %>
+    <% end %>
 
 
     <%= csrf_meta_tags %>
