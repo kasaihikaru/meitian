@@ -30,6 +30,8 @@
 <h1 class="margin-b-40"><%= @paper.name%></h1>
 
 <!-- ステータス部分 -->
-<div class="status-btns clearfix" id="paper-status-btns">
-	<%= render :partial => 'papers/paper_status', :locals=>{paper: paper} %>
-</div>
+<% if user == current_user %>
+	<div class="status-btns clearfix" id="paper-status-btns">
+		<%= render :partial => 'papers/paper_status', :locals=>{paper: paper} %>
+	</div>
+<% end %>

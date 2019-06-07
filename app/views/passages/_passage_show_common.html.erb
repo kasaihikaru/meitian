@@ -30,9 +30,11 @@
 		<%= passage.title %>
 	</div>
 	<!-- ステータス部分 -->
-	<div class="status-btns clearfix" id="passage-status-btns">
-		<%= render :partial => 'passages/passage_status', :locals=>{passage: passage} %>
-	</div>
+	<% if user == current_user %>
+		<div class="status-btns clearfix" id="passage-status-btns">
+			<%= render :partial => 'passages/passage_status', :locals=>{passage: passage} %>
+		</div>
+	<% end %>
 	<% if words.present? && user == current_user %>
 		<div class='word-bar'>
 			<div class='clearfix'>

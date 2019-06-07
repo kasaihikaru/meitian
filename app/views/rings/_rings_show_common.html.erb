@@ -31,6 +31,8 @@
 <h1><%= @ring.name%></h1>
 
 <!-- ステータス部分 -->
-<div class="status-btns clearfix" id="ring-status-btns">
-	<%= render :partial => 'rings/ring_status', :locals=>{ring: ring} %>
-</div>
+<% if user == current_user %>
+	<div class="status-btns clearfix" id="ring-status-btns">
+		<%= render :partial => 'rings/ring_status', :locals=>{ring: ring} %>
+	</div>
+<% end %>
