@@ -261,6 +261,13 @@ span[data-badge-top-right]:before {
 
 
 
+
+//-----------------空欄配置-----------
+.empty{
+  height: 270px;
+}
+
+
 /*******************************
 * 固定系
 ********************************/
@@ -568,7 +575,7 @@ ul.cp_list li:before {
   bottom: 0;
   z-index: 300;
   max-width: 1140px;
-  max-height: 50vh;
+  max-height: 40vh;
   box-sizing: border-box;
   margin-right: 15px;
   padding: 10px;
