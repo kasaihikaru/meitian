@@ -108,7 +108,7 @@ class RingsController < ApplicationController
 
 private
   def create_params
-    params.require(:ring).permit(:name).merge(user_id: current_user.id, modified_at: Time.now)
+    params.require(:ring).permit(:name).merge(user_id: current_user.id, modified_at: Time.now, status: 10)
   end
 
   def update_params

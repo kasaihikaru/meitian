@@ -138,7 +138,7 @@ class PassagesController < ApplicationController
 #-----------------------ストロングパラメーター-----------------------
 private
   def create_params
-    params.require(:passage).permit(:title, :ja, :ch).merge(user_id: current_user.id, modified_at: Time.now)
+    params.require(:passage).permit(:title, :ja, :ch).merge(user_id: current_user.id, modified_at: Time.now, status: 10)
   end
 
   def words_attribute_params(passage_id)

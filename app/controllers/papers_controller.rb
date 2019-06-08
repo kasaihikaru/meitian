@@ -143,7 +143,7 @@ class PapersController < ApplicationController
 
 private
   def create_params
-    params.require(:paper).permit(:name).merge(user_id: current_user.id, modified_at: Time.now)
+    params.require(:paper).permit(:name).merge(user_id: current_user.id, modified_at: Time.now, status: 10)
   end
   def update_params
     params.require(:paper).permit(:name).merge(modified_at: Time.now)
