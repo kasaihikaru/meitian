@@ -1,11 +1,5 @@
 <section class='me-profile'>
-	<% if @user.goal.blank?%>
-		<%= link_to edit_user_registration_path(@user) do %>
-			<div class='card-alert'>
-				タスク：中国語学習の最終的なゴールを決めましょう！
-			</div>
-		<% end %>
-	<% else %>
+	<% if @user.goal.present? or @theme.present? %>
 		<div class='balloon-wrapper clearfix'>
 			<%= link_to user_path(@user) do %>
 			  <% if @user.image? %>
@@ -14,10 +8,28 @@
 					 <img alt="no-icon" src="/images/no-icon.png" class="icon center">
 			  <% end %>
 			<% end %>
-			<p class="left_balloon">
-				<%= @user.goal %>
-			</p>
+			<%= link_to edit_user_registration_path(@user) do %>
+				<p class="left_balloon">
+					<% if @user.goal.present? %>
+						<%= @user.goal %>
+					<% end %>
+					<% if @user.goal.present? and @theme.present? %>
+						<br><br>
+					<% end %>
+					<% if @theme.present?%>
+						<%= @this_month %>月の学習テーマは、<%= @theme %>
+					<% end %>
+				</p>
+			<% end %>
 		</div>
+	<% end %>
+
+	<% if @user.goal.blank?%>
+		<%= link_to edit_user_registration_path(@user) do %>
+			<div class='card-alert'>
+				タスク：中国語学習の最終的なゴールを決めましょう！
+			</div>
+		<% end %>
 	<% end %>
 	<% if @theme.blank?%>
 		<%= link_to edit_user_registration_path(@user) do %>
@@ -25,22 +37,10 @@
 				タスク：<%= @this_month %>月の学習テーマを決めましょう！
 			</div>
 		<% end %>
-	<% else %>
-		<div class='card'>
-			<div class='card-title'>
-				<span class="under-marker-lightprim"><%= @this_month %>月のテーマ</span>
-				<div class='float-right'>
-					<%= link_to edit_user_registration_path(@user) do %>
-						<%= render :partial => 'svg/edit_sm' %>
-					<% end %>
-				</div>
-			</div>
-			<div class='card-content'>
-				<%= @theme %>
-			</div>
-		</div>
 	<% end %>
 </section>
+
+
 
 <!-- PSRリスト -->
 <%= render :partial => 'users/psr_list', :locals=>{user: @user, passages: @passages, passages_cnt: @passages_cnt, papers: @papers, papers_cnt: @papers_cnt, rings: @rings, rings_cnt: @rings_cnt} %>
