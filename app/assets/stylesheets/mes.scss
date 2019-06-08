@@ -32,9 +32,11 @@
 .psr-title-red {color: $Red;}
 .psr-title-blue { color: $Blue;}
 .psr-title-black { color: $Black;}
+// .psr-title-prim { color: $Prim;}
 .psr-title-red::after { background-color: $Red;}
 .psr-title-blue::after {  background-color: $Blue;}
 .psr-title-black::after {  background-color: $Black;}
+.psr-title-prim::after { background-color: $Prim;}
 
 .psr-sub-title{
 	font-size: 12px;
