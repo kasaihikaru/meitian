@@ -70,8 +70,10 @@
 
 
 //--------------- 文字サイズ ----------------
+.font-bold{font-weight: 800;}
 h1{ font-size: 30px; font-weight: 800; }
 .font-12{ font-size: 12px;}
+.font-16{ font-size: 16px;}
 
 //--------------- 背景色 ----------------
 .bg-prim{  background-color: $Prim;}
@@ -471,13 +473,35 @@ textarea{
 
 
 
-
-
-
-
-
-
-
+/*******************************
+* リスト
+********************************/
+ul.cp_list {
+  padding:0.5em;
+  list-style-type:none;
+}
+ul.cp_list li {
+  position:relative;
+  padding: 0em 0.3em 0.3em 1.3em;
+}
+ul.cp_list li:after,ul.cp_list li:before {
+  position:absolute;
+  content:'';
+  display:block;
+  background: #FFC107;
+  top: 0.43em;
+  left: 0.5em;
+  height: 11px;
+  width: 4px;
+  border-radius: 10px;
+  transform: rotate(45deg);
+}
+ul.cp_list li:before {
+  top: 0.6em;
+  left: 0.2em;
+  height:8px;
+  transform:rotate(-45deg);
+}
 
 
 

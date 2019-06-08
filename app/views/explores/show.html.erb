@@ -1,15 +1,38 @@
-<% if user_signed_in? %>
-	<div class='card'>
-		他のユーザーの投稿から勉強したいものを見つけて、自分の勉強リストにコピーしましょう！
-	</div>
-<% else %>
-	<%= link_to new_user_registration_path do %>
-		<div class='card'>
-			ユーザー登録すると、他のユーザーの投稿から勉強したいものを集めて、勉強を始めることができます！
-			<div class='right-align fontcol-prim'>ユーザー登録へ</div>
+<!-- プロダクト説明カード -->
+<div class="card">
+	<img alt="no-icon" src="/images/MeiTian_theme_conpact_white.jpg" class='explore-top-img'>
+	<% if user_signed_in? %>
+		<p>他のユーザーの投稿から勉強したいものを見つけて、自分の勉強リストにコピーしましょう！</p>
+	<% else %>
+		<p><%= link_to new_user_registration_path, class: "fontcol-prim font-16 font-bold" do %>ユーザー登録<% end %>
+			すると、他のユーザーの投稿から勉強したいものを集めて、自分だけの教材集を作ることができます！</p>
+	<% end %>
+	<p class="right-align">
+		<a data-toggle="collapse" href="#product-explanation" role="button" aria-expanded="false">
+			説明をもっと見る
+		</a>
+	</p>
+	<div class="collapse" id="product-explanation">
+		<hr>
+		<img alt="no-icon" src="/images/function_collect.jpg" class='explore-top-img'>
+		<div class='margin-b-40'>
+			<ul class="cp_list">
+				<li>勉強したい文章、短文、単語を全て一箇所に。</li>
+				<li>勉強中/要復習、など教材の状態を管理。</li>
+				<li>周りの人の学習教材を、ワンボタンで自分の教材一覧に流用。</li>
+			</ul>
 		</div>
-		<% end %>
-<% end %>
+		<hr>
+		<img alt="no-icon" src="/images/function_study.jpg" class='explore-top-img'>
+		<div class=''>
+			<ul class="cp_list">
+				<li>スマホ/タブレット一つで学習完結。</li>
+				<li>暗記済みのチェックを付けられる。</li>
+				<li>調べたい単語・文章をワンクリックで検索。</li>
+			</ul>
+		</div>
+	</div>
+</div>
 
 <section class='psr'>
 	<div class='psr-title'>文章</div>
