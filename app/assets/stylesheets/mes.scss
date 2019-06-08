@@ -13,10 +13,35 @@
 .psr{
 	margin: 20px 12px 50px;
 }
-.psr-title{
-	font-size: 12px;
+.psr-title {
 	margin-bottom: 15px;
+  position: relative;
+  padding-bottom: .5em;
+  border-bottom: 4px solid #ccc;
+  font-weight: 800;
 }
+.psr-title::after {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  z-index: 2;
+  content: '';
+  width: 20%;
+  height: 4px;
+}
+.psr-title-red {color: $Red;}
+.psr-title-blue { color: $Blue;}
+.psr-title-black { color: $Black;}
+.psr-title-red::after { background-color: $Red;}
+.psr-title-blue::after {  background-color: $Blue;}
+.psr-title-black::after {  background-color: $Black;}
+
+.psr-sub-title{
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+
 .psr-content{
 	font-size: 16px;
 	.indivisual-psr-link{

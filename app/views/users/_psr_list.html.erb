@@ -1,6 +1,6 @@
 <% if @working_flg == true %>
 	<section class='psr'>
-		<div class='psr-title'><span class='status-badge badge-red'>勉強中の教材</span></div>
+		<div class='psr-title psr-title-red'>勉強中の教材</div>
 		<div class='psr-content'>
 			<% @working_passages.each do |passage| %>
 				<div class='margin-b-20'>
@@ -42,7 +42,7 @@
 
 <% if @review_needed_flg == true %>
 	<section class='psr'>
-		<div class='psr-title'><span class='status-badge badge-blue'>復習予定の教材</span></div>
+		<div class='psr-title psr-title-blue'>復習予定の教材</div>
 		<div class='psr-content'>
 			<% @review_needed_passages.each do |passage| %>
 				<div class='margin-b-20'>
@@ -81,10 +81,13 @@
 	</section>
 <% end %>
 
+
+
 <section class='psr'>
-	<div class='psr-title'>文章</div>
+	<div class='psr-title psr-title-black'>最近、追加・編集した教材</div>
 	<div class='psr-content'>
 		<% if @passages.present? %>
+			<div class='psr-sub-title'>文章</div>
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
 					<%= link_to passage_word_ch_path(passage) do %>
@@ -113,16 +116,10 @@
 					<% end %>
 				</div>
 			<% end %>
-		<% else %>
-			まだ文章の投稿はありません。
+			<br>
 		<% end %>
-	</div>
-</section>
-
-<section class='psr'>
-	<div class='psr-title'>短文集</div>
-	<div class='psr-content'>
 		<% if @papers.present? %>
+			<div class='psr-sub-title'>短文集</div>
 			<% @papers.each do |paper| %>
 				<div class='margin-b-20'>
 					<%= link_to paper_sentence_ch_path(paper) do %>
@@ -151,16 +148,10 @@
 					<% end %>
 				</div>
 			<% end %>
-		<% else %>
-			まだ短文集の投稿はありません。
+			<br>
 		<% end %>
-	</div>
-</section>
-
-<section class='psr'>
-	<div class='psr-title'>単語帳</div>
-	<div class='psr-content'>
 		<% if @rings.present? %>
+			<div class='psr-sub-title'>単語帳</div>
 			<% @rings.each do |ring| %>
 				<div class='margin-b-20'>
 					<%= link_to ring_word_ch_path(ring) do %>
@@ -189,8 +180,6 @@
 					<% end %>
 				</div>
 			<% end %>
-		<% else %>
-			まだ単語帳の投稿はありません。
 		<% end %>
-	</div>
+	</div><!-- End of psr-content -->
 </section>
