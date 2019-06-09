@@ -23,12 +23,21 @@
 		border-radius: 15px;
 	}
 }
-.righ-side-icon{
-	height: 18px;
-	weight: 18px;
-	border-radius: 9px;
-	float: right;
+
+.product-explanation-card{
+	text-align: center;
+	h2{
+		color: $Prim;
+		font-size: 30px;
+		font-weight: 800;
+	}
+	h3{
+		color: $Prim;
+		font-size: 16px;
+		font-weight: 800;
+	}
 }
+
 .explore-top-img{
 	width: 100%;
 	max-width: 500px;
