@@ -53,6 +53,7 @@
 .margin-b-20{  margin-bottom: 20px;}
 .margin-b-40{  margin-bottom: 40px;}
 .margin-t-20{  margin-top: 20px;}
+.margin-t-300{  margin-top: 100px;}
 .margin-tb-20{  margin: 20px 0;}
 .padding-tb-20{  padding: 20px 0;}
 .padding-t-20{  padding-top: 20px;}
@@ -62,6 +63,8 @@
 .relative{
   position: relative;
 }
+
+
 
 //--------------- 文字色 ----------------
 .fontcol-prim{color: $Prim;}
@@ -652,3 +655,61 @@ nav a:nth-child(3) .slide-out {
 nav .slide-out-for-text {
   transform: translate(0px, -350px);
 }// scale(1.2)
+
+
+
+
+
+/*******************************
+* wave
+********************************/
+
+.box {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave {
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  background: $Prim;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -400px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  animation: drift 3000ms infinite linear;
+}
+
+.wave.-three {
+  animation: drift 5000ms infinite linear;
+  opacity: .4;
+  background: $Prim;
+}
+
+.wave.-two {
+  animation: drift 7000ms infinite linear;
+  opacity: .2;
+  background: $Prim;
+}
+
+.box:after {
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
+}

@@ -25,6 +25,25 @@
 }
 
 
+.explore-top-xs{
+	background-color: $Prim;
+	h2{
+		color: white;
+		font-size: 30px;
+		font-weight: 800;
+		text-align: center;
+		padding-top: 50px;
+	}
+	h3{
+		color: white;
+		font-size: 16px;
+		font-weight: 800;
+		text-align: center;
+	}
+	img{
+		width: 100%;
+	}
+}
 
 .explore-top{
 	@media screen and (max-width: 480px) {
@@ -64,4 +83,16 @@
 .explore-top-img{
 	width: 100%;
 	max-width: 500px;
+}
+
+.list-user-img{
+	img{
+		height: 22px;
+		weight: 22px;
+		border-radius: 11px;
+	}
+}
+.list-text-with-img{
+	line-height: 28px;
+	margin-left: 7px;
 }
