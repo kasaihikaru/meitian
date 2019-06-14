@@ -16,7 +16,7 @@
 			height: 80px;
 		}
 	}
-	img{
+	.user-image-preview{
 		width:auto;
 		height:auto;
 		max-width:200px;
@@ -25,6 +25,9 @@
 	.logout-btn{
 		font-size: 10px;
 		float: right;
+	}
+	.product-img{
+		width: 100%;
 	}
 }
 

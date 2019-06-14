@@ -1,6 +1,6 @@
 <div class="container-fluid user-register">
   <div class="row">
-    <div class="col-12 col-md-4 offset-md-1">
+    <div class="col-12 col-md-4">
       <div class="form-title">ログイン</div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
@@ -28,7 +28,8 @@
       <%= render "users/shared/links" %>
     </div>
 
-    <div class="col-md-5 offset-md-1 d-none d-md-block">
+    <div class="col-md-8 visible-md visible-lg margin-t-50">
+      <img alt="no-icon" src="/images/MeiTian_TOP.jpg" class="product-img">
     </div>
   </div>
 </div>

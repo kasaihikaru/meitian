@@ -22,7 +22,7 @@
         <% if @user.image.blank? %>
           <div class="field">
             <%= f.label :image, "アイコン画像" %><br />
-            <%= image_tag @user.image.url, alt: "icon", class: "image" if @user.image? %>
+            <%= image_tag @user.image.url, alt: "icon", class: "user-image-preview" if @user.image? %>
 
             <%= f.file_field :image %>
           </div>
