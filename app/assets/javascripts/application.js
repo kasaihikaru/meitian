@@ -157,5 +157,10 @@ $(document).on('turbolinks:load',function() {
   });
 
 
-
+	/*******************************
+	* explore form
+	********************************/
+  $('#explore-form-username').click(function () {
+      $('#explore-form-hidden').show('slow');
+  });
 });

@@ -16,46 +16,28 @@
 	    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 	      <div class="field">
 	        <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-	        <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+	        <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text", id: "explore-form-username" %>
 	      </div>
 
-	      <div class="field">
-	        <%= f.label :email, 'メールアドレス' %><br />
-	        <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
-	      </div>
+	      <div id="explore-form-hidden" style="display: none;">
+		      <div class="field">
+		        <%= f.label :email, 'メールアドレス' %><br />
+		        <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
+		      </div>
 
-	      <div class="field">
-	        <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
-	        <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
-	        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
-	        <div class='clearfix'>
-	        	<%= f.submit '新規登録', class: "prim-btn float-right" %>
-	        </div>
-	      </div>
+		      <div class="field">
+		        <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
+		        <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
+		        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
+		        <div class='clearfix'>
+		        	<%= f.submit '新規登録', class: "prim-btn float-right" %>
+		        </div>
+		      </div>
 
-	     	<%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right" %>
+		     	<%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right" %>
+		     </div>
 	    <% end %>
 	  </div>
-		<div class="container explore-top margin-b-40">
-			<h3>教材をすべて一箇所に！</h3>
-			<img alt="no-icon" src="/images/you_can_stock.jpg" class='explore-top-img'>
-			<div class='margin-b-40'>
-				<ul class="cp_list">
-					<li>勉強したい文章、短文、単語を全て一箇所に。</li>
-					<li>勉強中/要復習、など教材の状態を管理。</li>
-					<li>周りの人の学習教材を、ワンボタンで自分の教材一覧に流用。</li>
-				</ul>
-			</div>
-			<h3>そのまま勉強できる！</h3>
-			<img alt="no-icon" src="/images/you_can_study.jpg" class='explore-top-img'>
-			<div class=''>
-				<ul class="cp_list">
-					<li>スマホ/タブレット一つで学習完結。</li>
-					<li>暗記済みのチェックを付けられる。</li>
-					<li>調べたい単語・文章をワンクリックで検索。</li>
-				</ul>
-			</div>
-		</div>
 	</div>
 
 	<!-- タブレット以上 -->
