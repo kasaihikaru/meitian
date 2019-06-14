@@ -1,42 +1,66 @@
-<!-- プロダクト説明カード -->
-<div class="card product-explanation-card">
-	<h2>MeiTian</h2>
-	<h3>あなたのコツコツを応援する中国語アプリ</h3>
-	<img alt="no-icon" src="/images/MeiTian_devices.jpg" class='explore-top-img'>
-	<% if user_signed_in? %>
-		<p>他のユーザーの投稿から勉強したいものを見つけて、自分の勉強リストにコピーしましょう！</p>
-	<% else %>
-		<p><%= link_to new_user_registration_path, class: "fontcol-prim font-16 font-bold" do %>ユーザー登録<% end %>
-			すると、他のユーザーの投稿から勉強したいものを集めて、自分だけの教材集を作ることができます！</p>
-	<% end %>
-	<p class="right-align">
-		<a data-toggle="collapse" href="#product-explanation" role="button" aria-expanded="false">
-			説明をもっと見る
-		</a>
-	</p>
-	<div class="collapse" id="product-explanation">
-		<hr>
-		<h3>教材をすべて一箇所に！</h3>
-		<img alt="no-icon" src="/images/function_collect_sp.jpg" class='explore-top-img'>
-		<div class='margin-b-40'>
-			<ul class="cp_list">
-				<li>勉強したい文章、短文、単語を全て一箇所に。</li>
-				<li>勉強中/要復習、など教材の状態を管理。</li>
-				<li>周りの人の学習教材を、ワンボタンで自分の教材一覧に流用。</li>
-			</ul>
-		</div>
-		<hr>
-		<h3>そのまま勉強できる！</h3>
-		<img alt="no-icon" src="/images/function_study_sp.jpg" class='explore-top-img'>
-		<div class=''>
-			<ul class="cp_list">
-				<li>スマホ/タブレット一つで学習完結。</li>
-				<li>暗記済みのチェックを付けられる。</li>
-				<li>調べたい単語・文章をワンクリックで検索。</li>
-			</ul>
+<% unless user_signed_in? %>
+	<div class="container-fluid explore-top">
+		<h2>MeiTian</h2>
+		<h3>あなたのコツコツを応援する中国語アプリ</h3>
+	  <div class="row">
+	    <div class="col-12 col-md-7">
+				<img alt="no-icon" src="/images/MeiTian_TOP.jpg">
+			</div>
+			<div class="col-12 col-md-5 user-register">
+	      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	        <%= devise_error_messages! %>
+
+	        <div class="field">
+	          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
+	          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+	        </div>
+
+	        <div class="field">
+	          <%= f.label :email, 'メールアドレス' %><br />
+	          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
+	        </div>
+
+	        <div class="field">
+	          <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
+	          <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
+	          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
+	          <div class='clearfix'>
+	          	<%= f.submit '新規登録', class: "prim-btn float-right" %>
+	          </div>
+	        </div>
+	        <%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right" %>
+	      <% end %>
+			</div>
 		</div>
 	</div>
-</div>
+	<br><br><br><br>
+	<div class="container-fluid explore-top">
+	  <div class="row">
+	    <div class="col-12 col-md-6">
+				<h3>教材をすべて一箇所に！</h3>
+				<img alt="no-icon" src="/images/function_collect_sp.jpg" class='explore-top-img'>
+				<div class='margin-b-40'>
+					<ul class="cp_list">
+						<li>勉強したい文章、短文、単語を全て一箇所に。</li>
+						<li>勉強中/要復習、など教材の状態を管理。</li>
+						<li>周りの人の学習教材を、ワンボタンで自分の教材一覧に流用。</li>
+					</ul>
+				</div>
+	    </div>
+	    <div class="col-12 col-md-6">
+				<h3>そのまま勉強できる！</h3>
+				<img alt="no-icon" src="/images/function_study_sp.jpg" class='explore-top-img'>
+				<div class=''>
+					<ul class="cp_list">
+						<li>スマホ/タブレット一つで学習完結。</li>
+						<li>暗記済みのチェックを付けられる。</li>
+						<li>調べたい単語・文章をワンクリックで検索。</li>
+					</ul>
+				</div>
+	    </div>
+	   </div>
+	</div>
+<% end %>
 
 <section class='psr'>
 	<div class='psr-title psr-title-prim'>みんなの文章</div>
