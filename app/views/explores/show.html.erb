@@ -15,14 +15,14 @@
 		<div class="container user-register margin-b-40">
 	    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 	      <div class="field">
-	        <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-	        <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text", id: "explore-form-username" %>
+	        <%= f.label :email, 'メールアドレス' %><br />
+	        <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text", id: "explore-form-show" %><br>
 	      </div>
 
 	      <div id="explore-form-hidden" style="display: none;">
 		      <div class="field">
-		        <%= f.label :email, 'メールアドレス' %><br />
-		        <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
+		        <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
+		        <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text"%>
 		      </div>
 
 		      <div class="field">
@@ -53,13 +53,13 @@
 				<div class="col-12 col-md-5 user-register">
 		      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 		        <div class="field">
-		          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-		          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+		          <%= f.label :email, 'メールアドレス' %><br />
+		          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
 		        </div>
 
 		        <div class="field">
-		          <%= f.label :email, 'メールアドレス' %><br />
-		          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
+		          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
+		          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
 		        </div>
 
 		        <div class="field">

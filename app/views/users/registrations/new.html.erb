@@ -6,13 +6,13 @@
         <%= devise_error_messages! %>
 
         <div class="field">
-          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+          <%= f.label :email, 'メールアドレス' %><br />
+          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
         </div>
 
         <div class="field">
-          <%= f.label :email, 'メールアドレス' %><br />
-          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
+          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
+          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
         </div>
 
         <div class="field">
