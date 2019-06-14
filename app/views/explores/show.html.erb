@@ -11,8 +11,11 @@
 		  <div class='wave -one'></div>
 		  <div class='wave -two'></div>
 		  <div class='wave -three'></div>
+		  <div class='wave-title'>
+		  	<a href="https://note.mu/kasaihikaru/n/n9561af190dfa" target="_blank">説明を見にいく</a>
+		  </div>
 		</div>
-		<div class="container user-register margin-b-40">
+		<div class="container user-register">
 	    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 	      <div class="field">
 	        <%= f.label :email, 'メールアドレス' %><br />
@@ -34,7 +37,7 @@
 		        </div>
 		      </div>
 
-		     	<%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right" %>
+		     	<%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right margin-b-20" %>
 		     </div>
 	    <% end %>
 	  </div>
