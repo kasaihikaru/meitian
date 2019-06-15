@@ -5,7 +5,18 @@
 		<% @passages.each do |passage| %>
 			<div class='margin-b-20'>
 				<%= link_to passage_word_ch_path(passage) do %>
-					<%= render :partial => 'svg/passage' %><%= passage.title.truncate(17) %>
+					<div class='clearfix'>
+						<div class='float-left list-user-img'>
+						  <% if passage.user.image? %>
+						    <%= image_tag passage.user.image.url, :alt => "icon" %>
+						  <% else %>
+								 <img alt="no-icon" src="/images/no-icon.png">
+						  <% end %>
+						</div>
+						<div class='float-left list-text-with-img'>
+							<%= passage.title.truncate(17) %>
+						</div>
+					</div>
 				<% end %>
 				<div class='psr-content-sub'>
 					<%= passage.ch.truncate(70) %>

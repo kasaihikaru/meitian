@@ -5,7 +5,18 @@
 		<% @papers.each do |paper| %>
 			<div class='margin-b-20'>
 				<%= link_to paper_sentence_ch_path(paper) do %>
-					<%= render :partial => 'svg/paper' %><%= paper.name.truncate(17) %><span class='font-12'>（<%= paper.sentences.count %>）</span>
+					<div class='clearfix'>
+						<div class='float-left list-user-img'>
+						  <% if paper.user.image? %>
+						    <%= image_tag paper.user.image.url, :alt => "icon" %>
+						  <% else %>
+								 <img alt="no-icon" src="/images/no-icon.png">
+						  <% end %>
+						</div>
+						<div class='float-left list-text-with-img'>
+							<%= paper.name.truncate(17) %><span class='font-12'>（<%= paper.sentences.count %>）</span>
+						</div>
+					</div>
 				<% end %>
 			</div>
 		<% end %>

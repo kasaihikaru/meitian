@@ -6,7 +6,18 @@
 		<% @rings.each do |ring| %>
 			<div class='margin-b-20'>
 				<%= link_to ring_word_ch_path(ring) do %>
-					<%= render :partial => 'svg/ring' %><%= ring.name.truncate(17) %><span class='font-12'>（<%= ring.r_words.count %>）</span>
+					<div class='clearfix'>
+						<div class='float-left list-user-img'>
+						  <% if ring.user.image? %>
+						    <%= image_tag ring.user.image.url, :alt => "icon" %>
+						  <% else %>
+								 <img alt="no-icon" src="/images/no-icon.png">
+						  <% end %>
+						</div>
+						<div class='float-left list-text-with-img'>
+							<%= ring.name.truncate(17) %><span class='font-12'>（<%= ring.r_words.count %>）</span>
+						</div>
+					</div>
 				<% end %>
 			</div>
 		<% end %>

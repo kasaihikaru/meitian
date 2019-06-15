@@ -355,11 +355,12 @@ pre {
 
 
 //----------------- pagenatiom ------------------//
-.contents{
-  margin: 20px 0 51px;
+.pagination-wrapper{
+  width:100%;
 }
 
 .pagination{
+  width:100%;
   .active .page-link{
     background: $Prim;
     border-color: $Prim;
@@ -368,7 +369,6 @@ pre {
     color: #000000;
   }
 }
-
 
 //----------------- card ------------------//
 .card{
