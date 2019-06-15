@@ -1,5 +1,5 @@
 class MesController < ApplicationController
-	before_action :login_check
+	before_action :login_check_no_message
 
 	def show
 		@user = current_user

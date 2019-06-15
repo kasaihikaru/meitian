@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def login_check_no_message
+		unless user_signed_in?
+			redirect_to explore_path
+		end
+	end
+
 	def user_check_by_id(user_id)
 		unless user_signed_in? && user_id == current_user.id
 			flash[:alert] = "自分の投稿のみ編集できます"
