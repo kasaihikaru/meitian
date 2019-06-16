@@ -1,33 +1,35 @@
-<% unless user_signed_in? %>
-	<!-- スマホ表示 -->
-	<div class='visible-xs'>
-		<div class='explore-top-xs'>
-			<%= devise_error_messages! %>
-			<h2>MeiTian</h2>
-			<h3>あなたのコツコツを応援する中国語アプリ</h3>
+<!-- スマホ表示 -->
+<div class='visible-xs'>
+	<div class='explore-top-xs'>
+		<%= devise_error_messages! %>
+		<h2>MeiTian</h2>
+		<h3>あなたのコツコツを応援する中国語アプリ</h3>
+		<% unless user_signed_in? %>
 			<img alt="no-icon" src="/images/MeiTian_TOP_tomato.jpg">
-		</div>
-		<div class='box'>
-		  <div class='wave -one'></div>
-		  <div class='wave -two'></div>
-		  <div class='wave -three'></div>
-		  <div class='wave-title'>
-		  	<a href="https://note.mu/kasaihikaru/n/n9561af190dfa" target="_blank">説明を見に行く</a>
-		  </div>
-		</div>
+		<% end %>
+	</div>
+	<div class='box'>
+	  <div class='wave -one'></div>
+	  <div class='wave -two'></div>
+	  <div class='wave -three'></div>
+	  <div class='wave-title'>
+	  	<a href="https://note.mu/kasaihikaru/n/n9561af190dfa" target="_blank">説明を見に行く</a>
+	  </div>
+	</div>
+	<% unless user_signed_in? %>
 		<div class="container user-register">
 	    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 	    	<section class='psr'>
 					<div class='psr-title psr-title-prim'>登録して勉強を始める</div>
 		      <div class="field">
 		        <%= f.label :email, 'メールアドレス' %><br />
-		        <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text", id: "explore-form-show" %><br>
+		        <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text", id: "explore-form-show" %><br>
 		      </div>
 
 		      <div id="explore-form-hidden" style="display: none;">
 			      <div class="field">
 			        <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-			        <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text"%>
+			        <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text"%>
 			      </div>
 
 			      <div class="field">
@@ -44,14 +46,17 @@
 			   </section>
 	    <% end %>
 	  </div>
-	</div>
+	<% end %>
+</div>
 
-	<!-- タブレット以上 -->
-	<div class='visible-sm visible-md visible-lg'>
-		<div class="container explore-top">
-			<%= devise_error_messages! %>
-			<h2>MeiTian</h2>
-			<h3>あなたのコツコツを応援する中国語アプリ</h3>
+<!-- タブレット以上 -->
+<div class='visible-sm visible-md visible-lg'>
+	<div class="container explore-top">
+		<%= devise_error_messages! %>
+		<h2>MeiTian</h2>
+		<h3>あなたのコツコツを応援する中国語アプリ</h3>
+		<p class="link-to-note"><a href="https://note.mu/kasaihikaru/n/n9561af190dfa" target="_blank">説明を見に行く</a></p>
+		<% unless user_signed_in? %>
 		  <div class="row">
 		    <div class="col-12 col-md-7">
 					<img alt="no-icon" src="/images/MeiTian_TOP.jpg">
@@ -60,12 +65,12 @@
 		      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 		        <div class="field">
 		          <%= f.label :email, 'メールアドレス' %><br />
-		          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
+		          <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text" %><br>
 		        </div>
 
 		        <div class="field">
 		          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-		          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+		          <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
 		        </div>
 
 		        <div class="field">
@@ -80,9 +85,9 @@
 		      <% end %>
 				</div>
 			</div>
-		</div>
+		<% end %>
 	</div>
-<% end %>
+</div>
 
 
 <div class="container">
