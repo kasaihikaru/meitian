@@ -1,3 +1,25 @@
+<% unless user_signed_in? %>
+	<% if words.present? || passage.ja.present? %>
+		<div id="passage-tutorial-modal">
+		  <button class="prim-btn" id="passage-tutorial-modal-close">×</button>
+			<div class="passage-tutorial-modal-content">
+				<ul class="cp_list">
+					<% if words.present? %>
+						<li>下にある単語帳の単語を押すと、google検索できます</li>
+						<li>ログインすると、単語に「<%= render :partial => 'svg/check_sm' %>暗記済みチェック」をつけて、単語帳の用に使うことができます。</li>
+					<% end %>
+					<% if passage.ja.present? %>
+						<div class="visible-xs">
+							<li>右下の「日」ボタンから日本語訳を見ることができます。
+							</li>
+						</div>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
 <div class='clearfix'>
 	<div class='psr-show-user float-left'>
 		<%= link_to user_path(user) do %>

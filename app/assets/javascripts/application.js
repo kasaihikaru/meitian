@@ -157,6 +157,12 @@ $(document).on('turbolinks:load',function() {
   });
 
 
+  $("#passage-tutorial-modal-close").on("click", function() {
+      $("#passage-tutorial-modal").fadeOut('slow');
+      return false;
+  });
+
+
 	/*******************************
 	* explore form
 	********************************/
