@@ -12,6 +12,6 @@ class Sentence < ApplicationRecord
   scope :pin_fixed, -> { where(pin_fixed: true) }
   scope :not_sapmle, -> { where(sample: false) }
   scope :not_copied, -> { where(original_id: nil) }
-  scope :not_mine, -> user_id { joins(:users).where.not(user_id: user_id) }
+  scope :not_mine, -> user_id { joins(:paper).merge(Paper.not_mine user_id) }
 
 end
