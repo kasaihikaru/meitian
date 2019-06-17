@@ -187,7 +187,10 @@ select{
   border-bottom: double 4px black;
 }
 .no-underline, .no-underline:hover{
-  text-decoration: none;
+  text-decoration: none !important;
+  a, a:hover{
+    text-decoration: none;
+  }
 }
 
 //--------------- インプット ----------------
