@@ -186,7 +186,9 @@ select{
 .border-b-double{
   border-bottom: double 4px black;
 }
-
+.no-underline, .no-underline:hover{
+  text-decoration: none;
+}
 
 //--------------- インプット ----------------
 textarea, input{
@@ -252,7 +254,11 @@ span[data-badge-top-right]:before {
   color: white;
   background-color: $Green;
 }
-
+.badge-white{
+  color: $Black;
+  border: 1px solid $Black;
+  // background-color: $Green;
+}
 
 
 

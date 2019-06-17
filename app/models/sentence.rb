@@ -4,6 +4,7 @@ class Sentence < ApplicationRecord
   accepts_nested_attributes_for :s_words
 
   scope :active, -> { where(deleted_at: nil) }
+  scope :recent, -> { order(created_at: :desc).limit(15) }
   scope :memorized_ja, -> { where(memorized_ja: true) }
   scope :memorized_ch, -> { where(memorized_ch: true) }
   scope :unmemorized_ja, -> { where(memorized_ja: false) }
@@ -11,4 +12,6 @@ class Sentence < ApplicationRecord
   scope :pin_fixed, -> { where(pin_fixed: true) }
   scope :not_sapmle, -> { where(sample: false) }
   scope :not_copied, -> { where(original_id: nil) }
+  scope :not_mine, -> user_id { joins(:users).where.not(user_id: user_id) }
+
 end

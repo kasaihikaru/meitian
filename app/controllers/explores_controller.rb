@@ -5,21 +5,25 @@ class ExploresController < ApplicationController
 			passages_all = Passage.active.not_sapmle.not_copied.not_mine(current_user.id)
 			papers_all = Paper.active.not_sapmle.not_copied.not_mine(current_user.id)
 			rings_all = Ring.active.not_sapmle.not_copied.not_mine(current_user.id)
+			sentences_all = Sentence.active.not_sapmle.not_copied.not_mine(current_user.id)
 		else
 			users_all = User.active
 			passages_all = Passage.active.not_sapmle.not_copied
 			papers_all = Paper.active.not_sapmle.not_copied
 			rings_all = Ring.active.not_sapmle.not_copied
+			sentences_all = Sentence.active.not_sapmle.not_copied
 		end
 		@users = users_all.recent
 		@passages = passages_all.recent
 		@papers = papers_all.recent
 		@rings = rings_all.recent
+		@sentences = sentences_all.recent
 
 		@users_cnt = users_all.count
 		@passages_cnt = passages_all.count
 		@papers_cnt = papers_all.count
 		@rings_cnt = rings_all.count
+		@sentences_cnt = sentences_all.recent
 	end
 
 	def users
