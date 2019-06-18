@@ -141,7 +141,7 @@
 								<%= paper.name.truncate(17) %><span class='font-12'>（<%= paper.sentences.count %>）</span>
 							</div>
 						</div>
-						<% paper.sentences.limit(3).each do |sentence| %>
+						<% paper.sentences.limit(5).each do |sentence| %>
 							<span class='font-12'><%= sentence.ch %></span><br>
 						<% end %>
 					<% end %>
@@ -173,7 +173,7 @@
 								<%= ring.name.truncate(17) %><span class='font-12'>（<%= ring.r_words.count %>）</span>
 							</div>
 						</div>
-						<% ring.r_words.limit(20).each do |word| %>
+						<% ring.r_words.limit(30).each do |word| %>
 							<span class='status-badge badge-white no-underline'><%= word.ch %></span>
 						<% end %>
 					<% end %>
