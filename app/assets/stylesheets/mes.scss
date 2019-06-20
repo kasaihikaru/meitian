@@ -62,3 +62,15 @@
 	font-size: 15px;
 	margin: 8px 0;
 }
+
+.me-jump-to-note{
+	border-radius: 15px;
+	text-align: center;
+	background-color: $Point;
+	padding: 10px 0;
+	margin-top: 5px;
+	a{
+		color: white;
+		text-decoration: underline;
+	}
+}
