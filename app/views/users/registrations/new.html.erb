@@ -22,7 +22,7 @@
         </div>
 
         <div class="actions">
-          <%= f.submit '新規登録', class: "prim-btn float-right" %>
+          <%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'explore', 'click', 'register')" %>
         </div>
       <% end %>
       <br><br>

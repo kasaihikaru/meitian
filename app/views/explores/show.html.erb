@@ -37,7 +37,7 @@
 			        <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
 			        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
 			        <div class='clearfix'>
-			        	<%= f.submit '新規登録', class: "prim-btn float-right" %>
+			        	<%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'explore', 'click', 'register')"%>
 			        </div>
 			      </div>
 
