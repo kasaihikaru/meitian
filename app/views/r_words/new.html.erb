@@ -13,7 +13,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
-                <%= ring.submit "作成", class: "prim-btn" %>
+                <%= ring.submit "作成", class: "prim-btn", onsubmit: "ga('send', 'event', 'submit', 'new_ring', 'form_in_r_words_new')" %>
               </div>
             <% end %>
           </div>
@@ -63,8 +63,8 @@
           <% end %>
         </div>
 
-        <%= submit_tag "投稿", class: "form-send-btn float-right margin-b-20 visible-lg" %>
-        <%= submit_tag "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md" %>
+        <%= submit_tag "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_r_words', 'form_in_r_words_new')" %>
+        <%= submit_tag "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_r_words', 'form_in_r_words_new')" %>
         <br><br><br>
       <% end %>
     </div><!-- End of passage-new-content -->

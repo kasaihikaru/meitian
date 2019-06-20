@@ -13,7 +13,7 @@
 	  <div class='wave -two'></div>
 	  <div class='wave -three'></div>
 	  <div class='wave-title'>
-	  	<a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank">説明を見に行く</a>
+	  	<a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_explore');">説明を見に行く</a>
 	  </div>
 	</div>
 	<% unless user_signed_in? %>
@@ -37,7 +37,7 @@
 			        <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
 			        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
 			        <div class='clearfix'>
-			        	<%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'explore', 'click', 'register')"%>
+			        	<%= f.submit '新規登録', class: "prim-btn float-right", onsubmit: "ga('send', 'event', 'submit', 'new_user_registration', 'form_in_explore')"%>
 			        </div>
 			      </div>
 
@@ -55,7 +55,7 @@
 		<%= devise_error_messages! %>
 		<h2>MeiTian</h2>
 		<h3>あなたのコツコツを応援する中国語アプリ</h3>
-		<p class="link-to-note"><a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank">説明を見に行く</a></p>
+		<p class="link-to-note"><a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_explore');">説明を見に行く</a></p>
 		<% unless user_signed_in? %>
 		  <div class="row">
 		    <div class="col-12 col-md-7">
@@ -78,7 +78,7 @@
 		          <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
 		          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
 		          <div class='clearfix'>
-		          	<%= f.submit '新規登録', class: "prim-btn float-right" %>
+		          	<%= f.submit '新規登録', class: "prim-btn float-right", onsubmit: "ga('send', 'event', 'submit', 'new_user_registration', 'form_in_explore')" %>
 		          </div>
 		        </div>
 		        <%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right" %>

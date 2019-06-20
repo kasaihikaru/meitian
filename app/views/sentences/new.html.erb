@@ -13,7 +13,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
-                <%= paper.submit "作成", class: "prim-btn" %>
+                <%= paper.submit "作成", class: "prim-btn", onsubmit: "ga('send', 'event', 'submit', 'new_paper', 'form_in_sentences_new')" %>
               </div>
             <% end %>
           </div>
@@ -88,8 +88,8 @@
             <% end %>
           <% end %>
         </div>
-        <%= f.submit "投稿", class: "form-send-btn float-right margin-b-20 visible-lg" %>
-        <%= f.submit "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md" %>
+        <%= f.submit "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_sentence', 'form_in_sentences_new')" %>
+        <%= f.submit "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_sentence', 'form_in_sentences_new')" %>
         <br><br><br>
       <% end %>
     </div><!-- End of passage-new-content -->
