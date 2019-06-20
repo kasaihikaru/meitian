@@ -1,10 +1,10 @@
 <div class="clearfix">
-  <%= link_to "文章を削除", passage_path(@passage), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
+  <%= link_to "長文を削除", passage_path(@passage), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
 </div>
 
 <div class="row">
   <div class="col-xs-12" >
-    <div class="form-title">文章を編集する</div>
+    <div class="form-title">長文を編集する</div>
     <%= form_for @passage, method: :put do |f| %>
       <div class="col-xs-12 col-lg-8">
         <div class='form-section'>
@@ -16,13 +16,13 @@
               <%= render :partial => 'svg/google_100' %>
             </div>
           </div>
-          <%= f.text_field :title, placeholder: "文章のタイトル", class: "new-passage-title", :required => true %>
+          <%= f.text_field :title, placeholder: "長文のタイトル", class: "new-passage-title", :required => true %>
         </div>
 
         <div class='form-section new-passage-content'>
           <div class='clearfix'>
             <div class='float-left'>
-              <%= f.label :ch, "文章内容" %>&emsp;
+              <%= f.label :ch, "長文内容" %>&emsp;
             </div>
             <div class='float-left' id="passage_new_ch_google">
               <%= render :partial => 'svg/google_100' %>
@@ -40,7 +40,7 @@
               <%= render :partial => 'svg/google_100' %>
             </div>
           </div>
-          <%= f.text_area :ja, placeholder: "勉強するときに、文章の日本語訳が必要な場合は、埋めてください。必須項目ではありません。" %>
+          <%= f.text_area :ja, placeholder: "勉強するときに、長文の日本語訳が必要な場合は、埋めてください。必須項目ではありません。" %>
         </div>
       </div>
 

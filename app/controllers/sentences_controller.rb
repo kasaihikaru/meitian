@@ -44,7 +44,7 @@ class SentencesController < ApplicationController
   end
 
   def update
-    # 文章更新
+    # 長文更新
     sentence = Sentence.find(id_params)
     sentence.update(ja:create_sentence_params[:ja], ch:create_sentence_params[:ch], pin:create_sentence_params[:pin])
 

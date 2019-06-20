@@ -142,9 +142,9 @@ class ApplicationController < ActionController::Base
 
 
 #-----------------------コピー-----------------------
-  # 文章作成用
+  # 長文作成用
   def copy_specific_passage(passage_id, user_id, sample_flg)
-    # 文章作成
+    # 長文作成
     passage = Passage.find(passage_id)
     new_passage = Passage.create(title: passage.title, ja:passage.ja, ch: passage.ch, user_id: user_id, modified_at: Time.now, original_id: passage_id, sample: sample_flg)
 

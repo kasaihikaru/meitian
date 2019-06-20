@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resource :me, only: [:show]
   resource :explore, only: [:show] do
     get 'users' #ユーザー一覧
-    get 'passages' #文章一覧
+    get 'passages' #長文一覧
     get 'papers' #短文集一覧
     get 'rings' #単語帳一覧
   end
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:show] do
-    get 'passages' #ユーザーの文章一覧
+    get 'passages' #ユーザーの長文一覧
     get 'papers' #ユーザーの短文集一覧
     get 'rings' #ユーザーの単語帳一覧
   end
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get 'word_ch' #単語を中国語から暗記
 
     #post, put
-    post 'copy' #文章コピー
+    post 'copy' #長文コピー
     put 'uncheck_all_words_ja' #単語覚えたチェック全部取り消し（日本語）
     put 'uncheck_all_words_ch' #単語覚えたチェック全部取り消し（中国語）
     put 'waiting' #ステータスを未着手に

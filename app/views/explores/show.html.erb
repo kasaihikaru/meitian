@@ -92,7 +92,7 @@
 
 <div class="container">
 	<section class='psr'>
-		<div class='psr-title psr-title-prim'>みんなの文章</div>
+		<div class='psr-title psr-title-prim'>みんなの長文</div>
 		<div class='psr-content'>
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
@@ -117,7 +117,7 @@
 			<% end %>
 			<div class='psr-link'>
 				<%= link_to passages_explore_path do %>
-					>全ての文章(<%= @passages_cnt %>)
+					>全ての長文(<%= @passages_cnt %>)
 				<% end %>
 			</div>
 		</div>

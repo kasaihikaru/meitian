@@ -87,7 +87,7 @@
 	<div class='psr-title psr-title-black'>最近、追加・編集した教材</div>
 	<div class='psr-content'>
 		<% if @passages.present? %>
-			<div class='psr-sub-title'>文章</div>
+			<div class='psr-sub-title'>長文</div>
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
 					<%= link_to passage_word_ch_path(passage) do %>
@@ -112,7 +112,7 @@
 			<% if @passages_cnt > 5 %>
 				<div class='psr-link'>
 					<%= link_to user_passages_path(@user) do %>
-						>全ての文章(<%= @passages_cnt %>)
+						>全ての長文(<%= @passages_cnt %>)
 					<% end %>
 				</div>
 			<% end %>

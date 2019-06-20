@@ -54,7 +54,7 @@ class PassagesController < ApplicationController
   end
 
   def update
-    # 文章更新
+    # 長文更新
     passage = Passage.find(id_params)
     passage.update(title:create_params[:title], ja:create_params[:ja], ch:create_params[:ch], modified_at: create_params[:modified_at])
 
@@ -94,7 +94,7 @@ class PassagesController < ApplicationController
     passage_id = Passage.find(passage_id_params).id
     user_id = current_user.id
     copy_specific_passage(passage_id, user_id, false)
-    @msg = "自分の文章として保存しました。"
+    @msg = "自分の長文として保存しました。"
   end
 
   def uncheck_all_words_ja
