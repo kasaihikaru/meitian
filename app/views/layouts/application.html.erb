@@ -103,7 +103,9 @@
         <% else %>
           <div class="col-xs-8 col-md-4 center-align">
             <%= link_to new_user_registration_path do %>
-              <div class="prim-btn me-registration-btn">登録をして勉強開始！</div>
+              <% unless params[:controller] == 'users/registrations' %>
+                <div class="prim-btn me-registration-btn">登録をして勉強開始！</div>
+              <% end %>
             <% end %>
           </div>
         <% end %>
