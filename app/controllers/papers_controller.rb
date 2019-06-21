@@ -17,32 +17,54 @@ class PapersController < ApplicationController
     @paper = Paper.find(paper_id_params)
     @user = @paper.user
     @sentences = @paper.sentences.active
-    if @sentences.present?
-      @unmemorized_sentences_ch_count = @sentences.unmemorized_ch.count
-      @unmemorized_sentences_ja_count = @sentences.unmemorized_ja.count
-      @unmemorized_words_ja_count = 0
-      @unmemorized_words_ch_count = 0
-      @sentences.each do |s|
-        @unmemorized_words_ja_count += s.s_words.active.unmemorized_ja.count
-        @unmemorized_words_ch_count += s.s_words.active.unmemorized_ch.count
-      end
-    end
   end
 
   def sentence_ja
     get_for_paper_show
+    # プログレス用カウント
+    if @sentences.present?
+      @all_count = @sentences.count
+      @memorized_count = @sentences.memorized_ja.count
+      @progress = 100 * @memorized_count / @all_count
+    end
   end
 
   def sentence_ch
     get_for_paper_show
+    # プログレス用カウント
+    if @sentences.present?
+      @all_count = @sentences.count
+      @memorized_count = @sentences.memorized_ch.count
+      @progress = 100 * @memorized_count / @all_count
+    end
   end
 
   def word_ja
     get_for_paper_show
+    # プログレス用カウント
+    if @sentences.present?
+      @memorized_count = 0
+      @all_count = 0
+      @sentences.each do |s|
+        @all_count += s.s_words.active.count
+        @memorized_count += s.s_words.active.memorized_ja.count
+      end
+      @progress = 100 * @memorized_count / @all_count
+    end
   end
 
   def word_ch
     get_for_paper_show
+    # プログレス用カウント
+    if @sentences.present?
+      @memorized_count = 0
+      @all_count = 0
+      @sentences.each do |s|
+        @all_count += s.s_words.active.count
+        @memorized_count += s.s_words.active.memorized_ch.count
+      end
+      @progress = 100 * @memorized_count / @all_count
+    end
   end
 
   #-----------------------post, put-----------------------
