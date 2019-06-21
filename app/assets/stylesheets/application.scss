@@ -365,6 +365,14 @@ pre {
   line-height: 60px;
 }
 
+.devise-error{
+  width: 100%;
+  background-color: $Point;
+  color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
 
 //----------------- pagenatiom ------------------//
 .pagination-wrapper{

@@ -18,3 +18,10 @@ ja:
         working: 勉強中
         review_needed: 要復習
         completed: 完了！
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        password: パスワード
+        password_confirmation: パスワード確認
+        email: メールアドレス
