@@ -1,1 +1,3 @@
 $("#r_word_row_<%= @word.id %>").html("<%= j(render :partial => 'render_for_word/r_word_row_ja', :locals=>{word: @word, ring:@ring}) %>");
+$("#progress-bar-render-wrapper").html("<%= j(render :partial => 'render_common/progress', :locals=>{progress: @progress}) %>");
+$("#memorized_status").html("<%= j(render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count}) %>");

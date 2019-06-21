@@ -9,41 +9,36 @@
 			単語暗記
 		</div>
 
-		<!-- 日本語からor中国語から　切り替え選択部分 -->
-		<div class='ja-ch-exchange'>
-			<div class="container">
-				<div class="row center-align">
-					<div class="col-xs-1 center-align">
+		<!-- 日or中　切り替え選択部分 -->
+		<div class='lang-change clearfix'>
+			<div class='lang-btn lang-btn-ja-selected'>
+					日
+			</div>
+			<%= link_to passage_word_ch_path(@passage, anchor: 'passage-words-ch') do %>
+				<div class='lang-btn lang-btn-ch'>
+					中
+				</div>
+			<% end %>
+		</div>
+
+		<% if user_signed_in? && @user == current_user %>
+			<div class='progress-bar-wrapper'>
+				<div class='clearfix'>
+					<div class='float-left'>
+						暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
 					</div>
-					<%= link_to passage_word_ch_path(@passage, anchor: 'passage-words-ch') do %>
-						<div class="col-xs-5 langchange-btn-unselected">
-							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ch_count > 0 %>
-								<span data-badge-top-right="<%= @unmemorized_words_ch_count %>">中→日</span>
-							<% else %>
-								中→日
-							<% end %>
-						</div>
-					<% end %>
-					<%= link_to passage_word_ja_path(@passage, anchor: 'passage-words-ja') do %>
-						<div class="col-xs-5 langchange-btn-selected">
-							<% if user_signed_in? && @passage.user_id == current_user.id && @unmemorized_words_ja_count > 0 %>
-								<span data-badge-top-right="<%= @unmemorized_words_ja_count %>">日→中</span>
-							<% else %>
-								日→中
-							<% end %>
-						</div>
-					<% end %>
+					<div class='float-right'>
+						<%= link_to passage_uncheck_all_words_ja_path(@passage),method: :put do %>
+							全てのチェックをはずす
+						<% end %>
+					</div>
+				</div>
+				<div class="progress" id="progress-bar-render-wrapper">
+				  <%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
 				</div>
 			</div>
-			<!-- チェック外しボタン -->
-			<div class="all-uncheck-btn">
-				<% if user_signed_in? && @passage.user_id == current_user.id %>
-					<%= link_to passage_uncheck_all_words_ch_path(@passage),method: :put do %>
-						全てのチェックをはずす
-					<% end %>
-				<% end %>
-			</div>
-		</div>
+		<% end %>
+
 		<%= render :partial => 'render_for_word/p_word_ja_table', :locals=>{passage: @passage, words: @words} %>
 	<% end %>
 </section>

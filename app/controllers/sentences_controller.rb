@@ -94,24 +94,38 @@ class SentencesController < ApplicationController
   def copy
   end
 
-  def check_ja
+  def get_for_check
     @sentence = Sentence.find(sentence_id_params)
+    @sentences = @sentence.paper.sentences.active
+    @all_count = @sentences.count
+  end
+
+  def check_ja
+    get_for_check
     @sentence.update( memorized_ja: 1 )
+    @memorized_count = @sentences.memorized_ja.count
+    get_progress
   end
 
   def check_ch
-    @sentence = Sentence.find(sentence_id_params)
+    get_for_check
     @sentence.update( memorized_ch: 1 )
+    @memorized_count = @sentences.memorized_ch.count
+    get_progress
   end
 
   def uncheck_ja
-    @sentence = Sentence.find(sentence_id_params)
+    get_for_check
     @sentence.update( memorized_ja: 0 )
+    @memorized_count = @sentences.memorized_ja.count
+    get_progress
   end
 
   def uncheck_ch
-    @sentence = Sentence.find(sentence_id_params)
+    get_for_check
     @sentence.update( memorized_ch: 0 )
+    @memorized_count = @sentences.memorized_ch.count
+    get_progress
   end
 
 

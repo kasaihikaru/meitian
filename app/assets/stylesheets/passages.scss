@@ -36,6 +36,11 @@
 	a, a:hover{
 		color: $LightPrim;
 	}
+	.sentence-or-word{
+		a, a:hover{
+			color: $Black;
+		}
+	}
 	.bg-grey{
 		a{
 			color: black;
@@ -66,10 +71,12 @@
 .lang-btn-ch{
 	background-color: #E6E6E6;
 	border-radius: 10px 0 0 10px;
+	color: $Black;
 }
 .lang-btn-ja{
 	background-color: #E6E6E6;
 	border-radius: 0 10px 10px 0;
+	color: $Black;
 }
 .lang-btn-ch-selected{
 	border-radius: 10px 0 0 10px;

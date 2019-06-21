@@ -139,6 +139,10 @@ class ApplicationController < ActionController::Base
 	end
 
 
+	def get_progress
+		@progress = 100 * @memorized_count / @all_count
+	end
+
 
 
 #-----------------------コピー-----------------------

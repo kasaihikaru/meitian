@@ -2,7 +2,7 @@
 <%= render :partial => 'papers/papers_show_common', :locals=>{user: @user, paper: @paper} %>
 
 
-<section class='sentences' id='sentence-ch'>
+<section class='sentences' id='sentence-ja'>
 	<% if @sentences.present? %>
 		<!-- 日or中 短文or単語　切り替え選択部分 -->
 		<div class='sentence-or-word'>
@@ -30,7 +30,7 @@
 			<div class='progress-bar-wrapper'>
 				<div class='clearfix'>
 					<div class='float-left'>
-						暗記済み短文&nbsp;<%= @memorized_count %>/<%= @all_count %>
+						暗記済み短文&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
 					</div>
 					<div class='float-right'>
 						<%= link_to paper_uncheck_all_sentences_ja_path(@paper),method: :put do %>
@@ -38,8 +38,8 @@
 						<% end %>
 					</div>
 				</div>
-				<div class="progress">
-				  <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%;" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100"><%= @progress %>%</div>
+				<div class="progress" id="progress-bar-render-wrapper">
+					<%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
 				</div>
 			</div>
 		<% end %>

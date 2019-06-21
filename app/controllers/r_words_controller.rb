@@ -88,26 +88,36 @@ class RWordsController < ApplicationController
   def get_word_ring_for_check
     @word = RWord.find(r_word_id_params)
     @ring = @word.ring
+    @words = @ring.r_words.active
+    @all_count = @words.count
   end
 
   def check_ja
     get_word_ring_for_check
     @word.update(memorized_ja: 1)
+    @memorized_count = @words.memorized_ja.count
+    get_progress
   end
 
   def check_ch
     get_word_ring_for_check
     @word.update(memorized_ch: 1)
+    @memorized_count = @words.memorized_ch.count
+    get_progress
   end
 
   def uncheck_ja
     get_word_ring_for_check
     @word.update(memorized_ja: 0)
+    @memorized_count = @words.memorized_ja.count
+    get_progress
   end
 
   def uncheck_ch
     get_word_ring_for_check
     @word.update(memorized_ch: 0)
+    @memorized_count = @words.memorized_ch.count
+    get_progress
   end
 
 

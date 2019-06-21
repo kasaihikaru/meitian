@@ -16,18 +16,19 @@ class RingsController < ApplicationController
     @ring = Ring.find(ring_id_params)
     @user = @ring.user
     @words = @ring.r_words.active
-    if @words.present?
-      @unmemorized_words_ch_count = @words.unmemorized_ch.count
-      @unmemorized_words_ja_count = @words.unmemorized_ja.count
-    end
+    @all_count = @words.count
   end
 
   def word_ja
     get_for_ring_show
+    @memorized_count = @words.memorized_ja.count
+    get_progress
   end
 
   def word_ch
     get_for_ring_show
+    @memorized_count = @words.memorized_ch.count
+    get_progress
   end
 
   #-----------------------post, put-----------------------
@@ -74,7 +75,7 @@ class RingsController < ApplicationController
       word.update(memorized_ja: 0)
     end
 
-    redirect_to ring_word_ja_path(ring)
+    redirect_to ring_word_ja_path(ring, anchor: 'ring-words-ja')
   end
 
   def uncheck_all_words_ch
@@ -83,7 +84,7 @@ class RingsController < ApplicationController
       word.update(memorized_ch: 0)
     end
 
-    redirect_to ring_word_ch_path(ring)
+    redirect_to ring_word_ch_path(ring, anchor: 'ring-words-ch')
   end
 
   def waiting

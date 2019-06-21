@@ -54,22 +54,45 @@ class SWordsController < ApplicationController
   def get_word_sentence_for_check
     @word = SWord.find(s_word_id_params)
     @paper = @word.sentence.paper
+    @sentences = @paper.sentences.active
+    @memorized_count = 0
+    @all_count = 0
   end
   def check_ja
     get_word_sentence_for_check
     @word.update(memorized_ja: 1)
+    @sentences.each do |s|
+      @all_count += s.s_words.active.count
+      @memorized_count += s.s_words.active.memorized_ja.count
+    end
+    get_progress
   end
   def check_ch
     get_word_sentence_for_check
     @word.update(memorized_ch: 1)
+    @sentences.each do |s|
+      @all_count += s.s_words.active.count
+      @memorized_count += s.s_words.active.memorized_ch.count
+    end
+    get_progress
   end
   def uncheck_ja
     get_word_sentence_for_check
     @word.update(memorized_ja: 0)
+    @sentences.each do |s|
+      @all_count += s.s_words.active.count
+      @memorized_count += s.s_words.active.memorized_ja.count
+    end
+    get_progress
   end
   def uncheck_ch
     get_word_sentence_for_check
     @word.update(memorized_ch: 0)
+    @sentences.each do |s|
+      @all_count += s.s_words.active.count
+      @memorized_count += s.s_words.active.memorized_ch.count
+    end
+    get_progress
   end
 
 

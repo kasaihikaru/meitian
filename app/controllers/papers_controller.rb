@@ -25,7 +25,7 @@ class PapersController < ApplicationController
     if @sentences.present?
       @all_count = @sentences.count
       @memorized_count = @sentences.memorized_ja.count
-      @progress = 100 * @memorized_count / @all_count
+      get_progress
     end
   end
 
@@ -35,7 +35,7 @@ class PapersController < ApplicationController
     if @sentences.present?
       @all_count = @sentences.count
       @memorized_count = @sentences.memorized_ch.count
-      @progress = 100 * @memorized_count / @all_count
+      get_progress
     end
   end
 
@@ -49,7 +49,7 @@ class PapersController < ApplicationController
         @all_count += s.s_words.active.count
         @memorized_count += s.s_words.active.memorized_ja.count
       end
-      @progress = 100 * @memorized_count / @all_count
+      get_progress
     end
   end
 
@@ -63,7 +63,7 @@ class PapersController < ApplicationController
         @all_count += s.s_words.active.count
         @memorized_count += s.s_words.active.memorized_ch.count
       end
-      @progress = 100 * @memorized_count / @all_count
+      get_progress
     end
   end
 
@@ -108,7 +108,7 @@ class PapersController < ApplicationController
       sentence.update(memorized_ja: 0)
     end
 
-    redirect_to paper_sentence_ja_path(paper)
+    redirect_to paper_sentence_ja_path(paper, anchor: 'sentence-ja')
   end
 
   def uncheck_all_sentences_ch
@@ -117,7 +117,7 @@ class PapersController < ApplicationController
       sentence.update(memorized_ch: 0)
     end
 
-    redirect_to paper_sentence_ch_path(paper)
+    redirect_to paper_sentence_ch_path(paper, anchor: 'sentence-ch')
   end
 
   def uncheck_all_words_ja
@@ -128,7 +128,7 @@ class PapersController < ApplicationController
       end
     end
 
-    redirect_to paper_word_ja_path(paper)
+    redirect_to paper_word_ja_path(paper, anchor: 'sentence-word-ja')
   end
 
   def uncheck_all_words_ch
@@ -139,7 +139,7 @@ class PapersController < ApplicationController
       end
     end
 
-    redirect_to paper_word_ch_path(paper)
+    redirect_to paper_word_ch_path(paper, anchor: 'sentence-word-ch')
   end
 
   def waiting

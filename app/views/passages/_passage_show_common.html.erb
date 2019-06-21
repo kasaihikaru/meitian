@@ -56,37 +56,13 @@
 			<%= render :partial => 'passages/passage_status', :locals=>{passage: passage} %>
 		</div>
 	<% end %>
-	<% if words.present? && user == current_user %>
-		<div class='progress-bar-wrapper'>
-			<div class='clearfix'>
-				<div class='float-left'>
-					暗記済み単語&nbsp;<%= memorized_words_ch_count %>/<%= all_words_count %>
-				</div>
-				<div class='float-right'>
-					<% if params[:action] == 'word_ch' %>
-						<a href="#passage-words-ch">単語帳を開く</a>
-					<% end %>
-					<% if params[:action] == 'word_ja' %>
-						<a href="#passage-words-ja">単語帳を開く</a>
-					<% end %>
-				</div>
-			</div>
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" style="width: <%= progress%>%;" aria-valuenow="<%= progress%>" aria-valuemin="0" aria-valuemax="100"><%= progress%>%</div>
-			</div>
-		</div>
-	<% end %>
+	<!-- 文章表示部分 -->
 	<div class='passage-content' id='passage-content-ch'>
 		<%= safe_join(passage.ch.split("\n"), tag(:br)) %>
 	</div>
-
-
-
-
-
-
-
 </section>
+
+
 <% if passage.ja.present? %>
 	<% if passage.ch.length > 200 && passage.ja.length > 200 %>
 		<!-- スマホ日本語表示ボタン -->

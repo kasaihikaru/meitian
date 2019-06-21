@@ -63,26 +63,36 @@ class PWordsController < ApplicationController
   def get_word_passage_for_check
     @word = PWord.find(p_word_id_params)
     @passage = @word.passage
+    @words = @passage.p_words.active
+    @all_count = @words.count
   end
 
   def check_ja
     get_word_passage_for_check
     @word.update(memorized_ja: 1)
+    @memorized_count = @words.memorized_ja.count
+    get_progress
   end
 
   def check_ch
     get_word_passage_for_check
     @word.update(memorized_ch: 1)
+    @memorized_count = @words.memorized_ch.count
+    get_progress
   end
 
   def uncheck_ja
     get_word_passage_for_check
     @word.update(memorized_ja: 0)
+    @memorized_count = @words.memorized_ja.count
+    get_progress
   end
 
   def uncheck_ch
     get_word_passage_for_check
     @word.update(memorized_ch: 0)
+    @memorized_count = @words.memorized_ch.count
+    get_progress
   end
 
 

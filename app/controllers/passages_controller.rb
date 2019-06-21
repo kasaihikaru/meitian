@@ -34,10 +34,20 @@ class PassagesController < ApplicationController
 
   def word_ja
     get_for_passage_show
+    if @words.present?
+      @memorized_count = @words.memorized_ja.count
+      @all_count = @words.count
+      get_progress
+    end
   end
 
   def word_ch
     get_for_passage_show
+    if @words.present?
+      @memorized_count = @words.memorized_ch.count
+      @all_count = @words.count
+      get_progress
+    end
   end
 
 #-----------------------post, put-----------------------
@@ -103,7 +113,7 @@ class PassagesController < ApplicationController
       word.update(memorized_ja: 0)
     end
 
-    redirect_to passage_word_ja_path(passage)
+    redirect_to passage_word_ja_path(passage, anchor: 'passage-words-ja')
   end
 
   def uncheck_all_words_ch
@@ -112,7 +122,7 @@ class PassagesController < ApplicationController
       word.update(memorized_ch: 0)
     end
 
-    redirect_to passage_word_ch_path(passage)
+    redirect_to passage_word_ch_path(passage, anchor: 'passage-words-ch')
   end
 
   def waiting

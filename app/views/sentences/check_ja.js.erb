@@ -1,1 +1,3 @@
 $("#sentence-card-<%= @sentence.id %>").html("<%= j(render :partial => 'sentences/sentence_card_ja', :locals=>{paper: @sentence.paper, s: @sentence}) %>");
+$("#progress-bar-render-wrapper").html("<%= j(render :partial => 'render_common/progress', :locals=>{progress: @progress}) %>");
+$("#memorized_status").html("<%= j(render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count}) %>");
