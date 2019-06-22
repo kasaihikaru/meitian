@@ -45,8 +45,8 @@
       </div>
 
       <div class="col-xs-12 col-lg-4">
-        <div class='form-section'>
-          <%= f.label :title, "単語" %><br />
+        <%= f.label :title, "単語" %><br />
+        <div class='form-section passage-edit-words-wrapper'>
           <% @passage.p_words.each do |w| %>
             <% if w.deleted_at.blank? %>
               <div class="clearfix">

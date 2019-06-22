@@ -110,3 +110,14 @@
 	float: right;
 	margin: 15px 15px 0 0;
 }
+
+
+@media screen and (min-width: 1200px) {
+	.passage-edit-words-wrapper{
+		max-height: 550px;
+		overflow:auto;
+		border: 1px solid #dbdbdb;
+		border-radius: 4px;
+		padding-top: 5px;
+	}
+}
