@@ -1,22 +1,15 @@
 <% unless user_signed_in? %>
-	<% if words.present? || passage.ja.present? %>
+	<% if words.present?%>
 		<div class='card-alert-light-blue'>
 			<p class="font-bold font-16">ヒント</p>
 			<ul class="cp_list">
-				<% if passage.ja.present? %>
-					<div class="visible-xs">
-						<li>右下の「日」ボタンから日本語訳を見ることができます。
-						</li>
-					</div>
-				<% end %>
-				<% if words.present? %>
-					<li>下にある単語帳の単語を押すと、google検索できます</li>
-					<li>ログインすると、単語帳として便利に利用できます。</li>
-				<% end %>
+				<li>下にある単語帳の単語を押すと、google検索できます</li>
+				<li>ログインすると、暗記済みの単語にチェックをつけて、単語帳として利用できます。</li>
 			</ul>
 		</div>
 	<% end %>
 <% end %>
+
 
 
 <div class='clearfix'>
