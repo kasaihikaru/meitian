@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  短文集を編集 | <%= @paper.name %>
+<% end %>
+
 <div class="clearfix">
   <%= link_to "短文集を削除", paper_path(@paper), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
 </div>

@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  単語帳を編集 | <%= @ring.name %>
+<% end %>
+
 <div class="clearfix">
   <%= link_to "単語帳を削除", ring_path(@ring), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
 </div>

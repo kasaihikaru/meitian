@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  中国語の長文を勉強 | <%= @passage.title %>
+<% end %>
+
 <!-- 長文部分は共通 -->
 <%= render :partial => 'passages/passage_show_common', :locals=>{user: @user, passage: @passage, memorized_words_ch_count: @memorized_words_ch_count, all_words_count: @all_words_count, progress: @progress, words: @words} %>
 

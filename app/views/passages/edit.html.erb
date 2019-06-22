@@ -1,3 +1,8 @@
+<% content_for :title do %>
+  長文を編集 | <%= @passage.title %>
+<% end %>
+
+
 <div class="clearfix">
   <%= link_to "長文を削除", passage_path(@passage), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
 </div>

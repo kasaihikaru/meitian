@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  長文内の単語を編集 | <%= @p_word.ch %>
+<% end %>
+
 <div class="clearfix">
   <%= link_to "単語を削除", p_word_path(@p_word), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
 </div>

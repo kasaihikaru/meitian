@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  中国語の短文を勉強 | <%= @paper.name %>
+<% end %>
+
 <!-- TOPは共通 -->
 <%= render :partial => 'papers/papers_show_common', :locals=>{user: @user, paper: @paper} %>
 

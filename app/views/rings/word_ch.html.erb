@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  中国語の単語を勉強 | <%= @ring.name %>
+<% end %>
+
 <!-- TOPは共通 -->
 <%= render :partial => 'rings/rings_show_common', :locals=>{user: @user, ring: @ring} %>
 

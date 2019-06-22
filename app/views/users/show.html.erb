@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  <%= @user.name %>さんのページ | MeiTian
+<% end %>
+
 <section class='user-profile'>
 	<!-- ユーザー名前、自己紹介、リンク -->
 	<%= render :partial => 'users/user_profile_introduction', :locals=>{user: @user} %>
