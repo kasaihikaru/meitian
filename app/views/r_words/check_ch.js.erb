@@ -5,13 +5,13 @@ $("#memorized_status").html("<%= j(render :partial => 'render_common/memorized_s
 // パンパカパーン
 <% if @progress == 100 %>
 	$('#get-feedback-here').html('<div class="feedback">全ての単語にチェックがつきました！</div>')
-	// confetti({
-	//     particleCount: 300,
-	//     spread: 70,
-	//     origin: {
-	//         y: 0.6
-	//     }
-	// });
+	confetti({
+	    particleCount: 300,
+	    spread: 70,
+	    origin: {
+	        y: 0.6
+	    }
+	});
   $(function(){
     setTimeout("$('.feedback').fadeOut('slow')", 2800);
   })
