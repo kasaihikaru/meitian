@@ -140,7 +140,11 @@ class ApplicationController < ActionController::Base
 
 
 	def get_progress
-		@progress = 100 * @memorized_count / @all_count
+		if @all_count > 0
+			@progress = 100 * @memorized_count / @all_count
+		else
+			@progress = 0
+		end
 	end
 
 

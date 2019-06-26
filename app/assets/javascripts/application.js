@@ -169,4 +169,12 @@ $(document).on('turbolinks:load',function() {
   $('#explore-form-show').click(function () {
       $('#explore-form-hidden').show('slow');
   });
+
+
+	/*******************************
+	* Confetti
+	********************************/
+
+
 });
+
