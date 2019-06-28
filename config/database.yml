@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
-  database: meitian_production
-  username: meitian
+  # database: meitian_production
+  # username: meitian
+  database: <%= ENV['DB_DATABASE'] %>
+  username: <%= ENV['DB_USER_NAME'] %>
   password: <%= ENV['MEITIAN_DATABASE_PASSWORD'] %>
+  host: <%= ENV['DB_HOST_NAME'] %>
