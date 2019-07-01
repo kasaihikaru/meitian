@@ -1,1 +1,14 @@
 $("#paper-status-btns").html("<%= j(render :partial => 'papers/paper_status', :locals=>{paper: @paper}) %>");
+
+// パンパカパーン
+$('#get-feedback-here').html('<div class="feedback">完了おめでとうございます！</div>')
+confetti({
+    particleCount: 300,
+    spread: 70,
+    origin: {
+        y: 0.6
+    }
+});
+$(function(){
+  setTimeout("$('.feedback').fadeOut('slow')", 2800);
+})
