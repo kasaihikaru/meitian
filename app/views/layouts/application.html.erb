@@ -42,6 +42,15 @@
 
   </head>
   <body>
+    <% if notice.present? %>
+      <div class="notice"><%= notice %></div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="alert"><%= alert %></div>
+    <% end %>
+    <div id='get-feedback-here'></div>
+
+
     <!-- TOPブランドロゴ -->
     <div class="brand-top">
       <div class="container">
@@ -87,14 +96,6 @@
 
     <!-- コンテンツ -->
     <div class="contents">
-      <% user_signed_in? %>
-      <% if notice.present? %>
-        <div class="notice"><%= notice %></div>
-      <% end %>
-      <% if alert.present? %>
-        <div class="alert"><%= alert %></div>
-      <% end %>
-      <div id='get-feedback-here'></div>
       <% if params[:controller] == 'explores' && params[:action] == 'show' %>
         <%= yield %>
       <% else %>
