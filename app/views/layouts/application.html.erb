@@ -44,7 +44,45 @@
   <body>
     <!-- TOPブランドロゴ -->
     <div class="brand-top">
-      <p class="center-align margin-0">MeiTian 毎日こつこつ中国語</p>
+      <div class="container">
+        <div class='float-left'>
+          <% if user_signed_in? %>
+            <%= link_to user_path(current_user) do %>
+              <% if current_user.image? %>
+                <%= image_tag current_user.image.url, :alt => "icon", :class=>"header-icon center" %>
+              <% else %>
+                 <img alt="no-icon" src="/images/no-icon.png" class="header-icon center">
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class='float-left margin-l-10'>MeiTian 毎日こつこつ中国語</div>
+        <div class="float-right header-how-btn" data-toggle="modal" data-target="#how-to-use-modal">
+          使い方
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="how-to-use-modal" tabindex="-1" role="dialog" aria-labelledby="how-to-use-modalTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="modal-title" id="how-to-use-modalTitle">使い方ガイド一覧</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="cp_list">
+            <li><a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_how_to_use_modal');">MeiTianとは？</a></li>
+            <li><a href="https://note.mu/meitian/n/n54c6670c3111" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_how_to_use_meitian', 'link_in_how_to_use_modal');">かんたん使い方ガイド</a></li>
+            <li><a href="https://note.mu/meitian/n/n4257de2a1974" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_use_in_sp', 'link_in_how_to_use_modal');">スマホで便利に使うには</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- コンテンツ -->

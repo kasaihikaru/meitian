@@ -299,19 +299,43 @@ span[data-badge-top-right]:before {
 * 固定系
 ********************************/
 .brand-top {
-  position: fixed;
+  // position: fixed;
   top: 0;
   left: 0;
   margin: 0;
   width: 100%;
-  height: 20px;
+  height: 40px;
   background: $Prim;
   color: white;
   z-index: 100;
+  line-height: 40px;
+  text-align: center;
   }
 
+.header-icon{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-top: 5px;
+  border: solid 2px white;
+  background-color: white;
+}
+
+.header-how-btn{
+  // background-color: white;
+  color: white;
+  padding: 5px 10px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: solid 1px white;
+  line-height: 16px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
 .contents{
-  margin: 20px 0 51px;
+  margin: 0 0 51px;
 }
 
 a, a:hover{
@@ -534,7 +558,7 @@ ul.cp_list {
 }
 ul.cp_list li {
   position:relative;
-  padding: 0em 0.3em 0.3em 1.3em;
+  padding: 0em 0.3em 1.3em 1.3em;
 }
 ul.cp_list li:after,ul.cp_list li:before {
   position:absolute;
@@ -607,6 +631,36 @@ ul.cp_list li:before {
     border-color: rgba(0, 0, 0, 0);
     border-width: 8px;
     margin-top: -8px;
+}
+
+
+// バルーントップ
+.balloon1-top {
+  position: relative;
+  display: inline-block;
+  margin: 15px 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: black;
+  font-size: 12px;
+  background: #F5F5F5;
+  border-radius: 10px;
+}
+
+.balloon1-top:before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  margin-left: -15px;
+  border: 7px solid transparent;
+  border-bottom: 15px solid #F5F5F5;
+}
+
+.balloon1-top p {
+  margin: 0;
+  padding: 0;
 }
 
 

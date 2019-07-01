@@ -6,38 +6,26 @@
 	<a href="https://note.mu/meitian/n/n54c6670c3111" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_how_to_use_meitian', 'link_in_me');">かんたん使い方ガイド</a>
 </div> -->
 
-
-<section class='me-profile'>
-	<% if @user.goal.present? or @theme.present? %>
-		<div class='balloon-wrapper clearfix'>
-			<%= link_to user_path(@user) do %>
-			  <% if @user.image? %>
-			    <%= image_tag @user.image.url, :alt => "icon", :class=>"icon center" %>
-			  <% else %>
-					 <img alt="no-icon" src="/images/no-icon.png" class="icon center">
-			  <% end %>
+<% if @user.goal.present? or @theme.present? %>
+	<div class="balloon1-top">
+		<p>
+			<% if @user.goal.present? %>
+				<%= @user.goal %>
 			<% end %>
-			<%= link_to edit_user_registration_path(@user) do %>
-				<p class="left_balloon">
-					<% if @user.goal.present? %>
-						<%= @user.goal %>
-					<% end %>
-					<% if @user.goal.present? and @theme.present? %>
-						<br><br>
-					<% end %>
-					<% if @theme.present?%>
-						<%= @this_month %>月の学習テーマは、<%= @theme %>
-					<% end %>
-				</p>
+			<% if @user.goal.present? and @theme.present? %>
+				<br><br>
 			<% end %>
-		</div>
-	<% end %>
-</section>
+			<% if @theme.present?%>
+				<%= @this_month %>月の学習テーマは、<%= @theme %>
+			<% end %>
+		</p>
+	</div>
+<% end %>
 
 <% if @user.goal.blank?%>
 	<%= link_to edit_user_registration_path(@user) do %>
 		<div class='card-alert'>
-			タスク：中国語学習の最終的なゴールを決めましょう！
+			タスク：中国語学習の目標を決めましょう！
 		</div>
 	<% end %>
 <% end %>
