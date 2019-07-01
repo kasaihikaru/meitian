@@ -2,9 +2,11 @@
 	マイ教材 | MeiTian
 <% end %>
 
-<div class="me-jump-to-note">
+<!-- <div class="me-jump-to-note">
 	<a href="https://note.mu/meitian/n/n54c6670c3111" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_how_to_use_meitian', 'link_in_me');">かんたん使い方ガイド</a>
-</div>
+</div> -->
+
+
 <section class='me-profile'>
 	<% if @user.goal.present? or @theme.present? %>
 		<div class='balloon-wrapper clearfix'>
@@ -30,23 +32,22 @@
 			<% end %>
 		</div>
 	<% end %>
-
-	<% if @user.goal.blank?%>
-		<%= link_to edit_user_registration_path(@user) do %>
-			<div class='card-alert'>
-				タスク：中国語学習の最終的なゴールを決めましょう！
-			</div>
-		<% end %>
-	<% end %>
-	<% if @theme.blank?%>
-		<%= link_to edit_user_registration_path(@user) do %>
-			<div class='card-alert'>
-				タスク：<%= @this_month %>月の学習テーマを決めましょう！
-			</div>
-		<% end %>
-	<% end %>
 </section>
 
+<% if @user.goal.blank?%>
+	<%= link_to edit_user_registration_path(@user) do %>
+		<div class='card-alert'>
+			タスク：中国語学習の最終的なゴールを決めましょう！
+		</div>
+	<% end %>
+<% end %>
+<% if @theme.blank?%>
+	<%= link_to edit_user_registration_path(@user) do %>
+		<div class='card-alert'>
+			タスク：<%= @this_month %>月の学習テーマを決めましょう！
+		</div>
+	<% end %>
+<% end %>
 
 
 <!-- PSRリスト -->
