@@ -18,6 +18,7 @@ class SentencesController < ApplicationController
 
   def edit
     @sentence = Sentence.find(id_params)
+    @redirect_flg = params[:redirect_flg]
   end
 
   def edit_pin
@@ -71,7 +72,12 @@ class SentencesController < ApplicationController
       end
     end
 
-    redirect_to paper_sentence_ch_path(paper.id)
+    #リダイレクト
+    if params[:sentence][:redirect_flg] == "sentence_ja"
+      redirect_to paper_sentence_ja_path(paper.id)
+    else
+      redirect_to paper_sentence_ch_path(paper.id)
+    end
   end
 
   def update_pin

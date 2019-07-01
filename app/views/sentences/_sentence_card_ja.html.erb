@@ -7,7 +7,7 @@
 		<div class='collapse' id="sentence-more-<%= s.id%>">
 			<hr>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
-				<%= link_to edit_sentence_path(s.id) do %>
+				<%= link_to edit_sentence_path(s.id, redirect_flg: "sentence_ja") do %>
 					<div class=' float-right'>
 						<%= render :partial => 'svg/edit_sm' %>
 					</div>
@@ -69,7 +69,7 @@
 		<div class='collapse' id="sentence-more-<%= s.id%>">
 			<hr>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
-				<%= link_to edit_sentence_path(s.id) do %>
+				<%= link_to edit_sentence_path(s.id, redirect_flg: "sentence_ja") do %>
 					<div class=' float-right'>
 						<%= render :partial => 'svg/edit_sm' %>
 					</div>
