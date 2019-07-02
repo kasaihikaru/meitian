@@ -26,7 +26,7 @@
 			</a>
 		</th>
 		<th scope="col">
-			<%= link_to r_word_check_ja_path(word), class: "", method: :put, remote: true do %>
+			<%= link_to r_word_check_ja_path(word), class: "contraction_btn contraction_btn_uncheck", method: :put, remote: true do %>
 				<%= render :partial => 'svg/check_sm' %>
 			<% end %>
 		</th>
@@ -37,27 +37,27 @@
 		</th>
 		<th scope="col"><%= word.pin %></th>
 	<% else %>
-		<th scope="col" class="bg-grey">
+		<th scope="col" class="row-checked">
 			<%= link_to edit_r_word_path(word) do %>
 				<%= render :partial => 'svg/edit_sm' %>
 			<% end %>
 		</th>
-		<th scope="col" class="bg-grey">
+		<th scope="col" class="row-checked">
 			<a href="https://www.google.co.jp/search?q=<%= word.ja %>%20中国語" target="_blank">
 				<%= word.ja %>
 			</a>
 		</th>
-		<th scope="col" class="bg-grey">
-			<%= link_to r_word_uncheck_ja_path(word), class: "", method: :put, remote: true do %>
-				<%= render :partial => 'svg/check_sm' %>
+		<th scope="col" class="row-checked">
+			<%= link_to r_word_uncheck_ja_path(word), class: "contraction_btn contraction_btn_check", method: :put, remote: true do %>
+				<%= render :partial => 'svg/thumb' %>
 			<% end %>
 		</th>
-		<th scope="col" class="bg-grey">
+		<th scope="col" class="row-checked">
 			<a href="https://www.google.co.jp/search?q=<%= word.ch %>%20中国語" target="_blank">
 				<%= word.ch %>
 			</a>
 		</th>
-		<th scope="col" class="bg-grey"><%= word.pin %></th>
+		<th scope="col" class="row-checked"><%= word.pin %></th>
 	<% end %>
 
 <!-- ログインしていない -->
