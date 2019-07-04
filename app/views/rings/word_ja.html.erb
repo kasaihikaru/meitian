@@ -3,7 +3,7 @@
 <% end %>
 
 <!-- TOPは共通 -->
-<%= render :partial => 'rings/rings_show_common', :locals=>{user: @user, ring: @ring} %>
+<%= render :partial => 'rings/rings_show_common', :locals=>{user: @user, ring: @ring, words: @words} %>
 
 <section class='words' id='ring-words-ja'>
 	<% if @words.present? %>

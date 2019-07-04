@@ -1,17 +1,3 @@
-<% unless user_signed_in? %>
-	<% if words.present?%>
-		<div class='card-alert'>
-			<p class="font-bold font-16">ヒント</p>
-			<ul class="cp_list">
-				<li>下にある単語帳の単語を押すと、google検索できます</li>
-				<li>ログインすると、暗記済みの単語にチェックをつけて、単語帳として利用できます。</li>
-			</ul>
-		</div>
-	<% end %>
-<% end %>
-
-
-
 <div class='clearfix'>
 	<div class='psr-show-user float-left'>
 		<%= link_to user_path(user) do %>
@@ -43,6 +29,17 @@
 	<div class='passage-title'>
 		<%= passage.title %>
 	</div>
+	<!-- ヒント部分 -->
+	<% unless user_signed_in? %>
+		<% if words.present?%>
+			<div class='hint'>
+				<ul class="cp_list">
+					<li>下にある単語帳の単語を押すと、google検索できます</li>
+					<li>ログインすると、暗記済みの単語にチェックをつけて、単語帳として利用できます。</li>
+				</ul>
+			</div>
+		<% end %>
+	<% end %>
 	<!-- ステータス部分 -->
 	<% if user == current_user %>
 		<div class="status-btns clearfix" id="passage-status-btns">

@@ -30,6 +30,18 @@
 <!-- 単語帳の名前 -->
 <h1><%= @ring.name%></h1>
 
+<!-- ヒント部分 -->
+<% unless user_signed_in? %>
+	<% if words.present?%>
+		<div class='hint'>
+			<ul class="cp_list">
+				<li>下にある単語を押すと、google検索できます</li>
+				<li>ログインすると、暗記済みの単語にチェックをつけて、単語帳として利用できます。</li>
+			</ul>
+		</div>
+	<% end %>
+<% end %>
+
 <!-- ステータス部分 -->
 <% if user == current_user %>
 	<div class="status-btns clearfix" id="ring-status-btns">

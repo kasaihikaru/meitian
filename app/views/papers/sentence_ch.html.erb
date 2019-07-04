@@ -3,7 +3,7 @@
 <% end %>
 
 <!-- TOPは共通 -->
-<%= render :partial => 'papers/papers_show_common', :locals=>{user: @user, paper: @paper} %>
+<%= render :partial => 'papers/papers_show_common', :locals=>{user: @user, paper: @paper, sentences: @sentences} %>
 
 
 <section class='sentences' id='sentence-ch'>
