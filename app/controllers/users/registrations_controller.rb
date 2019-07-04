@@ -9,6 +9,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def after_sign_up_path_for(resource)
+    # リダイレクトの関係でこっちでpassageサンプル作成
+    copy_sample_passage(current_user.level, current_user.id)
+
+    # リダイレクト
+    passage_word_ch_path(current_user.passages.first)
+  end
+
+  # メール認証入れた場合これ。今は実質使ってない
+  def after_inactive_sign_up_path_for(resource)
+    # リダイレクトの関係でこっちでpassageサンプル作成
+    copy_sample_passage(current_user.level, current_user.id)
+
+    # リダイレクト
+    passage_word_ch_path(current_user.passages.first)
+  end
+
   # POST /resource
   def create
     super
@@ -17,11 +34,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       user = User.last
 
       # サンプル作成
-      copy_sample_passage(user.level, user.id)
       copy_sample_paper(user.level, user.id)
       copy_sample_ring(user.level, user.id)
 
       UserMailer.registration(user).deliver_now
+      # redirect_to passage_word_ch_path(user.passages.first)
     end
   end
 

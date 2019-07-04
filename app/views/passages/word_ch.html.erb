@@ -47,5 +47,12 @@
 	<% end %>
 </section>
 
-<div class="empty">
+<div class="empty-sm">
 </div>
+
+<% if @passage.sample = true && @user == current_user %>
+	<div class="sample-hint fluffy">
+		<%= render :partial => 'svg/information' %>下にスクロールしてみてください<br>
+		単語帳にチェックをつけていきましょう！
+	</div>
+<% end %>

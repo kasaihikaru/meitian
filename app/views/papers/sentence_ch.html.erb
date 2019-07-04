@@ -56,3 +56,14 @@
 		<% end %>
 	<% end %>
 </section>
+
+<div class="empty-sm">
+</div>
+
+<% if @paper.sample = true && @user == current_user %>
+	<div class="sample-hint">
+		<%= render :partial => 'svg/information' %>
+		短文をタップしてみてください<br>
+		「覚えた！」チェックをつけましょう！
+	</div>
+<% end %>

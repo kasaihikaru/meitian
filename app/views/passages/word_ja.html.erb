@@ -47,3 +47,14 @@
 		<%= render :partial => 'render_for_word/p_word_ja_table', :locals=>{passage: @passage, words: @words} %>
 	<% end %>
 </section>
+
+<div class="empty-sm">
+</div>
+
+<% if @passage.sample = true && @user == current_user %>
+	<div class="sample-hint">
+		<%= render :partial => 'svg/information' %>
+		下にスクロールしてみてください<br>
+		単語帳にチェックをつけていきましょう！
+	</div>
+<% end %>

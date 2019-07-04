@@ -134,6 +134,7 @@ h1{ font-size: 30px; font-weight: 800; }
   position: fixed;
   bottom: 65px;
   right: 15px;
+  box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
   }
 .form-send-btn{
   background-color: $Prim;
@@ -292,6 +293,9 @@ span[data-badge-top-right]:before {
 //-----------------空欄配置-----------
 .empty{
   height: 270px;
+}
+.empty-sm{
+  height: 100px;
 }
 
 
@@ -460,6 +464,33 @@ pre {
   }
 }
 
+
+
+//----------------- hint ------------------//
+.sample-hint{
+  font-size: 12px;
+  position: fixed;
+  bottom: 57px;
+  left: 7px;
+  color: $Point;
+  background: white;
+  box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
+  border: 1px solid $Point;
+  border-radius: 7px;
+  padding: 10px;
+  animation: fluffy 3s ease infinite;
+}
+
+@keyframes fluffy {
+  0% { transform:translateY(0) }
+  5% { transform:translateY(0) }
+  10% { transform:translateY(0) }
+  20% { transform:translateY(-15px) }
+  25% { transform:translateY(0) }
+  30% { transform:translateY(-15px) }
+  50% { transform:translateY(0) }
+  100% { transform:translateY(0) }
+}
 
 
 //----------------- progress bar ------------------//

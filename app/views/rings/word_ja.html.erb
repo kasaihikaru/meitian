@@ -42,3 +42,13 @@
 		<%= render :partial => 'render_for_word/r_word_ja_table', :locals=>{ring: @ring, words: @words} %>
 	<% end %>
 </section>
+
+<div class="empty-sm">
+</div>
+
+<% if @ring.sample = true && @user == current_user %>
+	<div class="sample-hint">
+		<%= render :partial => 'svg/information' %>
+		単語帳にチェックをつけていきましょう！
+	</div>
+<% end %>
