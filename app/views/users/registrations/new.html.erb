@@ -11,18 +11,23 @@
 
         <div class="field">
           <%= f.label :email, 'メールアドレス' %><br />
-          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
+          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text", required: true %><br>
         </div>
 
         <div class="field">
           <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+          <%= f.text_field :name, autofocus: true, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text", required: true %>
         </div>
 
         <div class="field">
           <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
-          <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text", required: true %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text", required: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :level, '今の中国語レベルを教えてください！' %><br />
+          <%= f.select :level, [["初級（これから始める、始めたばかり）", 1], ["中級（中検3級、HSK4〜5級）", 2],  ["上級（中検2級以上、HSK6級）", 3]], required: true %>
         </div>
 
         <div class="actions">
@@ -36,4 +41,6 @@
       <img alt="no-icon" src="/images/MeiTian_TOP.jpg" class="product-img">
     </div>
   </div>
+</div>
+<div class="empty">
 </div>

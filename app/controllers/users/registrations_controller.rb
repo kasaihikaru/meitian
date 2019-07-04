@@ -14,15 +14,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
 
     if resource.persisted?
-      user_id = User.last.id
+      user = User.last
 
       # サンプル作成
-      copy_specific_passage(1, user_id, true)
-      copy_specific_passage(2, user_id, true)
-      copy_specific_paper(1, user_id, true)
-      copy_specific_ring(1, user_id, true)
+      copy_sample_passage(user.level, user.id)
+      copy_sample_paper(user.level, user.id)
+      copy_sample_ring(user.level, user.id)
 
-      user = User.find(user_id)
       UserMailer.registration(user).deliver_now
     end
   end

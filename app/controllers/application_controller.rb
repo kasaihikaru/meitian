@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :level])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :image, :introduction, :goal, :link])
   end
 
@@ -198,8 +198,57 @@ class ApplicationController < ActionController::Base
 
 
 
-#------------------コピー　サンプルオン-----------------------
+#------------------新規ユーザーサンプルコピー-----------------------
+  # 長文作成用
+  def copy_sample_passage(level, user_id)
+    passages = SamplePassage.level(level)
+    passages.each do |passage|
+    	# 長文作成
+      new_passage = Passage.create(title: passage.title, ja:passage.ja, ch: passage.ch, user_id: user_id, modified_at: Time.now, sample: true)
 
+      # 付属単語作成
+      words = passage.sample_p_words
+      words.each do |w|
+        PWord.create(ja: w[:ja], ch: w[:ch], pin: w[:pin], passage_id: new_passage.id)
+      end
+    end
+  end
+
+  # 短文集作成用
+  def copy_sample_paper(level, user_id)
+    papers = SamplePaper.level(level)
+    papers.each do |paper|
+      # 短文集作成
+      new_paper = Paper.create(name: paper.name, user_id: user_id, modified_at: Time.now, sample: true)
+
+	    # 付属短文作成
+	    sentences = paper.sample_sentences
+	    sentences.each do |sentence|
+	      new_sentence = Sentence.create(ja: sentence[:ja], ch: sentence[:ch], pin: sentence[:pin], paper_id: new_paper.id, sample: true)
+
+	      # 付属単語作成
+	      words = sentence.sample_s_words
+	      words.each do |word|
+	        SWord.create(ja: word[:ja], ch: word[:ch], pin: word[:pin], sentence_id: new_sentence.id)
+	      end
+	    end
+	  end
+  end
+
+  # 単語帳作成用
+  def copy_sample_ring(level, user_id)
+    rings = SampleRing.level(level)
+    rings.each do |ring|
+    	# 単語帳作成
+	    new_ring = Ring.create(name: ring.name, user_id: user_id, modified_at: Time.now, sample: true)
+
+	    # 付属単語作成
+	    words = ring.sample_r_words
+	    words.each do |word|
+	      RWord.create(ja: word[:ja], ch: word[:ch], pin: word[:pin], ring_id: new_ring.id)
+	    end
+	  end
+  end
 
 
 private

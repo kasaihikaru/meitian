@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_055946) do
+ActiveRecord::Schema.define(version: 2019_07_04_095828) do
 
   create_table "p_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "passage_id"
@@ -95,6 +95,62 @@ ActiveRecord::Schema.define(version: 2019_06_03_055946) do
     t.index ["sentence_id"], name: "index_s_words_on_sentence_id"
   end
 
+  create_table "sample_p_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "ja"
+    t.text "ch"
+    t.text "pin"
+    t.datetime "deleted_at"
+    t.bigint "sample_passage_id"
+    t.index ["sample_passage_id"], name: "index_sample_p_words_on_sample_passage_id"
+  end
+
+  create_table "sample_papers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "level", limit: 1, default: 0
+    t.string "name", null: false
+    t.datetime "deleted_at"
+  end
+
+  create_table "sample_passages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "level", limit: 1, default: 0
+    t.string "title", null: false
+    t.text "ja"
+    t.text "ch"
+    t.datetime "deleted_at"
+  end
+
+  create_table "sample_r_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "ja"
+    t.text "ch"
+    t.text "pin"
+    t.datetime "deleted_at"
+    t.bigint "sample_ring_id"
+    t.index ["sample_ring_id"], name: "index_sample_r_words_on_sample_ring_id"
+  end
+
+  create_table "sample_rings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "level", limit: 1, default: 0
+    t.string "name", null: false
+    t.datetime "deleted_at"
+  end
+
+  create_table "sample_s_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "ja"
+    t.text "ch"
+    t.text "pin"
+    t.datetime "deleted_at"
+    t.bigint "sample_sentence_id"
+    t.index ["sample_sentence_id"], name: "index_sample_s_words_on_sample_sentence_id"
+  end
+
+  create_table "sample_sentences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "ja"
+    t.text "ch"
+    t.text "pin"
+    t.datetime "deleted_at"
+    t.bigint "sample_paper_id"
+    t.index ["sample_paper_id"], name: "index_sample_sentences_on_sample_paper_id"
+  end
+
   create_table "sentences", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "paper_id"
     t.text "ja"
@@ -146,6 +202,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_055946) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "level", limit: 1, default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -156,6 +213,10 @@ ActiveRecord::Schema.define(version: 2019_06_03_055946) do
   add_foreign_key "r_words", "rings"
   add_foreign_key "rings", "users"
   add_foreign_key "s_words", "sentences"
+  add_foreign_key "sample_p_words", "sample_passages"
+  add_foreign_key "sample_r_words", "sample_rings"
+  add_foreign_key "sample_s_words", "sample_sentences"
+  add_foreign_key "sample_sentences", "sample_papers"
   add_foreign_key "sentences", "papers"
   add_foreign_key "themes", "users"
 end
