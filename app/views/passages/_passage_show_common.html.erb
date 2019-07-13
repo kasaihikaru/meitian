@@ -26,6 +26,9 @@
 	<%= link_to "コピー", passage_copy_path(@passage), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm visible-md", remote: true %>
 <% end %>
 <section class='passage'>
+	<% if passage.sample == true %>
+		<div>サンプル長文</div>
+	<% end %>
 	<div class='passage-title'>
 		<%= passage.title %>
 	</div>

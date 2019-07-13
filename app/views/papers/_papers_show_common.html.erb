@@ -26,6 +26,10 @@
 	<%= link_to "コピー", paper_copy_path(@paper), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm visible-md", remote: true %>
 <% end %>
 
+<% if paper.sample == true %>
+	<div>サンプル短文集</div>
+<% end %>
+
 <!-- 短文集の名前 -->
 <h1 class="margin-b-40"><%= @paper.name%></h1>
 

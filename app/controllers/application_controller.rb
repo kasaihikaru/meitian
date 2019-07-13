@@ -105,9 +105,9 @@ class ApplicationController < ActionController::Base
 	end
 
 	def get_user_recent_prs
-		@passages = @passages_all.recent
-		@papers = @papers_all.recent
-		@rings = @rings_all.recent
+		@passages = @passages_all.recent.order_mofified_at
+		@papers = @papers_all.recent.order_mofified_at
+		@rings = @rings_all.recent.order_mofified_at
 	end
 
 	def get_user_psr_counts
@@ -249,6 +249,15 @@ class ApplicationController < ActionController::Base
 	    end
 	  end
   end
+
+
+#-----------------------翻訳-----------------------
+
+
+
+
+
+
 
 
 private

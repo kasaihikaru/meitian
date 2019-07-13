@@ -26,6 +26,9 @@
 	<%= link_to "コピー", ring_copy_path(@ring), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm visible-md", remote: true %>
 <% end %>
 
+<% if ring.sample == true %>
+	<div>サンプル単語帳</div>
+<% end %>
 
 <!-- 単語帳の名前 -->
 <h1><%= @ring.name%></h1>
