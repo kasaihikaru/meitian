@@ -14,10 +14,10 @@
 				<% end %>
 			<% end %>
 			<div class='padding-t-20'>
-				<%= s.pin %>
+				<%= s.ch %>
 			</div>
 			<div class='padding-tb-20'>
-				<%= s.ch %>
+				<%= s.pin %>
 			</div>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
 				<%= link_to sentence_uncheck_ja_path(sentence_id: s.id), method: :put, remote: true do %>
@@ -76,10 +76,10 @@
 				<% end %>
 			<% end %>
 			<div class='padding-t-20'>
-				<%= s.pin %>
+				<%= s.ch %>
 			</div>
 			<div class='padding-tb-20'>
-				<%= s.ch %>
+				<%= s.pin %>
 			</div>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
 				<%= link_to sentence_check_ja_path(sentence_id: s.id), method: :put, remote: true do %>
