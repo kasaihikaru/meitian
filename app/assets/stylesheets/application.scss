@@ -137,6 +137,13 @@ h1{ font-size: 30px; font-weight: 800; }
   right: 15px;
   box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
   }
+.action-float-btn-left
+  {
+  position: fixed;
+  bottom: 65px;
+  left: 15px;
+  box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
+  }
 .form-send-btn{
   background-color: $Prim;
   color: white;
@@ -169,6 +176,22 @@ h1{ font-size: 30px; font-weight: 800; }
   line-height: 50px;
   z-index: 200;
 }
+// 今使ってるのは、passageのsp用の日本語訳表示ボタンのみ
+.secondary-action-btn{
+  background-color: white;
+  border: solid 1px $Prim;
+  color: $Prim;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border: none;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+  z-index: 200;
+  }
 .langchange-btn-selected{
 	background-color: $Prim;
 	color: white;
