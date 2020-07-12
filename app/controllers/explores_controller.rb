@@ -36,25 +36,25 @@ class ExploresController < ApplicationController
 
 	def passages
 		if user_signed_in?
-			@passages = Passage.active.not_mine(current_user.id).not_sapmle.not_copied.order_mofified_at.page(page_params).per(20)
+			@passages = Passage.active.order_mofified_at.page(page_params).per(20)
 		else
-			@passages = Passage.active.not_sapmle.not_copied.order_mofified_at.page(page_params).per(20)
+			@passages = Passage.active.order_mofified_at.page(page_params).per(20)
 		end
 	end
 
 	def papers
 		if user_signed_in?
-			@papers = Paper.active.not_mine(current_user.id).not_sapmle.not_copied.order_mofified_at.page(page_params).per(20)
+			@papers = Paper.active.order_mofified_at.page(page_params).per(20)
 		else
-			@papers = Paper.active.not_sapmle.not_copied.order_mofified_at.page(page_params).per(20)
+			@papers = Paper.active.order_mofified_at.page(page_params).per(20)
 		end
 	end
 
 	def rings
 		if user_signed_in?
-			@rings = Ring.active.not_mine(current_user.id).not_sapmle.not_copied.order_mofified_at.page(page_params).per(20)
+			@rings = Ring.active.order_mofified_at.page(page_params).per(20)
 		else
-			@rings = Ring.active.not_sapmle.not_copied.order_mofified_at.page(page_params).per(20)
+			@rings = Ring.active.order_mofified_at.page(page_params).per(20)
 		end
 	end
 end
