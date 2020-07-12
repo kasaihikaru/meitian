@@ -1,17 +1,17 @@
 class ExploresController < ApplicationController
 	def show
 		if user_signed_in?
-			users_all = User.active.not_me(current_user.id)
-			passages_all = Passage.active.not_sapmle.not_copied.not_mine(current_user.id)
-			papers_all = Paper.active.not_sapmle.not_copied.not_mine(current_user.id)
-			rings_all = Ring.active.not_sapmle.not_copied.not_mine(current_user.id)
-			sentences_all = Sentence.active.not_sapmle.not_copied.not_mine(current_user.id)
+			users_all = User.active
+			passages_all = Passage.active.not_sapmle
+			papers_all = Paper.active.not_sapmle
+			rings_all = Ring.active.not_sapmle
+			sentences_all = Sentence.active.not_sapmle
 		else
 			users_all = User.active
-			passages_all = Passage.active.not_sapmle.not_copied
-			papers_all = Paper.active.not_sapmle.not_copied
-			rings_all = Ring.active.not_sapmle.not_copied
-			sentences_all = Sentence.active.not_sapmle.not_copied
+			passages_all = Passage.active.not_sapmle
+			papers_all = Paper.active.not_sapmle
+			rings_all = Ring.active.not_sapmle
+			sentences_all = Sentence.active.not_sapmle
 		end
 		@users = users_all.recent
 		@passages = passages_all.recent

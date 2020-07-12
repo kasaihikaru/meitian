@@ -137,6 +137,8 @@ $(document).on('turbolinks:load',function() {
   $(function(){
     setTimeout("$('.feedback').fadeOut('slow')", 2800);
   })
+
+//--------------- ダブルクリック防止 -------------------
 	$(".prevent_double_click").click(function(){
 		$('.prevent_double_click').addClass('click_disable');
 	});

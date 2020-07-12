@@ -21,10 +21,32 @@
 		</div>
 	<% end %>
 </div>
+
 <% if user_signed_in? && @user != current_user %>
-	<%= link_to "コピー", ring_copy_path(@ring), method: :post, class: "form-send-btn prevent_double_click float-right margin-b-20 visible-lg", remote: true %>
-	<%= link_to "コピー", ring_copy_path(@ring), method: :post, class: "form-send-btn prevent_double_click action-float-btn visible-xs visible-sm visible-md", remote: true %>
+  <!-- マイ教材にコピー、モーダル立ち上げボタン -->
+  <button type="button" class="copy-action-btn float-right margin-b-20 visible-lg" data-toggle="modal" data-target="#copy_to_mylist_modal">
+    マイ教材に追加
+  </button>
+  <button type="button" class="copy-action-btn action-float-btn visible-xs visible-sm visible-md" data-toggle="modal" data-target="#copy_to_mylist_modal">
+    マイ教材に追加
+  </button>
+
+  <!-- マイ教材にコピー、モーダル -->
+  <div class="modal fade modal-centered" id="copy_to_mylist_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">「<%= @ring.name%>」をコピーして、マイ教材に追加しますか？</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button type="button" class="btn bg-prim fontcol-white prevent_double_click" data-dismiss="modal"><%= link_to "マイ教材に追加", ring_copy_path(@ring), method: :post, class: "fontcol-white", remote: true %></button>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
+
 
 <% if ring.sample == true %>
 	<div>サンプル単語帳</div>
