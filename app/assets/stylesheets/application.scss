@@ -78,9 +78,12 @@
 
 //--------------- 文字サイズ ----------------
 .font-bold{font-weight: 800;}
-h1{ font-size: 30px; font-weight: 800; }
+h1{ font-size: 20px; font-weight: 800; }
 .font-12{ font-size: 12px;}
 .font-16{ font-size: 16px;}
+
+.h1-margin{  margin: 10px 0 20px;}
+
 
 //--------------- 背景色 ----------------
 .bg-prim{  background-color: $Prim;}
@@ -586,7 +589,7 @@ textarea{
 
 //----------------- status btns ------------------//
 .status-btns{
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   .status-btn{
     color: black;
     border: 1px solid $Grey;

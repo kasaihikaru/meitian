@@ -45,6 +45,8 @@
 		        <div class="field">
 		          <%= f.label :level, '今の中国語レベルを教えてください！' %><br />
 		          <%= f.select :level, [["初級（これから始める、始めたばかり）", 1], ["中級（中検3級、HSK4〜5級）", 2],  ["上級（中検2級以上、HSK6級）", 3]], required: true %>
+		        </div>
+		        <div class="field">
 			        <div class='clearfix'>
 			        	<%= f.submit '新規登録', class: "prim-btn float-right", onsubmit: "ga('send', 'event', 'submit', 'new_user_registration', 'form_in_explore')"%>
 			        </div>
@@ -91,6 +93,8 @@
 		        <div class="field">
 		          <%= f.label :level, '今の中国語レベルを教えてください！' %><br />
 		          <%= f.select :level, [["初級（これから始める、始めたばかり）", 1], ["中級（中検3級、HSK4〜5級）", 2],  ["上級（中検2級以上、HSK6級）", 3]], required: true %>
+		        </div>
+		        <div class="field">
 		          <div class='clearfix'>
 		          	<%= f.submit '新規登録', class: "prim-btn float-right", onsubmit: "ga('send', 'event', 'submit', 'new_user_registration', 'form_in_explore')" %>
 		          </div>
