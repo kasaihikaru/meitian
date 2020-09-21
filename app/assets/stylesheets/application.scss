@@ -429,7 +429,14 @@ pre {
   display:block;
   clear:both;
 }
-.notice, .alert{
+.alert{
+  text-align: center;
+  background-color: $Point;
+  color: white;
+  margin:0;
+  padding: 15px 0;
+}
+.notice{
   text-align: center;
   background-color: $Point;
   color: white;
