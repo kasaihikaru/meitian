@@ -47,6 +47,10 @@
   -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
   align-items: center; /* 縦方向中央揃え */
 }
+.bottom{
+  display: block;
+  vertical-align: bottom;
+}
 .mg-auto{ margin: 0 auto;}
 .mg-0{ margin: 0;}
 .margin-l-10{  margin-left: 10px;}
@@ -80,6 +84,7 @@
 .font-bold{font-weight: 800;}
 h1{ font-size: 20px; font-weight: 800; }
 .font-12{ font-size: 12px;}
+.font-14{ font-size: 14px;}
 .font-16{ font-size: 16px;}
 
 .h1-margin{  margin: 10px 0 20px;}
@@ -345,18 +350,22 @@ span[data-badge-top-right]:before {
 * 固定系
 ********************************/
 .brand-top {
-  // position: fixed;
   top: 0;
   left: 0;
   margin: 0;
   width: 100%;
   height: 40px;
   background: $Prim;
-  color: white;
   z-index: 100;
   line-height: 40px;
   text-align: center;
   }
+
+.logo-icon{
+  width: 25px;
+  height: 25px;
+  margin-top: 7px;
+}
 
 .header-icon{
   width: 30px;
@@ -381,12 +390,11 @@ span[data-badge-top-right]:before {
 
 .brand-title{
   // font-size: 16px;
-  // font-family: DotumChe;
-  // font-weight: 800;
+  color: white;
+  font-family: DotumChe;
+  font-weight: 800;
 }
-.brand-catch{
-  // font-size: 12px;
-}
+
 
 
 .contents{

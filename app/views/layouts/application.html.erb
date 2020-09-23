@@ -42,15 +42,6 @@
 
   </head>
   <body>
-    <% if notice.present? %>
-      <div class="notice"><%= notice %></div>
-    <% end %>
-    <% if alert.present? %>
-      <div class="alert"><%= alert %></div>
-    <% end %>
-    <div id='get-feedback-here'></div>
-
-
     <!-- TOPブランドロゴ -->
     <div class="brand-top">
       <div class="container">
@@ -67,14 +58,12 @@
         </div>
         <div class='float-left margin-l-10'>
           <span class='brand-title'>MeiTian</span>
-          <span class='brand-catch'>毎日こつこつ中国語</span>
         </div>
         <div class="float-right header-how-btn" data-toggle="modal" data-target="#how-to-use-modal">
           使い方
         </div>
       </div>
     </div>
-
 
     <!-- Modal -->
     <div class="modal fade" id="how-to-use-modal" tabindex="-1" role="dialog" aria-labelledby="how-to-use-modalTitle" aria-hidden="true">
@@ -96,6 +85,14 @@
         </div>
       </div>
     </div>
+
+    <% if notice.present? %>
+      <div class="notice"><%= notice %></div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="alert"><%= alert %></div>
+    <% end %>
+    <div id='get-feedback-here'></div>
 
     <!-- コンテンツ -->
     <div class="contents">

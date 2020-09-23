@@ -4,10 +4,17 @@
 
 <!-- スマホ表示 -->
 <div class='visible-xs'>
-	<div class='explore-top-xs'>
+	<div class='container explore-top-xs fontcol-white'>
 		<%= devise_error_messages! %>
-		<h2>MeiTian</h2>
-		<h3>あなたのコツコツを応援する中国語アプリ</h3>
+
+		<h2>毎日こつこつ中国語</h2>
+  	<p class="font-12">
+  		外での「<span class="font-16 font-bold">スキマ学習</span>」<br>
+  		家での「<span class="font-16 font-bold">ながら学習</span>」<br>
+  		をスマホで手軽に。<br>
+  		<br>
+  		<span class="font-16 font-bold">３分間の積み重ね</span>で、中国語力アップ！
+  	</p>
 		<% unless user_signed_in? %>
 			<img alt="no-icon" src="/images/MeiTian_TOP_tomato.jpg">
 		<% end %>
@@ -17,7 +24,7 @@
 	  <div class='wave -two'></div>
 	  <div class='wave -three'></div>
 	  <div class='wave-title'>
-	  	<a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_explore');">説明を見に行く</a>
+	  	<a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_explore');">詳しい説明を見る<%= render :partial => 'svg/link_new_tab' %></a>
 	  </div>
 	</div>
 	<% unless user_signed_in? %>
@@ -64,9 +71,11 @@
 <div class='visible-sm visible-md visible-lg'>
 	<div class="container explore-top">
 		<%= devise_error_messages! %>
-		<h2>MeiTian</h2>
-		<h3>あなたのコツコツを応援する中国語アプリ</h3>
-		<p class="link-to-note"><a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_explore');">説明を見に行く</a></p>
+		<h2>毎日こつこつ中国語</h2>
+		<p>
+			外での「スキマ学習」家での「ながら学習」をスマホで手軽に。３分間の積み重ねで、中国語力アップ！
+  	</p>
+		<p class="link-to-note"><a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_explore');">詳しい説明を見る<%= render :partial => 'svg/link_new_tab_colored' %></a></p>
 		<% unless user_signed_in? %>
 		  <div class="row">
 		    <div class="col-12 col-md-7">

@@ -27,24 +27,14 @@
 
 .explore-top-xs{
 	background-color: $Prim;
+	text-align: center;
 	h2{
-		color: white;
-		font-size: 30px;
+		font-size: 25px;
 		font-weight: 800;
-		text-align: center;
-		padding-top: 50px;
-		margin: 0;
+		padding-top: 40px;
+		padding-bottom: 40px;
 		letter-spacing: 5px;
 		margin: 0 !important;
-		padding-bottom: 10px;
-	}
-	h3{
-		color: white;
-		font-size: 16px;
-		font-weight: 800;
-		text-align: center;
-		margin: 0 !important;
-		padding-bottom: 10px;
 	}
 	img{
 		width: 100%;
@@ -62,10 +52,9 @@
 			margin: 0 !important;
 			padding: 30px 0;
 		}
-		h3{
+		p{
 			color: $Prim;
-			font-size: 16px;
-			font-weight: 800;
+			font-size: 12px;
 			text-align: center;
 			margin: 0 !important;
 			padding-bottom: 30px;
@@ -81,10 +70,9 @@
 			margin: 0 !important;
 			padding: 30px 0;
 		}
-		h3{
+		p{
 			color: $Prim;
-			font-size: 25px;
-			font-weight: 800;
+			font-size: 15px;
 			text-align: center;
 			margin: 0 !important;
 			padding-bottom: 30px;
