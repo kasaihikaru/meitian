@@ -46,9 +46,7 @@
 <div class="empty-sm">
 </div>
 
+<!-- サンプルの場合チュートリアルを表示 -->
 <% if @ring.sample == true && @user == current_user %>
-	<div class="sample-hint">
-		<%= render :partial => 'svg/information' %>
-		単語帳にチェックをつけていきましょう！
-	</div>
+  <%= render :partial => 'tutorial/tutorial_rings_ch' %>
 <% end %>

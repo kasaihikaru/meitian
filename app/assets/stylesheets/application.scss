@@ -58,12 +58,20 @@
 .margin-b-40{  margin-bottom: 40px;}
 .margin-t-20{  margin-top: 20px;}
 .margin-t-50{  margin-top: 50px;}
+.margin-tb-5{  margin: 5px 0;}
+.margin-tb-10{  margin: 10px 0;}
 .margin-tb-20{  margin: 20px 0;}
 .padding-tb-20{  padding: 20px 0;}
 .padding-t-20{  padding-top: 20px;}
 
 .width-100{
   width: 100%;
+}
+.max-width-260{
+  max-width: 260px;
+}
+.max-width-300{
+  max-width: 300px;
 }
 
 //--------------- ポジション ----------------
@@ -103,6 +111,16 @@ h1{ font-size: 20px; font-weight: 800; }
   background-color: $Prim;
   color: white;
   padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.prim-big-btn{
+  background-color: $Prim;
+  color: white;
+  padding: 10px 25px;
   border-radius: 10px;
   border: none;
   font-weight: 800;

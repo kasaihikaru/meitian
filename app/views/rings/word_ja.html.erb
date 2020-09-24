@@ -45,10 +45,3 @@
 
 <div class="empty-sm">
 </div>
-
-<% if @ring.sample == true && @user == current_user %>
-	<div class="sample-hint">
-		<%= render :partial => 'svg/information' %>
-		単語帳にチェックをつけていきましょう！
-	</div>
-<% end %>

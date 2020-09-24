@@ -164,6 +164,13 @@ $(document).on('turbolinks:load',function() {
       return false;
   });
 
+  //-----サンプル単語帳に出てくるチュートリアルモーダル------
+  $(document).on('turbolinks:load', function() {
+      $('#tutorial-rings').modal('show');
+  });
+  $(window).on('load',function(){
+      $('#tutorial-rings').modal('show');
+  });
 
 	/*******************************
 	* explore form
