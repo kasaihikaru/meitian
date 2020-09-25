@@ -20,7 +20,7 @@
 				<%= s.pin %>
 			</div>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
-				<%= link_to sentence_uncheck_ch_path(sentence_id: s.id), method: :put, remote: true do %>
+				<%= link_to sentence_uncheck_ch_path(sentence_id: s.id), onclick: "ga('send', 'event', 'papers', 'check_off_sentence', '')", method: :put, remote: true do %>
 					<div class='prim-btn sentence-check-btn'>
 						チェックを外す
 					</div>
@@ -82,7 +82,7 @@
 				<%= s.pin %>
 			</div>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
-				<%= link_to sentence_check_ch_path(sentence_id: s.id), method: :put, remote: true do %>
+				<%= link_to sentence_check_ch_path(sentence_id: s.id), onclick: "ga('send', 'event', 'papers', 'check_on_sentence', '')", method: :put, remote: true do %>
 					<div class='prim-btn sentence-check-btn'>
 						覚えた！
 					</div>

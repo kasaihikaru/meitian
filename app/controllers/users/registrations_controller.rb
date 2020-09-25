@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     copy_sample_ring(current_user.level, current_user.id)
 
     # リダイレクト
-    ring_word_ja_path(current_user.rings.first)
+    ring_word_ch_path(current_user.rings.first)
   end
 
   # メール認証入れた場合これ。今は実質使ってない

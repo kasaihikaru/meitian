@@ -28,7 +28,7 @@
 						暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
 					</div>
 					<div class='float-right'>
-						<%= link_to ring_uncheck_all_words_ja_path(@ring),method: :put do %>
+						<%= link_to ring_uncheck_all_words_ja_path(@ring), onclick: "ga('send', 'event', 'rings', 'clear_all_word_checks', '')", method: :put do %>
 							全てのチェックをはずす
 						<% end %>
 					</div>

@@ -7,7 +7,7 @@
     <div class="col-12 col-md-10 offset-md-1">
       <div class="form-title">
         ユーザー設定
-        <%= link_to 'ログアウト', destroy_user_session_path, data: { confirm: 'ログアウトしますか？' }, method: :delete, class: 'grey-solid-btn logout-btn' %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { confirm: 'ログアウトしますか？' }, method: :delete, class: 'grey-solid-btn logout-btn', onclick: "ga('send', 'event', 'users_edit', 'logout', '')" %>
       </div>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -35,7 +35,7 @@
           </div>
         <% end %>
 
-        <div class="field">
+        <div class="field" onclick="ga('send', 'event', 'users_edit', 'open_user_basic_settings_collaps', '');">
           <a class="" data-toggle="collapse" href="#user-basic-settings" role="button" aria-expanded="false">
           ▶︎ユーザー基礎設定を開く
           </a>
@@ -78,8 +78,8 @@
           </div>
         </div>
 
-        <%= f.submit "更新", class: "form-send-btn float-right margin-b-20 visible-lg" %>
-        <%= f.submit "更新", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md" %>
+        <%= f.submit "更新", class: "form-send-btn float-right margin-b-20 visible-lg", onclick: "ga('send', 'event', 'users_edit', 'submit_update_user', '')" %>
+        <%= f.submit "更新", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onclick: "ga('send', 'event', 'users_edit', 'submit_update_user', '')" %>
         <br><br><br>
       <% end %>
     </div>

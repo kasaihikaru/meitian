@@ -26,7 +26,7 @@
 			</a>
 		</th>
 		<th scope="col">
-			<%= link_to p_word_check_ch_path(word), class: "contraction_btn contraction_btn_uncheck", method: :put, remote: true do %>
+			<%= link_to p_word_check_ch_path(word), class: "contraction_btn contraction_btn_uncheck", onclick: "ga('send', 'event', 'passages', 'check_on_word', '')", method: :put, remote: true do %>
  				<%= render :partial => 'svg/check_sm' %>
 			<% end %>
 		</th>
@@ -48,7 +48,7 @@
 			</a>
 		</th>
 		<th scope="col" class="row-checked">
-			<%= link_to p_word_uncheck_ch_path(word), class: "contraction_btn contraction_btn_check", method: :put, remote: true do %>
+			<%= link_to p_word_uncheck_ch_path(word), class: "contraction_btn contraction_btn_check", onclick: "ga('send', 'event', 'passages', 'check_off_word', '')", method: :put, remote: true do %>
  				<%= render :partial => 'svg/thumb' %>
 			<% end %>
 		</th>

@@ -24,7 +24,7 @@
 	  <div class='wave -two'></div>
 	  <div class='wave -three'></div>
 	  <div class='wave-title'>
-	  	<a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_what_is_meitian', 'link_in_explore');">詳しい説明を見る<%= render :partial => 'svg/link_new_tab' %></a>
+	  	<a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'explore_show', 'outbound_to_note_how_to_use_meitian', '');">詳しい説明を見る<%= render :partial => 'svg/link_new_tab' %></a>
 	  </div>
 	</div>
 	<% unless user_signed_in? %>
@@ -34,7 +34,7 @@
 					<div class='psr-title psr-title-prim'>登録して勉強を始める</div>
 		      <div class="field">
 		        <%= f.label :email, 'メールアドレス' %><br />
-		        <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text", id: "explore-form-show" %><br>
+		        <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text", id: "explore-form-show", onclick: "ga('send', 'event', 'explore_show', 'open_register_form', '')"%><br>
 		      </div>
 
 		      <div id="explore-form-hidden" style="display: none;">
@@ -55,7 +55,7 @@
 		        </div>
 		        <div class="field">
 			        <div class='clearfix'>
-			        	<%= f.submit '新規登録', class: "prim-btn float-right", onsubmit: "ga('send', 'event', 'submit', 'new_user_registration', 'form_in_explore')"%>
+			        	<%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'explore_show', 'submit_register_user', '')" %>
 			        </div>
 			      </div>
 
@@ -105,7 +105,7 @@
 		        </div>
 		        <div class="field">
 		          <div class='clearfix'>
-		          	<%= f.submit '新規登録', class: "prim-btn float-right", onsubmit: "ga('send', 'event', 'submit', 'new_user_registration', 'form_in_explore')" %>
+		          	<%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'explore_show', 'submit_register_user', '')" %>
 		          </div>
 		        </div>
 		        <%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right" %>

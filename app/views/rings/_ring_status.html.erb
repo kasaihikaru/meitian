@@ -1,27 +1,27 @@
 <!-- 未着手 -->
 <% if ring.waiting? %>
-	<%= link_to "未着手", ring_waiting_path(ring), method: :put, class: "status-btn float-left status-on-grey", remote: true %>
+	<%= link_to "未着手", ring_waiting_path(ring), method: :put, class: "status-btn float-left status-on-grey", onclick: "ga('send', 'event', 'rings', 'change_status_not_started', '')", remote: true %>
 <% else %>
-	<%= link_to "未着手", ring_waiting_path(ring), method: :put, class: "status-btn float-left status-off-grey", remote: true %>
+	<%= link_to "未着手", ring_waiting_path(ring), method: :put, class: "status-btn float-left status-off-grey", onclick: "ga('send', 'event', 'rings', 'change_status_not_started', '')", remote: true %>
 <% end %>
 
 <!-- 勉強中 -->
 <% if ring.working? %>
-	<%= link_to "勉強中", ring_working_path(ring), method: :put, class: "status-btn float-left status-on-red", remote: true %>
+	<%= link_to "勉強中", ring_working_path(ring), method: :put, class: "status-btn float-left status-on-red", onclick: "ga('send', 'event', 'rings', 'change_status_studying', '')", remote: true %>
 <% else %>
-	<%= link_to "勉強中", ring_working_path(ring), method: :put, class: "status-btn float-left status-off-red", remote: true %>
+	<%= link_to "勉強中", ring_working_path(ring), method: :put, class: "status-btn float-left status-off-red", onclick: "ga('send', 'event', 'rings', 'change_status_studying', '')", remote: true %>
 <% end %>
 
 <!-- 要復習 -->
 <% if ring.review_needed? %>
-	<%= link_to "要復習", ring_review_needed_path(ring), method: :put, class: "status-btn float-left status-on-blue", remote: true %>
+	<%= link_to "要復習", ring_review_needed_path(ring), method: :put, class: "status-btn float-left status-on-blue", onclick: "ga('send', 'event', 'rings', 'change_status_in_review', '')", remote: true %>
 <% else %>
-	<%= link_to "要復習", ring_review_needed_path(ring), method: :put, class: "status-btn float-left status-off-blue", remote: true %>
+	<%= link_to "要復習", ring_review_needed_path(ring), method: :put, class: "status-btn float-left status-off-blue", onclick: "ga('send', 'event', 'rings', 'change_status_in_review', '')", remote: true %>
 <% end %>
 
 <!-- 完了！ -->
 <% if ring.completed? %>
-	<%= link_to "完了！", ring_completed_path(ring), method: :put, class: "status-btn float-left status-on-green", remote: true %>
+	<%= link_to "完了！", ring_completed_path(ring), method: :put, class: "status-btn float-left status-on-green", onclick: "ga('send', 'event', 'rings', 'change_status_completed', '')", remote: true %>
 <% else %>
-	<%= link_to "完了！", ring_completed_path(ring), method: :put, class: "status-btn float-left status-off-green", remote: true %>
+	<%= link_to "完了！", ring_completed_path(ring), method: :put, class: "status-btn float-left status-off-green", onclick: "ga('send', 'event', 'rings', 'change_status_completed', '')", remote: true %>
 <% end %>
