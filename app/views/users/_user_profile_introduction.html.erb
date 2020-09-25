@@ -1,27 +1,27 @@
-<div class='user-profile-field user-icon-name clearfix'>
-	<div class='float-left'>
-	  <% if @user.image? %>
-	    <%= image_tag @user.image.url, :alt => "icon", :class=>"user-icon center" %>
-	  <% else %>
-			 <img alt="no-icon" src="/images/no-icon.png" class="user-icon center">
-	  <% end %>
-	</div>
-	<div class='float-left user-name'>
-		<%= @user.name %>
-	</div>
-	<% if @user == current_user %>
-		<div class='float-right'>
-			<%= link_to edit_user_registration_path(@user) do %>
-				<div class="prim-solid-btn">変更</div>
-			<% end %>
-		</div>
-	<% end %>
-</div>
-<div class='user-profile-field'>
+<div class='user-profile-field'> 
+  <div class='user-icon-name clearfix'>
+  	<div class='float-left'>
+  	  <% if @user.image? %>
+  	    <%= image_tag @user.image.url, :alt => "icon", :class=>"user-icon center" %>
+  	  <% else %>
+  			 <img alt="no-icon" src="/images/no-icon.png" class="user-icon center">
+  	  <% end %>
+  	</div>
+  	<div class='float-left user-name'>
+  		<%= @user.name %>
+  	</div>
+  	<% if @user == current_user %>
+  		<div class='float-right'>
+  			<%= link_to edit_user_registration_path(@user) do %>
+  				<div class="prim-solid-btn">変更</div>
+  			<% end %>
+  		</div>
+  	<% end %>
+  </div>
 	<% if @user.introduction? %>
 		<%= simple_format(@user.introduction) %>
 	<% end %>
 	<% if @user.link? %>
-		<p><%= render :partial => 'svg/link' %><a href="<%= @user.link %>" target="_blank" class="font-12"><%= @user.link %></a></p>
+		<p><%= render :partial => 'svg/link' %><a href="<%= @user.link %>" target="_blank" class="font-12 fontcol-prim"><%= @user.link %></a></p>
 	<% end %>
 </div>

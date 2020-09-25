@@ -6,18 +6,10 @@
 	<a href="https://note.mu/meitian/n/n54c6670c3111" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_how_to_use_meitian', 'link_in_me');">かんたん使い方ガイド</a>
 </div> -->
 
-<% if @user.goal.present? or @theme.present? %>
+<% if @user.goal.present? %>
 	<div class="balloon1-top">
 		<p>
-			<% if @user.goal.present? %>
-				<%= @user.goal %>
-			<% end %>
-			<% if @user.goal.present? and @theme.present? %>
-				<br><br>
-			<% end %>
-			<% if @theme.present?%>
-				<%= @this_month %>月の学習テーマは、<%= @theme %>
-			<% end %>
+			<%= @user.goal %>
 		</p>
 	</div>
 <% end %>
@@ -26,13 +18,6 @@
 	<%= link_to edit_user_registration_path(@user) do %>
 		<div class='card-alert'>
 			タスク：中国語学習の目標を決めましょう！
-		</div>
-	<% end %>
-<% end %>
-<% if @theme.blank?%>
-	<%= link_to edit_user_registration_path(@user) do %>
-		<div class='card-alert'>
-			タスク：<%= @this_month %>月の学習テーマを決めましょう！
 		</div>
 	<% end %>
 <% end %>

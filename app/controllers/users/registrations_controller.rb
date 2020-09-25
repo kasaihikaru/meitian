@@ -45,19 +45,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     @user = current_user
-    get_user_theme
     super
   end
 
   # PUT /resource
   def update
     super
-    theme = current_user.themes.this_month
-    if theme.blank?
-      Theme.create(user_id: current_user.id, theme: theme_params, yearmonth: Date.today.beginning_of_month)
-    else
-      theme.first.update(theme: theme_params)
-    end
   end
 
 

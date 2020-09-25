@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   #-----------------------get-----------------------
   def show
     @user = User.find(id_params)
-    get_user_theme
     get_user_all_prs
     get_user_recent_prs
     get_user_psr_counts

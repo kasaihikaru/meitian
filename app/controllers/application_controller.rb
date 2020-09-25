@@ -87,17 +87,6 @@ class ApplicationController < ActionController::Base
 		return pinyin
 	end
 
-	def get_user_theme
-		@this_month = Date.today.month.to_s
-		theme = @user.themes.this_month.first
-		if theme.present?
-			@theme = theme.theme
-		else
-			@theme = ''
-		end
-	end
-
-
 	def get_user_all_prs
 		@passages_all = @user.passages.active
 		@papers_all = @user.papers.active

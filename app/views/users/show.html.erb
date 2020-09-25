@@ -6,8 +6,13 @@
 	<!-- ユーザー名前、自己紹介、リンク -->
 	<%= render :partial => 'users/user_profile_introduction', :locals=>{user: @user} %>
 
-	<!-- ユーザー、目標、テーマ -->
-	<%= render :partial => 'users/user_profile_goal_theme', :locals=>{user: @user, theme: @theme, this_month: @this_month} %>
+	<!-- 目標-->
+	<% if @user.goal? %>
+    <div class='user-profile-field'>
+      <span class='user-goal-title'><%= render :partial => 'svg/goal_sm' %>目標</span><br>
+      <%= simple_format(@user.goal) %>
+    </div>
+  <% end %>
 </section>
 <hr>
 

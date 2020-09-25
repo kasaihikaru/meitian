@@ -3,7 +3,6 @@ class MesController < ApplicationController
 
 	def show
 		@user = current_user
-		get_user_theme
 		get_user_all_prs
 		get_user_recent_prs
 		get_user_psr_counts
