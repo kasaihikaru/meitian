@@ -279,11 +279,12 @@ select{
 
 
 //--------------- 画像 ----------------
-.img-12{
+.img-16{
   img{
-    height: 12px;
-    weight: 12px;
-    border-radius: 6px;
+    height: 16px;
+    weight: 16px;
+    border-radius: 8px;
+    vertical-align: top;
   }
 }
 

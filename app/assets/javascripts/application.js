@@ -201,7 +201,7 @@ $(document).on('turbolinks:load',function() {
         return Math.random() - Math.random();
     });
     $('ul#home-article-cards li').empty();
-    
+
     var i = 0;
     $('ul#home-article-cards li').each(function() {
         $(this).append(box[i]);
@@ -209,7 +209,22 @@ $(document).on('turbolinks:load',function() {
     });
   });
 
+  $(function() {
+    var box = [];
+    $('ul#home-article-cards-tablet li').each(function() {
+        box.push($(this).html());
+    });
+    box.sort(function() {
+        return Math.random() - Math.random();
+    });
+    $('ul#home-article-cards-tablet li').empty();
 
+    var i = 0;
+    $('ul#home-article-cards-tablet li').each(function() {
+        $(this).append(box[i]);
+        i++;
+    });
+  });
 
 
 

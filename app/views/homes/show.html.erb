@@ -153,13 +153,31 @@
 
 <div class='visible-sm visible-md visible-lg'><!-- タブレット以上 -->
   <div class="container">
-    <ul class="horizontal-card-body">
-      <li class="horizontal-card">アイテム</li>
-      <li class="horizontal-card">アイテム</li>
-      <li class="horizontal-card">アイテム</li>
-      <li class="horizontal-card">アイテム</li>
-      <li class="horizontal-card">アイテム</li>
-      <li class="horizontal-card">アイテム</li>
+    <ul class="horizontal-card-body" id="home-article-cards-tablet">
+      <li class="horizontal-card">
+        <a href="https://note.com/meitian/n/n0c0740a1afc7" target="_blank" rel="noopener noreferrer">
+          <div class="horizontal-card-img horizontal-card-1"></div>
+          <div class="horizontal-card-text">Meitian(メイテン)とは？使い方を詳しく紹介</div>
+        </a>
+      </li>
+      <li class="horizontal-card">
+        <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
+          <div class="horizontal-card-img horizontal-card-2"></div>
+          <div class="horizontal-card-text">【ユーザー投稿】サラリーマンが中国語歴10ヶ月でHSK5級8割取るまで</div>
+        </a>
+      </li>
+      <li class="horizontal-card">
+        <a href="https://note.com/meitian/n/n4257de2a1974" target="_blank" rel="noopener noreferrer">
+          <div class="horizontal-card-img horizontal-card-3"></div>
+          <div class="horizontal-card-text">MeitianをiPhoneのホーム画面に追加して便利に使うには</div>
+        </a>
+      </li>
+      <li class="horizontal-card">
+        <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
+          <div class="horizontal-card-img horizontal-card-4"></div>
+          <div class="horizontal-card-text">【ユーザー投稿】中国語学習1ヶ月での中国旅行記@香港深圳広州澳門</div>
+        </a>
+      </li>
     </ul>
   </div>
 </div>
@@ -177,7 +195,7 @@
               <%= ring.name %>
             </div>
             <div class='clearfix font-12'>
-              <div class='float-left img-12'>
+              <div class='float-left img-16'>
                 <% if ring.user.image? %>
                   <%= image_tag ring.user.image.url, :alt => "icon" %>
                 <% else %>
@@ -186,9 +204,6 @@
               </div>
               <div class='float-left margin-l-5'>
                 <%= ring.user.name.truncate(10) %>
-              </div>
-              <div class='float-right'>
-                <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5">長文あり</span>
               </div>
               <div class='float-right'>
                 <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5 margin-r-20"><%= ring.r_words.count %>単語</span>
@@ -220,7 +235,7 @@
               <%= paper.name %>
             </div>
             <div class='clearfix font-12'>
-              <div class='float-left img-12'>
+              <div class='float-left img-16'>
                 <% if paper.user.image? %>
                   <%= image_tag paper.user.image.url, :alt => "icon" %>
                 <% else %>
@@ -259,7 +274,7 @@
               <%= passage.title %>
             </div>
             <div class='clearfix font-12'>
-              <div class='float-left img-12'>
+              <div class='float-left img-16'>
                 <% if passage.user.image? %>
                   <%= image_tag passage.user.image.url, :alt => "icon" %>
                 <% else %>
