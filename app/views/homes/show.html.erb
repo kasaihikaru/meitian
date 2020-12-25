@@ -1,0 +1,295 @@
+<% content_for :title do %>
+  みんなの中国語教材 | MeiTian
+<% end %>
+
+
+
+<% unless user_signed_in? %>
+<!-- スマホ表示 -->
+  <div class='visible-xs'>
+    <!-- TOPビジュアル -->
+    <div class='container explore-top-xs fontcol-white'>
+      <%= devise_error_messages! %>
+
+      <h2>毎日こつこつ中国語</h2>
+      <p class="font-12">
+        外での「<span class="font-16 font-bold">スキマ学習</span>」<br>
+        家での「<span class="font-16 font-bold">ながら学習</span>」<br>
+        をスマホで手軽に。<br>
+        <br>
+        Meitian(メイテン)は、暗記学習サポートに特化した中国語学習サイトです。
+      </p>
+      <img alt="no-icon" src="/images/MeiTian_TOP_tomato.jpg">
+    </div>
+    <div class='box'>
+      <div class='wave -one'></div>
+      <div class='wave -two'></div>
+      <div class='wave -three'></div>
+    </div>
+
+    <!-- ユーザー登録 -->
+    <div class="container user-register">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <section class='psr'>
+          <div class='psr-title psr-title-prim'>登録して勉強を始める</div>
+          <div class="field">
+            <%= f.label :email, 'メールアドレス' %><br />
+            <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text", id: "explore-form-show", onclick: "ga('send', 'event', 'explore_show', 'open_register_form', '')"%><br>
+          </div>
+
+          <div id="explore-form-hidden" style="display: none;">
+            <div class="field">
+              <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
+              <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text"%>
+            </div>
+
+            <div class="field">
+              <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
+              <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :level, '今の中国語レベルを教えてください！' %><br />
+              <%= f.select :level, [["初級（これから始める、始めたばかり）", 1], ["中級（中検3級、HSK4〜5級）", 2],  ["上級（中検2級以上、HSK6級）", 3]], required: true %>
+            </div>
+            <div class="field">
+              <div class='clearfix'>
+                <%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'explore_show', 'submit_register_user', '')" %>
+              </div>
+            </div>
+
+           </div>
+         </section>
+      <% end %>
+      <%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right margin-b-20" %>
+    </div>
+  </div>
+
+  <!-- タブレット以上 -->
+  <div class='visible-sm visible-md visible-lg'>
+    <div class="container explore-top">
+      <%= devise_error_messages! %>
+      <h2>毎日こつこつ中国語</h2>
+      <p>
+        外での「スキマ学習」家での「ながら学習」をスマホで手軽に。<br>
+        Meitian(メイテン)は、暗記学習サポートに特化した中国語学習サイトです。
+      </p>
+      <!-- ユーザー登録 -->
+      <div class="row">
+        <div class="col-12 col-md-7">
+          <img alt="no-icon" src="/images/MeiTian_TOP.jpg">
+        </div>
+        <div class="col-12 col-md-5 user-register">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email, 'メールアドレス' %><br />
+              <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text" %><br>
+            </div>
+
+            <div class="field">
+              <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
+              <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
+              <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :level, '今の中国語レベルを教えてください！' %><br />
+              <%= f.select :level, [["初級（これから始める、始めたばかり）", 1], ["中級（中検3級、HSK4〜5級）", 2],  ["上級（中検2級以上、HSK6級）", 3]], required: true %>
+            </div>
+            <div class="field">
+              <div class='clearfix'>
+                <%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'explore_show', 'submit_register_user', '')" %>
+              </div>
+            </div>
+            <%= link_to "ログインはこちら", new_session_path(resource_name) ,class: "float-right" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<!-- お役立ち情報 -->
+<div class="container margin-t-20">
+   <div class='psr-title psr-title-prim'>お役立ち情報</div>
+</div>
+
+
+<div class='visible-xs'><!-- スマホ表示 -->
+  <ul class="horizontal-card-body" id="home-article-cards">
+    <li class="horizontal-card">
+      <a href="https://note.com/meitian/n/n0c0740a1afc7" target="_blank" rel="noopener noreferrer">
+        <div class="horizontal-card-img horizontal-card-1"></div>
+        <div class="horizontal-card-text">Meitian(メイテン)とは？使い方を詳しく紹介</div>
+      </a>
+    </li>
+    <li class="horizontal-card">
+      <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
+        <div class="horizontal-card-img horizontal-card-2"></div>
+        <div class="horizontal-card-text">【ユーザー投稿】サラリーマンが中国語歴10ヶ月でHSK5級8割取るまで</div>
+      </a>
+    </li>
+    <li class="horizontal-card">
+      <a href="https://note.com/meitian/n/n4257de2a1974" target="_blank" rel="noopener noreferrer">
+        <div class="horizontal-card-img horizontal-card-3"></div>
+        <div class="horizontal-card-text">MeitianをiPhoneのホーム画面に追加して便利に使うには</div>
+      </a>
+    </li>
+    <li class="horizontal-card">
+      <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
+        <div class="horizontal-card-img horizontal-card-4"></div>
+        <div class="horizontal-card-text">【ユーザー投稿】中国語学習1ヶ月での中国旅行記@香港深圳広州澳門</div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class='visible-sm visible-md visible-lg'><!-- タブレット以上 -->
+  <div class="container">
+    <ul class="horizontal-card-body">
+      <li class="horizontal-card">アイテム</li>
+      <li class="horizontal-card">アイテム</li>
+      <li class="horizontal-card">アイテム</li>
+      <li class="horizontal-card">アイテム</li>
+      <li class="horizontal-card">アイテム</li>
+      <li class="horizontal-card">アイテム</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- 以下、投稿一覧 -->
+<div class="container">
+  <section class='psr'>
+    <div class='psr-title psr-title-prim'>みんなの単語帳</div>
+    <div class='psr-content'>
+      <% @rings.each do |ring| %>
+        <div class='margin-b-20'>
+          <%= link_to ring_word_ch_path(ring) do %>
+            <div class='font-20 font-bold margin-b-5 overflow'>
+              <%= ring.name %>
+            </div>
+            <div class='clearfix font-12'>
+              <div class='float-left img-12'>
+                <% if ring.user.image? %>
+                  <%= image_tag ring.user.image.url, :alt => "icon" %>
+                <% else %>
+                   <img alt="no-icon" src="/images/no-icon.png">
+                <% end %>
+              </div>
+              <div class='float-left margin-l-5'>
+                <%= ring.user.name.truncate(10) %>
+              </div>
+              <div class='float-right'>
+                <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5">長文あり</span>
+              </div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5 margin-r-20"><%= ring.r_words.count %>単語</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <% ring.r_words.limit(20).each do |word| %>
+                <%= word.ch.truncate(7) %>&ensp;/&ensp; 
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class='psr-link'>
+        <%= link_to rings_explore_path do %>
+          >もっと見る
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <section class='psr'>
+    <div class='psr-title psr-title-prim'>みんなの瞬間作文</div>
+    <div class='psr-content'>
+      <% @papers.each do |paper| %>
+        <div class='margin-b-20'>
+          <%= link_to paper_sentence_ch_path(paper) do %>
+            <div class='font-20 font-bold margin-b-5 overflow'>
+              <%= paper.name %>
+            </div>
+            <div class='clearfix font-12'>
+              <div class='float-left img-12'>
+                <% if paper.user.image? %>
+                  <%= image_tag paper.user.image.url, :alt => "icon" %>
+                <% else %>
+                   <img alt="no-icon" src="/images/no-icon.png">
+                <% end %>
+              </div>
+              <div class='float-left margin-l-5'>
+                <%= paper.user.name.truncate(10) %>
+              </div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
+              <%= paper.sentences.first.ja.truncate(50) %><br>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class='psr-link'>
+        <%= link_to papers_explore_path do %>
+          >もっと見る
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <section class='psr'>
+    <div class='psr-title psr-title-prim'>みんなの長文</div>
+    <div class='psr-content'>
+      <% @passages.each do |passage| %>
+        <div class='margin-b-20'>
+          <%= link_to passage_word_ch_path(passage) do %>
+            <div class='font-20 font-bold margin-b-5 overflow'>
+              <%= passage.title %>
+            </div>
+            <div class='clearfix font-12'>
+              <div class='float-left img-12'>
+                <% if passage.user.image? %>
+                  <%= image_tag passage.user.image.url, :alt => "icon" %>
+                <% else %>
+                   <img alt="no-icon" src="/images/no-icon.png">
+                <% end %>
+              </div>
+              <div class='float-left margin-l-5'>
+                <%= passage.user.name.truncate(10) %>
+              </div>
+              <div class='float-right'>
+                <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5">長文あり</span>
+              </div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5 margin-r-20"><%= passage.p_words.count %>単語</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <% passage.p_words.limit(20).each do |word| %>
+                <%= word.ch.truncate(7) %>&ensp;/&ensp; 
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class='psr-link'>
+        <%= link_to passages_explore_path do %>
+          >もっと見る
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+</div>

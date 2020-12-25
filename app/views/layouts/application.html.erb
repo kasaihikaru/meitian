@@ -53,21 +53,7 @@
 
     <!-- TOPブランドロゴ -->
     <div class="brand-top">
-      <div class="container">
-        <div class='float-left'>
-          <% if user_signed_in? %>
-            <%= link_to user_path(current_user) do %>
-              <% if current_user.image? %>
-                <%= image_tag current_user.image.url, :alt => "icon", :class=>"header-icon center" %>
-              <% else %>
-                 <img alt="no-icon" src="/images/no-icon.png" class="header-icon center">
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-        <div class='float-left test margin-l-10'>
-          <span class='brand-title'>MeiTian</span>
-        </div>
+        <%= render :partial => 'svg/logo_letters' %>
         <div class="float-right header-how-btn" data-toggle="modal" data-target="#how-to-use-modal" onclick="ga('send', 'event', 'header', 'open_how_to_use_modal', '');">
           使い方
         </div>
@@ -99,7 +85,7 @@
 
     <!-- コンテンツ -->
     <div class="contents">
-      <% if params[:controller] == 'explores' && params[:action] == 'show' %>
+      <% if params[:controller] == 'homes' && params[:action] == 'show' %>
         <%= yield %>
       <% else %>
         <div class="container">
@@ -112,19 +98,30 @@
     <footer class="container-fluid">
       <div class="row topline">
         <div class="col-md-3"></div>
+        <div class="col-xs-3 col-md-2 center-align footer-link">
+          <%= link_to home_path do %>
+            <% if params[:controller] == 'homes' %>
+              <%= render :partial => 'svg/home_colored' %><br>
+              <span class='selected'>ホーム</span>
+            <% else %>
+              <%= render :partial => 'svg/home' %><br>
+              ホーム
+            <% end %>
+          <% end %>
+        </div>
         <% if user_signed_in? %>
-          <div class="col-xs-4 col-md-2 center-align footer-link">
+          <div class="col-xs-3 col-md-2 center-align footer-link">
             <%= link_to me_path do %>
               <% if params[:controller] == 'mes' %>
-                <%= render :partial => 'svg/me_colored' %><br>
+                <%= render :partial => 'svg/book_colored' %><br>
                 <span class='selected'>マイ教材</span>
               <% else %>
-                <%= render :partial => 'svg/me' %><br>
+                <%= render :partial => 'svg/book' %><br>
                 マイ教材
               <% end %>
             <% end %>
           </div>
-          <div class="col-xs-4 col-md-2 center-align footer-link">
+          <div class="col-xs-3 col-md-2 center-align footer-link">
             <!-- 新規投稿ボタン -->
             <% if @paper.present? %>
               <%= link_to new_sentence_path(paper_id: @paper.id) do %>
@@ -143,26 +140,30 @@
               </div>
             <% end %>
           </div>
+          <div class="col-xs-3 col-md-2 center-align footer-link">
+            <%= link_to edit_user_registration_path(@current_user) do %>
+              <% if params[:controller] == 'explores' %>
+                <%= render :partial => 'svg/me_colored' %><br>
+                <span class='selected'>アカウント</span>
+              <% else %>
+                <%= render :partial => 'svg/me' %><br>
+                アカウント
+              <% end %>
+            <% end %>
+          </div>
         <% else %>
           <div class="col-xs-8 col-md-4 center-align">
-            <%= link_to new_user_registration_path do %>
-              <% unless params[:controller] == 'users/registrations' %>
+            <% unless params[:controller] == 'users/registrations' %>
+              <%= link_to new_user_registration_path do %>
                 <div class="prim-btn me-registration-btn">登録をして勉強開始！</div>
+              <% end %>
+            <% else %>
+              <%= link_to new_session_path(resource_name) do %>
+                <div class="grey-btn me-registration-btn">ログインはこちら</div>
               <% end %>
             <% end %>
           </div>
         <% end %>
-        <div class="col-xs-4 col-md-2 center-align footer-link">
-          <%= link_to explore_path do %>
-            <% if params[:controller] == 'explores' %>
-              <%= render :partial => 'svg/explore_colored' %><br>
-              <span class='selected'>探す</span>
-            <% else %>
-              <%= render :partial => 'svg/explore' %><br>
-              探す
-            <% end %>
-          <% end %>
-        </div>
         <div class="col-md-3"></div>
       </div>
       <!-- 新規投稿用naviを下に隠して設置 -->

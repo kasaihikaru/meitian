@@ -6,8 +6,9 @@ Rails.application.routes.draw do
       passwords: "users/passwords",
   }
 
-  root to: "mes#show"
+  root to: "homes#show"
 
+  resource :home, only: [:show]
   resource :me, only: [:show]
   resource :explore, only: [:show] do
     get 'users' #ユーザー一覧

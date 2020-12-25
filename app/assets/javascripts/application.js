@@ -185,5 +185,33 @@ $(document).on('turbolinks:load',function() {
 	********************************/
 
 
+
+
+
+
+  /*******************************
+  * home お役立ち記事のランダム並び替え
+  ********************************/
+  $(function() {
+    var box = [];
+    $('ul#home-article-cards li').each(function() {
+        box.push($(this).html());
+    });
+    box.sort(function() {
+        return Math.random() - Math.random();
+    });
+    $('ul#home-article-cards li').empty();
+    
+    var i = 0;
+    $('ul#home-article-cards li').each(function() {
+        $(this).append(box[i]);
+        i++;
+    });
+  });
+
+
+
+
+
 });
 

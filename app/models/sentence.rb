@@ -4,7 +4,6 @@ class Sentence < ApplicationRecord
   accepts_nested_attributes_for :s_words
 
   scope :active, -> { where(deleted_at: nil) }
-  scope :recent, -> { order(created_at: :desc).limit(15) }
   scope :memorized_ja, -> { where(memorized_ja: true) }
   scope :memorized_ch, -> { where(memorized_ch: true) }
   scope :unmemorized_ja, -> { where(memorized_ja: false) }

@@ -26,6 +26,7 @@
 @import "s_words";
 @import "sentences";
 @import "users";
+@import "homes";
 
 
 //--------------- 配置 ----------------
@@ -53,7 +54,11 @@
 }
 .mg-auto{ margin: 0 auto;}
 .mg-0{ margin: 0;}
+.margin-l-5{  margin-left: 5px;}
 .margin-l-10{  margin-left: 10px;}
+.margin-r-20{  margin-right: 20px;}
+.margin-b-5{  margin-bottom: 5px;}
+.margin-b-10{  margin-bottom: 10px;}
 .margin-b-20{  margin-bottom: 20px;}
 .margin-b-40{  margin-bottom: 40px;}
 .margin-t-20{  margin-top: 20px;}
@@ -62,17 +67,16 @@
 .margin-tb-10{  margin: 10px 0;}
 .margin-tb-20{  margin: 20px 0;}
 .padding-tb-20{  padding: 20px 0;}
+.padding-t-3{  padding-top: 3px;}
 .padding-t-20{  padding-top: 20px;}
 
-.width-100{
-  width: 100%;
-}
-.max-width-260{
-  max-width: 260px;
-}
-.max-width-300{
-  max-width: 300px;
-}
+.width-100{  width: 100%;}
+.max-width-260{  max-width: 260px;}
+.max-width-300{  max-width: 300px;}
+
+
+.overflow{ overflow:hidden; white-space: nowrap; text-overflow: ellipsis; }
+
 
 //--------------- ポジション ----------------
 .relative{
@@ -94,6 +98,7 @@ h1{ font-size: 20px; font-weight: 800; }
 .font-12{ font-size: 12px;}
 .font-14{ font-size: 14px;}
 .font-16{ font-size: 16px;}
+.font-20{ font-size: 20px;}
 
 .h1-margin{  margin: 10px 0 20px;}
 
@@ -269,6 +274,16 @@ select{
   text-decoration: none !important;
   a, a:hover{
     text-decoration: none;
+  }
+}
+
+
+//--------------- 画像 ----------------
+.img-12{
+  img{
+    height: 12px;
+    weight: 12px;
+    border-radius: 6px;
   }
 }
 
