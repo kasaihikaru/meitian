@@ -125,14 +125,6 @@ $(document).on('turbolinks:load',function() {
 		window.open('http://www.google.com/search?q=中国語%20'+word);
 	});
 
-//--------------- psr新規作成フッターナビ -------------------
-	$(function() {
-	  $('.toggle').click(function() {
-	    $('.nav-item').toggleClass('slide-out');
-	    $('.nav-item-text').toggleClass('slide-out-for-text');
-	  });
-	});
-
 //--------------- feedbackをふわっと消す -------------------
   $(function(){
     setTimeout("$('.feedback').fadeOut('slow')", 2800);

@@ -54,9 +54,11 @@
 }
 .mg-auto{ margin: 0 auto;}
 .mg-0{ margin: 0;}
+.margin-5{ margin: 12px;}
 .margin-l-5{  margin-left: 5px;}
 .margin-l-10{  margin-left: 10px;}
 .margin-r-20{  margin-right: 20px;}
+.margin-lr-20{ margin: 0 20px;}
 .margin-b-5{  margin-bottom: 5px;}
 .margin-b-10{  margin-bottom: 10px;}
 .margin-b-20{  margin-bottom: 20px;}
@@ -88,8 +90,9 @@
 //--------------- 文字色 ----------------
 .fontcol-prim{color: $Prim;}
 .fontcol-lightprim{color: $LightPrim;}
-.fontcol-black{color: black}
-.fontcol-white{color: white}
+.fontcol-black{color: black;}
+.fontcol-white{color: white;}
+.opacity-8{opacity: 0.8;}
 
 
 //--------------- 文字サイズ ----------------
@@ -393,7 +396,18 @@ span[data-badge-top-right]:before {
   z-index: 100;
   line-height: 40px;
   text-align: center;
+  a{cursor: pointer;}
+  a:link, a:visited, a:hover, a:active {color: white; text-decoration: none; }
+  .dropdown-menu{
+    a:link, a:visited, a:hover, a:active {color: black; text-decoration: none; }
   }
+}
+.brand-top-fix{
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
+
 
 .logo-icon{
   width: 25px;
@@ -421,9 +435,7 @@ span[data-badge-top-right]:before {
   letter-spacing: 0.1em;
   cursor: pointer;
 }
-
 .brand-title{
-  // font-size: 16px;
   color: white;
   font-family: DotumChe;
   font-weight: 800;
@@ -438,6 +450,8 @@ span[data-badge-top-right]:before {
 a, a:hover{
 	color: black;
 }
+
+
 
 footer{
   position: fixed;
@@ -471,19 +485,23 @@ pre {
   display:block;
   clear:both;
 }
+.border-0{
+  border: 0;
+}
+
 .alert{
   text-align: center;
   background-color: $Point;
   color: white;
   margin:0;
-  padding: 15px 0;
+  padding: 5px 0;
 }
 .notice{
   text-align: center;
   background-color: $Point;
   color: white;
   margin:0;
-  padding: 15px 0;
+  padding: 5px 0;
 }
 .feedback{
   position: fixed;
@@ -820,6 +838,32 @@ ul.cp_list li:before {
 /*******************************
 * モーダル
 ********************************/
+
+/* 作成するボタン用bootstrapモーダル修正 */
+.modal-dialog-bottom{
+  position:fixed;
+  top:auto;
+  right:auto;
+  left:auto;
+  bottom:0;
+  width: 100%;
+  margin: 0;
+}
+.modal.fade:not(.in).fade-from-bottom .modal-dialog {
+    -webkit-transform: translate3d(0, 25%, 0);
+    transform: translate3d(0, 25%, 0);
+}
+.post-psr-modal{
+  .modal-header{padding-bottom: 0}
+  .modal-title{font-size: 21px;}
+  .modal-body{
+    font-size: 16px;
+    padding: 0px 15px 20px;
+  }
+}
+
+
+
 #passage-ja-modal {
   display: none;
   position: fixed;
@@ -906,59 +950,6 @@ ul.cp_list li:before {
 }
 
 
-
-
-/*******************************
-* フッター　新規作成ナビ
-********************************/
-// --------------------------
-#toggle-nav{
-  cursor: pointer;
-}
-.nav-item-circle:hover {
-  background-color: $LightPrim;
-}
-.nav-item {
-  margin-top: 50px; //待機時画面からはみ出させて見えなくする処理
-  position: absolute;
-  left: 50%;
-  text-align: center;
-  -webkit-transition: all .2s cubic-bezier(0,.42,.42,1);
-  -moz-transition: all .2s cubic-bezier(0,.42,.42,1);
-  -o-transition: all .2s cubic-bezier(0,.42,.42,1);
-  transition: all .2s cubic-bezier(0,.42,.42,1);
-}
-.nav-item-circle {
-  color: white;
-  padding-top: 5px;
-  font-weight: 800;
-  width: 50px;
-  height: 50px;
-  margin-left: -25px;
-  text-align: center;
-  background-color: $Prim;
-  border-radius: 50%;
-}
-.nav-item-text{
-  margin-left: -45px;
-}
-nav a:nth-child(1) .slide-out {
-  -webkit-transform: translate(0px, -200px);
-  transform: translate(0px, -200px);
-}
-nav a:nth-child(2) .slide-out {
-  -webkit-transform: translate(0px, -260px);
-  transform: translate(0px, -260px);
-}
-
-nav a:nth-child(3) .slide-out {
-  -webkit-transform: translate(0px, -320px);
-  transform: translate(0px, -320px);
-}
-
-nav .slide-out-for-text {
-  transform: translate(0px, -350px);
-}// scale(1.2)
 
 
 

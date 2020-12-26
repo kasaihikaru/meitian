@@ -51,31 +51,112 @@
       <div class="alert"><%= alert %></div>
     <% end %>
 
-    <!-- TOPブランドロゴ -->
-    <div class="brand-top">
-        <%= render :partial => 'svg/logo_letters' %>
-        <div class="float-right header-how-btn" data-toggle="modal" data-target="#how-to-use-modal" onclick="ga('send', 'event', 'header', 'open_how_to_use_modal', '');">
-          使い方
-        </div>
+    <!-- ヘッダー スマホ -->
+    <div class='visible-xs'>
+      <div class="brand-top">
+          <%= render :partial => 'svg/logo_letters' %>
       </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="how-to-use-modal" tabindex="-1" role="dialog" aria-labelledby="how-to-use-modalTitle" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <!-- ヘッダー タブレット以上 -->
+    <div class='visible-sm visible-md visible-lg'>
+      <div class="brand-top brand-top-fix fontcol-white">
+        <div class="container">
+          <div class="float-left margin-lr-20"><%= render :partial => 'svg/logo_letters' %></div>
+
+          <!-- ログインユーザーのみ表示メニュー -->
+          <% if user_signed_in? %>
+            <div class="float-right margin-lr-20">
+              <%= link_to edit_user_registration_path(@current_user) do %>
+                <% if params[:controller] == 'users/registrations' %>
+                  <span class='font-bold'>アカウント</span>
+                <% else %>
+                  アカウント
+                <% end %>
+              <% end %>
+            </div>
+            <div class="float-right margin-lr-20">
+              <% if @paper.present? %>
+                <%= link_to new_sentence_path(paper_id: @paper.id) do %>投稿する<% end %>
+              <% elsif @ring.present? %>
+                <%= link_to new_r_word_path(ring_id: @ring.id) do %>投稿する<% end %>
+              <% else %>
+                <div class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    投稿する&nbsp;▼
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to new_r_word_path do %>
+                      <div class="margin-l-10">単語帳を作成する</div>
+                    <% end %>
+                    <%= link_to new_sentence_path do %>
+                        <div class="margin-l-10">瞬間作文集を作成する</div>
+                    <% end %>
+                    <%= link_to new_passage_path do %>
+                        <div class="margin-l-10">長文を作成する</div>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="float-right margin-lr-20">
+              <%= link_to me_path do %>
+                <% if params[:controller] == 'mes' %>
+                  <span class='font-bold'>マイ教材</span>
+                <% else %>
+                  マイ教材
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="float-right margin-lr-20">
+              <%= link_to new_user_registration_path do %>
+                <div class="font-bold">登録をして勉強開始！</div>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="float-right margin-lr-20">
+            <%= link_to home_path do %>
+              <% if params[:controller] == 'homes' %>
+                <span class='font-bold'>ホーム</span>
+              <% else %>
+                ホーム
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div style="width: 100%; height: 40px;"></div><!-- 固定ヘッダー用のスペース -->
+    </div>
+
+
+
+    <!-- 作成タブModal スマホ用 -->
+    <div class="modal fade fade-from-bottom post-psr-modal" id="post-psr-modal" tabindex="-1" role="dialog" aria-labelledby="post-psr-modalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-bottom" role="document">
+        <div class="modal-content border-0">
           <div class="modal-header">
-            <span class="modal-title" id="how-to-use-modalTitle">使い方ガイド一覧</span>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="ga('send', 'event', 'how_to_use_modal', 'close_modal', '');">
+            <span class="modal-title" id="post-psr-modalTitle">新規作成</span>
+            <button type="button" class="close fontcol-black opacity-8" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <ul class="cp_list">
-            <li><a href="https://note.mu/meitian/n/n0c0740a1afc7" target="_blank" onclick="ga('send', 'event', 'how_to_use_modal', 'outbound_to_note_what_is_meitian', '');">MeiTianとは？</a></li>
-            <li><a href="https://note.mu/meitian/n/n54c6670c3111" target="_blank" onclick="ga('send', 'event', 'how_to_use_modal', 'outbound_to_note_how_to_use_meitian', '');">かんたん使い方ガイド</a></li>
-            <li><a href="https://note.mu/meitian/n/n4257de2a1974" target="_blank" onclick="ga('send', 'event', 'how_to_use_modal', 'outbound_to_note_use_in_sp', '');">スマホで便利に使うには</a></li>
-            </ul>
+            <%= link_to new_r_word_path do %>
+              <div class="margin-5">
+                <%= render :partial => 'svg/ring_line' %><span class="margin-l-10">単語帳を作成する</span>
+              </div>
+            <% end %>
+            <%= link_to new_sentence_path do %>
+              <div class="margin-5">
+                <%= render :partial => 'svg/paper_line' %><span class="margin-l-10">瞬間作文集を作成する</span>
+              </div>
+            <% end %>
+            <%= link_to new_passage_path do %>
+              <div class="margin-5">
+                <%= render :partial => 'svg/book_line' %><span class="margin-l-10">長文を作成する</span>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -94,11 +175,10 @@
       <% end %>
     </div>
 
-    <!-- フッターグロナビ -->
-    <footer class="container-fluid">
+    <!-- フッターナビ スマホ用 -->
+    <footer class="container-fluid visible-xs">
       <div class="row topline">
-        <div class="col-md-3"></div>
-        <div class="col-xs-3 col-md-2 center-align footer-link">
+        <div class="col-xs-3 center-align footer-link">
           <%= link_to home_path do %>
             <% if params[:controller] == 'homes' %>
               <%= render :partial => 'svg/home_colored' %><br>
@@ -110,7 +190,7 @@
           <% end %>
         </div>
         <% if user_signed_in? %>
-          <div class="col-xs-3 col-md-2 center-align footer-link">
+          <div class="col-xs-3 center-align footer-link">
             <%= link_to me_path do %>
               <% if params[:controller] == 'mes' %>
                 <%= render :partial => 'svg/book_colored' %><br>
@@ -121,8 +201,7 @@
               <% end %>
             <% end %>
           </div>
-          <div class="col-xs-3 col-md-2 center-align footer-link">
-            <!-- 新規投稿ボタン -->
+          <div class="col-xs-3 center-align footer-link">
             <% if @paper.present? %>
               <%= link_to new_sentence_path(paper_id: @paper.id) do %>
                 <%= render :partial => 'svg/plus' %><br>
@@ -134,15 +213,15 @@
                 投稿
               <% end %>
             <% else %>
-              <div id="toggle-nav" class="toggle" onclick="ga('send', 'event', 'footer', 'open_add_psr_popup', '');">
+              <div class="" data-toggle="modal" data-target="#post-psr-modal">
                 <%= render :partial => 'svg/plus' %><br>
-                投稿
+                投稿する
               </div>
             <% end %>
           </div>
-          <div class="col-xs-3 col-md-2 center-align footer-link">
+          <div class="col-xs-3 center-align footer-link">
             <%= link_to edit_user_registration_path(@current_user) do %>
-              <% if params[:controller] == 'explores' %>
+              <% if params[:controller] == 'users/registrations' %>
                 <%= render :partial => 'svg/me_colored' %><br>
                 <span class='selected'>アカウント</span>
               <% else %>
@@ -152,7 +231,7 @@
             <% end %>
           </div>
         <% else %>
-          <div class="col-xs-8 col-md-4 center-align">
+          <div class="col-xs-8 center-align">
             <% unless params[:controller] == 'users/registrations' %>
               <%= link_to new_user_registration_path do %>
                 <div class="prim-btn me-registration-btn">登録をして勉強開始！</div>
@@ -164,27 +243,8 @@
             <% end %>
           </div>
         <% end %>
-        <div class="col-md-3"></div>
       </div>
-      <!-- 新規投稿用naviを下に隠して設置 -->
-      <nav>
-        <%= link_to new_r_word_path do %>
-          <div class="nav-item nav-item-circle">
-            <%= render :partial => 'svg/ring_white' %><br>単語
-          </div>
-        <% end %>
-        <%= link_to new_sentence_path do %>
-          <div class="nav-item nav-item-circle">
-            <%= render :partial => 'svg/paper_white' %><br>短文
-          </div>
-        <% end %>
-        <%= link_to new_passage_path do %>
-          <div class="nav-item nav-item-circle">
-            <%= render :partial => 'svg/passage_white' %><br>長文
-          </div>
-        <% end %>
-        <div class="nav-item nav-item-text">何を投稿しますか？</div>
-      </nav>
     </footer>
+
   </body>
 </html>
