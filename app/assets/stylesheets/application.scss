@@ -58,6 +58,7 @@
 .margin-l-5{  margin-left: 5px;}
 .margin-l-10{  margin-left: 10px;}
 .margin-r-20{  margin-right: 20px;}
+.margin-lr-12{ margin: 0 12px;}
 .margin-lr-20{ margin: 0 20px;}
 .margin-b-5{  margin-bottom: 5px;}
 .margin-b-10{  margin-bottom: 10px;}
@@ -396,10 +397,17 @@ span[data-badge-top-right]:before {
   z-index: 100;
   line-height: 40px;
   text-align: center;
+  color: white;
   a{cursor: pointer;}
   a:link, a:visited, a:hover, a:active {color: white; text-decoration: none; }
   .dropdown-menu{
     a:link, a:visited, a:hover, a:active {color: black; text-decoration: none; }
+  }
+  .brand-top-logo-center{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 .brand-top-fix{
@@ -562,6 +570,7 @@ pre {
 	font-size: 18px;
 }
 .card-alert{
+  text-align: center;
   background: $Point;
   box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
   border-radius: 7px;
@@ -621,6 +630,7 @@ pre {
   text-align: center;
   font-size: 12px;
   color: $Point;
+  margin-top: 10px;
 }
 
 //----------------- progress bar ------------------//
@@ -767,18 +777,20 @@ ul.cp_list li:before {
   position: relative;
 	max-width: 100%
 }
+
+
+// 左から
 .left_balloon {
-		color: black;
+    color: black;
     position: relative;
-    background: #F5F5F5;
-    // margin: 10px 0;
+    background: #D9D5D5;
+    font-size: 12px;
+    margin: 10px 0;
     padding: 10px;
     border-radius: 15px;
-    // clear: both; //アイコン横に並べるため。
+    // clear: both; //アイコン横に並べるため
     float: left;
-    margin: 0 0 0 45px;
-    max-width: 80%;
-    font-size: 12px;
+    margin-left: 38px;
 }
 .left_balloon:after,
 .left_balloon:before {
@@ -793,7 +805,7 @@ ul.cp_list li:before {
 }
 .left_balloon:after {
     border-color: rgba(255, 255, 255, 0);
-    border-right-color: #F5F5F5;
+    border-right-color: #D9D5D5;
     border-width: 7px;
     margin-top: -7px;
 }
@@ -801,6 +813,10 @@ ul.cp_list li:before {
     border-color: rgba(0, 0, 0, 0);
     border-width: 8px;
     margin-top: -8px;
+}
+// 割り込み解除
+.clear_balloon{
+  clear: both;
 }
 
 
@@ -832,6 +848,11 @@ ul.cp_list li:before {
   margin: 0;
   padding: 0;
 }
+
+
+
+
+
 
 
 

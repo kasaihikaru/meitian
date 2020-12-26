@@ -1,107 +1,117 @@
 <% content_for :title do %>
-  中国語の短文を投稿 | MeiTian
+  瞬間作文を追加する | MeiTian
 <% end %>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
 
-    <div class="form-title">短文を作成する</div>
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
+    <div class="brand-top-logo-center">瞬間作文を追加する</div>
+  </div>
+</div>
 
-    <div class="hint-no-border visible-xs visible-sm visible-md">
-      <%= render :partial => 'svg/information' %>
-      短文の投稿はパソコンでやるとより簡単です！
-    </div>
 
-    <div class="new-content">
-      <!-- 新しい短文集を作るModal -->
-      <div class="modal fade" id="new_paper_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <%= form_for @new_paper, method: :post do |paper| %>
-              <div class="modal-body">
-                <%= paper.text_field :name, placeholder: "新しい短文集を作る", :required => true, style: "width: 100%; height: 50px;" %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
-                <%= paper.submit "作成", class: "prim-btn", onsubmit: "ga('send', 'event', 'submit', 'new_paper', 'form_in_sentences_new')" %>
-              </div>
-            <% end %>
-          </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+
+      <div class="hint-no-border visible-xs visible-sm visible-md">
+        <%= render :partial => 'svg/information' %>
+        短文の投稿はパソコンでやるとより簡単です！
       </div>
 
-      <%= form_for @sentence, method: :post do |f| %>
-        <div class='form-section' id='paper-select-box'>
-          <%= f.label :paper, "どの短文集に追加しますか？" %>
-          <span type="button" class="link-to-new-sr-modal" data-toggle="modal" data-target="#new_paper_modal">
-            新しい短文集を作る
-          </span>
-          <br>
-          <% if @paper_id.present? %>
-            <%= f.collection_select 'paper_id', @mypapers, :id, :name, selected: @paper_id %>
-          <% else %>
-            <%= f.collection_select 'paper_id', @mypapers, :id, :name %>
-          <% end %>
-        </div>
-        <div class='form-section new-sentece-content'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :ch, "中国語" %>&emsp;
-            </div>
-            <div class='float-left' id="sentence_new_ch_google">
-              <%= render :partial => 'svg/google_100' %>
+      <div class="new-content">
+        <!-- 新しい短文集を作るModal -->
+        <div class="modal fade" id="new_paper_modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <%= form_for @new_paper, method: :post do |paper| %>
+                <div class="modal-body">
+                  <%= paper.text_field :name, placeholder: "新しい短文集を作る", :required => true, style: "width: 100%; height: 50px;" %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
+                  <%= paper.submit "作成", class: "prim-btn", onsubmit: "ga('send', 'event', 'submit', 'new_paper', 'form_in_sentences_new')" %>
+                </div>
+              <% end %>
             </div>
           </div>
-          <%= f.text_area :ch, placeholder: "中国で短文を書いてください。（例）每天晚上自修汉语。", :required => true %>
         </div>
 
-        <div class='form-section new-sentece-content'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :ja, "日本語" %>&emsp;
-            </div>
-            <div class='float-left' id="sentence_new_ja_google">
-              <%= render :partial => 'svg/google_100' %>
-            </div>
-          </div>
-          <%= f.text_area :ja, placeholder: "日本語訳を書いてください。（例）毎晩、中国を勉強します。" %>
-        </div>
-
-
-        <div class='form-section'>
-          <%= f.label :title, "覚えたい単語を抜き出してください" %><br />
-          <% 20.times do |i| %>
-            <%= f.fields_for :s_words do |w| %>
-              <div class="clearfix">
-                <div id="word_ch_<%= i %>" class="float-left">
-                  <%= render :partial => 'svg/google' %>
-                </div>
-                <%= w.text_field :ch ,placeholder: "中国語", class: "float-left" %>
-                <div id="word_ja_<%= i %>" class="float-left margin-l-10">
-                  <%= render :partial => 'svg/google' %>
-                </div>
-                <%= w.text_field :ja ,placeholder: "日本語", class: "float-left" %>
-              </div>
-              <!-- google検索機能 -->
-              <script type="text/javascript">
-                document.getElementById("word_ch_<%= i%>").onclick = function(){
-                  var target= document.getElementById('sentence_s_words_attributes_<%= i%>_ch');
-                      word = target.value;
-                  window.open('http://www.google.com/search?q=中国語%20'+word);
-                };
-                document.getElementById("word_ja_<%= i%>").onclick = function(){
-                  var target= document.getElementById('sentence_s_words_attributes_<%= i%>_ja');
-                      word = target.value;
-                  window.open('http://www.google.com/search?q=中国語%20'+word);
-                };
-              </script>
+        <%= form_for @sentence, method: :post do |f| %>
+          <div class='form-section' id='paper-select-box'>
+            <%= f.label :paper, "どの短文集に追加しますか？" %>
+            <span type="button" class="link-to-new-sr-modal" data-toggle="modal" data-target="#new_paper_modal">
+              新しい短文集を作る
+            </span>
+            <br>
+            <% if @paper_id.present? %>
+              <%= f.collection_select 'paper_id', @mypapers, :id, :name, selected: @paper_id %>
+            <% else %>
+              <%= f.collection_select 'paper_id', @mypapers, :id, :name %>
             <% end %>
-          <% end %>
-        </div>
-        <%= f.submit "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_sentence', 'form_in_sentences_new')" %>
-        <%= f.submit "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_sentence', 'form_in_sentences_new')" %>
-        <br><br><br>
-      <% end %>
-    </div><!-- End of passage-new-content -->
-  </div><!-- End of col-12 -->
-</div><!-- End of row -->
+          </div>
+          <div class='form-section new-sentece-content'>
+            <div class='clearfix'>
+              <div class='float-left'>
+                <%= f.label :ch, "中国語" %>&emsp;
+              </div>
+              <div class='float-left' id="sentence_new_ch_google">
+                <%= render :partial => 'svg/google_100' %>
+              </div>
+            </div>
+            <%= f.text_area :ch, placeholder: "中国で短文を書いてください。（例）每天晚上自修汉语。", :required => true %>
+          </div>
+
+          <div class='form-section new-sentece-content'>
+            <div class='clearfix'>
+              <div class='float-left'>
+                <%= f.label :ja, "日本語" %>&emsp;
+              </div>
+              <div class='float-left' id="sentence_new_ja_google">
+                <%= render :partial => 'svg/google_100' %>
+              </div>
+            </div>
+            <%= f.text_area :ja, placeholder: "日本語訳を書いてください。（例）毎晩、中国を勉強します。" %>
+          </div>
+
+
+          <div class='form-section'>
+            <%= f.label :title, "覚えたい単語を抜き出してください" %><br />
+            <% 20.times do |i| %>
+              <%= f.fields_for :s_words do |w| %>
+                <div class="clearfix">
+                  <div id="word_ch_<%= i %>" class="float-left">
+                    <%= render :partial => 'svg/google' %>
+                  </div>
+                  <%= w.text_field :ch ,placeholder: "中国語", class: "float-left" %>
+                  <div id="word_ja_<%= i %>" class="float-left margin-l-10">
+                    <%= render :partial => 'svg/google' %>
+                  </div>
+                  <%= w.text_field :ja ,placeholder: "日本語", class: "float-left" %>
+                </div>
+                <!-- google検索機能 -->
+                <script type="text/javascript">
+                  document.getElementById("word_ch_<%= i%>").onclick = function(){
+                    var target= document.getElementById('sentence_s_words_attributes_<%= i%>_ch');
+                        word = target.value;
+                    window.open('http://www.google.com/search?q=中国語%20'+word);
+                  };
+                  document.getElementById("word_ja_<%= i%>").onclick = function(){
+                    var target= document.getElementById('sentence_s_words_attributes_<%= i%>_ja');
+                        word = target.value;
+                    window.open('http://www.google.com/search?q=中国語%20'+word);
+                  };
+                </script>
+              <% end %>
+            <% end %>
+          </div>
+          <%= f.submit "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_sentence', 'form_in_sentences_new')" %>
+          <%= f.submit "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_sentence', 'form_in_sentences_new')" %>
+          <br><br><br>
+        <% end %>
+      </div><!-- End of passage-new-content -->
+    </div><!-- End of col-12 -->
+  </div><!-- End of row -->
+</div><!-- End of Container -->

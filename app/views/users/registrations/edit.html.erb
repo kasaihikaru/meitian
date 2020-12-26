@@ -2,6 +2,13 @@
   <%= @user.name %>さんのユーザー設定 | MeiTian
 <% end %>
 
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+  <div class="brand-top">
+    アカウント
+  </div>
+</div>
+
 <div class="container-fluid user-register">
   <div class="row">
     <div class="col-12 col-md-10 offset-md-1">
@@ -14,8 +21,8 @@
           <%= devise_error_messages! %>
 
         <div class="field">
-          <%= f.label :goal, "目標" %><br />
-          <%= f.text_area :goal, autofocus: true, maxlength: "2000", placeholder: "中国語学習で目指すゴールを書きましょう！トップページの一番上に常に掲げて見えるようになります。", class: "input-textarea" %>
+          <%= f.label :goal, "中国語学習での目標" %><br />
+          <%= f.text_area :goal, autofocus: true, maxlength: "2000", placeholder: "中国語学習で目指すゴールを書きましょう！", class: "input-textarea" %>
         </div>
 
 
@@ -28,55 +35,41 @@
           </div>
         <% end %>
 
-        <% if @user.introduction.blank? %>
+        <div class="field">
+          <%= f.label :name, 'ユーザーネーム' %><br />
+          <%= f.text_field :name, autofocus: true, maxlength: "20", placeholder: 'ユーザーネーム', class: "input-text" %>
+        </div>
+
+        <% if @user.image.present? %>
           <div class="field">
-            <%= f.label :introduction, "自己紹介" %><br />
-            <%= f.text_area :introduction, autofocus: true, maxlength: "2000", placeholder: "プロフィールを書きましょう！", class: "input-textarea" %>
+            <%= f.label :image, "アイコン画像" %><br />
+            <%= image_tag @user.image.url, alt: "icon" if @user.image? %>
+            <%= f.file_field :image %>
           </div>
         <% end %>
 
-        <div class="field" onclick="ga('send', 'event', 'users_edit', 'open_user_basic_settings_collaps', '');">
-          <a class="" data-toggle="collapse" href="#user-basic-settings" role="button" aria-expanded="false">
-          ▶︎ユーザー基礎設定を開く
-          </a>
+        <div class="field">
+          <%= f.label :email, 'メールアドレス' %><br />
+          <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
         </div>
-        <div class="collapse" id="user-basic-settings">
-          <div class="field">
-            <%= f.label :name, 'ユーザーネーム' %><br />
-            <%= f.text_field :name, autofocus: true, maxlength: "20", placeholder: 'ユーザーネーム', class: "input-text" %>
-          </div>
 
-          <% if @user.image.present? %>
-            <div class="field">
-              <%= f.label :image, "アイコン画像" %><br />
-              <%= image_tag @user.image.url, alt: "icon" if @user.image? %>
-              <%= f.file_field :image %>
-            </div>
-          <% end %>
 
-          <div class="field">
-            <%= f.label :email, 'メールアドレス' %><br />
-            <%= f.email_field :email, autofocus: true, placeholder: 'メールアドレス', class: "input-text" %><br>
-          </div>
-
-          <% if @user.introduction.present? %>
-            <div class="field">
-              <%= f.label :introduction, "自己紹介" %><br />
-              <%= f.text_area :introduction, autofocus: true, maxlength: "2000", placeholder: "プロフィールを書きましょう！", class: "input-textarea" %>
-            </div>
-          <% end %>
-
-          <div class="field">
-            <%= f.label :link, "リンク" %><br />
-            <%= f.text_field :link, autofocus: true, maxlength: "1000", placeholder: "ブログやSNSなどのリンクを貼ることができます", class: "input-text"%>
-          </div>
-
-          <div class="field">
-            <%= f.label :password, '新しいパスワード' %>
-            <%= f.password_field :password, autocomplete: "off", placeholder:  'パスワードを変えたい場合のみ入力してください', class: "input-text" %>
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: '新パスワード確認', class: "input-text" %>
-          </div>
+        <div class="field">
+          <%= f.label :introduction, "自己紹介" %><br />
+          <%= f.text_area :introduction, autofocus: true, maxlength: "2000", placeholder: "プロフィールを書きましょう！", class: "input-textarea" %>
         </div>
+
+        <div class="field">
+          <%= f.label :link, "リンク" %><br />
+          <%= f.text_field :link, autofocus: true, maxlength: "1000", placeholder: "ブログやSNSなどのリンクを貼ることができます", class: "input-text"%>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, '新しいパスワード' %>
+          <%= f.password_field :password, autocomplete: "off", placeholder:  'パスワードを変えたい場合のみ入力してください', class: "input-text" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: '新パスワード確認', class: "input-text" %>
+        </div>
+
 
         <%= f.submit "更新", class: "form-send-btn float-right margin-b-20 visible-lg", onclick: "ga('send', 'event', 'users_edit', 'submit_update_user', '')" %>
         <%= f.submit "更新", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onclick: "ga('send', 'event', 'users_edit', 'submit_update_user', '')" %>

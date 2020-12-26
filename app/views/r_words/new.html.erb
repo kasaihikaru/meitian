@@ -1,81 +1,90 @@
 <% content_for :title do %>
-  中国語の単語を投稿 | MeiTian
+  単語を追加する | MeiTian
 <% end %>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
-    <div class="form-title">単語を追加する</div>
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
+    <div class="brand-top-logo-center">単語を追加する</div>
+  </div>
+</div>
 
-    <div class="hint-no-border visible-xs visible-sm visible-md">
-      <%= render :partial => 'svg/information' %>
-      単語の投稿はパソコンでやるとより簡単です！
-    </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
 
-    <div class="new-content">
-      <!-- 新しい単語帳を作るModal -->
-      <div class="modal fade" id="new_ring_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <%= form_for @new_ring, method: :post do |ring| %>
-              <div class="modal-body">
-                <%= ring.text_field :name, placeholder: "新しい単語帳を作る", :required => true, style: "width: 100%; height: 50px;" %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
-                <%= ring.submit "作成", class: "prim-btn", onsubmit: "ga('send', 'event', 'submit', 'new_ring', 'form_in_r_words_new')" %>
-              </div>
-            <% end %>
+      <div class="hint-no-border visible-xs visible-sm visible-md">
+        <%= render :partial => 'svg/information' %>
+        単語の投稿はパソコンでやるとより簡単です！
+      </div>
+
+      <div class="new-content">
+        <!-- 新しい単語帳を作るModal -->
+        <div class="modal fade" id="new_ring_modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <%= form_for @new_ring, method: :post do |ring| %>
+                <div class="modal-body">
+                  <%= ring.text_field :name, placeholder: "新しい単語帳を作る", :required => true, style: "width: 100%; height: 50px;" %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
+                  <%= ring.submit "作成", class: "prim-btn", onsubmit: "ga('send', 'event', 'submit', 'new_ring', 'form_in_r_words_new')" %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-      <%= form_tag("/r_words", method: :post) do %>
-         <!-- 単語帳選択 -->
-        <div class='form-section'>
-          <%= label_tag(:ring, "どの単語帳に追加しますか？") %>
-          <span type="button" class="link-to-new-sr-modal" data-toggle="modal" data-target="#new_ring_modal">
-            新しい単語帳を作る
-          </span><br>
-          <% if @ring_id.present? %>
-            <%= select_tag :ring_id, options_from_collection_for_select(@myrings, :id, :name, selected: @ring_id) %>
-          <% else %>
-            <%= select_tag :ring_id, options_from_collection_for_select(@myrings, :id, :name) %>
-          <% end %>
-        </div>
+        <%= form_tag("/r_words", method: :post) do %>
+           <!-- 単語帳選択 -->
+          <div class='form-section'>
+            <%= label_tag(:ring, "どの単語帳に追加しますか？") %>
+            <span type="button" class="link-to-new-sr-modal" data-toggle="modal" data-target="#new_ring_modal">
+              新しい単語帳を作る
+            </span><br>
+            <% if @ring_id.present? %>
+              <%= select_tag :ring_id, options_from_collection_for_select(@myrings, :id, :name, selected: @ring_id) %>
+            <% else %>
+              <%= select_tag :ring_id, options_from_collection_for_select(@myrings, :id, :name) %>
+            <% end %>
+          </div>
 
-        <!-- 単語フォーム -->
-        <div class='form-section'>
-          <%= label_tag(:title, "追加したい単語を書いてください") %><br>
-          <% 20.times do |i| %>
-            <div class="clearfix">
-              <div id="r_word_ch_<%= i %>" class="float-left">
-                <%= render :partial => 'svg/google' %>
+          <!-- 単語フォーム -->
+          <div class='form-section'>
+            <%= label_tag(:title, "追加したい単語を書いてください") %><br>
+            <% 20.times do |i| %>
+              <div class="clearfix">
+                <div id="r_word_ch_<%= i %>" class="float-left">
+                  <%= render :partial => 'svg/google' %>
+                </div>
+                <%= text_field_tag 'r_word['+i.to_s+'][ch]', "", placeholder: "中国語", class: "float-left" %>
+                <div id="r_word_ja_<%= i %>" class="float-left margin-l-10">
+                  <%= render :partial => 'svg/google' %>
+                </div>
+                <%= text_field_tag 'r_word['+i.to_s+'][ja]', "",  :placeholder=> "日本語", class: "float-left" %>
               </div>
-              <%= text_field_tag 'r_word['+i.to_s+'][ch]', "", placeholder: "中国語", class: "float-left" %>
-              <div id="r_word_ja_<%= i %>" class="float-left margin-l-10">
-                <%= render :partial => 'svg/google' %>
-              </div>
-              <%= text_field_tag 'r_word['+i.to_s+'][ja]', "",  :placeholder=> "日本語", class: "float-left" %>
-            </div>
-            <!-- google検索機能 -->
-            <script type="text/javascript">
-              document.getElementById("r_word_ch_<%= i%>").onclick = function(){
-                var target= document.getElementById('r_word_<%= i%>_ch');
-                    word = target.value;
-                window.open('http://www.google.com/search?q=中国語%20'+word);
-              };
-              document.getElementById("r_word_ja_<%= i%>").onclick = function(){
-                var target= document.getElementById('r_word_<%= i%>_ja');
-                    word = target.value;
-                window.open('http://www.google.com/search?q=中国語%20'+word);
-              };
-            </script>
-          <% end %>
-        </div>
+              <!-- google検索機能 -->
+              <script type="text/javascript">
+                document.getElementById("r_word_ch_<%= i%>").onclick = function(){
+                  var target= document.getElementById('r_word_<%= i%>_ch');
+                      word = target.value;
+                  window.open('http://www.google.com/search?q=中国語%20'+word);
+                };
+                document.getElementById("r_word_ja_<%= i%>").onclick = function(){
+                  var target= document.getElementById('r_word_<%= i%>_ja');
+                      word = target.value;
+                  window.open('http://www.google.com/search?q=中国語%20'+word);
+                };
+              </script>
+            <% end %>
+          </div>
 
-        <%= submit_tag "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_r_words', 'form_in_r_words_new')" %>
-        <%= submit_tag "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_r_words', 'form_in_r_words_new')" %>
-        <br><br><br>
-      <% end %>
-    </div><!-- End of passage-new-content -->
-  </div><!-- End of col-12 -->
-</div><!-- End of row -->
+          <%= submit_tag "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_r_words', 'form_in_r_words_new')" %>
+          <%= submit_tag "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_r_words', 'form_in_r_words_new')" %>
+          <br><br><br>
+        <% end %>
+      </div><!-- End of passage-new-content -->
+    </div><!-- End of col-12 -->
+  </div><!-- End of row -->
+</div><!-- End of Container -->

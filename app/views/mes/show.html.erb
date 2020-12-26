@@ -2,26 +2,43 @@
 	マイ教材 | MeiTian
 <% end %>
 
-<!-- <div class="me-jump-to-note">
-	<a href="https://note.mu/meitian/n/n54c6670c3111" target="_blank" onclick="ga('send', 'event', 'outbound', 'note_how_to_use_meitian', 'link_in_me');">かんたん使い方ガイド</a>
-</div> -->
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+  <div class="brand-top">
+    マイ教材
+  </div>
+</div>
 
-<% if @user.goal.present? %>
-	<div class="balloon1-top">
-		<p>
-			<%= @user.goal %>
-		</p>
-	</div>
-<% end %>
+<div class="container">
 
-<% if @user.goal.blank?%>
-	<%= link_to edit_user_registration_path(@user) do %>
-		<div class='card-alert'>
-			タスク：中国語学習の目標を決めましょう！
-		</div>
+	<% if @user.goal.blank?%>
+		<%= link_to edit_user_registration_path(@user) do %>
+			<div class='card-alert'>
+				中国語学習の目標を決めましょう！
+			</div>
+		<% end %>
 	<% end %>
-<% end %>
 
+	<% if @user.goal.present? %>
+		<div class="balloon-wrapper float-left"">
+			<% if @user.image? %>
+						<%= image_tag @user.image.url, :alt => "icon", :class => "icon" %>
+			<% else %>
+				<img class="icon" alt="no-icon" src="/images/no-icon.png">
+			<% end %>
+			<p class="left_balloon">
+				<%= @user.goal %>
+			</p>
+		</div>
+		<br class="clear_balloon"/>
+	<% end %>
+	<div class='psr-link'>
+		<%= link_to edit_user_registration_path(@user) do %>
+			>目標の変更
+		<% end %>
+ 	</div>
 
-<!-- PSRリスト -->
-<%= render :partial => 'users/psr_list', :locals=>{user: @user, passages: @passages, passages_cnt: @passages_cnt, papers: @papers, papers_cnt: @papers_cnt, rings: @rings, rings_cnt: @rings_cnt} %>
+	<!-- PSRリスト -->
+	<%= render :partial => 'users/psr_list', :locals=>{user: @user, passages: @passages, passages_cnt: @passages_cnt, papers: @papers, papers_cnt: @papers_cnt, rings: @rings, rings_cnt: @rings_cnt} %>
+
+</div><!-- End of Container -->

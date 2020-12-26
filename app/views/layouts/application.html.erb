@@ -51,12 +51,6 @@
       <div class="alert"><%= alert %></div>
     <% end %>
 
-    <!-- ヘッダー スマホ -->
-    <div class='visible-xs'>
-      <div class="brand-top">
-          <%= render :partial => 'svg/logo_letters' %>
-      </div>
-    </div>
 
     <!-- ヘッダー タブレット以上 -->
     <div class='visible-sm visible-md visible-lg'>
@@ -144,12 +138,12 @@
           <div class="modal-body">
             <%= link_to new_r_word_path do %>
               <div class="margin-5">
-                <%= render :partial => 'svg/ring_line' %><span class="margin-l-10">単語帳を作成する</span>
+                <%= render :partial => 'svg/ring_line' %><span class="margin-l-10">単語を追加する</span>
               </div>
             <% end %>
             <%= link_to new_sentence_path do %>
               <div class="margin-5">
-                <%= render :partial => 'svg/paper_line' %><span class="margin-l-10">瞬間作文集を作成する</span>
+                <%= render :partial => 'svg/paper_line' %><span class="margin-l-10">瞬間作文集を追加する</span>
               </div>
             <% end %>
             <%= link_to new_passage_path do %>
@@ -166,13 +160,7 @@
 
     <!-- コンテンツ -->
     <div class="contents">
-      <% if params[:controller] == 'homes' && params[:action] == 'show' %>
-        <%= yield %>
-      <% else %>
-        <div class="container">
-          <%= yield %>
-        </div>
-      <% end %>
+      <%= yield %>
     </div>
 
     <!-- フッターナビ スマホ用 -->
