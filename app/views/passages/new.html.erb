@@ -3,88 +3,86 @@
 <% end %>
 
 <div class="row">
-  <div class="col-xs-12" >
-    <div class="form-title">長文を作成する</div>
+  <div class="form-title">長文を作成する</div>
 
-    <div class="hint-no-border visible-xs visible-sm visible-md">
-      <%= render :partial => 'svg/information' %>
-      文章の投稿はパソコンでやるとより簡単です！
+  <div class="hint-no-border visible-xs visible-sm visible-md">
+    <%= render :partial => 'svg/information' %>
+    文章の投稿はパソコンでやるとより簡単です！
+  </div>
+
+  <%= form_for @passage, method: :post do |f| %>
+      <div class="col-xs-12 col-lg-8">
+      <div class='form-section'>
+        <div class='clearfix'>
+          <div class='float-left'>
+            <%= f.label :title, "タイトル" %>&emsp;
+          </div>
+          <div class='float-left' id="passage_new_title_google">
+            <%= render :partial => 'svg/google_100' %>
+          </div>
+        </div>
+        <%= f.text_field :title, placeholder: "長文のタイトル", class: "new-passage-title", :required => true %>
+      </div>
+
+      <div class='form-section new-passage-content'>
+        <div class='clearfix'>
+          <div class='float-left'>
+            <%= f.label :ch, "長文内容" %>&emsp;
+          </div>
+          <div class='float-left' id="passage_new_ch_google">
+            <%= render :partial => 'svg/google_100' %>
+          </div>
+        </div>
+        <%= f.text_area :ch, placeholder: "勉強したい中国語の文章を書いてください。改行やスペースなどで読みやすく書くことをオススメします。", :required => true %>
+      </div>
+
+      <div class='form-section new-passage-content'>
+        <div class='clearfix'>
+          <div class='float-left'>
+            <%= f.label :ja, "日本語訳" %>&emsp;
+          </div>
+          <div class='float-left' id="passage_new_ja_google">
+            <%= render :partial => 'svg/google_100' %>
+          </div>
+        </div>
+        <%= f.text_area :ja, placeholder: "勉強するときに、長文の日本語訳が必要な場合は、埋めてください。必須項目ではありません。" %>
+      </div>
     </div>
 
-    <%= form_for @passage, method: :post do |f| %>
-        <div class="col-xs-12 col-lg-8">
-        <div class='form-section'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :title, "タイトル" %>&emsp;
-            </div>
-            <div class='float-left' id="passage_new_title_google">
-              <%= render :partial => 'svg/google_100' %>
-            </div>
-          </div>
-          <%= f.text_field :title, placeholder: "長文のタイトル", class: "new-passage-title", :required => true %>
-        </div>
-
-        <div class='form-section new-passage-content'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :ch, "長文内容" %>&emsp;
-            </div>
-            <div class='float-left' id="passage_new_ch_google">
-              <%= render :partial => 'svg/google_100' %>
-            </div>
-          </div>
-          <%= f.text_area :ch, placeholder: "勉強したい中国語の文章を書いてください。改行やスペースなどで読みやすく書くことをオススメします。", :required => true %>
-        </div>
-
-        <div class='form-section new-passage-content'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :ja, "日本語訳" %>&emsp;
-            </div>
-            <div class='float-left' id="passage_new_ja_google">
-              <%= render :partial => 'svg/google_100' %>
-            </div>
-          </div>
-          <%= f.text_area :ja, placeholder: "勉強するときに、長文の日本語訳が必要な場合は、埋めてください。必須項目ではありません。" %>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-lg-4">
-        <div class='form-section'>
-          <%= f.label :title, "覚えたい単語を書き出してください" %><br />
-          <% 20.times do |i| %>
-            <%= f.fields_for :p_words do |w| %>
-              <div class="clearfix">
-                <div id="word_ch_<%= i %>" class="float-left">
-                  <%= render :partial => 'svg/google' %>
-                </div>
-                <%= w.text_field :ch ,placeholder: "中国語", class: "float-left" %>
-                <div id="word_ja_<%= i %>" class="float-left margin-l-10">
-                  <%= render :partial => 'svg/google' %>
-                </div>
-                <%= w.text_field :ja ,placeholder: "日本語", class: "float-left" %>
+    <div class="col-xs-12 col-lg-4">
+      <div class='form-section'>
+        <%= f.label :title, "覚えたい単語を書き出してください" %><br />
+        <% 20.times do |i| %>
+          <%= f.fields_for :p_words do |w| %>
+            <div class="clearfix">
+              <div id="word_ch_<%= i %>" class="float-left">
+                <%= render :partial => 'svg/google' %>
               </div>
-              <!-- google検索機能 -->
-              <script type="text/javascript">
-                document.getElementById("word_ch_<%= i%>").onclick = function(){
-                  var target= document.getElementById('passage_p_words_attributes_<%= i%>_ch');
-                      word = target.value;
-                  window.open('http://www.google.com/search?q=中国語%20'+word);
-                };
-                document.getElementById("word_ja_<%= i%>").onclick = function(){
-                  var target= document.getElementById('passage_p_words_attributes_<%= i%>_ja');
-                      word = target.value;
-                  window.open('http://www.google.com/search?q=中国語%20'+word);
-                };
-              </script>
-            <% end %>
+              <%= w.text_field :ch ,placeholder: "中国語", class: "float-left" %>
+              <div id="word_ja_<%= i %>" class="float-left margin-l-10">
+                <%= render :partial => 'svg/google' %>
+              </div>
+              <%= w.text_field :ja ,placeholder: "日本語", class: "float-left" %>
+            </div>
+            <!-- google検索機能 -->
+            <script type="text/javascript">
+              document.getElementById("word_ch_<%= i%>").onclick = function(){
+                var target= document.getElementById('passage_p_words_attributes_<%= i%>_ch');
+                    word = target.value;
+                window.open('http://www.google.com/search?q=中国語%20'+word);
+              };
+              document.getElementById("word_ja_<%= i%>").onclick = function(){
+                var target= document.getElementById('passage_p_words_attributes_<%= i%>_ja');
+                    word = target.value;
+                window.open('http://www.google.com/search?q=中国語%20'+word);
+              };
+            </script>
           <% end %>
-        </div>
+        <% end %>
       </div>
-      <%= f.submit "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_passage', 'form_in_passage_new')" %>
-      <%= f.submit "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_passage', 'form_in_passages_new')" %>
-      <br><br><br>
-    <% end %>
-  </div><!-- End of col-12 -->
+    </div>
+    <%= f.submit "投稿", class: "form-send-btn float-right margin-b-20 visible-lg", onsubmit: "ga('send', 'event', 'submit', 'new_passage', 'form_in_passage_new')" %>
+    <%= f.submit "投稿", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md", onsubmit: "ga('send', 'event', 'submit', 'new_passage', 'form_in_passages_new')" %>
+    <br><br><br>
+  <% end %>
 </div><!-- End of row -->
