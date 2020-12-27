@@ -1,5 +1,12 @@
 $("#paper-status-btns").html("<%= j(render :partial => 'papers/paper_status', :locals=>{paper: @paper}) %>");
 
+// モーダルを閉じる
+$(function() {
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('#icesword').modal('hide');
+});
+
 // パンパカパーン
 $('#get-feedback-here').html('<div class="feedback">完了おめでとうございます！</div>')
 confetti({

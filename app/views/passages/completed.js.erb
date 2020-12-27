@@ -1,5 +1,12 @@
 $("#passage-status-btns").html("<%= j(render :partial => 'passages/passage_status', :locals=>{passage: @passage}) %>");
 
+// モーダルを閉じる
+$(function() {
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('#icesword').modal('hide');
+});
+
 // パンパカパーン
 $('#get-feedback-here').html('<div class="feedback">完了おめでとうございます！</div>')
 confetti({

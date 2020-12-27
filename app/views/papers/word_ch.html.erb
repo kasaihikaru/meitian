@@ -1,73 +1,19 @@
 <% content_for :title do %>
-  中国語の単語を勉強 | <%= @paper.name %>
+  <%= @paper.name %> | Meitianで中国語を勉強
 <% end %>
 
 
-<!-- ヘッダー スマホ -->
-<div class='visible-xs'>
-	<div class="brand-top">
-		<div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
-		<% if @user == current_user %>
-			<div class="float-right margin-lr-12">
-					<%= link_to edit_paper_path(@paper) do %>
-						<%= render :partial => 'svg/edit_white' %>&nbsp;編集
-					<% end %>
-			</div>
-		<% end %>
-  </div>
-</div>
+<%= render :partial => 'papers/papers_show_common', :locals=>{user: @user, paper: @paper, sentences: @sentences} %>
 
 
-<div class="container">
-	<!-- TOPは共通 -->
-	<%= render :partial => 'papers/papers_show_common', :locals=>{user: @user, paper: @paper, sentences: @sentences} %>
+<!-- 単語リスト -->
+<section class='words' id='sentence-word-ch'>
+	<% if @sentences.present? %>
+		<%= render :partial => 'render_for_word/s_word_ch_table', :locals=>{paper: @paper, sentences: @sentences} %>
+	<% end %>
+</section>
 
 
-	<section class='words' id='sentence-word-ch'>
-		<% if @sentences.present? %>
-			<!-- 日or中 短文or単語 切り替え選択部分 -->
-			<div class='sentence-or-word'>
-				<li>
-					<%= link_to paper_sentence_ch_path(@paper) do %>
-						<%= render :partial => 'svg/circle' %>短文を勉強
-					<% end %>
-				</li>
-				<li class="selected-list">
-					<%= render :partial => 'svg/check_tomato' %>短文中の単語を勉強
-				</li>
-			</div>
-			<div class='lang-change clearfix'>
-				<%= link_to paper_word_ja_path(@paper) do %>
-					<div class='lang-btn lang-btn-ja'>
-							日
-					</div>
-				<% end %>
-				<div class='lang-btn lang-btn-ch-selected'>
-					中
-				</div>
-			</div>
-
-			<% if user_signed_in? && @paper.user_id == current_user.id %>
-				<div class='progress-bar-wrapper'>
-					<div class='clearfix'>
-						<div class='float-left'>
-							暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
-						</div>
-						<div class='float-right'>
-							<%= link_to paper_uncheck_all_words_ch_path(@paper),method: :put do %>
-								全てのチェックをはずす
-							<% end %>
-						</div>
-					</div>
-					<div class="progress" id="progress-bar-render-wrapper">
-						<%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
-					</div>
-				</div>
-			<% end %>
-
-			<%= render :partial => 'render_for_word/s_word_ch_table', :locals=>{paper: @paper, sentences: @sentences} %>
-		<% end %>
-	</section>
 </div><!-- End of Container -->
 
 <div class="empty-sm">

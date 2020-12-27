@@ -1,3 +1,15 @@
 $("#r_word_row_<%= @word.id %>").html("<%= j(render :partial => 'render_for_word/r_word_row_ja', :locals=>{word: @word, ring: @ring}) %>");
 $("#progress-bar-render-wrapper").html("<%= j(render :partial => 'render_common/progress', :locals=>{progress: @progress}) %>");
 $("#memorized_status").html("<%= j(render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count}) %>");
+
+// 円グラフ
+$(function(){
+  var $ppc = $('.progress-pie-chart'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents span').html(percent+'%');
+});

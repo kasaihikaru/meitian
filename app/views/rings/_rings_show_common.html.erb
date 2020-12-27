@@ -1,71 +1,122 @@
-<div class='clearfix'>
-	<div class='psr-show-user float-left'>
-		<%= link_to user_path(user) do %>
-			<% if user.image? %>
-			  <%= image_tag user.image.url, :alt => "icon", :class=>"smallicon center" %>
-			<% else %>
-				 <img alt="no-icon" src="/images/no-icon.png" class="smallicon">
-			<% end %>
-		<% end %>
-	</div>
-	<div class='psr-show-user float-left margin-l-10'>
-		<%= link_to user_path(user) do %>
-			<%= user.name %>
-		<% end %>
-	</div>
-	<% if user == current_user %>
-		<div class='edit-btn float-right'>
-			<%= link_to edit_ring_path(ring) do %>
-				<%= render :partial => 'svg/edit' %>
-			<% end %>
-		</div>
-	<% end %>
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center"><%= @ring.name.truncate(15) %></div>
+    <% if @user == current_user %>
+      <div class="float-right margin-lr-12">
+          <%= link_to edit_ring_path(@ring) do %>
+            <%= render :partial => 'svg/edit_white' %>&nbsp;編集
+          <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<% if user_signed_in? && @user != current_user %>
-  <!-- マイ教材にコピー、モーダル立ち上げボタン -->
-  <button type="button" class="copy-action-btn float-right margin-b-20 visible-lg" data-toggle="modal" data-target="#copy_to_mylist_modal">
-    マイ教材に追加
-  </button>
-  <button type="button" class="copy-action-btn action-float-btn visible-xs visible-sm visible-md" data-toggle="modal" data-target="#copy_to_mylist_modal">
-    マイ教材に追加
-  </button>
+<div class="container">
 
-  <!-- マイ教材にコピー、モーダル -->
-  <div class="modal fade modal-centered" id="copy_to_mylist_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">「<%= @ring.name%>」をコピーして、マイ教材に追加しますか？</h5>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-          <button type="button" class="btn bg-prim fontcol-white prevent_double_click" data-dismiss="modal"><%= link_to "マイ教材に追加", ring_copy_path(@ring), method: :post, class: "fontcol-white", remote: true %></button>
-        </div>
+  <h1 class='h1-margin'><%= @ring.name %></h1>
+  <div class='clearfix'>
+    <div class="margin-tb-10 line-height-15">
+      <div class='float-left'>
+        <%= link_to user_path(@user) do %>
+          <% if @user.image? %>
+            <%= image_tag @user.image.url, :alt => "icon", :class=>"icon-40 center" %>
+          <% else %>
+             <img alt="no-icon" src="/images/no-icon.png" class="icon-40">
+          <% end %>
+        <% end %>
+      </div>
+      <div class='float-left margin-l-10'>
+        <%= link_to user_path(@user) do %>
+          <span class="font-12"><%= @user.name %></span><br>
+          <span class="font-10 fontcol-grey"><%= @ring.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %></span>
+        <% end %>
+      </div>
+      <div class='float-right'><!-- ステータス部分 -->
+        <% if user == current_user %>
+          <div class="status-btns clearfix" id="ring-status-btns">
+            <%= render :partial => 'rings/ring_status', :locals=>{ring: @ring} %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
-<% end %>
+
+  <% if user_signed_in? && @user == current_user %>
+    <!-- 日or中 切り替え選択部分 -->
+    <div class="center-align margin-tb-35">
+      <% if params[:action] == 'word_ch' %>
+        <span class='lang-btn lang-btn-ch-selected'>
+          中 → 日を勉強
+        </span>
+        <%= link_to ring_word_ja_path(@ring, anchor: 'ring-words-ja') do %>
+          <span class='lang-btn lang-btn-ja'>
+              日 → 中を勉強
+          </span>
+        <% end %>
+      <% elsif params[:action] == 'word_ja'%>
+        <%= link_to ring_word_ch_path(@ring, anchor: 'ring-words-ch') do %>
+          <span class='lang-btn lang-btn-ch'>
+            中 → 日を勉強
+          </span>
+        <% end %>
+        <span class='lang-btn lang-btn-ja-selected'>
+            日 → 中を勉強
+        </span>
+      <% end %>
+    </div>
+
+    <!-- 円グラフ -->
+    <div class="clearfix">
+      <div class="float-left" id="progress-bar-render-wrapper">
+        <%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
+      </div>
+      <div class="float-left margin-tb-15">
+        暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{progress:@progress, memorized_count: @memorized_count, all_count: @all_count} %></span><br>
+        <% if params[:action] == 'word_ch' %>
+          <%= link_to ring_uncheck_all_words_ch_path(@ring), method: :put, class: "fontcol-prim" do %>全てのチェックをはずす<% end %>
+        <% elsif params[:action] == 'word_ja'%>
+          <%= link_to ring_uncheck_all_words_ja_path(@ring), method: :put, class: "fontcol-prim" do %>全てのチェックをはずす<% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
 
-<!-- 単語帳の名前 -->
-<h1><%= @ring.name%></h1>
 
-<!-- ヒント部分 -->
-<% unless user_signed_in? %>
-	<% if words.present?%>
-		<div class='hint'>
-			<ul class="cp_list">
-				<li>下にある単語を押すと、google検索できます</li>
-				<li>ログインすると、暗記済みの単語にチェックをつけて、単語帳として利用できます。</li>
-			</ul>
-		</div>
-	<% end %>
-<% end %>
+  <% if user_signed_in? && @user != current_user %>
+    <!-- マイ教材にコピー、モーダル立ち上げボタン -->
+    <button type="button" class="copy-action-btn float-right margin-b-20 visible-lg" data-toggle="modal" data-target="#copy_to_mylist_modal">
+      マイ教材に追加
+    </button>
+    <button type="button" class="copy-action-btn action-float-btn visible-xs visible-sm visible-md" data-toggle="modal" data-target="#copy_to_mylist_modal">
+      マイ教材に追加
+    </button>
 
-<!-- ステータス部分 -->
-<% if user == current_user %>
-	<div class="status-btns clearfix" id="ring-status-btns">
-		<%= render :partial => 'rings/ring_status', :locals=>{ring: ring} %>
-	</div>
-<% end %>
+    <!-- マイ教材にコピー、モーダル -->
+    <div class="modal fade modal-centered" id="copy_to_mylist_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">「<%= @ring.name%>」をコピーして、マイ教材に追加しますか？</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn bg-prim fontcol-white prevent_double_click" data-dismiss="modal"><%= link_to "マイ教材に追加", ring_copy_path(@ring), method: :post, class: "fontcol-white", remote: true %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- ヒント部分 -->
+  <% unless user_signed_in? %>
+    <% if words.present?%>
+      <div class='hint'>
+        <ul class="cp_list">
+          <li>下にある単語を押すと、google検索できます</li>
+          <li>ログインすると、暗記済みの単語にチェックをつけて、単語帳として利用できます。</li>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>

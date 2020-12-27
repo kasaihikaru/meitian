@@ -68,7 +68,9 @@
 .margin-t-50{  margin-top: 50px;}
 .margin-tb-5{  margin: 5px 0;}
 .margin-tb-10{  margin: 10px 0;}
+.margin-tb-15{  margin: 15px 0;}
 .margin-tb-20{  margin: 20px 0;}
+.margin-tb-35{  margin: 35px 0;}
 .padding-tb-20{  padding: 20px 0;}
 .padding-t-3{  padding-top: 3px;}
 .padding-t-20{  padding-top: 20px;}
@@ -93,18 +95,24 @@
 .fontcol-lightprim{color: $LightPrim;}
 .fontcol-black{color: black;}
 .fontcol-white{color: white;}
+.fontcol-grey{color: $Grey;}
 .opacity-8{opacity: 0.8;}
 
 
 //--------------- 文字サイズ ----------------
 .font-bold{font-weight: 800;}
 h1{ font-size: 20px; font-weight: 800; }
+.font-10{ font-size: 10px;}
 .font-12{ font-size: 12px;}
 .font-14{ font-size: 14px;}
 .font-16{ font-size: 16px;}
 .font-20{ font-size: 20px;}
 
-.h1-margin{  margin: 10px 0 20px;}
+.h1-margin{  margin: 15px 0;}
+
+
+//--------------- 文字幅 ----------------
+.line-height-15{line-height: 15px;}
 
 
 //--------------- 背景色 ----------------
@@ -371,7 +379,11 @@ span[data-badge-top-right]:before {
 	height: 20px;
 	border-radius: 10px;
 }
-
+.icon-40{
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+}
 
 
 
@@ -408,6 +420,7 @@ span[data-badge-top-right]:before {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 12px;
   }
 }
 .brand-top-fix{
@@ -667,10 +680,11 @@ textarea{
 //----------------- status btns ------------------//
 .status-btns{
   margin-bottom: 15px;
-  .status-btn{
+  .status-btn, .status-btn-bg{
     color: black;
     border: 1px solid $Grey;
   }
+  //status-btn
   .status-btn, .status-btn:hover{
     cursor: pointer;
     padding: 7px 13px;
@@ -723,6 +737,38 @@ textarea{
     color: $Black;
     font-weight: 500;
     border: 1px solid $Black;
+  }
+
+  //status-btn-big
+ .status-btn-bg, .status-btn-bg:hover{
+    cursor: pointer;
+    width: 120px;
+    height: 32px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+  .status-bg-on-grey{
+    background-color: $Black;
+    color: white;
+    border: none;
+  }
+  .status-bg-on-red{
+    background-color: $Red;
+    color: white;
+    border: none;
+  }
+  .status-bg-on-blue{
+    background-color: $Blue;
+    color: white;
+    border: none;
+  }
+  .status-bg-on-green{
+    background-color: $Green;
+    color: white;
+    border: none;
   }
 }
 
@@ -1052,7 +1098,6 @@ ul.cp_list li:before {
 
 
 
-
 /*******************************
 * 縮むボタンなど、単語のチェックボタン系
 ********************************/
@@ -1126,3 +1171,68 @@ ul.cp_list li:before {
             transform: scale(0.85);
   }
 }
+
+
+
+
+/*******************************
+* 円グラフ
+********************************/
+@mixin circle($size) {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - #{$size/2});
+  top: calc(50% - #{$size/2});
+  width: $size;
+  height: $size;
+}
+
+$size: 50px;
+.progress-pie-chart {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: #B8B8B8;
+  position: relative;
+  margin: 10px 20px 10px 10px;
+  &.gt-50 {
+    background-color: $Black;
+  }
+}
+.ppc-progress {
+  @include circle($size);
+  clip: rect(0, $size, $size, #{$size/2});
+  .ppc-progress-fill {
+    @include circle($size);
+    clip: rect(0, #{$size/2}, $size, 0);
+    background: $Black;
+    transform: rotate(60deg);
+  }
+  .gt-50 & {
+    clip: rect(0, #{$size/2}, $size, 0);
+    .ppc-progress-fill {
+      clip: rect(0, $size, $size, #{$size/2});
+      background: #B8B8B8;
+    }
+  }
+}
+.ppc-percents {
+  @include circle(#{$size/1.15});
+  background: #fff;
+  text-align: center;
+  display: table;
+  span {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: $Black;
+  }
+}
+.pcc-percents-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+
