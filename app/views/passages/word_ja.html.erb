@@ -3,60 +3,67 @@
 <% end %>
 
 
-<!-- 長文部分は共通 -->
-<%= render :partial => 'passages/passage_show_common', :locals=>{user: @user, passage: @passage, memorized_words_ch_count: @memorized_words_ch_count, all_words_count: @all_words_count, progress: @progress, words: @words} %>
-
-
-<!-- 単語部分は日中で出しわけ -->
-<section class='words' id='passage-words-ja'>
-	<% if @words.present? %>
-		<div class='word-title'>
-			単語暗記
-		</div>
-
-		<!-- 日or中　切り替え選択部分 -->
-		<div class='lang-change clearfix'>
-			<div class='lang-btn lang-btn-ja-selected'>
-					日
-			</div>
-			<%= link_to passage_word_ch_path(@passage, anchor: 'passage-words-ch') do %>
-				<div class='lang-btn lang-btn-ch'>
-					中
-				</div>
-			<% end %>
-		</div>
-
-		<% if user_signed_in? && @user == current_user %>
-			<div class='progress-bar-wrapper'>
-				<div class='clearfix'>
-					<div class='float-left'>
-						暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
-					</div>
-					<div class='float-right'>
-						<%= link_to passage_uncheck_all_words_ja_path(@passage),method: :put do %>
-							全てのチェックをはずす
-						<% end %>
-					</div>
-				</div>
-				<div class="progress" id="progress-bar-render-wrapper">
-				  <%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
-				</div>
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+	<div class="brand-top">
+		<div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
+		<% if @user == current_user %>
+			<div class="float-right margin-lr-12">
+					<%= link_to edit_passage_path(@passage) do %>
+						<%= render :partial => 'svg/edit_white' %>&nbsp;編集
+					<% end %>
 			</div>
 		<% end %>
+  </div>
+</div>
 
-		<%= render :partial => 'render_for_word/p_word_ja_table', :locals=>{passage: @passage, words: @words} %>
-	<% end %>
-</section>
+
+<div class="container">
+	<!-- 長文部分は共通 -->
+	<%= render :partial => 'passages/passage_show_common', :locals=>{user: @user, passage: @passage, memorized_words_ch_count: @memorized_words_ch_count, all_words_count: @all_words_count, progress: @progress, words: @words} %>
+
+
+	<!-- 単語部分は日中で出しわけ -->
+	<section class='words' id='passage-words-ja'>
+		<% if @words.present? %>
+			<div class='word-title'>
+				単語暗記
+			</div>
+
+			<!-- 日or中 切り替え選択部分 -->
+			<div class='lang-change clearfix'>
+				<div class='lang-btn lang-btn-ja-selected'>
+						日
+				</div>
+				<%= link_to passage_word_ch_path(@passage, anchor: 'passage-words-ch') do %>
+					<div class='lang-btn lang-btn-ch'>
+						中
+					</div>
+				<% end %>
+			</div>
+
+			<% if user_signed_in? && @user == current_user %>
+				<div class='progress-bar-wrapper'>
+					<div class='clearfix'>
+						<div class='float-left'>
+							暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
+						</div>
+						<div class='float-right'>
+							<%= link_to passage_uncheck_all_words_ja_path(@passage),method: :put do %>
+								全てのチェックをはずす
+							<% end %>
+						</div>
+					</div>
+					<div class="progress" id="progress-bar-render-wrapper">
+					  <%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
+					</div>
+				</div>
+			<% end %>
+
+			<%= render :partial => 'render_for_word/p_word_ja_table', :locals=>{passage: @passage, words: @words} %>
+		<% end %>
+	</section>
+</div><!-- End of Container -->
 
 <div class="empty-sm">
 </div>
-
-<!--
-<% if @passage.sample == true && @user == current_user %>
-	<div class="sample-hint">
-		<%= render :partial => 'svg/information' %>
-		下にスクロールしてみてください<br>
-		単語帳にチェックをつけていきましょう！
-	</div>
-<% end %>
--->

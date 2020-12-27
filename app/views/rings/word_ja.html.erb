@@ -2,46 +2,65 @@
   中国語の単語を勉強 | <%= @ring.name %>
 <% end %>
 
-<!-- TOPは共通 -->
-<%= render :partial => 'rings/rings_show_common', :locals=>{user: @user, ring: @ring, words: @words} %>
-
-<section class='words' id='ring-words-ja'>
-	<% if @words.present? %>
 
 
-		<!-- 日or中 切り替え選択部分 -->
-		<div class='lang-change clearfix'>
-			<div class='lang-btn lang-btn-ja-selected'>
-					日
-			</div>
-			<%= link_to ring_word_ch_path(@ring, anchor: 'ring-words-ch') do %>
-				<div class='lang-btn lang-btn-ch'>
-					中
-				</div>
-			<% end %>
-		</div>
-
-		<% if user_signed_in? && @user == current_user %>
-			<div class='progress-bar-wrapper'>
-				<div class='clearfix'>
-					<div class='float-left'>
-						暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
-					</div>
-					<div class='float-right'>
-						<%= link_to ring_uncheck_all_words_ja_path(@ring), onclick: "ga('send', 'event', 'rings', 'clear_all_word_checks', '')", method: :put do %>
-							全てのチェックをはずす
-						<% end %>
-					</div>
-				</div>
-				<div class="progress" id="progress-bar-render-wrapper">
-				  <%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
-				</div>
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+	<div class="brand-top">
+		<div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
+		<% if @user == current_user %>
+			<div class="float-right margin-lr-12">
+					<%= link_to edit_ring_path(@ring) do %>
+						<%= render :partial => 'svg/edit_white' %>&nbsp;編集
+					<% end %>
 			</div>
 		<% end %>
+  </div>
+</div>
 
-		<%= render :partial => 'render_for_word/r_word_ja_table', :locals=>{ring: @ring, words: @words} %>
-	<% end %>
-</section>
+
+<div class="container">
+	<!-- TOPは共通 -->
+	<%= render :partial => 'rings/rings_show_common', :locals=>{user: @user, ring: @ring, words: @words} %>
+
+	<section class='words' id='ring-words-ja'>
+		<% if @words.present? %>
+
+
+			<!-- 日or中 切り替え選択部分 -->
+			<div class='lang-change clearfix'>
+				<div class='lang-btn lang-btn-ja-selected'>
+						日
+				</div>
+				<%= link_to ring_word_ch_path(@ring, anchor: 'ring-words-ch') do %>
+					<div class='lang-btn lang-btn-ch'>
+						中
+					</div>
+				<% end %>
+			</div>
+
+			<% if user_signed_in? && @user == current_user %>
+				<div class='progress-bar-wrapper'>
+					<div class='clearfix'>
+						<div class='float-left'>
+							暗記済み単語&nbsp;<span id='memorized_status'><%= render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count} %></span>
+						</div>
+						<div class='float-right'>
+							<%= link_to ring_uncheck_all_words_ja_path(@ring), onclick: "ga('send', 'event', 'rings', 'clear_all_word_checks', '')", method: :put do %>
+								全てのチェックをはずす
+							<% end %>
+						</div>
+					</div>
+					<div class="progress" id="progress-bar-render-wrapper">
+					  <%= render :partial => 'render_common/progress', :locals=>{progress: @progress} %>
+					</div>
+				</div>
+			<% end %>
+
+			<%= render :partial => 'render_for_word/r_word_ja_table', :locals=>{ring: @ring, words: @words} %>
+		<% end %>
+	</section>
+</div><!-- End of Container -->
 
 <div class="empty-sm">
 </div>

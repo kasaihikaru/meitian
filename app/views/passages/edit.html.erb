@@ -3,13 +3,23 @@
 <% end %>
 
 
-<div class="clearfix">
-  <%= link_to "長文を削除", passage_path(@passage), method: "DELETE", class: "grey-btn psr-delete-btn", data: { :confirm => '削除します。よろしいですか?'} %>
+<!-- ヘッダー スマホ -->
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
+    <div class="brand-top-logo-center">長文を編集する</div>
+    <% if @passage.user == current_user %>
+      <div class="float-right margin-lr-12">
+          <%= link_to "長文を削除", passage_path(@passage), method: "DELETE", class: "", data: { :confirm => '削除します。よろしいですか?'} %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-12" >
-    <div class="form-title">長文を編集する</div>
+
+<div class="container">
+  <div class="row">
+    <div class="form-title visible-sm visible-md visible-lg">長文を編集する</div>
     <%= form_for @passage, method: :put do |f| %>
       <div class="col-xs-12 col-lg-8">
         <div class='form-section'>
@@ -112,5 +122,5 @@
       <%= f.submit "更新", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md" %>
       <br><br><br>
     <% end %>
-  </div><!-- End of col-12 -->
-</div><!-- End of row -->
+  </div><!-- End of row -->
+</div><!-- End of Container -->
