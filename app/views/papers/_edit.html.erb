@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+
+    <%= form_for @paper, method: :put, remote: true do |f| %>
+      <!-- タイトル -->
+      <div class='form-section col-xs-12'>
+        <div class='clearfix'>
+          <div class='float-left'>
+            <%= f.label :name, "短文集の名前" %>&emsp;
+          </div>
+          <div class='float-left' id="paper_new_title_google">
+            <%= render :partial => 'svg/google_100' %>
+          </div>
+        </div>
+        <%= f.text_field :name, placeholder: "瞬間作文集の名前を入力してください。", class: "new-passage-title", :required => true %>
+      </div>
+      <%= f.submit "更新", class: "form-send-btn float-right margin-b-20 visible-lg" %>
+      <%= f.submit "更新", class: "form-send-btn action-float-btn visible-xs visible-sm visible-md" %>
+      <br><br><br>
+    <% end %>
+  </div><!-- End of row -->
+  <div class="margin-tb-35">
+    <%= link_to "短文集を削除", paper_path(@paper), method: "DELETE", class: "black-solid-btn margin-tb-35", data: { :confirm => '削除します。よろしいですか?'} %>
+  </div>
+</div><!-- End of Container -->

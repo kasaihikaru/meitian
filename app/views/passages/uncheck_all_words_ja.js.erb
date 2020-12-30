@@ -1,0 +1,13 @@
+$("#passage_tab_ja").html("<%= j(render :partial => 'passages/passage_tab_ja', :locals=>{words: @words, passage:@passage}) %>");
+
+// 円グラフ
+$(function(){
+  var $ppc = $('.progress-pie-chart-ja'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill-ja').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents-ja span').html(percent+'%');
+});

@@ -36,7 +36,7 @@
 		<% if @papers.present? %>
 			<% @papers.each do |paper| %>
 				<div class='margin-b-20'>
-					<%= link_to paper_sentence_ch_path(paper) do %>
+					<%= link_to paper_path(paper) do %>
 						<%= render :partial => 'svg/paper' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>

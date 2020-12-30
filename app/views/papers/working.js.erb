@@ -1,4 +1,6 @@
 $("#paper-status-btns").html("<%= j(render :partial => 'papers/paper_status', :locals=>{paper: @paper}) %>");
+$("#paper-status-btns-sp").html("<%= j(render :partial => 'papers/paper_status_sp', :locals=>{paper: @paper}) %>");
+$("#paper-status-modal-sp").html("<%= j(render :partial => 'papers/paper_status_modal_sp', :locals=>{paper: @paper}) %>");
 
 // モーダルを閉じる
 $(function() {

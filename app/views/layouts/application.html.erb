@@ -80,14 +80,11 @@
                     投稿する&nbsp;▼
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to new_r_word_path do %>
-                      <div class="margin-l-10">単語帳を作成する</div>
+                    <%= link_to new_passage_path do %>
+                        <div class="margin-l-10">単語帳を新規作成する</div>
                     <% end %>
                     <%= link_to new_sentence_path do %>
                         <div class="margin-l-10">瞬間作文集を作成する</div>
-                    <% end %>
-                    <%= link_to new_passage_path do %>
-                        <div class="margin-l-10">長文を作成する</div>
                     <% end %>
                   </div>
                 </div>
@@ -106,6 +103,11 @@
             <div class="float-right margin-lr-20">
               <%= link_to new_user_registration_path do %>
                 <div class="font-bold">登録をして勉強開始！</div>
+              <% end %>
+            </div>
+            <div class="float-right margin-lr-20">
+              <%= link_to new_session_path(resource_name) do %>
+                <div class="">ログイン</div>
               <% end %>
             </div>
           <% end %>
@@ -136,19 +138,14 @@
             </button>
           </div>
           <div class="modal-body">
-            <%= link_to new_r_word_path do %>
+            <%= link_to new_passage_path do %>
               <div class="margin-5">
-                <%= render :partial => 'svg/ring_line' %><span class="margin-l-10">単語を追加する</span>
+                <%= render :partial => 'svg/ring_line' %><span class="margin-l-10">単語帳を新規作成する</span>
               </div>
             <% end %>
             <%= link_to new_sentence_path do %>
               <div class="margin-5">
                 <%= render :partial => 'svg/paper_line' %><span class="margin-l-10">瞬間作文集を追加する</span>
-              </div>
-            <% end %>
-            <%= link_to new_passage_path do %>
-              <div class="margin-5">
-                <%= render :partial => 'svg/book_line' %><span class="margin-l-10">長文を作成する</span>
               </div>
             <% end %>
           </div>
@@ -164,75 +161,16 @@
     </div>
 
     <!-- フッターナビ スマホ用 -->
-    <footer class="container-fluid visible-xs">
-      <div class="row topline">
-        <div class="col-xs-3 center-align footer-link">
-          <%= link_to home_path do %>
-            <% if params[:controller] == 'homes' %>
-              <%= render :partial => 'svg/home_colored' %><br>
-              <span class='selected'>ホーム</span>
-            <% else %>
-              <%= render :partial => 'svg/home' %><br>
-              ホーム
-            <% end %>
-          <% end %>
-        </div>
-        <% if user_signed_in? %>
-          <div class="col-xs-3 center-align footer-link">
-            <%= link_to me_path do %>
-              <% if params[:controller] == 'mes' %>
-                <%= render :partial => 'svg/book_colored' %><br>
-                <span class='selected'>マイ教材</span>
-              <% else %>
-                <%= render :partial => 'svg/book' %><br>
-                マイ教材
-              <% end %>
-            <% end %>
-          </div>
-          <div class="col-xs-3 center-align footer-link">
-            <% if @paper.present? %>
-              <%= link_to new_sentence_path(paper_id: @paper.id) do %>
-                <%= render :partial => 'svg/plus' %><br>
-                投稿
-              <% end %>
-            <% elsif @ring.present? %>
-              <%= link_to new_r_word_path(ring_id: @ring.id) do %>
-                <%= render :partial => 'svg/plus' %><br>
-                投稿
-              <% end %>
-            <% else %>
-              <div class="" data-toggle="modal" data-target="#post-psr-modal">
-                <%= render :partial => 'svg/plus' %><br>
-                投稿する
-              </div>
-            <% end %>
-          </div>
-          <div class="col-xs-3 center-align footer-link">
-            <%= link_to edit_user_registration_path(@current_user) do %>
-              <% if params[:controller] == 'users/registrations' %>
-                <%= render :partial => 'svg/me_colored' %><br>
-                <span class='selected'>アカウント</span>
-              <% else %>
-                <%= render :partial => 'svg/me' %><br>
-                アカウント
-              <% end %>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="col-xs-8 center-align">
-            <% unless params[:controller] == 'users/registrations' %>
-              <%= link_to new_user_registration_path do %>
-                <div class="prim-btn me-registration-btn">登録をして勉強開始！</div>
-              <% end %>
-            <% else %>
-              <%= link_to new_session_path(resource_name) do %>
-                <div class="grey-btn me-registration-btn">ログインはこちら</div>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </footer>
+    <% case %>
+    <% when user_signed_in? == false %>
+      <%= render :partial => 'render_common/footer_before_login' %>
+    <% when params[:controller] == 'passages' && params[:action] == 'show'%>
+      <%= render :partial => 'render_common/footer_passage' %>
+    <% when params[:controller] == 'papers' && params[:action] == 'show'%>
+      <%= render :partial => 'render_common/footer_paper' %>
+    <% else %>
+      <%= render :partial => 'render_common/footer_nav' %>
+    <% end %>
 
   </body>
 </html>

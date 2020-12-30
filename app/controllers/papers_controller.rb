@@ -1,5 +1,5 @@
 class PapersController < ApplicationController
-  before_action :login_check, except: [:sentence_ja, :sentence_ch, :word_ja, :word_ch]
+  before_action :login_check, except: [:sentence_ja, :sentence_ch, :word_ja, :word_ch, :show]
   before_action -> {
     user_check_by_id(get_user_by_paper_id_for_paper)
   },only: [:uncheck_all_sentences_ja, :uncheck_all_sentences_ch, :uncheck_all_words_ja, :uncheck_all_words_ch, :waiting, :working, :review_needed, :completed]
@@ -11,6 +11,31 @@ class PapersController < ApplicationController
   #-----------------------get-----------------------
   def edit
     @paper = Paper.find(id_params)
+  end
+
+  def show
+    @paper = Paper.find(id_params)
+    @user = @paper.user
+
+    # sentences
+    @sentences = @paper.sentences.active
+    @all_sentence_count = @sentences.count
+    @memorized_sentence_count_ch = @sentences.memorized_ch.count
+    @memorized_sentence_count_ja = @sentences.memorized_ja.count
+    get_sentence_progresses
+
+    # words
+    @all_count = 0
+    @memorized_count_ch = 0
+    @memorized_count_ja = 0
+    if @sentences.present?
+      @sentences.each do |s|
+        @all_count += s.s_words.active.count
+        @memorized_count_ch += s.s_words.active.memorized_ch.count
+        @memorized_count_ja += s.s_words.active.memorized_ja.count
+      end
+    end
+    get_progresses
   end
 
   def get_for_paper_show
@@ -79,7 +104,7 @@ class PapersController < ApplicationController
     @paper = Paper.find(id_params)
     @paper.update(update_params)
 
-    redirect_to paper_sentence_ch_path(@paper)
+    redirect_to paper_path(@paper)
   end
 
   def destroy
@@ -99,47 +124,61 @@ class PapersController < ApplicationController
     paper_id = Paper.find(paper_id_params).id
     user_id = current_user.id
     copy_specific_paper(paper_id, user_id, false)
-    @msg = "自分の短文集として保存しました。"
+    @msg = "マイ教材として保存しました。"
   end
 
   def uncheck_all_sentences_ja
-    paper = Paper.find(paper_id_params)
-    paper.sentences.each do |sentence|
+    @paper = Paper.find(paper_id_params)
+    @user = @paper.user
+    @sentences = @paper.sentences
+    @sentences.each do |sentence|
       sentence.update(memorized_ja: 0)
     end
-
-    redirect_to paper_sentence_ja_path(paper, anchor: 'sentence-ja')
+    @progress_sentence_ja = 0
+    @memorized_sentence_count_ja = 0
+    @all_sentence_count = @sentences.count
   end
 
   def uncheck_all_sentences_ch
-    paper = Paper.find(paper_id_params)
-    paper.sentences.each do |sentence|
+    @paper = Paper.find(paper_id_params)
+    @user = @paper.user
+    @sentences = @paper.sentences
+    @sentences.each do |sentence|
       sentence.update(memorized_ch: 0)
     end
-
-    redirect_to paper_sentence_ch_path(paper, anchor: 'sentence-ch')
+    @progress_sentence_ch = 0
+    @memorized_sentence_count_ch = 0
+    @all_sentence_count = @sentences.count
   end
 
   def uncheck_all_words_ja
-    paper = Paper.find(paper_id_params)
-    paper.sentences.each do |sentence|
+    @paper = Paper.find(paper_id_params)
+    @user = @paper.user
+    @sentences = @paper.sentences
+    @all_count = 0
+    @sentences.each do |sentence|
       sentence.s_words.each do |word|
         word.update(memorized_ja: 0)
       end
+      @all_count += sentence.s_words.active.count
     end
-
-    redirect_to paper_word_ja_path(paper, anchor: 'sentence-word-ja')
+    @progress_ja = 0
+    @memorized_count_ja = 0
   end
 
   def uncheck_all_words_ch
-    paper = Paper.find(paper_id_params)
-    paper.sentences.each do |sentence|
+    @paper = Paper.find(paper_id_params)
+    @user = @paper.user
+    @sentences = @paper.sentences
+    @all_count = 0
+    @sentences.each do |sentence|
       sentence.s_words.each do |word|
         word.update(memorized_ch: 0)
       end
+      @all_count += sentence.s_words.active.count
     end
-
-    redirect_to paper_word_ch_path(paper, anchor: 'sentence-word-ch')
+    @progress_ch = 0
+    @memorized_count_ch = 0
   end
 
   def waiting

@@ -57,6 +57,8 @@
 .margin-5{ margin: 12px;}
 .margin-l-5{  margin-left: 5px;}
 .margin-l-10{  margin-left: 10px;}
+.margin-l-15{  margin-left: 15px;}
+.margin-r-15{  margin-right: 15px;}
 .margin-r-20{  margin-right: 20px;}
 .margin-lr-12{ margin: 0 12px;}
 .margin-lr-20{ margin: 0 20px;}
@@ -75,6 +77,7 @@
 .padding-t-3{  padding-top: 3px;}
 .padding-t-20{  padding-top: 20px;}
 
+.width-50{  width: 50%;}
 .width-100{  width: 100%;}
 .max-width-260{  max-width: 260px;}
 .max-width-300{  max-width: 300px;}
@@ -84,10 +87,7 @@
 
 
 //--------------- ポジション ----------------
-.relative{
-  position: relative;
-}
-
+.relative{position: relative;}
 
 
 //--------------- 文字色 ----------------
@@ -107,12 +107,14 @@ h1{ font-size: 20px; font-weight: 800; }
 .font-14{ font-size: 14px;}
 .font-16{ font-size: 16px;}
 .font-20{ font-size: 20px;}
+.font-25{ font-size: 25px;}
 
 .h1-margin{  margin: 15px 0;}
 
 
 //--------------- 文字幅 ----------------
 .line-height-15{line-height: 15px;}
+.line-height-18{line-height: 18px;}
 
 
 //--------------- 背景色 ----------------
@@ -124,6 +126,7 @@ h1{ font-size: 20px; font-weight: 800; }
 
 
 //--------------- ボタン ----------------
+.pointer{cursor: pointer;}
 .prim-btn{
   background-color: $Prim;
   color: white;
@@ -144,6 +147,14 @@ h1{ font-size: 20px; font-weight: 800; }
   letter-spacing: 0.1em;
   cursor: pointer;
 }
+.prim-mini-btn{
+  background-color: $Prim;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
 .prim-solid-btn{
   background-color: white;
   color: $Prim;
@@ -151,6 +162,15 @@ h1{ font-size: 20px; font-weight: 800; }
   border-radius: 10px;
   border: solid 1px $Prim;
   font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.black-solid-btn{
+  background-color: white;
+  color: black;
+  padding: 1px 10px;
+  border-radius: 10px;
+  border: solid 1px black;
   letter-spacing: 0.1em;
   cursor: pointer;
 }
@@ -176,14 +196,21 @@ h1{ font-size: 20px; font-weight: 800; }
 .action-float-btn
   {
   position: fixed;
-  bottom: 65px;
+  bottom: 15px;
+  right: 15px;
+  box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
+  }
+.action-float-btn-with-footer
+  {
+  position: fixed;
+  bottom: 60px;
   right: 15px;
   box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
   }
 .action-float-btn-left
   {
   position: fixed;
-  bottom: 65px;
+  bottom: 15px;
   left: 15px;
   box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
   }
@@ -235,6 +262,12 @@ h1{ font-size: 20px; font-weight: 800; }
   line-height: 50px;
   z-index: 200;
   }
+.radius-left-10{
+  border-radius: 10px 0 0 10px;
+}
+.radius-right-10{
+  border-radius: 0 10px 10px 0;
+}
 .langchange-btn-selected{
 	background-color: $Prim;
 	color: white;
@@ -530,6 +563,7 @@ pre {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
+  max-width: 500px;
   padding: 5px 10px;
   border-radius: 10px;
   background-color: $Point;
@@ -655,18 +689,29 @@ pre {
     background-color: #979797;
   }
 }
-.progress-bar-wrapper{
-  margin: 30px 0;
-  a{
-    color: $Prim
-  }
+.progress-wrapper{
+  background-color: #F7F5F5;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  margin: 15px 0;
 }
 
+
 //----------------- form ------------------//
-.form-title{
-  font-size: 30px;
-  font-weight: 800;
-  margin: 40px 0 20px;
+@media screen and (max-width: 480px) {
+  .form-title{
+    font-size: 16px;
+    font-weight: 800;
+    margin: 20px 0 20px 15px;
+  }
+}
+@media screen and (min-width: 481px) {
+  .form-title{
+    font-size: 30px;
+    font-weight: 800;
+    margin: 20px 0 20px 15px;
+  }
 }
 .form-section{
   margin: 20px 0;
@@ -684,7 +729,6 @@ textarea{
     color: black;
     border: 1px solid $Grey;
   }
-  //status-btn
   .status-btn, .status-btn:hover{
     cursor: pointer;
     padding: 7px 13px;
@@ -906,6 +950,17 @@ ul.cp_list li:before {
 * モーダル
 ********************************/
 
+// full modal
+.full-modal{
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 0;
+  border: 0;
+  overflow: scroll;
+}
+
 /* 作成するボタン用bootstrapモーダル修正 */
 .modal-dialog-bottom{
   position:fixed;
@@ -928,9 +983,6 @@ ul.cp_list li:before {
     padding: 0px 15px 20px;
   }
 }
-
-
-
 #passage-ja-modal {
   display: none;
   position: fixed;
@@ -1189,7 +1241,7 @@ ul.cp_list li:before {
 }
 
 $size: 50px;
-.progress-pie-chart {
+.progress-pie-chart,.progress-pie-chart-ch,.progress-pie-chart-ja,.progress-pie-chart-sentence-ch,.progress-pie-chart-sentence-ja {
   width: $size;
   height: $size;
   border-radius: 50%;
@@ -1203,7 +1255,7 @@ $size: 50px;
 .ppc-progress {
   @include circle($size);
   clip: rect(0, $size, $size, #{$size/2});
-  .ppc-progress-fill {
+  .ppc-progress-fill,.ppc-progress-fill-ch,.ppc-progress-fill-ja,.ppc-progress-fill-sentence-ch,.ppc-progress-fill-sentence-ja {
     @include circle($size);
     clip: rect(0, #{$size/2}, $size, 0);
     background: $Black;
@@ -1211,13 +1263,13 @@ $size: 50px;
   }
   .gt-50 & {
     clip: rect(0, #{$size/2}, $size, 0);
-    .ppc-progress-fill {
+    .ppc-progress-fill,.ppc-progress-fill-ch,.ppc-progress-fill-ja,.ppc-progress-fill-sentence-ch,.ppc-progress-fill-sentence-ja {
       clip: rect(0, $size, $size, #{$size/2});
       background: #B8B8B8;
     }
   }
 }
-.ppc-percents {
+.ppc-percents,.ppc-percents-ch,.ppc-percents-ja,.ppc-percents-sentence-ch,.ppc-percents-sentence-ja {
   @include circle(#{$size/1.15});
   background: #fff;
   text-align: center;
@@ -1236,3 +1288,24 @@ $size: 50px;
 
 
 
+
+
+/*******************************
+* 勉強方法の選択タブ
+********************************/
+.tab {
+  cursor: pointer;
+  background-color: #E6E6E6;
+  transition: all 0.1s ease;
+  text-align: center;
+}
+.tab-active {
+  background-color: $Prim;
+  color: white;
+}
+.tab-content,.tab-content-sp {
+  display: none;
+}
+.tab-content.tab-content-show,.tab-content-sp.tab-content-show-sp {
+  display: block;
+}

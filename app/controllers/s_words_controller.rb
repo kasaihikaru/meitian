@@ -55,7 +55,8 @@ class SWordsController < ApplicationController
     @word = SWord.find(s_word_id_params)
     @paper = @word.sentence.paper
     @sentences = @paper.sentences.active
-    @memorized_count = 0
+    @memorized_count_ch = 0
+    @memorized_count_ja = 0
     @all_count = 0
   end
   def check_ja
@@ -63,36 +64,36 @@ class SWordsController < ApplicationController
     @word.update(memorized_ja: 1)
     @sentences.each do |s|
       @all_count += s.s_words.active.count
-      @memorized_count += s.s_words.active.memorized_ja.count
+      @memorized_count_ja += s.s_words.active.memorized_ja.count
     end
-    get_progress
+    get_progress_ja
   end
   def check_ch
     get_word_sentence_for_check
     @word.update(memorized_ch: 1)
     @sentences.each do |s|
       @all_count += s.s_words.active.count
-      @memorized_count += s.s_words.active.memorized_ch.count
+      @memorized_count_ch += s.s_words.active.memorized_ch.count
     end
-    get_progress
+    get_progress_ch
   end
   def uncheck_ja
     get_word_sentence_for_check
     @word.update(memorized_ja: 0)
     @sentences.each do |s|
       @all_count += s.s_words.active.count
-      @memorized_count += s.s_words.active.memorized_ja.count
+      @memorized_count_ja += s.s_words.active.memorized_ja.count
     end
-    get_progress
+    get_progress_ja
   end
   def uncheck_ch
     get_word_sentence_for_check
     @word.update(memorized_ch: 0)
     @sentences.each do |s|
       @all_count += s.s_words.active.count
-      @memorized_count += s.s_words.active.memorized_ch.count
+      @memorized_count_ch += s.s_words.active.memorized_ch.count
     end
-    get_progress
+    get_progress_ch
   end
 
 

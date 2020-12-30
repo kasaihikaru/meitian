@@ -11,12 +11,12 @@
 							<th scope="col" class=""></th>
 						<% end %>
 						<th scope="col" class="">日</th>
-						<th scope="col" class="">Pin</th>
+						<th scope="col" class="">pin</th>
 					</tr>
 				</thead>
 				<tbody class="">
 					<% words.each do |word| %>
-						<tr id="p_word_row_<%= word.id %>">
+						<tr id="p_word_row_ch_<%= word.id %>">
 							<%= render :partial => 'render_for_word/p_word_row_ch', :locals=>{passage: passage, word: word} %>
 						</tr>
 					<% end %>

@@ -36,7 +36,7 @@
 		<% if @passages.present? %>
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
-					<%= link_to passage_word_ch_path(passage) do %>
+					<%= link_to passage_path(passage) do %>
 						<%= render :partial => 'svg/passage' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>

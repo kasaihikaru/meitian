@@ -1,0 +1,76 @@
+<footer class="container-fluid visible-xs">
+  <div class="row topline">
+    <div class="col-xs-2 center-align footer-link font-25">
+      <%= link_to :back do %><<% end %>
+    </div>
+    <% if @user == current_user %>
+      <!-- 勉強方法変更ボタン -->
+      <div class="col-xs-5 center-align footer-link">
+        <div type="button"  data-toggle="modal" data-target="#change_study_method_sp">
+          <!--          瞬間作文も単語もあり          -->
+          <% if @all_sentence_count > 0 && @all_count > 0 %>
+            <span class="tab-content-sp tab-content-show-sp font-14 font-bold">
+              瞬間作文（日→中）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              瞬間作文（中→日）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              単語（日→中）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              単語（中→日）
+            </span>
+            勉強方法
+          <!--          瞬間作文のみ          -->
+          <% elsif @all_count > 0 && @paper.ch.blank? %>
+            <span class="tab-content-sp tab-content-show-sp font-14 font-bold">
+              瞬間作文（日→中）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              瞬間作文（中→日）
+            </span>
+            勉強方法
+          <% end %>
+        </div>
+      </div>
+      <!-- ステータス変更ボタン -->
+      <div class="col-xs-5 center-align footer-link">
+        <span id="paper-status-btns-sp"><%= render :partial => 'papers/paper_status_sp', :locals=>{paper: @paper} %></span>
+      </div>
+    <% else %>
+      <!-- 勉強方法変更ボタン -->
+      <div class="col-xs-5 center-align footer-link">
+        <div type="button"  data-toggle="modal" data-target="#change_study_method_sp">
+          <!--          瞬間作文も単語もあり          -->
+          <% if @all_sentence_count > 0 && @all_count > 0 %>
+            <span class="tab-content-sp tab-content-show-sp font-14 font-bold">
+              瞬間作文（日→中）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              瞬間作文（中→日）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              単語（日→中）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              単語（中→日）
+            </span>
+            勉強方法
+          <!--          瞬間作文のみ          -->
+          <% elsif @all_count > 0 && @paper.ch.blank? %>
+            <span class="tab-content-sp tab-content-show-sp font-14 font-bold">
+              瞬間作文（日→中）
+            </span>
+            <span class="tab-content-sp font-14 font-bold">
+              瞬間作文（中→日）
+            </span>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xs-5 center-align">
+        <div class="prim-mini-btn margin-tb-10 font-12 visible-xs" data-toggle="modal" data-target="#copy_to_mylist_modal">マイ教材に追加</div>
+      </div>
+    <% end %>
+  </div>
+</footer>

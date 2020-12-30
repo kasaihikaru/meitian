@@ -1,0 +1,73 @@
+$("#paper_show_body").html("<%= j(render :partial => 'papers/show_render') %>");
+
+// モーダルを閉じる
+$(function() {
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('#icesword').modal('hide');
+});
+
+// 円グラフ
+$(function(){
+  var $ppc = $('.progress-pie-chart-ch'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill-ch').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents-ch span').html(percent+'%');
+});
+$(function(){
+  var $ppc = $('.progress-pie-chart-ja'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill-ja').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents-ja span').html(percent+'%');
+});
+//sentence-ch
+$(function(){
+  var $ppc = $('.progress-pie-chart-sentence-ch'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill-sentence-ch').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents-sentence-ch span').html(percent+'%');
+});
+//sentence-ja
+$(function(){
+  var $ppc = $('.progress-pie-chart-sentence-ja'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill-sentence-ja').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents-sentence-ja span').html(percent+'%');
+});
+
+//タブ切り替え
+$(function() {
+  let tabs = $(".tab"); // tabのクラスを全て取得し、変数tabsに配列で定義
+  $(".tab").on("click", function() { // tabをクリックしたらイベント発火
+    $(".tab-active").removeClass("tab-active"); // activeクラスを消す
+    $(this).addClass("tab-active"); // クリックした箇所にactiveクラスを追加
+    const index = tabs.index(this); // クリックした箇所がタブの何番目か判定し、定数indexとして定義
+    $(".tab-content").removeClass("tab-content-show").eq(index).addClass("tab-content-show"); // showクラスを消して、contentクラスのindex番目にshowクラスを追加
+  })
+})
+$(function() {
+  let tabs = $(".tab-sp"); // tabのクラスを全て取得し、変数tabsに配列で定義
+  $(".tab-sp").on("click", function() { // tabをクリックしたらイベント発火
+    $(".tab-active").removeClass("tab-active"); // activeクラスを消す
+    $(this).addClass("tab-active"); // クリックした箇所にactiveクラスを追加
+    const index = tabs.index(this); // クリックした箇所がタブの何番目か判定し、定数indexとして定義
+    $(".tab-content").removeClass("tab-content-show").eq(index).addClass("tab-content-show"); // showクラスを消して、contentクラスのindex番目にshowクラスを追加
+    $(".tab-content-sp").removeClass("tab-content-show-sp").eq(index).addClass("tab-content-show-sp"); // showクラスを消して、contentクラスのindex番目にshowクラスを追加
+  })
+})

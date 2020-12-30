@@ -4,8 +4,8 @@
 		<div class='psr-content'>
 			<% @working_passages.each do |passage| %>
 				<div class='margin-b-20'>
-					<%= link_to passage_word_ch_path(passage) do %>
-						<%= render :partial => 'svg/passage' %>
+					<%= link_to passage_path(passage) do %>
+						<%= render :partial => 'svg/ring' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
 						<!-- スマホサイズ -->
@@ -15,23 +15,12 @@
 			<% end %>
 			<% @working_papers.each do |paper| %>
 				<div class='margin-b-20'>
-					<%= link_to paper_sentence_ch_path(paper) do %>
+					<%= link_to paper_path(paper) do %>
 						<%= render :partial => 'svg/paper' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
 						<!-- スマホサイズ -->
 						<span class='visible-xs-inline'><%= paper.name.truncate(17) %></span>
-					<% end %>
-				</div>
-			<% end %>
-			<% @working_rings.each do |ring| %>
-				<div class='margin-b-20'>
-					<%= link_to ring_word_ch_path(ring) do %>
-						<%= render :partial => 'svg/ring' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= ring.name %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= ring.name.truncate(17) %></span>
 					<% end %>
 				</div>
 			<% end %>
@@ -46,8 +35,8 @@
 		<div class='psr-content'>
 			<% @review_needed_passages.each do |passage| %>
 				<div class='margin-b-20'>
-					<%= link_to passage_word_ch_path(passage) do %>
-						<%= render :partial => 'svg/passage' %>
+					<%= link_to passage_path(passage) do %>
+						<%= render :partial => 'svg/ring' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
 						<!-- スマホサイズ -->
@@ -57,23 +46,12 @@
 			<% end %>
 			<% @review_needed_papers.each do |paper| %>
 				<div class='margin-b-20'>
-					<%= link_to paper_sentence_ch_path(paper) do %>
+					<%= link_to paper_path(paper) do %>
 						<%= render :partial => 'svg/paper' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
 						<!-- スマホサイズ -->
 						<span class='visible-xs-inline'><%= paper.name.truncate(17) %></span>
-					<% end %>
-				</div>
-			<% end %>
-			<% @review_needed_rings.each do |ring| %>
-				<div class='margin-b-20'>
-					<%= link_to ring_word_ch_path(ring) do %>
-						<%= render :partial => 'svg/ring' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= ring.name %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= ring.name.truncate(17) %></span>
 					<% end %>
 				</div>
 			<% end %>
@@ -87,11 +65,11 @@
 	<div class='psr-title psr-title-black'>最近、追加・編集した教材</div>
 	<div class='psr-content'>
 		<% if @passages.present? %>
-			<div class='psr-sub-title'>長文</div>
+			<div class='psr-sub-title'>単語帳</div>
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
-					<%= link_to passage_word_ch_path(passage) do %>
-						<%= render :partial => 'svg/passage' %>
+					<%= link_to passage_path(passage) do %>
+						<%= render :partial => 'svg/ring' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
 						<!-- スマホサイズ -->
@@ -112,17 +90,17 @@
 			<% if @passages_cnt > 5 %>
 				<div class='psr-link'>
 					<%= link_to user_passages_path(@user) do %>
-						>全ての長文(<%= @passages_cnt %>)
+						>全ての単語帳(<%= @passages_cnt %>)
 					<% end %>
 				</div>
 			<% end %>
 			<br>
 		<% end %>
 		<% if @papers.present? %>
-			<div class='psr-sub-title'>短文集</div>
+			<div class='psr-sub-title'>瞬間作文集</div>
 			<% @papers.each do |paper| %>
 				<div class='margin-b-20'>
-					<%= link_to paper_sentence_ch_path(paper) do %>
+					<%= link_to paper_path(paper) do %>
 						<%= render :partial => 'svg/paper' %>
 						<!-- タブレット以上 -->
 						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
@@ -144,42 +122,11 @@
 			<% if @papers_cnt > 5 %>
 				<div class='psr-link'>
 					<%= link_to user_papers_path(@user) do %>
-						>全ての短文集(<%= @papers_cnt %>)
+						>全ての瞬間作文集(<%= @papers_cnt %>)
 					<% end %>
 				</div>
 			<% end %>
 			<br>
-		<% end %>
-		<% if @rings.present? %>
-			<div class='psr-sub-title'>単語帳</div>
-			<% @rings.each do |ring| %>
-				<div class='margin-b-20'>
-					<%= link_to ring_word_ch_path(ring) do %>
-						<%= render :partial => 'svg/ring' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= ring.name %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= ring.name.truncate(15) %></span>
-						<!-- ステータスラベル -->
-						<% if ring.waiting? %>
-							<span class='status-badge badge-black'><%= ring.status_i18n %></span>
-						<% elsif ring.working? %>
-							<span class='status-badge badge-red'><%= ring.status_i18n %></span>
-						<% elsif ring.review_needed? %>
-							<span class='status-badge badge-blue'><%= ring.status_i18n %></span>
-						<% elsif ring.completed? %>
-							<span class='status-badge badge-green'><%= ring.status_i18n %></span>
-						<% end %>
-					<% end %>
-				</div>
-			<% end %>
-			<% if @rings_cnt > 5 %>
-				<div class='psr-link'>
-					<%= link_to user_rings_path(@user) do %>
-						>全ての単語帳(<%= @rings_cnt %>)
-					<% end %>
-				</div>
-			<% end %>
 		<% end %>
 	</div><!-- End of psr-content -->
 </section>

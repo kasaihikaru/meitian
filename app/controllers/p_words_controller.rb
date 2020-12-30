@@ -29,9 +29,9 @@ class PWordsController < ApplicationController
 
     #リダイレクト
     if params[:p_word][:redirect_flg] == "word_ja"
-      redirect_to passage_word_ja_path(p_word.passage.id, anchor: 'passage-words-ja')
+      redirect_to passage_path(p_word.passage.id, anchor: 'passage-words-ja')
     else
-      redirect_to passage_word_ch_path(p_word.passage.id, anchor: 'passage-words-ch')
+      redirect_to passage_path(p_word.passage.id, anchor: 'passage-words-ch')
     end
   end
 
@@ -43,9 +43,9 @@ class PWordsController < ApplicationController
 
     #リダイレクト
     if params[:redirect_flg] == "word_ja"
-      redirect_to passage_word_ja_path(word.passage.id, anchor: 'passage-words-ja')
+      redirect_to passage_path(word.passage.id, anchor: 'passage-words-ja')
     else
-      redirect_to passage_word_ch_path(word.passage.id, anchor: 'passage-words-ch')
+      redirect_to passage_path(word.passage.id, anchor: 'passage-words-ch')
     end
   end
 
@@ -53,7 +53,7 @@ class PWordsController < ApplicationController
     p_word = PWord.find(id_params)
     p_word.update(deleted_at: Time.now)
 
-    redirect_to passage_word_ch_path(p_word.passage)
+    redirect_to passage_path(p_word.passage)
   end
 
 
@@ -70,29 +70,29 @@ class PWordsController < ApplicationController
   def check_ja
     get_word_passage_for_check
     @word.update(memorized_ja: 1)
-    @memorized_count = @words.memorized_ja.count
-    get_progress
+    @memorized_count_ja = @words.memorized_ja.count
+    get_progress_ja
   end
 
   def check_ch
     get_word_passage_for_check
     @word.update(memorized_ch: 1)
-    @memorized_count = @words.memorized_ch.count
-    get_progress
+    @memorized_count_ch = @words.memorized_ch.count
+    get_progress_ch
   end
 
   def uncheck_ja
     get_word_passage_for_check
     @word.update(memorized_ja: 0)
-    @memorized_count = @words.memorized_ja.count
-    get_progress
+    @memorized_count_ja = @words.memorized_ja.count
+    get_progress_ja
   end
 
   def uncheck_ch
     get_word_passage_for_check
     @word.update(memorized_ch: 0)
-    @memorized_count = @words.memorized_ch.count
-    get_progress
+    @memorized_count_ch = @words.memorized_ch.count
+    get_progress_ch
   end
 
 

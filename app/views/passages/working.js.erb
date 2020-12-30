@@ -1,4 +1,6 @@
 $("#passage-status-btns").html("<%= j(render :partial => 'passages/passage_status', :locals=>{passage: @passage}) %>");
+$("#passage-status-btns-sp").html("<%= j(render :partial => 'passages/passage_status_sp', :locals=>{passage: @passage}) %>");
+$("#passage-status-modal-sp").html("<%= j(render :partial => 'passages/passage_status_modal_sp', :locals=>{passage: @passage}) %>");
 
 // モーダルを閉じる
 $(function() {

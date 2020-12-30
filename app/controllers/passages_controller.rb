@@ -1,5 +1,5 @@
 class PassagesController < ApplicationController
-  before_action :login_check, except: [:word_ja, :word_ch]
+  before_action :login_check, except: [:word_ja, :word_ch, :show]
   before_action -> {
     user_check_by_id(get_user_by_id_for_passage)
   },only: [:edit, :update, :destroy]
@@ -8,6 +8,7 @@ class PassagesController < ApplicationController
   },only: [:uncheck_all_words_ja, :uncheck_all_words_ch, :waiting, :working, :review_needed, :completed]
 
 
+#-----------------get-----------------------
   def new
     @passage = Passage.new
     @passage.p_words.build
@@ -17,8 +18,16 @@ class PassagesController < ApplicationController
     @passage = Passage.find(id_params)
   end
 
+  def show
+    @passage = Passage.find(id_params)
+    @user = @passage.user
+    @words = @passage.p_words.active
+    @all_count = @words.count
+    @memorized_count_ch = @words.memorized_ch.count
+    @memorized_count_ja = @words.memorized_ja.count
+    get_progresses
+  end
 
-#-----------------passage show-----------------------
   def get_for_passage_show
     @passage = Passage.find(passage_id_params)
     @user = @passage.user
@@ -60,7 +69,7 @@ class PassagesController < ApplicationController
       PWord.create("ja"=>w[:ja], "ch"=>w[:ch], "pin"=>w[:pin], "passage_id"=>w[:passage_id])
     end
 
-    redirect_to passage_word_ch_path(passage.id)
+    redirect_to passage_path(passage.id)
   end
 
   def update
@@ -87,7 +96,14 @@ class PassagesController < ApplicationController
       end
     end
 
-    redirect_to passage_word_ch_path(passage.id)
+    # show_render用
+    @passage = Passage.find(id_params)
+    @user = @passage.user
+    @words = @passage.p_words.active
+    @all_count = @words.count
+    @memorized_count_ch = @words.memorized_ch.count
+    @memorized_count_ja = @words.memorized_ja.count
+    get_progresses
   end
 
   def destroy
@@ -104,25 +120,34 @@ class PassagesController < ApplicationController
     passage_id = Passage.find(passage_id_params).id
     user_id = current_user.id
     copy_specific_passage(passage_id, user_id, false)
-    @msg = "自分の長文として保存しました。"
+    @msg = "マイ教材として保存しました。"
   end
 
+
+
+
   def uncheck_all_words_ja
-    passage = Passage.find(passage_id_params)
-    passage.p_words.each do |word|
+    @passage = Passage.find(passage_id_params)
+    @user = @passage.user
+    @words = @passage.p_words
+    @words.each do |word|
       word.update(memorized_ja: 0)
     end
-
-    redirect_to passage_word_ja_path(passage, anchor: 'passage-words-ja')
+    @progress_ja = 0
+    @memorized_count_ja = 0
+    @all_count = @words.count
   end
 
   def uncheck_all_words_ch
-    passage = Passage.find(passage_id_params)
-    passage.p_words.each do |word|
+    @passage = Passage.find(passage_id_params)
+    @user = @passage.user
+    @words = @passage.p_words
+    @words.each do |word|
       word.update(memorized_ch: 0)
     end
-
-    redirect_to passage_word_ch_path(passage, anchor: 'passage-words-ch')
+    @progress_ch = 0
+    @memorized_count_ch = 0
+    @all_count = @words.count
   end
 
   def waiting

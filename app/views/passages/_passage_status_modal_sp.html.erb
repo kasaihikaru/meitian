@@ -1,0 +1,41 @@
+<div class="modal fade modal-centered" id="change_status_sp" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title" >学習ステータスの変更</span>
+        <button type="button" class="close fontcol-black opacity-8" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body clearfix status-btns">
+        <!-- 未着手 -->
+        <% if passage.waiting? %>
+          <%= link_to "未着手", passage_waiting_path(passage), method: :put, class: "status-btn float-left status-on-grey",  remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% else %>
+          <%= link_to "未着手", passage_waiting_path(passage), method: :put, class: "status-btn float-left status-off-grey", remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% end %>
+
+        <!-- 勉強中 -->
+        <% if passage.working? %>
+          <%= link_to "勉強中", passage_working_path(passage), method: :put, class: "status-btn float-left status-on-red", remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% else %>
+          <%= link_to "勉強中", passage_working_path(passage), method: :put, class: "status-btn float-left status-off-red", remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% end %>
+
+        <!-- 要復習 -->
+        <% if passage.review_needed? %>
+          <%= link_to "要復習", passage_review_needed_path(passage), method: :put, class: "status-btn float-left status-on-blue", remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% else %>
+          <%= link_to "要復習", passage_review_needed_path(passage), method: :put, class: "status-btn float-left status-off-blue", remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% end %>
+
+        <!-- 完了！ -->
+        <% if passage.completed? %>
+          <%= link_to "完了！", passage_completed_path(passage), method: :put, class: "status-btn float-left status-on-green", remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% else %>
+          <%= link_to "完了！", passage_completed_path(passage), method: :put, class: "status-btn float-left status-off-green", remote: true, data: {toggle: "modal", dismiss: "modal"} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

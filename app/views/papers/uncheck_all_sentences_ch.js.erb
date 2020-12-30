@@ -1,0 +1,13 @@
+$("#paper_sentence_tab_ch").html("<%= j(render :partial => 'papers/paper_sentence_tab_ch', :locals=>{paper: @paper}) %>");
+
+// 円グラフ
+$(function(){
+  var $ppc = $('.progress-pie-chart-sentence-ch'),
+    percent = parseInt($ppc.data('percent')),
+    deg = 360*percent/100;
+  if (percent > 50) {
+    $ppc.addClass('gt-50');
+  }
+  $('.ppc-progress-fill-sentence-ch').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents-sentence-ch span').html(percent+'%');
+});

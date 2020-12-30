@@ -8,7 +8,7 @@
 	<div class='psr-content'>
 		<% @papers.each do |paper| %>
 			<div class='margin-b-20'>
-				<%= link_to paper_sentence_ch_path(paper) do %>
+				<%= link_to paper_path(paper) do %>
 					<div class='clearfix'>
 						<div class='float-left list-user-img'>
 						  <% if paper.user.image? %>

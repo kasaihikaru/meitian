@@ -1,10 +1,10 @@
 <!-- ログインしてて、自分で、かつ、チェック -->
 <% if user_signed_in? && paper.user_id == current_user.id && s.memorized_ch == true %>
 	<div class='sentence-card container bg-grey-mid'>
-		<a data-toggle="collapse" href="#sentence-more-<%= s.id%>" role="button" aria-expanded="false">
+		<a data-toggle="collapse" href="#sentence-more-ch-<%= s.id%>" role="button" aria-expanded="false">
 			<div class="padding-tb-20"><%= s.ch %></div>
 		</a>
-		<div class='collapse' id="sentence-more-<%= s.id%>">
+		<div class='collapse' id="sentence-more-ch-<%= s.id%>">
 			<hr>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
 				<%= link_to edit_sentence_path(s.id, redirect_flg: "sentence_ch") do %>
@@ -63,10 +63,10 @@
 <% else %>
 	<!-- 未チェック or ユーザー違い -->
 	<div class='sentence-card container'>
-		<a data-toggle="collapse" href="#sentence-more-<%= s.id%>" role="button" aria-expanded="false">
+		<a data-toggle="collapse" href="#sentence-more-ch-<%= s.id%>" role="button" aria-expanded="false">
 			<div class="padding-tb-20"><%= s.ch %></div>
 		</a>
-		<div class='collapse' id="sentence-more-<%= s.id%>">
+		<div class='collapse' id="sentence-more-ch-<%= s.id%>">
 			<hr>
 			<% if user_signed_in? && paper.user_id == current_user.id %>
 				<%= link_to edit_sentence_path(s.id, redirect_flg: "sentence_ch") do %>

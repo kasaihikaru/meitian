@@ -192,39 +192,48 @@
 <!-- 以下、投稿一覧 -->
 <div class="container">
   <section class='psr'>
-    <div class='psr-title psr-title-prim'>みんなの単語帳</div>
+    <div class='psr-title psr-title-prim'>みんなの単語長</div>
     <div class='psr-content'>
-      <% @rings.each do |ring| %>
+      <% @passages.each do |passage| %>
         <div class='margin-b-20'>
-          <%= link_to ring_word_ch_path(ring) do %>
+          <%= link_to passage_path(passage) do %>
             <div class='font-20 font-bold margin-b-5 overflow'>
-              <%= ring.name %>
+              <%= passage.title %>
             </div>
             <div class='clearfix font-12'>
               <div class='float-left img-16'>
-                <% if ring.user.image? %>
-                  <%= image_tag ring.user.image.url, :alt => "icon" %>
+                <% if passage.user.image? %>
+                  <%= image_tag passage.user.image.url, :alt => "icon" %>
                 <% else %>
                    <img alt="no-icon" src="/images/no-icon.png">
                 <% end %>
               </div>
               <div class='float-left margin-l-5'>
-                <%= ring.user.name.truncate(10) %>
+                <%= passage.user.name.truncate(10) %>
               </div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5 margin-r-20"><%= ring.r_words.count %>単語</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
               </div>
+              <% if passage.ch.present? %>
+                <div class='float-right'>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                </div>
+              <% end %>
             </div>
             <div class='psr-content-sub'>
-              <% ring.r_words.limit(20).each do |word| %>
-                <%= word.ch.truncate(7) %>&ensp;/&ensp;
+              <% if passage.p_words.count > 0 %>
+                <% passage.p_words.limit(20).each do |word| %>
+                  <%= word.ch.truncate(7) %>&ensp;/&ensp;
+                <% end %>
+              <% else %>
+                <%= passage.ch.truncate(100) %>
               <% end %>
             </div>
           <% end %>
         </div>
       <% end %>
       <div class='psr-link'>
-        <%= link_to rings_explore_path do %>
+        <%= link_to passages_explore_path do %>
           >もっと見る
         <% end %>
       </div>
@@ -236,7 +245,7 @@
     <div class='psr-content'>
       <% @papers.each do |paper| %>
         <div class='margin-b-20'>
-          <%= link_to paper_sentence_ch_path(paper) do %>
+          <%= link_to paper_path(paper) do %>
             <div class='font-20 font-bold margin-b-5 overflow'>
               <%= paper.name %>
             </div>
@@ -269,48 +278,4 @@
       </div>
     </div>
   </section>
-
-  <section class='psr'>
-    <div class='psr-title psr-title-prim'>みんなの長文</div>
-    <div class='psr-content'>
-      <% @passages.each do |passage| %>
-        <div class='margin-b-20'>
-          <%= link_to passage_word_ch_path(passage) do %>
-            <div class='font-20 font-bold margin-b-5 overflow'>
-              <%= passage.title %>
-            </div>
-            <div class='clearfix font-12'>
-              <div class='float-left img-16'>
-                <% if passage.user.image? %>
-                  <%= image_tag passage.user.image.url, :alt => "icon" %>
-                <% else %>
-                   <img alt="no-icon" src="/images/no-icon.png">
-                <% end %>
-              </div>
-              <div class='float-left margin-l-5'>
-                <%= passage.user.name.truncate(10) %>
-              </div>
-              <div class='float-right'>
-                <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5">長文あり</span>
-              </div>
-              <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5 margin-r-20"><%= passage.p_words.count %>単語</span>
-              </div>
-            </div>
-            <div class='psr-content-sub'>
-              <% passage.p_words.limit(20).each do |word| %>
-                <%= word.ch.truncate(7) %>&ensp;/&ensp; 
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-      <div class='psr-link'>
-        <%= link_to passages_explore_path do %>
-          >もっと見る
-        <% end %>
-      </div>
-    </div>
-  </section>
-
 </div>

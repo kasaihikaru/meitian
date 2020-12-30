@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get 'rings' #ユーザーの単語帳一覧
   end
 
-  resources :passages, only: [:new, :edit, :create, :update, :destroy] do
+  resources :passages, only: [:new, :edit, :create, :update, :destroy, :show] do
     #get
     get 'word_ja' #単語を日本語から暗記
     get 'word_ch' #単語を中国語から暗記
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     put 'update_pin' #ピンインを更新
   end
 
-  resources :papers, only: [:edit, :create, :update, :destroy] do
+  resources :papers, only: [:edit, :create, :update, :destroy, :show] do
     #get
     get 'sentence_ja' #短文を日本語から暗記
     get 'sentence_ch' #短文を中国語から暗記
@@ -97,7 +97,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :rings, only: [:edit, :create, :update, :destroy] do
+  resources :rings, only: [:edit, :create, :update, :destroy, :show] do
     #get
     get 'word_ja' #単語を日本語から暗記
     get 'word_ch' #単語を中国語から暗記

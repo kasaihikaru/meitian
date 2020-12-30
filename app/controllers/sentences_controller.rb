@@ -41,7 +41,7 @@ class SentencesController < ApplicationController
     sentence.paper.update(modified_at: Time.now)
 
     #リダイレクト
-    redirect_to paper_sentence_ch_path(sentence.paper.id)
+    redirect_to paper_path(sentence.paper.id)
   end
 
   def update
@@ -76,7 +76,7 @@ class SentencesController < ApplicationController
     if params[:sentence][:redirect_flg] == "sentence_ja"
       redirect_to paper_sentence_ja_path(paper.id)
     else
-      redirect_to paper_sentence_ch_path(paper.id)
+      redirect_to paper_path(paper.id)
     end
   end
 
@@ -90,7 +90,7 @@ class SentencesController < ApplicationController
     if params[:redirect_flg] == "sentence_ja"
       redirect_to paper_sentence_ja_path(sentence.paper.id)
     else
-      redirect_to paper_sentence_ch_path(sentence.paper.id)
+      redirect_to paper_path(sentence.paper.id)
     end
   end
 
@@ -103,35 +103,35 @@ class SentencesController < ApplicationController
   def get_for_check
     @sentence = Sentence.find(sentence_id_params)
     @sentences = @sentence.paper.sentences.active
-    @all_count = @sentences.count
+    @all_sentence_count = @sentences.count
   end
 
   def check_ja
     get_for_check
     @sentence.update( memorized_ja: 1 )
-    @memorized_count = @sentences.memorized_ja.count
-    get_progress
+    @memorized_sentence_count_ja = @sentences.memorized_ja.count
+    get_progress_sentence_ja
   end
 
   def check_ch
     get_for_check
     @sentence.update( memorized_ch: 1 )
-    @memorized_count = @sentences.memorized_ch.count
-    get_progress
+    @memorized_sentence_count_ch = @sentences.memorized_ch.count
+    get_progress_sentence_ch
   end
 
   def uncheck_ja
     get_for_check
     @sentence.update( memorized_ja: 0 )
-    @memorized_count = @sentences.memorized_ja.count
-    get_progress
+    @memorized_sentence_count_ja = @sentences.memorized_ja.count
+    get_progress_sentence_ja
   end
 
   def uncheck_ch
     get_for_check
     @sentence.update( memorized_ch: 0 )
-    @memorized_count = @sentences.memorized_ch.count
-    get_progress
+    @memorized_sentence_count_ch = @sentences.memorized_ch.count
+    get_progress_sentence_ch
   end
 
 

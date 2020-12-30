@@ -1,0 +1,154 @@
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center"><%= @passage.title.truncate(15) %></div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class='h1-margin'><%= @passage.title %></h1>
+  <div class='clearfix line-height-18'>
+    <div class='float-left'>
+      <%= link_to user_path(@user) do %>
+        <% if @user.image? %>
+          <%= image_tag @user.image.url, :alt => "icon", :class=>"smallicon center" %>
+        <% else %>
+           <img alt="no-icon" src="/images/no-icon.png" class="smallicon">
+        <% end %>
+      <% end %>
+    </div>
+    <div class='float-left margin-l-10'>
+      <%= link_to user_path(@user) do %>
+        <span class="font-12"><%= @user.name %></span><span class="font-12 fontcol-grey margin-l-10"><%= @passage.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %></span>
+      <% end %>
+    </div>
+    <% if @user == current_user %>
+      <div class="float-right font-12 margin-lr-12 pointer" type="button" data-toggle="modal" data-target="#passage_edit_modal">
+        <%= render :partial => 'svg/edit_sm' %>&nbsp;編集
+      </div>
+    <% elsif user_signed_in? && @user != current_user %>
+      <!-- マイ教材にコピーモーダル立ち上げボタン -->
+      <button type="button" class="copy-action-btn float-right margin-b-20 visible-sm visible-md visible-lg" data-toggle="modal" data-target="#copy_to_mylist_modal">
+        マイ教材に追加
+      </button>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? && @user == current_user %>
+    <div class='clearfix margin-tb-35 visible-sm visible-md visible-lg'>
+      <!-- ステータス部分 タブレット以上表示 -->
+      <div class='float-right'>
+        <div class="status-btns clearfix" id="passage-status-btns">
+          <%= render :partial => 'passages/passage_status', :locals=>{passage: @passage} %>
+        </div>
+      </div>
+      <!-- 切り替えタブ タブレット以上表示 -->
+      <!--          長文も単語もあり          -->
+      <% if @all_count > 0 && @passage.ch.present? %>
+        <div class="float-left center-align">
+          <span class='tab tab-active lang-btn radius-left-10'>単語（中→日）を勉強</span>
+          <span class="tab lang-btn ">単語（日→中）を勉強</span>
+          <span class="tab lang-btn radius-right-10">長文を勉強</span>
+        </div>
+      <!--          単語のみ          -->
+      <% elsif @all_count > 0 && @passage.ch.blank? %>
+        <div class="float-left center-align">
+          <span class='tab tab-active lang-btn radius-left-10'>単語（中→日）を勉強</span>
+          <span class="tab lang-btn radius-right-10">単語（日→中）を勉強</span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!--          長文も単語もあり          -->
+  <% if @all_count > 0 && @passage.ch.present? %>
+    <div class="tab-content tab-content-show" id="passage_tab_ch"><!-- 中→日タブ内容 -->
+      <%= render :partial => 'passages/passage_tab_ch', :locals=>{passage: @passage, words: @words} %>
+    </div>
+    <div class="tab-content" id="passage_tab_ja"><!-- 日→中タブ内容 -->
+      <%= render :partial => 'passages/passage_tab_ja', :locals=>{passage: @passage, words: @words} %>
+    </div>
+    <div class="tab-content"><!-- 長文タブ内容 -->
+      <%= render :partial => 'passages/passage_render', :locals=>{user: @user, passage: @passage} %>
+    </div>
+  <!--          単語のみ          -->
+  <% elsif @all_count > 0 && @passage.ch.blank? %>
+    <div class="tab-content tab-content-show" id="passage_tab_ch"><!-- 中→日タブ内容 -->
+      <%= render :partial => 'passages/passage_tab_ch', :locals=>{passage: @passage, words: @words} %>
+    </div>
+    <div class="tab-content" id="passage_tab_ja"><!-- 日→中タブ内容 -->
+      <%= render :partial => 'passages/passage_tab_ja', :locals=>{passage: @passage, words: @words} %>
+    </div>
+  <!--          長文のみ          -->
+  <% elsif @all_count == 0 && @passage.ch.present? %>
+    <div class="">
+      <%= render :partial => 'passages/passage_render', :locals=>{user: @user, passage: @passage} %>
+    </div>
+  <% else %>
+    <div class="margin-tb-35">内容がありません。</div>
+  <% end %>
+
+</div><!-- End of Container -->
+
+
+<!-- ステータス変更モーダル スマホ用 -->
+<div id="passage-status-modal-sp">
+  <%= render :partial => 'passages/passage_status_modal_sp', :locals=>{passage: @passage} %>
+</div>
+
+<!-- 勉強方法変更モーダル スマホ用 -->
+<div class="modal fade modal-centered" id="change_study_method_sp" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title" >勉強方法の変更</span>
+        <button type="button" class="close fontcol-black opacity-8" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--          長文も単語もあり          -->
+        <% if @all_count > 0 && @passage.ch.present? %>
+          <div class="tab-sp tab-active lang-btn-sp" data-dismiss="modal">単語を中国語→日本語で勉強</div>
+          <div class="tab-sp lang-btn-sp" data-dismiss="modal">単語を日本語→中国語で勉強</div>
+          <div class="tab-sp lang-btn-sp" data-dismiss="modal">長文を勉強</div>
+        <!--          単語のみ          -->
+        <% elsif @all_count > 0 && @passage.ch.blank? %>
+          <div class="tab-sp tab-active lang-btn-sp" data-dismiss="modal">単語を中国語→日本語で勉強</div>
+          <div class="tab-sp lang-btn-sp" data-dismiss="modal">単語を日本語→中国語で勉強</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- マイ教材にコピーモーダル -->
+<% if user_signed_in? && @user != current_user %>
+  <div class="modal fade modal-centered" id="copy_to_mylist_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">「<%= @passage.title %>」をコピーして、マイ教材に追加しますか？</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button type="button" class="btn bg-prim fontcol-white prevent_double_click" data-dismiss="modal"><%= link_to "マイ教材に追加", passage_copy_path(@passage), method: :post, class: "fontcol-white", remote: true %></button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- Editモーダル -->
+<% if @user == current_user %>
+  <div class="modal fade" id="passage_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog full-modal">
+      <div class="modal-content full-modal">
+        <div class="modal-header container">
+          <div class="modal-title float-left">単語帳の編集</div><div type="button" class="float-right pointer" data-dismiss="modal">キャンセル</div>
+        </div>
+        <%= render :partial => 'passages/edit' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

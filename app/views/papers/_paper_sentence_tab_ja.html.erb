@@ -1,0 +1,23 @@
+<% if user_signed_in? && @user == current_user %>
+  <!-- 円グラフ -->
+  <div class="clearfix progress-wrapper">
+    <div class="float-left" id="progress_bar_render_wrapper_sentence_ja">
+      <%= render :partial => 'render_common/progress_sentence_ja', :locals=>{progress: @progress_sentence_ja} %>
+    </div>
+    <div class="float-left margin-tb-15">
+      暗記済み単語&nbsp;<span id='memorized_status_sentence_ja'><%= render :partial => 'render_common/memorized_status', :locals=>{progress:@progress_sentence_ja, memorized_count: @memorized_sentence_count_ja, all_count: @all_sentence_count} %></span><br>
+      <%= link_to paper_uncheck_all_sentences_ja_path(@paper),method: :put, remote: true, class: "fontcol-prim" do %>全てのチェックをはずす<% end %>
+    </div>
+  </div>
+<% end %>
+
+<!-- 短文リスト -->
+<section class='sentences' id='sentence-ja'>
+  <% if @sentences.present? %>
+    <% @sentences.each do |s| %>
+      <div id='sentence_card_ja_<%= s.id %>'>
+        <%= render :partial => 'sentences/sentence_card_ja', :locals=>{paper: @paper, s: s} %>
+      </div>
+    <% end %>
+  <% end %>
+</section>

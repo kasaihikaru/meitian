@@ -123,7 +123,7 @@
 		<div class='psr-content'>
 			<% @passages.each do |passage| %>
 				<div class='margin-b-20'>
-					<%= link_to passage_word_ch_path(passage) do %>
+					<%= link_to passage_path(passage) do %>
 						<div class='clearfix'>
 							<div class='float-left list-user-img'>
 							  <% if passage.user.image? %>
@@ -155,7 +155,7 @@
 		<div class='psr-content'>
 			<% @papers.each do |paper| %>
 				<div class='margin-b-20'>
-					<%= link_to paper_sentence_ch_path(paper) do %>
+					<%= link_to paper_path(paper) do %>
 						<div class='clearfix'>
 							<div class='float-left list-user-img'>
 							  <% if paper.user.image? %>

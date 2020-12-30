@@ -1,64 +1,40 @@
 <% content_for :title do %>
-  長文を編集 | <%= @passage.title %>
+  単語帳を編集 | <%= @passage.title %>
 <% end %>
 
 
 <!-- ヘッダー スマホ -->
 <div class='visible-xs'>
   <div class="brand-top">
-    <div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
-    <div class="brand-top-logo-center">長文を編集する</div>
-    <% if @passage.user == current_user %>
-      <div class="float-right margin-lr-12">
-          <%= link_to "長文を削除", passage_path(@passage), method: "DELETE", class: "", data: { :confirm => '削除します。よろしいですか?'} %>
-      </div>
-    <% end %>
+    <div class="brand-top-logo-center"><%= @passage.title.truncate(15) %></div>
   </div>
 </div>
 
 
 <div class="container">
   <div class="row">
-    <div class="form-title visible-sm visible-md visible-lg">長文を編集する</div>
-    <%= form_for @passage, method: :put do |f| %>
-      <div class="col-xs-12 col-lg-8">
-        <div class='form-section'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :title, "タイトル" %>&emsp;
-            </div>
-            <div class='float-left' id="passage_new_title_google">
-              <%= render :partial => 'svg/google_100' %>
-            </div>
-          </div>
-          <%= f.text_field :title, placeholder: "長文のタイトル", class: "new-passage-title", :required => true %>
-        </div>
+    <div class="clearfix">
+      <div class="float-left form-title margin-l-15">単語帳を編集する</div>
+      <div class="float-right grey-solid-btn margin-r-15 margin-t-20">
+          <%= link_to "単語帳を削除", passage_path(@passage), method: "DELETE", class: "", data: { :confirm => '削除します。よろしいですか?'} %>
+      </div>
+    </div>
 
-        <div class='form-section new-passage-content'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :ch, "長文内容" %>&emsp;
-            </div>
-            <div class='float-left' id="passage_new_ch_google">
-              <%= render :partial => 'svg/google_100' %>
-            </div>
+    <%= form_for @passage, method: :put, remote: true do |f| %>
+      <!-- タイトル -->
+      <div class='form-section col-xs-12'>
+        <div class='clearfix'>
+          <div class='float-left'>
+            <%= f.label :title, "単語帳名" %>&emsp;
           </div>
-          <%= f.text_area :ch, placeholder: "中国語の文章を書いてください。改行やスペースなどで読みやすく書くことをオススメします。", :required => true %>
-        </div>
-
-        <div class='form-section new-passage-content'>
-          <div class='clearfix'>
-            <div class='float-left'>
-              <%= f.label :title, "日本語訳" %>&emsp;
-            </div>
-            <div class='float-left' id="passage_new_ja_google">
-              <%= render :partial => 'svg/google_100' %>
-            </div>
+          <div class='float-left' id="passage_new_title_google">
+            <%= render :partial => 'svg/google_100' %>
           </div>
-          <%= f.text_area :ja, placeholder: "勉強するときに、長文の日本語訳が必要な場合は、埋めてください。必須項目ではありません。" %>
         </div>
+        <%= f.text_field :title, placeholder: "単語帳名を入植してください。", class: "new-passage-title", :required => true %>
       </div>
 
+      <!-- 単語 -->
       <div class="col-xs-12 col-lg-4">
         <%= f.label :title, "単語" %><br />
         <div class='form-section passage-edit-words-wrapper'>
@@ -116,6 +92,32 @@
               };
             </script>
           <% end %>
+        </div>
+      </div>
+      <!-- 長文 -->
+      <div class="col-xs-12 col-lg-8">
+        <div class='form-section new-passage-content'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :ch, "長文内容" %>&emsp;
+            </div>
+            <div class='float-left' id="passage_new_ch_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_area :ch, placeholder: "中国語の文章を書いてください。改行やスペースなどで読みやすく書くことをオススメします。" %>
+        </div>
+
+        <div class='form-section new-passage-content'>
+          <div class='clearfix'>
+            <div class='float-left'>
+              <%= f.label :title, "日本語訳" %>&emsp;
+            </div>
+            <div class='float-left' id="passage_new_ja_google">
+              <%= render :partial => 'svg/google_100' %>
+            </div>
+          </div>
+          <%= f.text_area :ja, placeholder: "勉強するときに、長文の日本語訳が必要な場合は、埋めてください。必須項目ではありません。" %>
         </div>
       </div>
       <%= f.submit "更新", class: "form-send-btn float-right margin-b-20 visible-lg" %>

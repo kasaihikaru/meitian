@@ -1,17 +1,17 @@
-$("#sentence-card-<%= @sentence.id %>").html("<%= j(render :partial => 'sentences/sentence_card_ch', :locals=>{paper: @sentence.paper, s: @sentence}) %>");
-$("#progress-bar-render-wrapper").html("<%= j(render :partial => 'render_common/progress', :locals=>{progress: @progress}) %>");
-$("#memorized_status").html("<%= j(render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_count, all_count: @all_count}) %>");
+$("#sentence_card_ch_<%= @sentence.id %>").html("<%= j(render :partial => 'sentences/sentence_card_ch', :locals=>{paper: @sentence.paper, s: @sentence}) %>");
+$("#progress_bar_render_wrapper_sentence_ch").html("<%= j(render :partial => 'render_common/progress_sentence_ch', :locals=>{progress: @progress_sentence_ch}) %>");
+$("#memorized_status_sentence_ch").html("<%= j(render :partial => 'render_common/memorized_status', :locals=>{memorized_count: @memorized_sentence_count_ch, all_count: @all_sentence_count, progress: @progress_sentence_ch}) %>");
 
 // 円グラフ
 $(function(){
-  var $ppc = $('.progress-pie-chart'),
+  var $ppc = $('.progress-pie-chart-sentence-ch'),
     percent = parseInt($ppc.data('percent')),
     deg = 360*percent/100;
   if (percent > 50) {
     $ppc.addClass('gt-50');
   }
-  $('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
-  $('.ppc-percents span').html(percent+'%');
+  $('.ppc-progress-fill-sentence-ch').css('transform','rotate('+ deg +'deg)');
+  $('.ppc-percents-sentence-ch span').html(percent+'%');
 });
 
 // パンパカパーン

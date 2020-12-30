@@ -1,0 +1,43 @@
+<footer class="container-fluid visible-xs">
+  <div class="row topline">
+    <div class="col-xs-3 center-align footer-link">
+      <%= link_to home_path do %>
+        <% if params[:controller] == 'homes' %>
+          <%= render :partial => 'svg/home_colored' %><br>
+          <span class='selected'>ホーム</span>
+        <% else %>
+          <%= render :partial => 'svg/home' %><br>
+          ホーム
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-3 center-align footer-link">
+      <%= link_to me_path do %>
+        <% if params[:controller] == 'mes' %>
+          <%= render :partial => 'svg/book_colored' %><br>
+          <span class='selected'>マイ教材</span>
+        <% else %>
+          <%= render :partial => 'svg/book' %><br>
+          マイ教材
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-xs-3 center-align footer-link">
+      <div class="" data-toggle="modal" data-target="#post-psr-modal">
+        <%= render :partial => 'svg/plus' %><br>
+        投稿する
+      </div>
+    </div>
+    <div class="col-xs-3 center-align footer-link">
+      <%= link_to edit_user_registration_path(@current_user) do %>
+        <% if params[:controller] == 'users/registrations' %>
+          <%= render :partial => 'svg/me_colored' %><br>
+          <span class='selected'>アカウント</span>
+        <% else %>
+          <%= render :partial => 'svg/me' %><br>
+          アカウント
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</footer>

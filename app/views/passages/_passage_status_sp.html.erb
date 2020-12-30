@@ -1,0 +1,18 @@
+<!-- ステータス変更ボタン -->
+<% if passage.completed? %>
+  <div type="button"  data-toggle="modal" data-target="#change_status_sp">
+    <%= render :partial => 'svg/status_completed' %>&nbsp;<span class="font-14 font-bold">完了！</span><br>学習ステータス
+  </div>
+<% elsif passage.working? %>
+  <div type="button"  data-toggle="modal" data-target="#change_status_sp">
+    <%= render :partial => 'svg/status_working' %>&nbsp;<span class="font-14 font-bold">勉強中</span><br>学習ステータス
+  </div>
+<% elsif passage.review_needed? %>
+  <div type="button"  data-toggle="modal" data-target="#change_status_sp">
+    <%= render :partial => 'svg/status_review_needed' %>&nbsp;<span class="font-14 font-bold">要復習</span><br>学習ステータス
+  </div>
+<% else %>
+  <div type="button"  data-toggle="modal" data-target="#change_status_sp">
+    <%= render :partial => 'svg/status_waiting' %>&nbsp;<span class="font-14 font-bold">未着手</span><br>学習ステータス
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 <section class='sentences' id='sentence-ch'>
 	<% if @sentences.present? %>
 		<% @sentences.each do |s| %>
-			<div id='sentence-card-<%= s.id %>'>
+			<div id='sentence_card_ch_<%= s.id %>'>
 				<%= render :partial => 'sentences/sentence_card_ch', :locals=>{paper: @paper, s: s} %>
 			</div>
 		<% end %>

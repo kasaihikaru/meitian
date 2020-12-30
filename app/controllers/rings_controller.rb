@@ -1,5 +1,5 @@
 class RingsController < ApplicationController
-  before_action :login_check, except: [:word_ja, :word_ch]
+  before_action :login_check, except: [:word_ja, :word_ch, :show]
   before_action -> {
     user_check_by_id(get_user_by_ring_id_for_ring)
   },only: [:uncheck_all_words_ja, :uncheck_all_words_ch, :waiting, :working, :review_needed, :completed]
@@ -8,6 +8,16 @@ class RingsController < ApplicationController
   },only: [:edit, :update, :destroy]
 
   #-----------------------get-----------------------
+  def show
+    @ring = Ring.find(id_params)
+    @user = @ring.user
+    @words = @ring.r_words.active
+    @all_count = @words.count
+    @memorized_count_ch = @words.memorized_ja.count
+    @memorized_count_ja = @words.memorized_ch.count
+    get_progresses
+  end
+
   def edit
     @ring = Ring.find(id_params)
   end
@@ -66,7 +76,7 @@ class RingsController < ApplicationController
     ring_id = Ring.find(ring_id_params).id
     user_id = current_user.id
     copy_specific_ring(ring_id, user_id, false)
-    @msg = "自分の単語帳として保存しました。"
+    @msg = "マイ教材として保存しました。"
   end
 
   def uncheck_all_words_ja

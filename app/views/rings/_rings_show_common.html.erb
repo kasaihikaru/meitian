@@ -49,13 +49,13 @@
         <span class='lang-btn lang-btn-ch-selected'>
           中 → 日を勉強
         </span>
-        <%= link_to ring_word_ja_path(@ring, anchor: 'ring-words-ja') do %>
+        <%= link_to ring_word_ja_path(@ring) do %>
           <span class='lang-btn lang-btn-ja'>
               日 → 中を勉強
           </span>
         <% end %>
       <% elsif params[:action] == 'word_ja'%>
-        <%= link_to ring_word_ch_path(@ring, anchor: 'ring-words-ch') do %>
+        <%= link_to ring_word_ch_path(@ring) do %>
           <span class='lang-btn lang-btn-ch'>
             中 → 日を勉強
           </span>

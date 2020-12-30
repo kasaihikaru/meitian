@@ -129,13 +129,63 @@ class ApplicationController < ActionController::Base
 
 
 	def get_progress
-		if @all_count > 0
+		if @all_sentence_count > 0
 			@progress = 100 * @memorized_count / @all_count
 		else
 			@progress = 0
 		end
 	end
 
+  # get progress for words
+  def get_progresses
+    if @all_count > 0
+      @progress_ch = 100 * @memorized_count_ch / @all_count
+      @progress_ja = 100 * @memorized_count_ja / @all_count
+    else
+      @progress_ch = 0
+      @progress_ja = 0
+    end
+  end
+  def get_progress_ch
+    if @all_count > 0
+      @progress_ch = 100 * @memorized_count_ch / @all_count
+    else
+      @progress_ch = 0
+    end
+  end
+
+  def get_progress_ja
+    if @all_count > 0
+      @progress_ja = 100 * @memorized_count_ja / @all_count
+    else
+      @progress_ja = 0
+    end
+  end
+
+  # get progress for sentences
+  def get_sentence_progresses
+    if @all_sentence_count > 0
+      @progress_sentence_ch = 100 * @memorized_sentence_count_ch / @all_sentence_count
+      @progress_sentence_ja = 100 * @memorized_sentence_count_ja / @all_sentence_count
+    else
+      @progress_sentence_ch = 0
+      @progress_sentence_ja = 0
+    end
+  end
+  def get_progress_sentence_ch
+    if @all_sentence_count > 0
+      @progress_sentence_ch = 100 * @memorized_sentence_count_ch / @all_sentence_count
+    else
+      @progress_sentence_ch = 0
+    end
+  end
+  def get_progress_sentence_ja
+    if @all_sentence_count > 0
+      @progress_sentence_ja = 100 * @memorized_sentence_count_ja / @all_sentence_count
+    else
+      @progress_sentence_ja = 0
+    end
+  end
 
 
 #-----------------------コピー-----------------------

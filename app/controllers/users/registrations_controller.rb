@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     copy_sample_passage(current_user.level, current_user.id)
 
     # リダイレクト
-    passage_word_ch_path(current_user.passages.first)
+    passage_path(current_user.passages.first)
   end
 
   # POST /resource
@@ -38,7 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       copy_sample_paper(user.level, user.id)
 
       UserMailer.registration(user).deliver_now
-      # redirect_to passage_word_ch_path(user.passages.first)
     end
   end
 
