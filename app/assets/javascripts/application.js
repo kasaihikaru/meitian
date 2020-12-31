@@ -292,18 +292,17 @@ $(document).on('turbolinks:load',function() {
   });
 
 
-
- $(function(){
+  $(function(){
     var aTags = $('a'); //ページ内のaタグ群を取得。aTagsに配列として代入。
-    aTags.each(function(){ //全てのaタグについて処理
-    var url = $(this).attr('href');//aタグのhref属性からリンク先url取得
+      //全てのaタグについて処理
+      aTags.each(function(){
+        var url = $(this).attr('href');//aタグのhref属性からリンク先url取得
         $(this).removeAttr('href');//念のため、href属性は削除
-    $(this).click(function(){//クリックイベントをバインド
-      location.href = url;
-     });
-   });
- });
-
+        $(this).click(function(){
+          location.href = url;//クリックイベントをバインド
+        });
+      });
+  });
 
 });
 
