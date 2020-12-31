@@ -203,7 +203,7 @@ h1{ font-size: 20px; font-weight: 800; }
 .action-float-btn-with-footer
   {
   position: fixed;
-  bottom: 60px;
+  bottom: 90px;
   right: 15px;
   box-shadow: 0 1px 6px 1px rgba(0,0,0,0.19);
   }
@@ -304,7 +304,7 @@ select{
   border-bottom: 1px solid black;
 }
 .topline{
-  border-top: 1px solid black;
+  border-top: 0.5px solid $Grey;
 }
 .under-marker-lightprim{
   background: linear-gradient(transparent 70%, $LightPrim 70%);
