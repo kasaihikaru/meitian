@@ -36,17 +36,13 @@ class PWordsController < ApplicationController
   end
 
   def update_pin
-    word = PWord.find(p_word_id_params)
-    if word.pin != pin_params
-      word.update(pin: pin_params, pin_fixed: 1)
+    @word = PWord.find(p_word_id_params)
+    if @word.pin != pin_params
+      @word.update(pin: pin_params, pin_fixed: 1)
     end
 
-    #リダイレクト
-    if params[:redirect_flg] == "word_ja"
-      redirect_to passage_path(word.passage.id, anchor: 'passage-words-ja')
-    else
-      redirect_to passage_path(word.passage.id, anchor: 'passage-words-ch')
-    end
+    @passage = @word.passage
+    @user = @passage.user
   end
 
   def destroy

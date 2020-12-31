@@ -35,7 +35,7 @@
 				<%= word.ja %>
 			</a>
 		</th>
-		<th scope="col"><%= word.pin %></th>
+		<th scope="col" class="pointer" type="button"  data-toggle="modal" data-target="#pin_edit_modal_ch_<%= word.id %>"><%= word.pin %></th>
 	<% else %>
 		<th scope="col" class="row-checked">
 			<%= link_to edit_p_word_path(word) do %>
@@ -57,8 +57,37 @@
 				<%= word.ja %>
 			</a>
 		</th>
-		<th scope="col" class="row-checked"><%= word.pin %></th>
+		<th scope="col" class="row-checked pointer" type="button"  data-toggle="modal" data-target="#pin_edit_modal_ch_<%= word.id %>"><%= word.pin %></th>
 	<% end %>
+
+	<!-- ピンイン編集モーダル  -->
+  <div class="modal fade modal-centered" id="pin_edit_modal_ch_<%= word.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      	<%= form_tag p_word_update_pin_path(word), method: "PUT", remote: true do %>
+	        <div class="modal-header">
+	          <h5 class="modal-title">ピンインの編集</h5>
+	        </div>
+	        <div class="modal-body">
+	        	Meitianが自動で振ったピンインを修正することができます。
+			    		<div class='form-section'>
+			          <div class="clearfix">
+			            <div id="p_word_pin_edit_ch" class="float-left">
+			              <%= render :partial => 'svg/google' %>
+			            </div>
+									<div class="float-left margin-l-10" id="p_word_pinedit"><%= word.ch %></div>
+			          </div>
+			          <%= text_field_tag :pin , word.pin ,placeholder: "Pinyin", class: "width-100" %>
+			        </div>
+					</div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+	          <%= submit_tag "更新", class: "btn bg-prim fontcol-white " %>
+	        </div>
+	      </div>
+      <% end %>
+    </div>
+  </div>
 
 <!-- ログインしていない -->
 <% else %>

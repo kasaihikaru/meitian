@@ -873,12 +873,11 @@ ul.cp_list li:before {
 .left_balloon {
     color: black;
     position: relative;
-    background: #D9D5D5;
+    background: #F7F5F5;
     font-size: 12px;
     margin: 10px 0;
     padding: 10px;
     border-radius: 15px;
-    // clear: both; //アイコン横に並べるため
     float: left;
     margin-left: 38px;
 }
@@ -895,7 +894,7 @@ ul.cp_list li:before {
 }
 .left_balloon:after {
     border-color: rgba(255, 255, 255, 0);
-    border-right-color: #D9D5D5;
+    border-right-color: #F7F5F5;
     border-width: 7px;
     margin-top: -7px;
 }

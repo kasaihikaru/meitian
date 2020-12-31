@@ -36,18 +36,15 @@ class SWordsController < ApplicationController
   end
 
   def update_pin
-    word = SWord.find(s_word_id_params)
-    if word.pin != pin_params
-      word.update(pin: pin_params, pin_fixed: 1)
+    @word = SWord.find(s_word_id_params)
+    if @word.pin != pin_params
+      @word.update(pin: pin_params, pin_fixed: 1)
     end
 
-    #リダイレクト
-    if params[:redirect_flg] == "word_ja"
-      redirect_to paper_word_ja_path(word.sentence.paper.id)
-    else
-      redirect_to paper_word_ch_path(word.sentence.paper.id)
-    end
+    @paper = @word.sentence.paper
+    @user = @paper.user
   end
+
   def destroy
   end
 

@@ -1,0 +1,16 @@
+$("#s_word_row_ja_<%= @word.id %>").html("<%= j(render :partial => 'render_for_word/s_word_row_ja', :locals=>{paper: @paper, word: @word}) %>");
+$("#s_word_row_ch_<%= @word.id %>").html("<%= j(render :partial => 'render_for_word/s_word_row_ch', :locals=>{paper: @paper, word: @word}) %>");
+
+
+// モーダルを閉じる
+$(function() {
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('#pin_edit_modal_ja_<%= @word.id %>').modal('hide');
+});
+// モーダルを閉じる
+$(function() {
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('#pin_edit_modal_ch_<%= @word.id %>').modal('hide');
+});
