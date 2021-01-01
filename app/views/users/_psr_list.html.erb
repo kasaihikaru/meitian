@@ -10,17 +10,17 @@
             </div>
             <div class='clearfix font-12'>
             	<div class='float-left'>
-            		<%= render :partial => 'svg/ring_line' %>
-            	</div>
-            	<div class='float-left'>
-								<span class='status-badge badge-red'>勉強中</span>
+								<span class=''><%= passage.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %>更新</span>
 							</div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+                <span class='status-badge badge-red'>勉強中</span>
+              </div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3 margin-r-15"><%= passage.p_words.count %>単語</span>
               </div>
               <% if passage.ch.present? %>
                 <div class='float-right'>
-                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-3 margin-r-15">長文あり</span>
                 </div>
               <% end %>
             </div>
@@ -46,13 +46,13 @@
             </div>
             <div class='clearfix font-12'>
             	<div class='float-left'>
-            		<%= render :partial => 'svg/paper_line' %>
+            		<span class=''><%= paper.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %>更新</span>
             	</div>
-            	<div class='float-left'>
+            	<div class='float-right'>
 								<span class='status-badge badge-red'>勉強中</span>
 							</div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3 margin-r-15"><%= paper.sentences.count %>例文</span>
               </div>
             </div>
             <div class='psr-content-sub'>
@@ -83,17 +83,17 @@
             </div>
             <div class='clearfix font-12'>
             	<div class='float-left'>
-            		<%= render :partial => 'svg/ring_line' %>
+            		<span class=''><%= passage.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %>更新</span>
             	</div>
-            	<div class='float-left'>
+            	<div class='float-right'>
 								<span class='status-badge badge-blue'>要復習</span>
 							</div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3 margin-r-15"><%= passage.p_words.count %>単語</span>
               </div>
               <% if passage.ch.present? %>
                 <div class='float-right'>
-                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-3 margin-r-15">長文あり</span>
                 </div>
               <% end %>
             </div>
@@ -119,13 +119,13 @@
             </div>
             <div class='clearfix font-12'>
             	<div class='float-left'>
-            		<%= render :partial => 'svg/paper_line' %>
+            		<span class=''><%= paper.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %>更新</span>
             	</div>
-            	<div class='float-left'>
+            	<div class='float-right'>
 								<span class='status-badge badge-blue'>要復習</span>
 							</div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3 margin-r-15"><%= paper.sentences.count %>例文</span>
               </div>
             </div>
             <div class='psr-content-sub'>
@@ -144,12 +144,21 @@
 <% end %>
 
 
-
-<section class='psr'>
-	<div class='psr-title psr-title-black'>最近、更新した単語帳</div>
-	<div class='psr-content'>
-		<% if @passages.present? %>
-			<div class='psr-sub-title'>単語帳</div>
+<% if @passages.present? %>
+	<section class='psr'>
+		<div class='psr-title psr-title-black'>
+			<div class="clearfix">
+				<div class="float-left">最近、更新した単語帳</div>
+				<% if @papers_cnt > 5 %>
+					<div class='psr-link float-right'>
+						<%= link_to user_passages_path(@user) do %>
+							>全ての単語帳(<%= @passages_cnt %>)
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class='psr-content'>
 			<% @passages.each do |passage| %>
         <div class='margin-b-20'>
           <%= link_to passage_path(passage) do %>
@@ -158,9 +167,9 @@
             </div>
             <div class='clearfix font-12'>
             	<div class='float-left'>
-            		<%= render :partial => 'svg/ring_line' %>
+            		<span class=''><%= passage.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %>更新</span>
             	</div>
-            	<div class='float-left'>
+            	<div class='float-right'>
 								<!-- ステータスラベル -->
 								<% if passage.waiting? %>
 									<span class='status-badge badge-black'><%= passage.status_i18n %></span>
@@ -173,11 +182,11 @@
 								<% end %>
 							</div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3 margin-r-15"><%= passage.p_words.count %>単語</span>
               </div>
               <% if passage.ch.present? %>
                 <div class='float-right'>
-                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-3 margin-r-15">長文あり</span>
                 </div>
               <% end %>
             </div>
@@ -203,14 +212,25 @@
 				</div>
 			<% end %>
 			<br>
-		<% end %>
-	</div><!-- End of psr-content -->
-</section>
+		</div><!-- End of psr-content -->
+	</section>
+<% end %>
 
-<section class='psr'>
-	<div class='psr-title psr-title-black'>最近、更新した瞬間作文集</div>
-		<% if @papers.present? %>
-			<div class='psr-sub-title'>瞬間作文集</div>
+<% if @papers.present? %>
+	<section class='psr'>
+		<div class='psr-title psr-title-black'>
+			<div class="clearfix">
+				<div class="float-left">最近、更新した瞬間作文集</div>
+				<% if @papers_cnt > 5 %>
+					<div class='psr-link float-right'>
+						<%= link_to user_papers_path(@user) do %>
+							>全ての瞬間作文集(<%= @papers_cnt %>)
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class='psr-content'>
 			<% @papers.each do |paper| %>
         <div class='margin-b-20'>
           <%= link_to paper_path(paper) do %>
@@ -219,9 +239,9 @@
             </div>
             <div class='clearfix font-12'>
             	<div class='float-left'>
-            		<%= render :partial => 'svg/paper_line' %>
+            		<span class=''><%= paper.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %>更新</span>
             	</div>
-            	<div class='float-left'>
+            	<div class='float-right'>
 								<!-- ステータスラベル -->
 								<% if paper.waiting? %>
 									<span class='status-badge badge-black'><%= paper.status_i18n %></span>
@@ -234,7 +254,7 @@
 								<% end %>
 							</div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3 margin-r-15"><%= paper.sentences.count %>例文</span>
               </div>
             </div>
             <div class='psr-content-sub'>
@@ -256,6 +276,6 @@
 				</div>
 			<% end %>
 			<br>
-		<% end %>
-	</div><!-- End of psr-content -->
-</section>
+		</div><!-- End of psr-content -->
+	</section>
+<% end %>

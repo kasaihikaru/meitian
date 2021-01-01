@@ -105,7 +105,7 @@ class ApplicationController < ActionController::Base
 	def get_user_working_prs
 		@working_passages = @passages_all.working
 		@working_papers = @papers_all.working
-		if @working_passages.present? or @working_papers.present? or @working_rings.present?
+		if @working_passages.present? or @working_papers.present?
 			@working_flg = true
 		else
 			@working_flg = false

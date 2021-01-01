@@ -208,15 +208,15 @@
                    <img alt="no-icon" src="/images/no-icon.png">
                 <% end %>
               </div>
-              <div class='float-left margin-l-5'>
-                <%= passage.user.name.truncate(10) %>
+              <div class='float-left margin-l-3'>
+                <%= passage.user.name.truncate(11) %>
               </div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3"><%= passage.p_words.count %>単語</span>
               </div>
               <% if passage.ch.present? %>
                 <div class='float-right'>
-                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-3 margin-r-15">長文あり</span>
                 </div>
               <% end %>
             </div>
@@ -259,11 +259,11 @@
                    <img alt="no-icon" src="/images/no-icon.png">
                 <% end %>
               </div>
-              <div class='float-left margin-l-5'>
+              <div class='float-left margin-l-3'>
                 <%= paper.user.name.truncate(10) %>
               </div>
               <div class='float-right'>
-                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3"><%= paper.sentences.count %>例文</span>
               </div>
             </div>
             <div class='psr-content-sub'>

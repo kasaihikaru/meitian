@@ -2,20 +2,31 @@
   <%= @user.name %>さんのページ | MeiTian
 <% end %>
 
-<section class='user-profile'>
-	<!-- ユーザー名前、自己紹介、リンク -->
-	<%= render :partial => 'users/user_profile_introduction', :locals=>{user: @user} %>
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center overflow"><%= @user.name %>さんのページ</div>
+  </div>
+</div>
 
-	<!-- 目標-->
-	<% if @user.goal? %>
-    <div class='user-profile-field'>
-      <span class='user-goal-title'><%= render :partial => 'svg/goal_sm' %>目標</span><br>
-      <%= simple_format(@user.goal) %>
-    </div>
-  <% end %>
-</section>
-<hr>
+<div class="container">
+
+  <section class='user-profile'>
+  	<!-- ユーザー名前、自己紹介、リンク -->
+  	<%= render :partial => 'users/user_profile_introduction', :locals=>{user: @user} %>
+
+  	<!-- 目標-->
+  	<% if @user.goal? %>
+      <div class='user-profile-field'>
+        <span class='user-goal-title'><%= render :partial => 'svg/goal_sm' %>目標</span><br>
+        <%= simple_format(@user.goal) %>
+      </div>
+    <% end %>
+  </section>
+  <hr>
 
 
-<!-- PSRリスト -->
-<%= render :partial => 'users/psr_list', :locals=>{user: @user, passages: @passages, passages_cnt: @passages_cnt, papers: @papers, papers_cnt: @papers_cnt, rings: @rings, rings_cnt: @rings_cnt} %>
+  <!-- PSRリスト -->
+  <%= render :partial => 'users/psr_list', :locals=>{user: @user, passages: @passages, passages_cnt: @passages_cnt, papers: @papers, papers_cnt: @papers_cnt, rings: @rings, rings_cnt: @rings_cnt} %>
+
+
+</div><!-- End of Container -->

@@ -1,79 +1,60 @@
 <% content_for :title do %>
-  <%= @user.name %>さんの短文集一覧 | MeiTian
+  <%= @user.name %>さんの瞬間作文集一覧 | MeiTian
 <% end %>
 
-<% if @user != current_user %>
-	<section class='user-profile'>
-		<!-- ユーザー名前、自己紹介、リンク -->
-		<%= render :partial => 'users/user_profile_introduction', :locals=>{user: @user} %>
-	</section>
-<% end %>
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center overflow"><%= @user.name %>さんの瞬間作文集一覧</div>
+  </div>
+</div>
 
-
-<!-- 一覧 -->
-	<div class="row center-align psr-list-change-btns">
-		<%= link_to user_passages_path(@user) do %>
-			<div class="col-xs-4 padding-2">
-				長文<span class='font-12'>(<%= @passages_cnt %>)</span>
-			</div>
-		<% end %>
-		<%= link_to user_papers_path(@user) do %>
-			<div class="col-xs-4 padding-2 undermarker-prime">
-				短文<span class='font-12'>(<%= @papers_cnt %>)</span>
-			</div>
-		<% end %>
-		<%= link_to user_rings_path(@user) do %>
-			<div class="col-xs-4 padding-2">
-				単語<span class='font-12'>(<%= @rings_cnt %>)</span>
-			</div>
-		<% end %>
-	</div>
-
-<hr>
-更新順に表示されます。
-<section class='psr'>
-	<div class='psr-content'>
-		<% if @papers.present? %>
-			<% @papers.each do |paper| %>
-				<div class='margin-b-20'>
-					<%= link_to paper_path(paper) do %>
-						<%= render :partial => 'svg/paper' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= paper.name.truncate(15) %></span>
-						<!-- ステータスラベル -->
-						<% if paper.waiting? %>
-							<span class='status-badge badge-black'><%= paper.status_i18n %></span>
-						<% elsif paper.working? %>
-							<span class='status-badge badge-red'><%= paper.status_i18n %></span>
-						<% elsif paper.review_needed? %>
-							<span class='status-badge badge-blue'><%= paper.status_i18n %></span>
-						<% elsif paper.completed? %>
-							<span class='status-badge badge-green'><%= paper.status_i18n %></span>
-						<% end %>
-					<% end %>
+<div class="container">
+	<% if @papers.present? %>
+		<section class='psr'>
+			<div class='psr-title psr-title-black'>
+				<div class="clearfix">
+					<div class="float-left"><%= @user.name %>さんの瞬間作文集一覧</div>
 				</div>
-			<% end %>
-		<% else %>
-			<% if @user == current_user %>
-				まだ短文集がありません！
-				<ul>
-					<li>
-						<%= form_for @paper, method: :post do |f| %>
-							<%= f.text_field :name, placeholder: "自分で作ってみる", :required => true, style: "width: 200px;" %>
-							<%= f.submit "作成", class: "grey-solid-btn" %>
-						<% end %>
-					</li>
-					<li>
-						<%= link_to explore_path do %>
-							他のユーザーの短文集をコピーする
-						<% end %>
-					</li>
-				</ul>
-			<% else %>
-				まだ短文集の投稿はありません。
-			<% end %>
-		<% end %>
-	</div>
-</section>
+			</div>
+			<div class='psr-content'>
+				<% @papers.each do |paper| %>
+	        <div class='margin-b-20'>
+	          <%= link_to paper_path(paper) do %>
+	            <div class='font-18 font-bold margin-b-5 overflow'>
+	              <%= paper.name %>
+	            </div>
+	            <div class='clearfix font-12'>
+	            	<div class='float-left'>
+	            		<span class=''><%= paper.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d") %>更新</span>
+	            	</div>
+	            	<div class='float-right'>
+									<!-- ステータスラベル -->
+									<% if paper.waiting? %>
+										<span class='status-badge badge-black'><%= paper.status_i18n %></span>
+									<% elsif paper.working? %>
+										<span class='status-badge badge-red'><%= paper.status_i18n %></span>
+									<% elsif paper.review_needed? %>
+										<span class='status-badge badge-blue'><%= paper.status_i18n %></span>
+									<% elsif paper.completed? %>
+										<span class='status-badge badge-green'><%= paper.status_i18n %></span>
+									<% end %>
+								</div>
+	              <div class='float-right'>
+	                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-3 margin-r-15"><%= paper.sentences.count %>例文</span>
+	              </div>
+	            </div>
+	            <div class='psr-content-sub'>
+	              <% if paper.sentences.present? %>
+	                <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
+	                <%= paper.sentences.first.ja.truncate(50) %><br>
+	              <% else %>
+	                まだ瞬間作文が追加されていません。
+	              <% end %>
+	            </div>
+	          <% end %>
+	        </div>
+				<% end %>
+			</div><!-- End of psr-content -->
+		</section>
+	<% end %>
+</div>
