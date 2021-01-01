@@ -62,11 +62,6 @@
     <% end %>
   </div>
 
-  <!--          ログインしてない場合、長文を表示          -->
-  <% unless user_signed_in? %>
-    <%= render :partial => 'passages/passage_render', :locals=>{user: @user, passage: @passage} %>
-    <div class="empty-sm"></div>
-  <% end %>
 
   <!--          長文も単語もあり          -->
   <% if @all_count > 0 && @passage.ch.present? %>
@@ -94,6 +89,13 @@
     </div>
   <% else %>
     <div class="margin-tb-35">まだ単語が追加されていません。</div>
+  <% end %>
+
+  <!--          ログインしてなくて、単語帳もある場合長文を表示          -->
+  <% unless user_signed_in? %>
+    <% if @all_count > 0 %>
+      <%= render :partial => 'passages/passage_render', :locals=>{user: @user, passage: @passage} %>
+    <% end %>
   <% end %>
 
 </div><!-- End of Container -->
