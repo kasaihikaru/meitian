@@ -29,7 +29,7 @@
           <%= f.label :level, '今の中国語レベルを教えてください！' %><br />
           <%= f.select :level, [["初級（これから始める、始めたばかり）", 1], ["中級（中検3級、HSK4〜5級）", 2],  ["上級（中検2級以上、HSK6級）", 3]], required: true %>
         </div>
-
+        <%= link_to term_docs_path, class: "fontcol-prim", target: "blank" do %>利用規約<% end %>と<%= link_to privacy_docs_path, class: "fontcol-prim", target: "blank" do %>プライバシーポリシー<% end %>をご覧ください。
         <div class="actions">
           <%= f.submit '新規登録', class: "prim-btn float-right", onclick: "ga('send', 'event', 'users_sign_up', 'submit_register_user', '')" %>
         </div>
@@ -41,6 +41,5 @@
       <img alt="no-icon" src="/images/MeiTian_TOP.jpg" class="product-img">
     </div>
   </div>
-</div>
-<div class="empty">
+  <br><br><br>
 </div>

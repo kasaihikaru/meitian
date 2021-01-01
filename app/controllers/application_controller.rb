@@ -12,13 +12,13 @@ class ApplicationController < ActionController::Base
 	def login_check
 		unless user_signed_in?
 			flash[:alert] = 'ログインすると便利に利用できます！'
-			redirect_to explore_path
+			redirect_to root_path
 		end
 	end
 
 	def login_check_no_message
 		unless user_signed_in?
-			redirect_to explore_path
+			redirect_to root_path
 		end
 	end
 

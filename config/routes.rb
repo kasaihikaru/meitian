@@ -125,4 +125,9 @@ Rails.application.routes.draw do
     put 'update_pin' #ピンインを更新
   end
 
+  resource :docs, only: [] do
+    get 'term' #利用規約
+    get 'privacy' #プライバシポリシー
+  end
+
 end
