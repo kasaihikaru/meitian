@@ -1,0 +1,54 @@
+<% content_for :title do %>
+  みんなの瞬間作文集 | MeiTian
+<% end %>
+
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center">みんなの瞬間作文集</div>
+  </div>
+</div>
+
+<div class="container">
+  <section class='psr'>
+    <div class='psr-title psr-title-prim'>みんなの瞬間作文集</div>
+    <div class='psr-content'>
+      <% @papers.each do |paper| %>
+        <div class='margin-b-20'>
+          <%= link_to paper_path(paper) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= paper.name %>
+            </div>
+            <div class='clearfix font-12'>
+              <div class='float-left img-16'>
+                <% if paper.user.image? %>
+                  <%= image_tag paper.user.image.url, :alt => "icon" %>
+                <% else %>
+                   <img alt="no-icon" src="/images/no-icon.png">
+                <% end %>
+              </div>
+              <div class='float-left margin-l-5'>
+                <%= paper.user.name.truncate(10) %>
+              </div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <% if paper.sentences.present? %>
+                <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
+                <%= paper.sentences.first.ja.truncate(50) %><br>
+              <% else %>
+                まだ瞬間作文が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <div class='center'><%= paginate @papers %></div>
+</div><!-- End of Container -->
+
+<div class="empty-sm">
+</div>

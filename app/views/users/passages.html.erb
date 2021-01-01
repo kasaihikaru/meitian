@@ -1,78 +1,67 @@
 <% content_for :title do %>
-  <%= @user.name %>さんの長文一覧 | MeiTian
+  <%= @user.name %>さんの単語帳一覧 | MeiTian
 <% end %>
 
-<% if @user != current_user %>
+
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center overflow"><%= @user.name %>さんの単語帳一覧</div>
+  </div>
+</div>
+
+<div class="container">
 	<section class='user-profile'>
 		<!-- ユーザー名前、自己紹介、リンク -->
 		<%= render :partial => 'users/user_profile_introduction', :locals=>{user: @user} %>
 	</section>
-<% end %>
 
 
-<!-- 一覧 -->
-	<div class="row center-align psr-list-change-btns">
-		<%= link_to user_passages_path(@user) do %>
-			<div class="col-xs-4 padding-2 undermarker-prime">
-				長文<span class='font-12'>(<%= @passages_cnt %>)</span>
-			</div>
-		<% end %>
-		<%= link_to user_papers_path(@user) do %>
-			<div class="col-xs-4 padding-2">
-				短文<span class='font-12'>(<%= @papers_cnt %>)</span>
-			</div>
-		<% end %>
-		<%= link_to user_rings_path(@user) do %>
-			<div class="col-xs-4 padding-2">
-				単語<span class='font-12'>(<%= @rings_cnt %>)</span>
-			</div>
-		<% end %>
-	</div>
-
-<hr>
-更新順に表示されます。
-<section class='psr'>
-	<div class='psr-content'>
-		<% if @passages.present? %>
-			<% @passages.each do |passage| %>
-				<div class='margin-b-20'>
-					<%= link_to passage_path(passage) do %>
-						<%= render :partial => 'svg/passage' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= passage.title.truncate(15) %></span>
-						<!-- ステータスラベル -->
-						<% if passage.waiting? %>
-							<span class='status-badge badge-black'><%= passage.status_i18n %></span>
-						<% elsif passage.working? %>
-							<span class='status-badge badge-red'><%= passage.status_i18n %></span>
-						<% elsif passage.review_needed? %>
-							<span class='status-badge badge-blue'><%= passage.status_i18n %></span>
-						<% elsif passage.completed? %>
-							<span class='status-badge badge-green'><%= passage.status_i18n %></span>
+	<hr>
+	更新順に表示されます。
+	<section class='psr'>
+		<div class='psr-content'>
+			<% if @passages.present? %>
+				<% @passages.each do |passage| %>
+					<div class='margin-b-20'>
+						<%= link_to passage_path(passage) do %>
+							<%= render :partial => 'svg/passage' %>
+							<!-- タブレット以上 -->
+							<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
+							<!-- スマホサイズ -->
+							<span class='visible-xs-inline'><%= passage.title.truncate(15) %></span>
+							<!-- ステータスラベル -->
+							<% if passage.waiting? %>
+								<span class='status-badge badge-black'><%= passage.status_i18n %></span>
+							<% elsif passage.working? %>
+								<span class='status-badge badge-red'><%= passage.status_i18n %></span>
+							<% elsif passage.review_needed? %>
+								<span class='status-badge badge-blue'><%= passage.status_i18n %></span>
+							<% elsif passage.completed? %>
+								<span class='status-badge badge-green'><%= passage.status_i18n %></span>
+							<% end %>
 						<% end %>
-					<% end %>
-				</div>
-			<% end %>
-		<% else %>
-			<% if @user == current_user %>
-				まだ長文がありません！
-				<ul>
-					<li>
-						<%= link_to new_passage_path do %>
-							自分で作ってみる
-						<% end %>
-					</li>
-					<li>
-						<%= link_to explore_path do %>
-							他のユーザーの長文をコピーする
-						<% end %>
-					</li>
-				</ul>
+					</div>
+				<% end %>
 			<% else %>
-				まだ長文の投稿はありません。
+				<% if @user == current_user %>
+					まだ長文がありません！
+					<ul>
+						<li>
+							<%= link_to new_passage_path do %>
+								自分で作ってみる
+							<% end %>
+						</li>
+						<li>
+							<%= link_to explore_path do %>
+								他のユーザーの長文をコピーする
+							<% end %>
+						</li>
+					</ul>
+				<% else %>
+					まだ長文の投稿はありません。
+				<% end %>
 			<% end %>
-		<% end %>
-	</div>
-</section>
+		</div>
+	</section>
+
+</div><!-- End of Container -->

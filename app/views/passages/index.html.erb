@@ -1,0 +1,62 @@
+<% content_for :title do %>
+  みんなの単語帳 | MeiTian
+<% end %>
+
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center">みんなの単語帳</div>
+  </div>
+</div>
+
+<div class="container">
+  <section class='psr'>
+    <h1 class='psr-title psr-title-prim'>みんなの単語帳</h1>
+    <div class='psr-content'>
+      <% @passages.each do |passage| %>
+        <div class='margin-b-20'>
+          <%= link_to passage_path(passage) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= passage.title %>
+            </div>
+            <div class='clearfix font-12'>
+              <div class='float-left img-16'>
+                <% if passage.user.image? %>
+                  <%= image_tag passage.user.image.url, :alt => "icon" %>
+                <% else %>
+                   <img alt="no-icon" src="/images/no-icon.png">
+                <% end %>
+              </div>
+              <div class='float-left margin-l-5'>
+                <%= passage.user.name.truncate(10) %>
+              </div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+              </div>
+              <% if passage.ch.present? %>
+                <div class='float-right'>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                </div>
+              <% end %>
+            </div>
+            <div class='psr-content-sub'>
+              <% if passage.p_words.count > 0 %>
+                <% passage.p_words.limit(20).each do |word| %>
+                  <%= word.ch.truncate(7) %>&ensp;/&ensp;
+                <% end %>
+              <% elsif passage.ch.present? %>
+                <%= passage.ch.truncate(100) %>
+              <% else %>
+                まだ単語が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <div class='center'><%= paginate @passages %></div>
+</div><!-- End of Container -->
+
+<div class="empty-sm">
+</div>

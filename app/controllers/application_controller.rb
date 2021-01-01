@@ -90,25 +90,21 @@ class ApplicationController < ActionController::Base
 	def get_user_all_prs
 		@passages_all = @user.passages.active
 		@papers_all = @user.papers.active
-		@rings_all = @user.rings.active
 	end
 
 	def get_user_recent_prs
 		@passages = @passages_all.recent.order_mofified_at
 		@papers = @papers_all.recent.order_mofified_at
-		@rings = @rings_all.recent.order_mofified_at
 	end
 
 	def get_user_psr_counts
 		@passages_cnt = @passages_all.count
 		@papers_cnt = @papers_all.count
-		@rings_cnt = @rings_all.count
 	end
 
 	def get_user_working_prs
 		@working_passages = @passages_all.working
 		@working_papers = @papers_all.working
-		@working_rings = @rings_all.working
 		if @working_passages.present? or @working_papers.present? or @working_rings.present?
 			@working_flg = true
 		else
@@ -119,8 +115,7 @@ class ApplicationController < ActionController::Base
 	def get_user_review_needed_prs
 		@review_needed_passages = @passages_all.review_needed
 		@review_needed_papers = @papers_all.review_needed
-		@review_needed_rings = @rings_all.review_needed
-		if @review_needed_passages.present? or @review_needed_papers.present? or @review_needed_rings.present?
+    if @review_needed_passages.present? or @review_needed_papers.present?
 			@review_needed_flg = true
 		else
 			@review_needed_flg = false

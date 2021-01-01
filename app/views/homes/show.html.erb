@@ -192,12 +192,12 @@
 <!-- 以下、投稿一覧 -->
 <div class="container">
   <section class='psr'>
-    <div class='psr-title psr-title-prim'>みんなの単語長</div>
+    <div class='psr-title psr-title-prim'>みんなの単語帳</div>
     <div class='psr-content'>
       <% @passages.each do |passage| %>
         <div class='margin-b-20'>
           <%= link_to passage_path(passage) do %>
-            <div class='font-20 font-bold margin-b-5 overflow'>
+            <div class='font-18 font-bold margin-b-5 overflow'>
               <%= passage.title %>
             </div>
             <div class='clearfix font-12'>
@@ -225,15 +225,17 @@
                 <% passage.p_words.limit(20).each do |word| %>
                   <%= word.ch.truncate(7) %>&ensp;/&ensp;
                 <% end %>
-              <% else %>
+              <% elsif passage.ch.present? %>
                 <%= passage.ch.truncate(100) %>
+              <% else %>
+                まだ単語が追加されていません。
               <% end %>
             </div>
           <% end %>
         </div>
       <% end %>
       <div class='psr-link'>
-        <%= link_to passages_explore_path do %>
+        <%= link_to passages_path do %>
           >もっと見る
         <% end %>
       </div>
@@ -241,12 +243,12 @@
   </section>
 
   <section class='psr'>
-    <div class='psr-title psr-title-prim'>みんなの瞬間作文</div>
+    <div class='psr-title psr-title-prim'>みんなの瞬間作文集</div>
     <div class='psr-content'>
       <% @papers.each do |paper| %>
         <div class='margin-b-20'>
           <%= link_to paper_path(paper) do %>
-            <div class='font-20 font-bold margin-b-5 overflow'>
+            <div class='font-18 font-bold margin-b-5 overflow'>
               <%= paper.name %>
             </div>
             <div class='clearfix font-12'>
@@ -265,14 +267,18 @@
               </div>
             </div>
             <div class='psr-content-sub'>
-              <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
-              <%= paper.sentences.first.ja.truncate(50) %><br>
+              <% if paper.sentences.present? %>
+                <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
+                <%= paper.sentences.first.ja.truncate(50) %><br>
+              <% else %>
+                まだ瞬間作文が追加されていません。
+              <% end %>
             </div>
           <% end %>
         </div>
       <% end %>
       <div class='psr-link'>
-        <%= link_to papers_explore_path do %>
+        <%= link_to papers_path do %>
           >もっと見る
         <% end %>
       </div>

@@ -38,6 +38,10 @@ class PapersController < ApplicationController
     get_progresses
   end
 
+  def index
+    @papers = Paper.active.not_sapmle.order_mofified_at.page(page_params).per(20)
+  end
+
   def get_for_paper_show
     @paper = Paper.find(paper_id_params)
     @user = @paper.user

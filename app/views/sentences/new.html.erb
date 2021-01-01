@@ -6,7 +6,6 @@
 <!-- ヘッダー スマホ -->
 <div class='visible-xs'>
   <div class="brand-top">
-    <div class="float-left margin-lr-12"><%= link_to :back do %><<% end %></div>
     <div class="brand-top-logo-center">瞬間作文を追加する</div>
   </div>
 </div>
@@ -19,17 +18,17 @@
 
       <div class="hint-no-border visible-xs visible-sm visible-md">
         <%= render :partial => 'svg/information' %>
-        短文の投稿はパソコンでやるとより簡単です！
+        瞬間作文の投稿はパソコンでやるとより簡単です！
       </div>
 
       <div class="new-content">
-        <!-- 新しい短文集を作るModal -->
-        <div class="modal fade" id="new_paper_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- 新しい瞬間作文集を作るModal -->
+        <div class="modal fade modal-centered" id="new_paper_modal" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <%= form_for @new_paper, method: :post do |paper| %>
                 <div class="modal-body">
-                  <%= paper.text_field :name, placeholder: "新しい短文集を作る", :required => true, style: "width: 100%; height: 50px;" %>
+                  <%= paper.text_field :name, placeholder: "新しい瞬間作文集を作る", :required => true, style: "width: 100%; height: 50px;" %>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">閉じる</button>
@@ -42,9 +41,9 @@
 
         <%= form_for @sentence, method: :post do |f| %>
           <div class='form-section' id='paper-select-box'>
-            <%= f.label :paper, "どの短文集に追加しますか？" %>
+            <%= f.label :paper, "どの瞬間作文集に追加しますか？" %>
             <span type="button" class="link-to-new-sr-modal" data-toggle="modal" data-target="#new_paper_modal">
-              新しい短文集を作る
+              新しい瞬間作文集を作る
             </span>
             <br>
             <% if @paper_id.present? %>
@@ -62,7 +61,7 @@
                 <%= render :partial => 'svg/google_100' %>
               </div>
             </div>
-            <%= f.text_area :ch, placeholder: "中国で短文を書いてください。（例）每天晚上自修汉语。", :required => true %>
+            <%= f.text_area :ch, placeholder: "中国で瞬間作文を書いてください。（例）每天晚上自修汉语。", :required => true %>
           </div>
 
           <div class='form-section new-sentece-content'>
@@ -116,3 +115,6 @@
     </div><!-- End of col-12 -->
   </div><!-- End of row -->
 </div><!-- End of Container -->
+
+<div class="empty-sm">
+</div>

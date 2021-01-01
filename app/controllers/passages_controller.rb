@@ -28,6 +28,10 @@ class PassagesController < ApplicationController
     get_progresses
   end
 
+  def index
+    @passages = Passage.active.not_sapmle.order_mofified_at.page(page_params).per(20)
+  end
+
   def get_for_passage_show
     @passage = Passage.find(passage_id_params)
     @user = @passage.user

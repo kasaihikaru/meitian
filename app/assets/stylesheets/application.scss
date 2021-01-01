@@ -108,7 +108,7 @@ h1{ font-size: 20px; font-weight: 800; }
 .font-12{ font-size: 12px;}
 .font-14{ font-size: 14px;}
 .font-16{ font-size: 16px;}
-.font-20{ font-size: 20px;}
+.font-18{ font-size: 18px;}
 .font-25{ font-size: 25px;}
 
 .h1-margin{  margin: 15px 0;}
@@ -1067,8 +1067,13 @@ ul.cp_list li:before {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+  width: 90%;
+  max-width: 800px;
 }
-
+.modal-body-width{
+  width: 80%;
+  max-width: 800px;
+}
 
 
 

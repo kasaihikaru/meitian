@@ -3,26 +3,62 @@
 		<div class='psr-title psr-title-red'>勉強中の教材</div>
 		<div class='psr-content'>
 			<% @working_passages.each do |passage| %>
-				<div class='margin-b-20'>
-					<%= link_to passage_path(passage) do %>
-						<%= render :partial => 'svg/ring' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= passage.title.truncate(17) %></span>
-					<% end %>
-				</div>
+        <div class='margin-b-20'>
+          <%= link_to passage_path(passage) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= render :partial => 'svg/ring' %><%= passage.title %>
+            </div>
+            <div class='clearfix font-12'>
+            	<div class='float-left'>
+								<span class='status-badge badge-red'>勉強中</span>
+							</div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+              </div>
+              <% if passage.ch.present? %>
+                <div class='float-right'>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                </div>
+              <% end %>
+            </div>
+            <div class='psr-content-sub'>
+              <% if passage.p_words.count > 0 %>
+                <% passage.p_words.limit(20).each do |word| %>
+                  <%= word.ch.truncate(7) %>&ensp;/&ensp;
+                <% end %>
+              <% elsif passage.ch.present? %>
+                <%= passage.ch.truncate(100) %>
+              <% else %>
+                まだ単語が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 			<% end %>
 			<% @working_papers.each do |paper| %>
-				<div class='margin-b-20'>
-					<%= link_to paper_path(paper) do %>
-						<%= render :partial => 'svg/paper' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= paper.name.truncate(17) %></span>
-					<% end %>
-				</div>
+        <div class='margin-b-20'>
+          <%= link_to paper_path(paper) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= render :partial => 'svg/paper' %><%= paper.name %>
+            </div>
+            <div class='clearfix font-12'>
+            	<div class='float-left'>
+								<span class='status-badge badge-red'>勉強中</span>
+							</div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <% if paper.sentences.present? %>
+                <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
+                <%= paper.sentences.first.ja.truncate(50) %><br>
+              <% else %>
+                まだ瞬間作文が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 			<% end %>
 		</div>
 	</section>
@@ -34,26 +70,62 @@
 		<div class='psr-title psr-title-blue'>復習予定の教材</div>
 		<div class='psr-content'>
 			<% @review_needed_passages.each do |passage| %>
-				<div class='margin-b-20'>
-					<%= link_to passage_path(passage) do %>
-						<%= render :partial => 'svg/ring' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= passage.title.truncate(17) %></span>
-					<% end %>
-				</div>
+        <div class='margin-b-20'>
+          <%= link_to passage_path(passage) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= render :partial => 'svg/ring' %><%= passage.title %>
+            </div>
+            <div class='clearfix font-12'>
+            	<div class='float-left'>
+								<span class='status-badge badge-blue'>要復習</span>
+							</div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+              </div>
+              <% if passage.ch.present? %>
+                <div class='float-right'>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                </div>
+              <% end %>
+            </div>
+            <div class='psr-content-sub'>
+              <% if passage.p_words.count > 0 %>
+                <% passage.p_words.limit(20).each do |word| %>
+                  <%= word.ch.truncate(7) %>&ensp;/&ensp;
+                <% end %>
+              <% elsif passage.ch.present? %>
+                <%= passage.ch.truncate(100) %>
+              <% else %>
+                まだ単語が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 			<% end %>
 			<% @review_needed_papers.each do |paper| %>
-				<div class='margin-b-20'>
-					<%= link_to paper_path(paper) do %>
-						<%= render :partial => 'svg/paper' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= paper.name.truncate(17) %></span>
-					<% end %>
-				</div>
+        <div class='margin-b-20'>
+          <%= link_to paper_path(paper) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= render :partial => 'svg/paper' %><%= paper.name %>
+            </div>
+            <div class='clearfix font-12'>
+            	<div class='float-left'>
+								<span class='status-badge badge-blue'>要復習</span>
+							</div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <% if paper.sentences.present? %>
+                <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
+                <%= paper.sentences.first.ja.truncate(50) %><br>
+              <% else %>
+                まだ瞬間作文が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 			<% end %>
 		</div>
 	</section>
@@ -62,30 +134,51 @@
 
 
 <section class='psr'>
-	<div class='psr-title psr-title-black'>最近、追加・編集した教材</div>
+	<div class='psr-title psr-title-black'>最近、更新した単語帳</div>
 	<div class='psr-content'>
 		<% if @passages.present? %>
 			<div class='psr-sub-title'>単語帳</div>
 			<% @passages.each do |passage| %>
-				<div class='margin-b-20'>
-					<%= link_to passage_path(passage) do %>
-						<%= render :partial => 'svg/ring' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= passage.title %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= passage.title.truncate(15) %></span>
-						<!-- ステータスラベル -->
-						<% if passage.waiting? %>
-							<span class='status-badge badge-black'><%= passage.status_i18n %></span>
-						<% elsif passage.working? %>
-							<span class='status-badge badge-red'><%= passage.status_i18n %></span>
-						<% elsif passage.review_needed? %>
-							<span class='status-badge badge-blue'><%= passage.status_i18n %></span>
-						<% elsif passage.completed? %>
-							<span class='status-badge badge-green'><%= passage.status_i18n %></span>
-						<% end %>
-					<% end %>
-				</div>
+        <div class='margin-b-20'>
+          <%= link_to passage_path(passage) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= render :partial => 'svg/ring' %><%= passage.title %>
+            </div>
+            <div class='clearfix font-12'>
+            	<div class='float-left'>
+								<!-- ステータスラベル -->
+								<% if passage.waiting? %>
+									<span class='status-badge badge-black'><%= passage.status_i18n %></span>
+								<% elsif passage.working? %>
+									<span class='status-badge badge-red'><%= passage.status_i18n %></span>
+								<% elsif passage.review_needed? %>
+									<span class='status-badge badge-blue'><%= passage.status_i18n %></span>
+								<% elsif passage.completed? %>
+									<span class='status-badge badge-green'><%= passage.status_i18n %></span>
+								<% end %>
+							</div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.p_words.count %>単語</span>
+              </div>
+              <% if passage.ch.present? %>
+                <div class='float-right'>
+                  <span class="padding-t-3"><%= render :partial => 'svg/tag' %></span><span class="margin-l-5 margin-r-20">長文あり</span>
+                </div>
+              <% end %>
+            </div>
+            <div class='psr-content-sub'>
+              <% if passage.p_words.count > 0 %>
+                <% passage.p_words.limit(20).each do |word| %>
+                  <%= word.ch.truncate(7) %>&ensp;/&ensp;
+                <% end %>
+              <% elsif passage.ch.present? %>
+                <%= passage.ch.truncate(100) %>
+              <% else %>
+                まだ単語が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 			<% end %>
 			<% if @passages_cnt > 5 %>
 				<div class='psr-link'>
@@ -96,28 +189,46 @@
 			<% end %>
 			<br>
 		<% end %>
+	</div><!-- End of psr-content -->
+</section>
+
+<section class='psr'>
+	<div class='psr-title psr-title-black'>最近、更新した瞬間作文集</div>
 		<% if @papers.present? %>
 			<div class='psr-sub-title'>瞬間作文集</div>
 			<% @papers.each do |paper| %>
-				<div class='margin-b-20'>
-					<%= link_to paper_path(paper) do %>
-						<%= render :partial => 'svg/paper' %>
-						<!-- タブレット以上 -->
-						<span class='visible-sm-inline visible-lg-inline visible-md-inline'><%= paper.name %></span>
-						<!-- スマホサイズ -->
-						<span class='visible-xs-inline'><%= paper.name.truncate(15) %></span>
-						<!-- ステータスラベル -->
-						<% if paper.waiting? %>
-							<span class='status-badge badge-black'><%= paper.status_i18n %></span>
-						<% elsif paper.working? %>
-							<span class='status-badge badge-red'><%= paper.status_i18n %></span>
-						<% elsif paper.review_needed? %>
-							<span class='status-badge badge-blue'><%= paper.status_i18n %></span>
-						<% elsif paper.completed? %>
-							<span class='status-badge badge-green'><%= paper.status_i18n %></span>
-						<% end %>
-					<% end %>
-				</div>
+        <div class='margin-b-20'>
+          <%= link_to paper_path(paper) do %>
+            <div class='font-18 font-bold margin-b-5 overflow'>
+              <%= render :partial => 'svg/paper' %><%= paper.name %>
+            </div>
+            <div class='clearfix font-12'>
+            	<div class='float-left'>
+								<!-- ステータスラベル -->
+								<% if paper.waiting? %>
+									<span class='status-badge badge-black'><%= paper.status_i18n %></span>
+								<% elsif paper.working? %>
+									<span class='status-badge badge-red'><%= paper.status_i18n %></span>
+								<% elsif paper.review_needed? %>
+									<span class='status-badge badge-blue'><%= paper.status_i18n %></span>
+								<% elsif paper.completed? %>
+									<span class='status-badge badge-green'><%= paper.status_i18n %></span>
+								<% end %>
+							</div>
+              <div class='float-right'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= paper.sentences.count %>例文</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <% if paper.sentences.present? %>
+                <div class='margin-b-5'><%= paper.sentences.first.ch.truncate(50) %></div>
+                <%= paper.sentences.first.ja.truncate(50) %><br>
+              <% else %>
+                まだ瞬間作文が追加されていません。
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 			<% end %>
 			<% if @papers_cnt > 5 %>
 				<div class='psr-link'>

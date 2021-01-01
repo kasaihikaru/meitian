@@ -36,7 +36,7 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :name, 'ユーザーネーム' %><br />
+          <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
           <%= f.text_field :name, autofocus: true, maxlength: "20", placeholder: 'ユーザーネーム', class: "input-text" %>
         </div>
 
@@ -65,8 +65,9 @@
         </div>
 
         <div class="field">
-          <%= f.label :password, '新しいパスワード' %>
-          <%= f.password_field :password, autocomplete: "off", placeholder:  'パスワードを変えたい場合のみ入力してください', class: "input-text" %>
+          <%= f.label :password, '新しいパスワード' %><br>
+          <span class='explanation'>(変更する場合、6文字以上で入力してください)</span>
+          <%= f.password_field :password, autocomplete: "off", placeholder:  'パスワードを変更したい場合入力してください', class: "input-text" %>
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: '新パスワード確認', class: "input-text" %>
         </div>
 
