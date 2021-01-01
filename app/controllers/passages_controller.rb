@@ -1,5 +1,5 @@
 class PassagesController < ApplicationController
-  before_action :login_check, except: [:word_ja, :word_ch, :show]
+  before_action :login_check, except: [:show, :index]
   before_action -> {
     user_check_by_id(get_user_by_id_for_passage)
   },only: [:edit, :update, :destroy]

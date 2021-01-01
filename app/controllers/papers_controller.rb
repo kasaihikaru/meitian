@@ -1,5 +1,5 @@
 class PapersController < ApplicationController
-  before_action :login_check, except: [:sentence_ja, :sentence_ch, :word_ja, :word_ch, :show]
+  before_action :login_check, except: [:show, :index]
   before_action -> {
     user_check_by_id(get_user_by_paper_id_for_paper)
   },only: [:uncheck_all_sentences_ja, :uncheck_all_sentences_ch, :uncheck_all_words_ja, :uncheck_all_words_ch, :waiting, :working, :review_needed, :completed]

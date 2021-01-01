@@ -1,12 +1,14 @@
 <!-- 文章表示部分 -->
-<section class='passage'>
-  <div class='passage-ja-title'>
-    長文（中国語）
-  </div>
-  <div class='passage-content' id='passage-content-ch'>
-    <%= safe_join(passage.ch.split("\n"), tag(:br)) %>
-  </div>
-</section>
+<% if passage.ch.present? %>
+  <section class='passage'>
+    <div class='passage-ja-title'>
+      長文（中国語）
+    </div>
+    <div class='passage-content' id='passage-content-ch'>
+      <%= safe_join(passage.ch.split("\n"), tag(:br)) %>
+    </div>
+  </section>
+<% end %>
 
 <% if passage.ja.present? %>
   <section class='passage-ja'>
