@@ -6,9 +6,12 @@
         <div class='margin-b-20'>
           <%= link_to passage_path(passage) do %>
             <div class='font-18 font-bold margin-b-5 overflow'>
-              <%= render :partial => 'svg/ring' %><%= passage.title %>
+              <%= passage.title %>
             </div>
             <div class='clearfix font-12'>
+            	<div class='float-left'>
+            		<%= render :partial => 'svg/ring_line' %>
+            	</div>
             	<div class='float-left'>
 								<span class='status-badge badge-red'>勉強中</span>
 							</div>
@@ -39,9 +42,12 @@
         <div class='margin-b-20'>
           <%= link_to paper_path(paper) do %>
             <div class='font-18 font-bold margin-b-5 overflow'>
-              <%= render :partial => 'svg/paper' %><%= paper.name %>
+              <%= paper.name %>
             </div>
             <div class='clearfix font-12'>
+            	<div class='float-left'>
+            		<%= render :partial => 'svg/paper_line' %>
+            	</div>
             	<div class='float-left'>
 								<span class='status-badge badge-red'>勉強中</span>
 							</div>
@@ -73,9 +79,12 @@
         <div class='margin-b-20'>
           <%= link_to passage_path(passage) do %>
             <div class='font-18 font-bold margin-b-5 overflow'>
-              <%= render :partial => 'svg/ring' %><%= passage.title %>
+              <%= passage.title %>
             </div>
             <div class='clearfix font-12'>
+            	<div class='float-left'>
+            		<%= render :partial => 'svg/ring_line' %>
+            	</div>
             	<div class='float-left'>
 								<span class='status-badge badge-blue'>要復習</span>
 							</div>
@@ -106,9 +115,12 @@
         <div class='margin-b-20'>
           <%= link_to paper_path(paper) do %>
             <div class='font-18 font-bold margin-b-5 overflow'>
-              <%= render :partial => 'svg/paper' %><%= paper.name %>
+              <%= paper.name %>
             </div>
             <div class='clearfix font-12'>
+            	<div class='float-left'>
+            		<%= render :partial => 'svg/paper_line' %>
+            	</div>
             	<div class='float-left'>
 								<span class='status-badge badge-blue'>要復習</span>
 							</div>
@@ -142,9 +154,12 @@
         <div class='margin-b-20'>
           <%= link_to passage_path(passage) do %>
             <div class='font-18 font-bold margin-b-5 overflow'>
-              <%= render :partial => 'svg/ring' %><%= passage.title %>
+              <%= passage.title %>
             </div>
             <div class='clearfix font-12'>
+            	<div class='float-left'>
+            		<%= render :partial => 'svg/ring_line' %>
+            	</div>
             	<div class='float-left'>
 								<!-- ステータスラベル -->
 								<% if passage.waiting? %>
@@ -200,9 +215,12 @@
         <div class='margin-b-20'>
           <%= link_to paper_path(paper) do %>
             <div class='font-18 font-bold margin-b-5 overflow'>
-              <%= render :partial => 'svg/paper' %><%= paper.name %>
+              <%= paper.name %>
             </div>
             <div class='clearfix font-12'>
+            	<div class='float-left'>
+            		<%= render :partial => 'svg/paper_line' %>
+            	</div>
             	<div class='float-left'>
 								<!-- ステータスラベル -->
 								<% if paper.waiting? %>
