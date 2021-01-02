@@ -8,3 +8,8 @@
 
 <div class="empty-sm">
 </div>
+
+<!-- サンプルの場合チュートリアルを表示 -->
+<% if @passage.sample == true && @user == current_user %>
+  <%= render :partial => 'tutorial/tutorial_passage' %>
+<% end %>

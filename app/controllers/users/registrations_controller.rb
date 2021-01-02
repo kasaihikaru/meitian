@@ -10,11 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_sign_up_path_for(resource)
-    # リダイレクトの関係でこっちでringサンプル作成
-    copy_sample_ring(current_user.level, current_user.id)
+    # リダイレクトの関係でこっちでpassageサンプル作成
+    copy_sample_passage(current_user.level, current_user.id)
 
     # リダイレクト
-    ring_word_ch_path(current_user.rings.first)
+    passage_path(current_user.passages.first)
   end
 
   # メール認証入れた場合これ。今は実質使ってない
@@ -34,7 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       user = User.last
 
       # サンプル作成
-      copy_sample_passage(user.level, user.id)
+      # copy_sample_passage(user.level, user.id)
       copy_sample_paper(user.level, user.id)
 
       UserMailer.registration(user).deliver_now

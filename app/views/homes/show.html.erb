@@ -40,19 +40,19 @@
           <div class='psr-title psr-title-prim'>登録して勉強を始める</div>
           <div class="field">
             <%= f.label :email, 'メールアドレス' %><br />
-            <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text", id: "explore-form-show", onclick: "ga('send', 'event', 'explore_show', 'open_register_form', '')"%><br>
+            <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text", required: true, id: "explore-form-show", onclick: "ga('send', 'event', 'explore_show', 'open_register_form', '')"%><br>
           </div>
 
           <div id="explore-form-hidden" style="display: none;">
             <div class="field">
               <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-              <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text"%>
+              <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text", required: true %>
             </div>
 
             <div class="field">
               <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
-              <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
-              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
+              <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text", required: true %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text", required: true %>
             </div>
 
             <div class="field">
@@ -90,18 +90,18 @@
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <div class="field">
               <%= f.label :email, 'メールアドレス' %><br />
-              <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text" %><br>
+              <%= f.email_field :email, placeholder: 'メールアドレス', class: "input-text", required: true %><br>
             </div>
 
             <div class="field">
               <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
-              <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text" %>
+              <%= f.text_field :name, maxlength: "12", placeholder: 'ユーザーネーム', class: "input-text", required: true %>
             </div>
 
             <div class="field">
               <%= f.label :password, 'パスワード' %><span class='explanation'>（6文字以上）</span><br>
-              <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text" %>
-              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text" %>
+              <%= f.password_field :password, autocomplete: "off", placeholder: 'パスワード', class: "input-text", required: true %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード確認', class: "input-text", required: true %>
             </div>
 
             <div class="field">
