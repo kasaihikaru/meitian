@@ -105,10 +105,80 @@ class PapersController < ApplicationController
   end
 
   def update
+    #瞬間作文集名更新
     @paper = Paper.find(id_params)
     @paper.update(update_params)
 
-    redirect_to paper_path(@paper)
+    # 文章がある時のみ既存を更新
+    if @paper.sentences.present?
+      #文章更新
+      sentences = sentences_attribute_params(@paper.id)
+      sentences.each do |sentence|
+        original_sentence = Sentence.find(sentence[:id])
+        if original_sentence.pin_fixed == true
+          original_sentence.update(ja: sentence[:ja], ch: sentence[:ch])
+        else
+          original_sentence.update(ja: sentence[:ja], ch: sentence[:ch], pin: sentence[:pin])
+        end
+      end
+
+      #単語更新
+      words = words_attribute_params(@paper.id)
+      words.each do |word|
+        original_word = SWord.find(word[:id])
+        if original_word.pin_fixed == true
+          original_word.update(ja: word[:ja], ch: word[:ch])
+        else
+          original_word.update(ja: word[:ja], ch: word[:ch], pin: word[:pin])
+        end
+      end
+
+      # 既存瞬間作文へ新規wordを追加
+
+      add_new_words_params.each do |word|
+        if word[:ja].present? && word[:ch].present?
+          pinyin = get_pinyin(word[:ch])
+          SWord.create(ja: word[:ja], ch: word[:ch], sentence_id: word[:id], pin: pinyin)
+        end
+      end
+    end
+
+    #新規瞬間作文の追加
+    add_new_sentences_params.each do |sentence|
+      if sentence[:ja].present? && sentence[:ch].present?
+        pinyin = get_pinyin(sentence[:ch])
+        new_sentence = Sentence.create(ja: sentence[:ja], ch: sentence[:ch], pin: pinyin, paper_id: @paper.id)
+        add_new_sentence_words_params(sentence).each do |word|
+          if word[:ja].present? && word[:ch].present?
+            word_pinyin = get_pinyin(word[:ch])
+            SWord.create(ja: word[:ja], ch: word[:ch], pin: word_pinyin, sentence_id: new_sentence.id)
+          end
+        end
+      end
+    end
+
+    # show_render用 - user
+    @user = @paper.user
+
+    # show_render用 - sentences
+    @sentences = @paper.sentences.active
+    @all_sentence_count = @sentences.count
+    @memorized_sentence_count_ch = @sentences.memorized_ch.count
+    @memorized_sentence_count_ja = @sentences.memorized_ja.count
+    get_sentence_progresses
+
+    # show_render用 - words
+    @all_count = 0
+    @memorized_count_ch = 0
+    @memorized_count_ja = 0
+    if @sentences.present?
+      @sentences.each do |s|
+        @all_count += s.s_words.active.count
+        @memorized_count_ch += s.s_words.active.memorized_ch.count
+        @memorized_count_ja += s.s_words.active.memorized_ja.count
+      end
+    end
+    get_progresses
   end
 
   def destroy
@@ -212,6 +282,42 @@ private
   end
   def update_params
     params.require(:paper).permit(:name).merge(modified_at: Time.now)
+  end
+
+  def sentences_attribute_params(paper_id)
+    array = []
+    sentences = params[:paper][:sentences_attributes]
+    if sentences.present?
+      sentences.each do |key,value|
+        if value["ja"].present? && value["ch"].present?
+          value[:paper_id] = paper_id
+          value[:pin] = get_pinyin(value[:ch])
+          value[:id] = key.to_i
+          array << value
+        else
+          next
+        end
+      end
+    end
+    return array
+  end
+
+  def words_attribute_params(paper_id)
+    array = []
+    words = params[:paper][:s_words_attributes]
+    if words.present?
+      words.each do |key,value|
+        if value["ja"].present? && value["ch"].present?
+          value[:paper_id] = paper_id
+          value[:pin] = get_pinyin(value[:ch])
+          value[:id] = key.to_i
+          array << value
+        else
+          next
+        end
+      end
+    end
+    return array
   end
 
 end

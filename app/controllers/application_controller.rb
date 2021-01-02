@@ -335,6 +335,12 @@ private
   def add_new_words_params
     params.require(:new_words)
   end
+  def add_new_sentences_params
+    params.require(:new_sentences)
+  end
+  def add_new_sentence_words_params(sentence)
+    sentence.require(:words)
+  end
 	def page_params
 		params[:page].to_i
 	end

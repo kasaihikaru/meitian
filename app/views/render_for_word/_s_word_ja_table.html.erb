@@ -3,9 +3,6 @@
 			<table class="table table-sm">
 				<thead class="border-b-double">
 					<tr>
-						<% if user_signed_in? && paper.user_id == current_user.id %>
-							<th scope="col" class=""></th>
-						<% end %>
 						<th scope="col" class="">日</th>
 						<% if user_signed_in? && paper.user_id == current_user.id %>
 							<th scope="col" class=""></th>

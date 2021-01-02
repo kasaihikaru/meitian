@@ -67,7 +67,7 @@
 			            </div>
 									<div class="float-left margin-l-10" id="p_word_pin_edit_ch_<%= word.id %>"><%= word.ch %></div>
 			          </div>
-			          <%= text_field_tag :pin , word.pin ,placeholder: "Pinyin", class: "width-100" %>
+			          <%= text_field_tag :pin , word.pin ,placeholder: "Pinyin", class: "width-100", id: "pin_ch_"+word.id.to_s %>
 			        </div>
 					</div>
 	        <div class="modal-footer">

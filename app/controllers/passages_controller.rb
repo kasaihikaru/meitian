@@ -78,11 +78,11 @@ class PassagesController < ApplicationController
 
   def update
     # 長文更新
-    passage = Passage.find(id_params)
-    passage.update(title:create_params[:title], ja:create_params[:ja], ch:create_params[:ch], modified_at: create_params[:modified_at])
+    @passage = Passage.find(id_params)
+    @passage.update(title:create_params[:title], ja:create_params[:ja], ch:create_params[:ch], modified_at: create_params[:modified_at])
 
     # 単語更新
-    words = words_attribute_params(passage.id)
+    words = words_attribute_params(@passage.id)
     words.each do |w|
       original_word = PWord.find(w[:id])
       if original_word.pin_fixed == true
@@ -96,12 +96,11 @@ class PassagesController < ApplicationController
     add_new_words_params.each do |w|
       if w[:ja].present? && w[:ch].present?
         pinyin = get_pinyin(w[:ch])
-        PWord.create(ja: w[:ja], ch: w[:ch], passage_id: passage.id, pin: pinyin)
+        PWord.create(ja: w[:ja], ch: w[:ch], passage_id: @passage.id, pin: pinyin)
       end
     end
 
     # show_render用
-    @passage = Passage.find(id_params)
     @user = @passage.user
     @words = @passage.p_words.active
     @all_count = @words.count

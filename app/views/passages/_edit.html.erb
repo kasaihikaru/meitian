@@ -20,31 +20,29 @@
         <%= f.label :title, "単語" %><br />
         <div class='passage-edit-words-wrapper'>
           <% @passage.p_words.each do |w| %>
-            <% if w.deleted_at.blank? %>
-              <div class="clearfix">
-                <div id="word_ch_<%= w.id %>" class="float-left">
-                  <%= render :partial => 'svg/google' %>
-                </div>
-                <input placeholder="中国語" class="float-left" type='text' value='<%= w.ch %>' name='passage[p_words_attributes][<%= w.id %>][ch]' id='passage_p_words_attributes_<%= w.id %>_ch' >
-                <div id="word_ja_<%= w.id %>" class="float-left margin-l-10">
-                  <%= render :partial => 'svg/google' %>
-                </div>
-                <input placeholder="日本" class="float-left" type='text' value='<%= w.ja %>' name='passage[p_words_attributes][<%= w.id %>][ja]' id='passage_p_words_attributes_<%= w.id %>_ja' >
-                <!-- google検索機能 -->
-                <script type="text/javascript">
-                  document.getElementById("word_ch_<%= w.id %>").onclick = function(){
-                    var target= document.getElementById('passage_p_words_attributes_<%= w.id %>_ch');
-                        word = target.value;
-                    window.open('http://www.google.com/search?q=中国語%20'+word);
-                  };
-                  document.getElementById("word_ja_<%= w.id %>").onclick = function(){
-                    var target= document.getElementById('passage_p_words_attributes_<%= w.id %>_ja');
-                        word = target.value;
-                    window.open('http://www.google.com/search?q=中国語%20'+word);
-                  };
-                </script>
+            <div class="clearfix">
+              <div id="word_ch_<%= w.id %>" class="float-left">
+                <%= render :partial => 'svg/google' %>
               </div>
-            <% end %>
+              <input placeholder="中国語" class="float-left" type='text' value='<%= w.ch %>' name='passage[p_words_attributes][<%= w.id %>][ch]' id='passage_p_words_attributes_<%= w.id %>_ch' >
+              <div id="word_ja_<%= w.id %>" class="float-left margin-l-10">
+                <%= render :partial => 'svg/google' %>
+              </div>
+              <input placeholder="日本語" class="float-left" type='text' value='<%= w.ja %>' name='passage[p_words_attributes][<%= w.id %>][ja]' id='passage_p_words_attributes_<%= w.id %>_ja' >
+              <!-- google検索機能 -->
+              <script type="text/javascript">
+                document.getElementById("word_ch_<%= w.id %>").onclick = function(){
+                  var target= document.getElementById('passage_p_words_attributes_<%= w.id %>_ch');
+                      word = target.value;
+                  window.open('http://www.google.com/search?q=中国語%20'+word);
+                };
+                document.getElementById("word_ja_<%= w.id %>").onclick = function(){
+                  var target= document.getElementById('passage_p_words_attributes_<%= w.id %>_ja');
+                      word = target.value;
+                  window.open('http://www.google.com/search?q=中国語%20'+word);
+                };
+              </script>
+            </div>
           <% end %>
 
           <!-- 単語追加 -->
