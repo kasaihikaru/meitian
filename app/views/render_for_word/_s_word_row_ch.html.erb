@@ -72,10 +72,10 @@
 	        	Meitianが自動で振ったピンインを修正することができます。
 			    		<div class='form-section'>
 			          <div class="clearfix">
-			            <div id="s_word_pin_edit_ch" class="float-left">
+			            <div id="s_word_pin_edit_btn_ch_<%= word.id %>" class="float-left">
 			              <%= render :partial => 'svg/google' %>
 			            </div>
-									<div class="float-left margin-l-10" id="s_word_pinedit"><%= word.ch %></div>
+									<div class="float-left margin-l-10" id="s_word_pin_edit_ch_<%= word.id %>"><%= word.ch %></div>
 			          </div>
 			          <%= text_field_tag :pin , word.pin ,placeholder: "Pinyin", class: "width-100" %>
 			        </div>
@@ -88,6 +88,15 @@
       <% end %>
     </div>
   </div>
+  <!-- google検索機能 -->
+  <script type="text/javascript">
+    document.getElementById("s_word_pin_edit_btn_ch_<%= word.id %>").onclick = function(){
+      var target= document.getElementById('s_word_pin_edit_ch_<%= word.id %>');
+          word = target.textContent;
+      window.open('http://www.google.com/search?q=中国語%20'+word);
+    };
+  </script>
+
 
 <!-- ログインしていない -->
 <% else %>

@@ -75,7 +75,7 @@
       <%= render :partial => 'papers/paper_word_tab_ch', :locals=>{paper: @paper} %>
     </div>
   <!--          瞬間作文のみ          -->
-  <% elsif @all_count > 0 && @paper.ch.blank? %>
+  <% elsif @all_sentence_count > 0 && @all_count == 0 %>
     <div class="tab-content tab-content-show" id="paper_sentence_tab_ja"><!-- 瞬間作文（日→中）タブ内容 -->
       <%= render :partial => 'papers/paper_sentence_tab_ja', :locals=>{paper: @paper} %>
     </div>
