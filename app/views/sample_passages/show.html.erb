@@ -1,0 +1,75 @@
+<% content_for :title do %>
+  <%= @passage.title %> | Meitianで中国語HSKを勉強
+<% end %>
+
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center"><%= @passage.title %></div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class='h1-margin'><%= @passage.title %></h1>
+  <div class='clearfix line-height-18'>
+    <div class='float-left'>
+    </div>
+    <div class='float-left margin-l-10'>
+    </div>
+    <% if user_signed_in? %>
+      <!-- マイ教材にコピーモーダル立ち上げボタン -->
+      <button type="button" class="copy-action-btn float-right margin-b-20 visible-sm visible-md visible-lg" data-toggle="modal" data-target="#copy_to_mylist_modal">
+        マイ教材に追加
+      </button>
+    <% end %>
+  </div>
+  <!-- 単語リスト -->
+  <section class='words' id='passage-words-ch'>
+    <div class="row">
+      <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8" >
+          <table class="table table-sm">
+            <thead class="border-b-double">
+              <tr>
+                <th scope="col" class="">日</th>
+                <th scope="col" class="">中</th>
+                <th scope="col" class="">pin</th>
+              </tr>
+            </thead>
+            <tbody class="">
+              <% @words.each do |word| %>
+                <tr id="p_word_row_ch_<%= word.id %>">
+                  <th scope="col">
+                    <a href="https://www.google.co.jp/search?q=<%= word.ja %>%20中国語" target="_blank"><%= word.ja %></a>
+                  </th>
+                  <th scope="col">
+                    <a href="https://www.google.co.jp/search?q=<%= word.ch %>%20中国語" target="_blank"><%= word.ch %></a>
+                  </th>
+                  <th scope="col"><%= word.pin %></th>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </section>
+</div><!-- End of Container -->
+
+<!-- マイ教材にコピーモーダル -->
+<% if user_signed_in? %>
+  <div class="modal fade modal-centered" id="copy_to_mylist_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">「<%= @passage.title %>」をコピーして、マイ教材に追加しますか？</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button type="button" class="btn bg-prim fontcol-white prevent_double_click" data-dismiss="modal"><%= link_to "マイ教材に追加", sample_passage_copy_path(@passage), method: :post, class: "fontcol-white", remote: true %></button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="empty-sm">
+</div>

@@ -33,6 +33,10 @@ Rails.application.routes.draw do
     put 'completed' #ステータスを完了！に
   end
 
+  resources :sample_passages, only: [:show] do
+    post 'copy' #HSK教材をマイ教材にコピー
+  end
+
   resources :p_words, only: [:edit, :update, :destroy] do
     #get
     get 'edit_pin' #ピンイン編集ページ
@@ -121,6 +125,7 @@ Rails.application.routes.draw do
   resource :docs, only: [] do
     get 'term' #利用規約
     get 'privacy' #プライバシポリシー
+    get 'hsk_index' #hsk単語帳一覧
   end
 
 end

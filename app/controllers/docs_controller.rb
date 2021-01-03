@@ -6,4 +6,8 @@ class DocsController < ApplicationController
   def privacy
   end
 
+  def hsk_index
+    @hsk_passages = SamplePassage.hsk.active
+  end
+
 end

@@ -305,6 +305,9 @@ private
   def passage_id_params
     params[:passage_id].to_i
   end
+  def sample_passage_id_params
+    params[:sample_passage_id].to_i
+  end
   def p_word_id_params
     params[:p_word_id].to_i
   end

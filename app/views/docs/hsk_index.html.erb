@@ -1,0 +1,39 @@
+<% content_for :title do %>
+  HSKの単語帳一覧 | MeiTian
+<% end %>
+
+<div class='visible-xs'>
+  <div class="brand-top">
+    <div class="brand-top-logo-center">HSKの単語帳一覧</div>
+  </div>
+</div>
+
+<div class="container">
+  <section class='psr'>
+    <h1 class='psr-title psr-title-prim'>HSKの単語帳一覧</h1>
+    <div class='psr-content'>
+      <% @hsk_passages.each do |passage| %>
+        <div class='margin-b-20'>
+          <%= link_to sample_passage_path(passage) do %>
+            <div class='clearfix margin-b-5'>
+              <div class='float-left font-18 font-bold margin-b-5 overflow'>
+                <%= passage.title %>
+              </div>
+              <div class='float-right font-12'>
+                <%= render :partial => 'svg/ring_tag' %><span class="margin-l-5"><%= passage.sample_p_words.count %>単語</span>
+              </div>
+            </div>
+            <div class='psr-content-sub'>
+              <% passage.sample_p_words.limit(20).each do |word| %>
+                <%= word.ch.truncate(7) %>&ensp;/&ensp;
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div><!-- End of Container -->
+
+<div class="empty-sm">
+</div>

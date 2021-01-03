@@ -168,6 +168,8 @@
       <%= render :partial => 'render_common/footer_passage' %>
     <% when params[:controller] == 'papers' && params[:action] == 'show'%>
       <%= render :partial => 'render_common/footer_paper' %>
+    <% when params[:controller] == 'sample_passages' && params[:action] == 'show'%>
+      <%= render :partial => 'render_common/footer_sample_passage' %>
     <% else %>
       <%= render :partial => 'render_common/footer_nav' %>
     <% end %>
