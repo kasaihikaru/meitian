@@ -29,7 +29,7 @@ class PassagesController < ApplicationController
   end
 
   def index
-    @passages = Passage.active.not_sapmle.order_mofified_at.page(page_params).per(20)
+    @passages = Passage.active.not_sapmle.order_mofified_at.page(page_params).per(20).includes(:user)
   end
 
   def get_for_passage_show

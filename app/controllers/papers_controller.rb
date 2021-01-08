@@ -39,7 +39,7 @@ class PapersController < ApplicationController
   end
 
   def index
-    @papers = Paper.active.not_sapmle.order_mofified_at.page(page_params).per(20)
+    @papers = Paper.active.not_sapmle.order_mofified_at.page(page_params).per(20).includes(:user)
   end
 
   def get_for_paper_show
