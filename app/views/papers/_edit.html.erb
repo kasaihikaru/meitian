@@ -81,7 +81,7 @@
             </div>
           <% end %>
           <!-- 単語追加 -->
-          <% 3.times do |i| %>
+          <% 7.times do |i| %>
             <div class="clearfix">
               <div id="word_add_ch_<%= sentence.id %>_<%= i %>" class="float-left"><%= render :partial => 'svg/google' %></div>
              <input type="text" name="new_words[][ch]" class="float-left" placeholder="中国語" id="word_add_input_ch_<%= sentence.id %>_<%= i %>">
@@ -148,7 +148,7 @@
         <!-- 新規瞬間作文の単語 -->
         <div class="col-xs-12 col-lg-6 margin-b-20">
           <%= f.label :ch, "単語" %>
-          <% 5.times do |x| %>
+          <% 10.times do |x| %>
             <div class="clearfix">
               <div id="new_sentence_word_add_ch_<%= i %>_<%= x %>" class="float-left"><%= render :partial => 'svg/google' %></div>
               <input type="text" name="new_sentences[][words][][ch]" class="float-left" placeholder="中国語" id="new_sentence_word_add_input_ch_<%= i %>_<%= x %>">
