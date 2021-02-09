@@ -33,11 +33,6 @@
 		<th scope="col" class="pointer" type="button"  data-toggle="modal" data-target="#pin_edit_modal_ja_<%= word.id %>"><%= word.pin %></th>
 	<% else %>
 		<th scope="col" class="row-checked">
-			<%= link_to edit_s_word_path(word) do %>
-				<%= render :partial => 'svg/edit_sm' %>
-			<% end %>
-		</th>
-		<th scope="col" class="row-checked">
 			<a href="https://www.google.co.jp/search?q=<%= word.ja %>%20中国語" target="_blank">
 				<%= word.ja %>
 			</a>
