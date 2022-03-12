@@ -26,27 +26,55 @@
         </div>
 
 
-        <% if @user.image.blank? %>
-          <div class="field">
-            <%= f.label :image, "アイコン画像" %><br />
-            <%= image_tag @user.image.url, alt: "icon", class: "user-image-preview" if @user.image? %>
-
-            <%= f.file_field :image %>
-          </div>
-        <% end %>
-
         <div class="field">
           <%= f.label :name, 'ユーザーネーム' %><span class='explanation'>（最大12文字）</span><br />
           <%= f.text_field :name, autofocus: true, maxlength: "20", placeholder: 'ユーザーネーム', class: "input-text" %>
         </div>
 
-        <% if @user.image.present? %>
-          <div class="field">
-            <%= f.label :image, "アイコン画像" %><br />
-            <%= image_tag @user.image.url, alt: "icon" if @user.image? %>
-            <%= f.file_field :image %>
-          </div>
-        <% end %>
+        <div class="field">
+          <%= f.label :icon, "アイコン" %><br />
+          <%= f.radio_button :icon, "0", checked: true%>
+          <label for="user_icon_0">
+            <img src="/images/icon-0.png">
+          </label>
+          <%= f.radio_button :icon, "1", checked: true%>
+          <label for="user_icon_1">
+            <img src="/images/icon-1.png">
+          </label>
+          <%= f.radio_button :icon, "2" %>
+          <label  for="user_icon_2">
+            <img src="/images/icon-2.png">
+          </label>
+          <%= f.radio_button :icon, "3" %>
+          <label  for="user_icon_3">
+            <img src="/images/icon-3.png">
+          </label>
+          <%= f.radio_button :icon, "4" %>
+          <label  for="user_icon_4">
+            <img src="/images/icon-4.png">
+          </label>
+          <%= f.radio_button :icon, "5" %>
+          <label  for="user_icon_5">
+            <img src="/images/icon-5.png">
+          </label>
+          <%= f.radio_button :icon, "6" %>
+          <label  for="user_icon_6">
+            <img src="/images/icon-6.png">
+          </label>
+          <%= f.radio_button :icon, "7" %>
+          <label  for="user_icon_7">
+            <img src="/images/icon-7.png">
+          </label>
+          <%= f.radio_button :icon, "8" %>
+          <label  for="user_icon_8">
+            <img src="/images/icon-8.png">
+          </label>
+          <%= f.radio_button :icon, "9" %>
+          <label  for="user_icon_9">
+            <img src="/images/icon-9.png">
+          </label>
+        </div>
+
 
         <div class="field">
           <%= f.label :email, 'メールアドレス' %><br />

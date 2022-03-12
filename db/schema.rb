@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_04_095828) do
+ActiveRecord::Schema.define(version: 2022_03_12_135706) do
 
   create_table "p_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "passage_id"
@@ -178,7 +178,6 @@ ActiveRecord::Schema.define(version: 2019_07_04_095828) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.string "image"
     t.text "goal"
     t.text "introduction"
     t.text "link"
@@ -203,6 +202,7 @@ ActiveRecord::Schema.define(version: 2019_07_04_095828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "level", limit: 1, default: 0
+    t.integer "icon", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

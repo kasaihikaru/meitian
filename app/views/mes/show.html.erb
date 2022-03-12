@@ -21,11 +21,7 @@
 
 	<% if @user.goal.present? %>
 		<div class="balloon-wrapper float-left"">
-			<% if @user.image? %>
-						<%= image_tag @user.image.url, :alt => "icon", :class => "icon" %>
-			<% else %>
-				<img class="icon" alt="no-icon" src="/images/no-icon.png">
-			<% end %>
+			<img class="icon" alt="icon" src="/images/icon-<%= @user.icon %>.png">
 			<p class="left_balloon">
 				<%= @user.goal %>
 			</p>

@@ -19,11 +19,7 @@
     <div class="margin-tb-10 line-height-15">
       <div class='float-left'>
         <%= link_to user_path(@user) do %>
-          <% if @user.image? %>
-            <%= image_tag @user.image.url, :alt => "icon", :class=>"icon-40 center" %>
-          <% else %>
-             <img alt="no-icon" src="/images/no-icon.png" class="icon-40">
-          <% end %>
+          <img alt="icon" src="/images/icon-<%= @user.icon %>.png" class="icon-40">
         <% end %>
       </div>
       <div class='float-left margin-l-10'>

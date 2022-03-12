@@ -29,6 +29,25 @@
 	.product-img{
 		width: 100%;
 	}
+
+
+	/* ラジオボタンを非表示化 */
+	input[type=radio]{
+	    display: none;
+	}
+
+	/* 画像部分に余白を持たせる */
+	label img {
+    margin: 3px 10px;
+    border: 3px solid #FFF;
+		width: 40px;
+		height: 40px;
+	}
+	/* 選択済みの場合、色を濃くする */
+	input[type="radio"]:checked + label img {
+    border: 3px solid #000;
+	}
+
 }
 
 

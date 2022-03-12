@@ -84,7 +84,7 @@
       <!-- ユーザー登録 -->
       <div class="row">
         <div class="col-12 col-md-7">
-          <img alt="no-icon" src="/images/MeiTian_TOP.jpg">
+          <img alt="TOP" src="/images/MeiTian_TOP.jpg">
         </div>
         <div class="col-12 col-md-5 user-register">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -124,7 +124,7 @@
 
 <!-- お役立ち情報 -->
 <div class="container margin-t-20">
-   <div class='psr-title psr-title-prim'>お役立ち情報</div>
+   <div class='psr-title psr-title-prim'>お役立ちリンク</div>
 </div>
 
 
@@ -133,25 +133,25 @@
     <li class="horizontal-card">
       <a href="https://note.com/meitian/n/n0c0740a1afc7" target="_blank" rel="noopener noreferrer">
         <div class="horizontal-card-img horizontal-card-1"></div>
-        <div class="horizontal-card-text">Meitian(メイテン)とは？使い方を詳しく紹介</div>
+        <div class="horizontal-card-text">中日辞書 北辞郎</div>
       </a>
     </li>
     <li class="horizontal-card">
       <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
         <div class="horizontal-card-img horizontal-card-2"></div>
-        <div class="horizontal-card-text">【ユーザー投稿】サラリーマンが中国語歴10ヶ月でHSK5級8割取るまで</div>
+        <div class="horizontal-card-text">サラリーマンが中国語歴10ヶ月でHSK5級8割取るまで</div>
       </a>
     </li>
     <li class="horizontal-card">
       <a href="https://note.com/meitian/n/n4257de2a1974" target="_blank" rel="noopener noreferrer">
         <div class="horizontal-card-img horizontal-card-3"></div>
-        <div class="horizontal-card-text">MeitianをiPhoneのホーム画面に追加して便利に使うには</div>
+        <div class="horizontal-card-text">どんと来い 中国語 ピンイン変換ツール</div>
       </a>
     </li>
     <li class="horizontal-card">
       <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
         <div class="horizontal-card-img horizontal-card-4"></div>
-        <div class="horizontal-card-text">【ユーザー投稿】中国語学習1ヶ月での中国旅行記@香港深圳広州澳門</div>
+        <div class="horizontal-card-text">中国語学習1ヶ月での中国旅行記@香港深圳広州澳門</div>
       </a>
     </li>
   </ul>
@@ -163,25 +163,25 @@
       <li class="horizontal-card">
         <a href="https://note.com/meitian/n/n0c0740a1afc7" target="_blank" rel="noopener noreferrer">
           <div class="horizontal-card-img horizontal-card-1"></div>
-          <div class="horizontal-card-text">Meitian(メイテン)とは？使い方を詳しく紹介</div>
+          <div class="horizontal-card-text">中日辞書 北辞郎</div>
         </a>
       </li>
       <li class="horizontal-card">
         <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
           <div class="horizontal-card-img horizontal-card-2"></div>
-          <div class="horizontal-card-text">【ユーザー投稿】サラリーマンが中国語歴10ヶ月でHSK5級8割取るまで</div>
+          <div class="horizontal-card-text">サラリーマンが中国語歴10ヶ月でHSK5級8割取るまで</div>
         </a>
       </li>
       <li class="horizontal-card">
         <a href="https://note.com/meitian/n/n4257de2a1974" target="_blank" rel="noopener noreferrer">
           <div class="horizontal-card-img horizontal-card-3"></div>
-          <div class="horizontal-card-text">MeitianをiPhoneのホーム画面に追加して便利に使うには</div>
+          <div class="horizontal-card-text">どんと来い 中国語 ピンイン変換ツール</div>
         </a>
       </li>
       <li class="horizontal-card">
         <a href="https://note.com/kasaihikaru/n/nb72640f03cdf" target="_blank" rel="noopener noreferrer">
           <div class="horizontal-card-img horizontal-card-4"></div>
-          <div class="horizontal-card-text">【ユーザー投稿】中国語学習1ヶ月での中国旅行記@香港深圳広州澳門</div>
+          <div class="horizontal-card-text">中国語学習1ヶ月での中国旅行記@香港深圳広州澳門</div>
         </a>
       </li>
     </ul>
@@ -202,11 +202,7 @@
             </div>
             <div class='clearfix font-12'>
               <div class='float-left img-16'>
-                <% if passage.user.image? %>
-                  <%= image_tag passage.user.image.url, :alt => "icon" %>
-                <% else %>
-                   <img alt="no-icon" src="/images/no-icon.png">
-                <% end %>
+                <img alt="icon" src="/images/icon-<%= passage.user.icon %>.png">
               </div>
               <div class='float-left margin-l-3'>
                 <%= passage.user.name.truncate(11) %>
@@ -283,11 +279,7 @@
             </div>
             <div class='clearfix font-12'>
               <div class='float-left img-16'>
-                <% if paper.user.image? %>
-                  <%= image_tag paper.user.image.url, :alt => "icon" %>
-                <% else %>
-                   <img alt="no-icon" src="/images/no-icon.png">
-                <% end %>
+                <img alt="icon" src="/images/icon-<%= paper.user.icon %>.png">
               </div>
               <div class='float-left margin-l-3'>
                 <%= paper.user.name.truncate(10) %>

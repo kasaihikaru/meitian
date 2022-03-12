@@ -1,11 +1,7 @@
 <div class='user-profile-field'> 
   <div class='user-icon-name clearfix'>
   	<div class='float-left'>
-  	  <% if @user.image? %>
-  	    <%= image_tag @user.image.url, :alt => "icon", :class=>"user-icon center" %>
-  	  <% else %>
-  			 <img alt="no-icon" src="/images/no-icon.png" class="user-icon center">
-  	  <% end %>
+  		<img alt="icon" src="/images/icon-<%= @user.icon %>.png" class="user-icon center">
   	</div>
   	<div class='float-left user-name'>
   		<%= @user.name %>

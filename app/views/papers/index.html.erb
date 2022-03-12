@@ -20,11 +20,7 @@
             </div>
             <div class='clearfix font-12'>
               <div class='float-left img-16'>
-                <% if paper.user.image? %>
-                  <%= image_tag paper.user.image.url, :alt => "icon" %>
-                <% else %>
-                   <img alt="no-icon" src="/images/no-icon.png">
-                <% end %>
+                <img alt="icon" src="/images/icon-<%= paper.user.icon %>.png">
               </div>
               <div class='float-left margin-l-5'>
                 <%= paper.user.name.truncate(10) %>

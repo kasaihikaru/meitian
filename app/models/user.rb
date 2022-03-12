@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :name,    length: { maximum: 12 }
 
   # ファイルアップロード処理
-  mount_uploader :image, ImageUploader
+  # mount_uploader :image, ImageUploader
 
   # trueだと、ブラウザ閉じてもログイン保持できる
   def remember_me
